@@ -106,7 +106,7 @@ extension BaseWireframe: WireframeInterface {
     }
 }
 ```
-A wireframe is used in 3 steps:
+The Wireframe is used in 3 steps:
 
 1. Initialisation using a *UINavigationController* (see the *init* method). Since the Wireframe is in charge of performing the navigation it needs access to the actual *UINavigationController* with which it will do so.
 2. Navigation to a screen (see the *show* method). For this we've defined 3 types of transitions which are pretty self explanitory (see the *Transition* enum). 
