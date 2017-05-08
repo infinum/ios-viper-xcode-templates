@@ -1,7 +1,6 @@
-<div class="markdown-output__summary">
-How to organise all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
-</div>
+## VIPER short introduction
 
+How to organise all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
 In short, **VIPER (View Interactor Presenter Entity Router)** is an architecture which, among other things, aims at solving the common *Massive View Controller* problem in iOS apps. When implemented to its full extent it achieves complete separation of concerns between modules, which also yields testability. This is good because another problem with Apple's Model View Controller architecture is poor testability.
 
 If you search the web for VIPER architecture in iOS apps you'll find a number of different implementations and a lot of them are not covered in enough detail. At Infinum we have tried out several approaches to this architecture in real-life projects and with thath we have defined our own version of VIPER which we will try to cover in detail here.
@@ -65,46 +64,46 @@ Let's start by covering these base files: *WireframeInterface*, *BaseWireframe*,
 
 ```swift
 enum Transition {
-case root
-case push
-case present(fromViewController: UIViewController)
+    case root
+    case push
+    case present(fromViewController: UIViewController)
 }
 
 protocol WireframeInterface: class {
-func popFromNavigationController(animated: Bool)
-func dismiss(animated: Bool)
+    func popFromNavigationController(animated: Bool)
+    func dismiss(animated: Bool)
 }
 
 class BaseWireframe {
 
-unowned var navigationController: UINavigationController
+    unowned var navigationController: UINavigationController
 
-init(navigationController: UINavigationController) {
-self.navigationController = navigationController
-}
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
 
-func show(_ viewController: UIViewController, with transition: Transition, animated: Bool) {
-switch transition {
-case .push:
-navigationController.pushViewController(viewController, animated: animated)
-case .present(let fromViewController):
-navigationController.viewControllers = [viewController]
-fromViewController.present(navigationController, animated: animated, completion: nil)
-case .root:
-navigationController.setViewControllers([viewController], animated: animated)
-}
-}
+    func show(_ viewController: UIViewController, with transition: Transition, animated: Bool) {
+        switch transition {
+        case .push:
+            navigationController.pushViewController(viewController, animated: animated)
+        case .present(let fromViewController):
+            navigationController.viewControllers = [viewController]
+            fromViewController.present(navigationController, animated: animated, completion: nil)
+        case .root:
+            navigationController.setViewControllers([viewController], animated: animated)
+        }
+    }
 }
 
 extension BaseWireframe: WireframeInterface {
 
-func popFromNavigationController(animated: Bool) {
-let _ = navigationController.popViewController(animated: animated)
-}
+    func popFromNavigationController(animated: Bool) {
+        let _ = navigationController.popViewController(animated: animated)
+    }
 
-func dismiss(animated: Bool) {
-navigationController.dismiss(animated: animated)
-}
+    func dismiss(animated: Bool) {
+        navigationController.dismiss(animated: animated)
+    }
 }
 ```
 A wireframe is used in 3 steps:
@@ -118,34 +117,34 @@ The *present* case is different because here we are actually presenting the *UIN
 
 ```swift
 protocol PresenterInterface: class {
-func viewDidLoad()
-func viewWillAppear(animated: Bool)
-func viewDidAppear(animated: Bool)
-func viewWillDisappear(animated: Bool)
-func viewDidDisappear(animated: Bool)
+    func viewDidLoad()
+    func viewWillAppear(animated: Bool)
+    func viewDidAppear(animated: Bool)
+    func viewWillDisappear(animated: Bool)
+    func viewDidDisappear(animated: Bool)
 }
 
 extension PresenterInterface {
 
-func viewDidLoad() {
-fatalError("Implementation pending...")
-}
+    func viewDidLoad() {
+        fatalError("Implementation pending...")
+    }
 
-func viewWillAppear(animated: Bool) {
-fatalError("Implementation pending...")
-}
+    func viewWillAppear(animated: Bool) {
+        fatalError("Implementation pending...")
+    }
 
-func viewDidAppear(animated: Bool) {
-fatalError("Implementation pending...")
-}
+    func viewDidAppear(animated: Bool) {
+        fatalError("Implementation pending...")
+    }
 
-func viewWillDisappear(animated: Bool) {
-fatalError("Implementation pending...")
-}
+    func viewWillDisappear(animated: Bool) {
+        fatalError("Implementation pending...")
+    }
 
-func viewDidDisappear(animated: Bool) {
-fatalError("Implementation pending...")
-}
+    func viewDidDisappear(animated: Bool) {
+        fatalError("Implementation pending...")
+    }
 }
 ```
 The *PresenterInterface* offers only optional methods which are used for the Presenter to performa tasks based on View events. For methods you use without implementing them you'll get a nice big fatal error.
@@ -180,7 +179,7 @@ enum LoginNavigationOption {
 }
 
 protocol LoginWireframeInterface: WireframeInterface {
-func navigate(to option: LoginNavigationOption)
+    func navigate(to option: LoginNavigationOption)
 }
 
 protocol LoginViewInterface: ViewInterface {
@@ -201,34 +200,34 @@ The *LoginNavigationOption* enum is used for all navigation actions which envolv
 ```swift
 final class LoginWireframe: BaseWireframe {
 
-// MARK: - Private properties -
+    // MARK: - Private properties -
 
-private let _storyboard: UIStoryboard = UIStoryboard(name: <#Storyboard name#>, bundle: nil)
+    private let _storyboard: UIStoryboard = UIStoryboard(name: <#Storyboard name#>, bundle: nil)
 
-// MARK: - Module setup -
+    // MARK: - Module setup -
 
-func configureModule(with viewController: LoginViewController) {
-let interactor = LoginInteractor()
-let presenter = LoginPresenter(wireframe: self, view: viewController, interactor: interactor)
-viewController.presenter = presenter
-}
+    func configureModule(with viewController: LoginViewController) {
+        let interactor = LoginInteractor()
+        let presenter = LoginPresenter(wireframe: self, view: viewController, interactor: interactor)
+        viewController.presenter = presenter
+    }
 
-// MARK: - Transitions -
+    // MARK: - Transitions -
 
-func show(with transition: Transition, animated: Bool = true) {
-let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-configureModule(with: moduleViewController)
+    func show(with transition: Transition, animated: Bool = true) {
+        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        configureModule(with: moduleViewController)
 
-show(moduleViewController, with: transition, animated: animated)
-}
+        show(moduleViewController, with: transition, animated: animated)
+    }
 }
 
 // MARK: - Extensions -
 
 extension LoginWireframe: LoginWireframeInterface {
 
-func navigate(to option: LoginNavigationOption) {
-}
+    func navigate(to option: LoginNavigationOption) {
+    }
 }
 ```
 If you've created a storyboard which contains a *LoginViewController*, all you need to do is enter the sotybopard name (see *_storyboard* var) here and the code will compile. We've made the assumption that you use the class name for an identifier but you can of course change this at any point in the future.
@@ -239,19 +238,19 @@ If you've created a storyboard which contains a *LoginViewController*, all you n
 ```swift
 final class LoginPresenter {
 
-// MARK: - Private properties -
+    // MARK: - Private properties -
 
-fileprivate weak var _view: LoginViewInterface?
-fileprivate var _interactor: LoginInteractorInterface
-fileprivate var _wireframe: LoginWireframeInterface
+    fileprivate weak var _view: LoginViewInterface?
+    fileprivate var _interactor: LoginInteractorInterface
+    fileprivate var _wireframe: LoginWireframeInterface
 
-// MARK: - Lifecycle -
+    // MARK: - Lifecycle -
 
-init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
-_wireframe = wireframe
-_view = view
-_interactor = interactor
-}
+    init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
+        _wireframe = wireframe
+        _view = view
+        _interactor = interactor
+    }
 }
 
 // MARK: - Extensions -
@@ -266,15 +265,15 @@ This is the skeleton of a Presenter which will get a lot more meat on it once yo
 ```swift
 final class LoginViewController: UIViewController {
 
-// MARK: - Public properties -
+	// MARK: - Public properties -
 
-var presenter: LoginPresenterInterface!
+    var presenter: LoginPresenterInterface!
 
-// MARK: - Life cycle -
+    // MARK: - Life cycle -
 
-override func viewDidLoad() {
-super.viewDidLoad()
-}
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
 }
 
@@ -302,75 +301,75 @@ Here's an example of a wireframe for a Login screen which uses two types of navi
 ```swift
 final class LoginPresenter {
 
-// MARK: - Private properties -
-static private let minimumPasswordLenght: UInt = 6
+    // MARK: - Private properties -
+    static private let minimumPasswordLenght: UInt = 6
 
-fileprivate weak var _view: LoginViewInterface?
-fileprivate var _interactor: LoginInteractorInterface
-fileprivate var _wireframe: LoginWireframeInterface
-fileprivate let _authorizationManager = AuthorizationAdapter.shared
+    fileprivate weak var _view: LoginViewInterface?
+    fileprivate var _interactor: LoginInteractorInterface
+    fileprivate var _wireframe: LoginWireframeInterface
+    fileprivate let _authorizationManager = AuthorizationAdapter.shared
 
-fileprivate let _emailValidator: StringValidator
-fileprivate let _passwordValidator: StringValidator
+    fileprivate let _emailValidator: StringValidator
+    fileprivate let _passwordValidator: StringValidator
 
-// MARK: - Lifecycle -
-init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
-_wireframe = wireframe
-_view = view
-_interactor = interactor
+    // MARK: - Lifecycle -
+    init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
+        _wireframe = wireframe
+        _view = view
+        _interactor = interactor
 
-_emailValidator = EmailValidator()
-_passwordValidator = PasswordValidator(minLength: LoginPresenter.minimumPasswordLenght)
-}
+        _emailValidator = EmailValidator()
+        _passwordValidator = PasswordValidator(minLength: LoginPresenter.minimumPasswordLenght)
+    }
 
 }
 
 // MARK: - Extensions -
 extension LoginPresenter: LoginPresenterInterface {
 
-func didSelectLoginAction(with email: String?, password: String?) {
-guard let _email = email, let _password = password else {
-_showLoginValidationError()
-return
-}
-guard _emailValidator.isValid(_email) else {
-_showEmailValidationError()
-return
-}
-guard _passwordValidator.isValid(_password) else {
-_showPasswordValidationError()
-return
-}
+    func didSelectLoginAction(with email: String?, password: String?) {
+        guard let _email = email, let _password = password else {
+            _showLoginValidationError()
+            return
+        }
+        guard _emailValidator.isValid(_email) else {
+            _showEmailValidationError()
+            return
+        }
+        guard _passwordValidator.isValid(_password) else {
+            _showPasswordValidationError()
+            return
+        }
 
-_view?.showProgressHUD()
-_interactor.loginUser(with: _email, password: _password) { [weak self] (response) -> (Void) in
-self?._view?.hideProgressHUD()
-self?._handleLoginResult(response.result)
-}
-}
+        _view?.showProgressHUD()
+        _interactor.loginUser(with: _email, password: _password) { [weak self] (response) -> (Void) in
+            self?._view?.hideProgressHUD()
+            self?._handleLoginResult(response.result)
+        }
+    }
 
-private func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
-switch result {
-case .success(let jsonObject):
-_authorizationManager.authorizationHeader = jsonObject.object.authorizationHeader
-_wireframe.navigate(to: .home)
+    private func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
+        switch result {
+        case .success(let jsonObject):
+            _authorizationManager.authorizationHeader = jsonObject.object.authorizationHeader
+            _wireframe.navigate(to: .home)
+            
+        case .failure(let error):
+            _wireframe.showErrorAlert(with: error.message)
+        }
+    }
 
-case .failure(let error):
-_wireframe.showErrorAlert(with: error.message)
-}
-}
+    private func _showLoginValidationError() {
+        _wireframe.showAlert(with: "Error", message: "Please enter email and password")
+    }
 
-private func _showLoginValidationError() {
-_wireframe.showAlert(with: "Error", message: "Please enter email and password")
-}
+    private func _showEmailValidationError() {
+        _wireframe.showAlert(with: "Error", message: "Please enter valid email")
+    }
 
-private func _showEmailValidationError() {
-_wireframe.showAlert(with: "Error", message: "Please enter valid email")
-}
-
-private func _showPasswordValidationError() {
-_wireframe.showAlert(with: "Error", message: "Password should be at least 6 characters long")
-}
+    private func _showPasswordValidationError() {
+        _wireframe.showAlert(with: "Error", message: "Password should be at least 6 characters long")
+    }
 }
 ```
 In this simple example the Presenter handles a login action selection which is delegated from the View. After that some validation is performed and then the actual login is performed using the Interactor. In the event of a successful login a navigation to a home screen is initiated. Let's take a look at the Wireframe in this example for a bit more clarity.
@@ -378,39 +377,39 @@ In this simple example the Presenter handles a login action selection which is d
 ```swift
 final class LoginWireframe: BaseWireframe {
 
-// MARK: - Private properties -
-private let _storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+    // MARK: - Private properties -
+    private let _storyboard: UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
 
-// MARK: - Module setup -
-func configureModule(with viewController: LoginViewController) {
-let interactor = LoginInteractor()
-let presenter = LoginPresenter(wireframe: self, view: viewController, interactor: interactor)
-viewController.presenter = presenter
-}
+    // MARK: - Module setup -
+    func configureModule(with viewController: LoginViewController) {
+        let interactor = LoginInteractor()
+        let presenter = LoginPresenter(wireframe: self, view: viewController, interactor: interactor)
+        viewController.presenter = presenter
+    }
 
-// MARK: - Transitions -
-func show(with transition: Transition, animated: Bool = true) {
-let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-configureModule(with: moduleViewController)
+    // MARK: - Transitions -
+    func show(with transition: Transition, animated: Bool = true) {
+        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        configureModule(with: moduleViewController)
 
-show(moduleViewController, with: transition, animated: animated)
-}
-
-fileprivate func _openHome() {
-let wireframe = HomeWireframe(navigationController: navigationController)
-wireframe.show(with: .root)
-}
+        show(moduleViewController, with: transition, animated: animated)
+    }
+    
+    fileprivate func _openHome() {
+        let wireframe = HomeWireframe(navigationController: navigationController)
+        wireframe.show(with: .root)
+    }
 }
 
 // MARK: - Extensions -
 extension LoginWireframe: LoginWireframeInterface {
 
-func navigate(to option: LoginNavigationOption) {
-switch option {
-case .home:
-_openHome()
-}
-}
+    func navigate(to option: LoginNavigationOption) {
+        switch option {
+        case .home:
+            _openHome()
+        }
+    }
 }
 ```
 
@@ -418,8 +417,8 @@ This is also a simple example of a wireframe which handles only one type of navi
 
 ```swift
 func showAlert(with title: String?, message: String?) {
-let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-showAlert(with: title, message: message, actions: [okAction])
+	let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+	showAlert(with: title, message: message, actions: [okAction])
 }
 ```
 This is just one example of some ahred logic you'll want to put in your base class or maybe one of the base protocols.
