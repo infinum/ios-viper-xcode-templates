@@ -1,4 +1,16 @@
-## VIPER short introduction
+# Installation instructions
+
+To install VIPER Xcode templates clone this repo and run the following command from root folder:
+
+> make install_templates
+
+To uninstall Xcode template run:
+
+> make uninstall_templates
+
+After that, restart your Xcode if it was already opened.
+
+# VIPER short introduction
 
 How to organize all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
 In short, **VIPER (View Interactor Presenter Entity Router)** is an architecture which, among other things, aims at solving the common *Massive View Controller* problem in iOS apps. When implemented to its full extent it achieves complete separation of concerns between modules, which also yields testability. This is good because another problem with Apple's Model View Controller architecture is poor testability.
@@ -246,7 +258,7 @@ final class LoginPresenter {
 
     // MARK: - Lifecycle -
 
-    init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
+    init(wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
         _wireframe = wireframe
         _view = view
         _interactor = interactor
@@ -439,12 +451,12 @@ Used for all common utility and view components grouped in sub folders. Some com
 This folder should contain image assets, fonts, audio and video files, and so on. We use one *.xcassets* for images and in that folder separate images into logical folders so we don't get a long list of files in one place.
 
 ### Modules
-As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organize screens into logical groups which are basically user-stories. Each group is organized in a subfolder which contains one storyboard (containing all screens for that group) and multiple module subfolders. 
+As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organize screens into logical groups which are basically user-stories. Each group is organized in a subfolder which contains one storyboard (containing all screens for that group) and multiple module subfolders.
 
 ![iOS VIPER MODULES](/Images/ios_viper_modules.png "iOS VIPER MODULES")
 
 
-### Useful links
+## Useful links
 
 * https://techblog.badoo.com/blog/2016/03/21/ios-architecture-patterns/
 * https://www.objc.io/issues/13-architecture/viper/
