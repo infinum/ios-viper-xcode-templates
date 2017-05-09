@@ -1,20 +1,20 @@
 ## VIPER short introduction
 
-How to organise all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
+How to organize all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
 In short, **VIPER (View Interactor Presenter Entity Router)** is an architecture which, among other things, aims at solving the common *Massive View Controller* problem in iOS apps. When implemented to its full extent it achieves complete separation of concerns between modules, which also yields testability. This is good because another problem with Apple's Model View Controller architecture is poor testability.
 
-If you search the web for VIPER architecture in iOS apps you'll find a number of different implementations and a lot of them are not covered in enough detail. At Infinum we have tried out several approaches to this architecture in real-life projects and with thath we have defined our own version of VIPER which we will try to cover in detail here.
+If you search the web for VIPER architecture in iOS apps you'll find a number of different implementations and a lot of them are not covered in enough detail. At Infinum we have tried out several approaches to this architecture in real-life projects and with that we have defined our own version of VIPER which we will try to cover in detail here.
 
 Let's go over the basics quickly - the main components of VIPER are as follows:
 
 * **View**: contains UI logic and knows how to layout and animate itself. It displays what it's _told_ by the Presenter and it _delegates_ user interaction actions to the Presenter. Ideally it contains no business logic, only view logic.
 * **Interactor**: used for fetching data when requested by the Presenter, regardless of where the data is coming from. Contains only business logic.
 * **Presenter**: prepares the content which it receives from the Interactor to be presented by the View. Contains business and view logic - basically it connects the two.
-* **Entity**: models which are handled by the Interactor. Contains only business logic, but primarelly data, not rules.
+* **Entity**: models which are handled by the Interactor. Contains only business logic, but primarily data, not rules.
 * **Router**: handles navigation logic. In our case we use components called Wireframes for this responsibility.
 
 ## Components
-Your entire app is made up of multiple modules which you organise in logical groups and use one storyboard for that group. In most cases the modules will represent screens and your module groups will represent user-stories, business-flows and so on.
+Your entire app is made up of multiple modules which you organize in logical groups and use one storyboard for that group. In most cases the modules will represent screens and your module groups will represent user-stories, business-flows and so on.
 
 Module components:
 
@@ -39,7 +39,7 @@ Let's take a look at the communication logic.
 * *LoginPresenter* communicates with *LoginInteractor* via a *LoginInteractorInterface* protocol
 * *LoginPresenter* communicates with *LoginWireframe* via a *LoginWireframeInterface* protocol
 
-The communication between most components of a module is done via protocols to ensure scoping of concearns and testability. Only the Wireframe communicates directlly with the Presenter since it actually instantiates the Presenter, Interactor and View and connects the three via dependancy injection.
+The communication between most components of a module is done via protocols to ensure scoping of concerns and testability. Only the Wireframe communicates directly with the Presenter since it actually instantiates the Presenter, Interactor and View and connects the three via dependency injection.
 
 Now let's take a look at the references logic.
 
@@ -49,11 +49,11 @@ Now let's take a look at the references logic.
 * *LoginViewController* has a **strong** reference to *LoginPresenter*
 
 
-The reference types might appear a bit counter-intuitive, but they are organised this way to assure all module components are not deallocated from memory as long as one of its Views is active. In this way the Views lifecycle is also the lifecycle of the module - which actually makes perfect sense.
+The reference types might appear a bit counter-intuitive, but they are organized this way to assure all module components are not deallocated from memory as long as one of its Views is active. In this way the Views lifecycle is also the lifecycle of the module - which actually makes perfect sense.
 
 The creation and setup of module components is done in the Wireframe. The creation of a new Wireframe is almost always done in the previous Wireframe. More details on this later in the actual code.
 
-Before we go into detail we should comment one somewhat unusual decision we made naming-wise and that's suffixing protocol names with "Interface" (*LoginWireframeInterface*, *RegisterViewInterface*, ...). A common way to do this would be to ommit the "Interface" part but we've found that this makes code somewhat less readable and the logic behind VIPER harder to grasp, especially when starting out.
+Before we go into detail we should comment one somewhat unusual decision we made naming-wise and that's suffixing protocol names with "Interface" (*LoginWireframeInterface*, *RegisterViewInterface*, ...). A common way to do this would be to omit the "Interface" part but we've found that this makes code somewhat less readable and the logic behind VIPER harder to grasp, especially when starting out.
 
 ## 1. Base classes and interfaces
 
@@ -108,9 +108,9 @@ extension BaseWireframe: WireframeInterface {
 ```
 The Wireframe is used in 3 steps:
 
-1. Initialisation using a *UINavigationController* (see the *init* method). Since the Wireframe is in charge of performing the navigation it needs access to the actual *UINavigationController* with which it will do so.
-2. Navigation to a screen (see the *show* method). For this we've defined 3 types of transitions which are pretty self explanitory (see the *Transition* enum). 
-The *present* case is different because here we are actually presenting the *UINavigationController* over a presenter *UIViewController* (see *fromViewController* associated value in *.present* *Transition*). This might seem confusing at first but it's a more robust solution as upposed to using the *UINavigationController* as a presenter.
+1. Initialization using a *UINavigationController* (see the *init* method). Since the Wireframe is in charge of performing the navigation it needs access to the actual *UINavigationController* with which it will do so.
+2. Navigation to a screen (see the *show* method). For this we've defined 3 types of transitions which are pretty self explanatory (see the *Transition* enum).
+The *present* case is different because here we are actually presenting the *UINavigationController* over a presenter *UIViewController* (see *fromViewController* associated value in *.present* *Transition*). This might seem confusing at first but it's a more robust solution as opposed to using the *UINavigationController* as a presenter.
 3. Navigation from a screen (see the *popFromNavigationController* and *dismiss* methods).
 
 ### PresenterInterface
@@ -192,8 +192,8 @@ protocol LoginInteractorInterface: InteractorInterface {
 }
 ```
 
-This interface file will provide you with a nice overview of your entire module at one place. Since most components communicate with each other via protocols we found very useful to put all of these protocols for one module in one place. That way you have a very clean overview of the entire behaviour of the module. 
-The *LoginNavigationOption* enum is used for all navigation actions which envolve creating a new wireframe and navigating to it in which ever way possible. This will become clearer when we go over a concrete example.
+This interface file will provide you with a nice overview of your entire module at one place. Since most components communicate with each other via protocols we found very useful to put all of these protocols for one module in one place. That way you have a very clean overview of the entire behavior of the module.
+The *LoginNavigationOption* enum is used for all navigation actions which involve creating a new wireframe and navigating to it in which ever way possible. This will become clearer when we go over a concrete example.
 
 ### Wireframe
 
@@ -230,7 +230,7 @@ extension LoginWireframe: LoginWireframeInterface {
     }
 }
 ```
-If you've created a storyboard which contains a *LoginViewController*, all you need to do is enter the sotybopard name (see *_storyboard* var) here and the code will compile. We've made the assumption that you use the class name for an identifier but you can of course change this at any point in the future.
+If you've created a storyboard which contains a *LoginViewController*, all you need to do is enter the storyboard name (see *_storyboard* var) here and the code will compile. We've made the assumption that you use the class name for an identifier but you can of course change this at any point in the future.
 
 
 ### Presenter
@@ -282,7 +282,7 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewInterface {
 }
 ```
-Like the Presenter above, this is only a skeleton which you will populate with IBoutlets, animations and so on.
+Like the Presenter above, this is only a skeleton which you will populate with IBOutlets, animations and so on.
 
 ### Interactor
 
@@ -293,7 +293,7 @@ final class LoginInteractor {
 extension LoginInteractor: LoginInteractorInterface {
 }
 ```
-When generater your Interactor is also a skeleton which you will in most cases use to perform fetching of data from remote API services, Database services, etc.
+When generated your Interactor is also a skeleton which you will in most cases use to perform fetching of data from remote API services, Database services, etc.
 
 ## 3. How it really works
 Here's an example of a wireframe for a Login screen which uses two types of navigation to navigate to a login and registration screen. Let's start with the Presenter
@@ -302,7 +302,7 @@ Here's an example of a wireframe for a Login screen which uses two types of navi
 final class LoginPresenter {
 
     // MARK: - Private properties -
-    static private let minimumPasswordLenght: UInt = 6
+    static private let minimumPasswordLength: UInt = 6
 
     fileprivate weak var _view: LoginViewInterface?
     fileprivate var _interactor: LoginInteractorInterface
@@ -319,7 +319,7 @@ final class LoginPresenter {
         _interactor = interactor
 
         _emailValidator = EmailValidator()
-        _passwordValidator = PasswordValidator(minLength: LoginPresenter.minimumPasswordLenght)
+        _passwordValidator = PasswordValidator(minLength: LoginPresenter.minimumPasswordLength)
     }
 
 }
@@ -353,7 +353,7 @@ extension LoginPresenter: LoginPresenterInterface {
         case .success(let jsonObject):
             _authorizationManager.authorizationHeader = jsonObject.object.authorizationHeader
             _wireframe.navigate(to: .home)
-            
+
         case .failure(let error):
             _wireframe.showErrorAlert(with: error.message)
         }
@@ -394,7 +394,7 @@ final class LoginWireframe: BaseWireframe {
 
         show(moduleViewController, with: transition, animated: animated)
     }
-    
+
     fileprivate func _openHome() {
         let wireframe = HomeWireframe(navigationController: navigationController)
         wireframe.show(with: .root)
@@ -421,16 +421,16 @@ func showAlert(with title: String?, message: String?) {
 	showAlert(with: title, message: message, actions: [okAction])
 }
 ```
-This is just one example of some ahred logic you'll want to put in your base class or maybe one of the base protocols.
+This is just one example of some shared logic you'll want to put in your base class or maybe one of the base protocols.
 
-This was just a short example of how one module can come together. Soon we'll make an entire example project availabel on github which will contain much more use cases.
+This was just a short example of how one module can come together. Soon we'll make an entire example project available on GitHub which will contain much more use cases.
 
-## How it's organised in Xcode
+## How it's organized in Xcode
 
-Using this architecture impacted the way we organise our projects. In most cases we have four main subfolders in the project folder: Application, Common, Modules and Resources. Let's go over those a bit.
+Using this architecture impacted the way we organize our projects. In most cases we have four main subfolders in the project folder: Application, Common, Modules and Resources. Let's go over those a bit.
 
 ### Application
-Contains AppDelegate and any other app-wide components, initialisers, appearance classes, managers and so on. Usually this folder contains only a few files.
+Contains AppDelegate and any other app-wide components, initializers, appearance classes, managers and so on. Usually this folder contains only a few files.
 
 ### Common
 Used for all common utility and view components grouped in sub folders. Some common cases for these groups are _Analytics_, _Constants_, _Extensions_, _Protocols_, _Views_, _Networking_, etc. Also here is where we always have a _VIPER_ subfolder which contains the base VIPER protocols and classes.
@@ -439,7 +439,7 @@ Used for all common utility and view components grouped in sub folders. Some com
 This folder should contain image assets, fonts, audio and video files, and so on. We use one *.xcassets* for images and in that folder separate images into logical folders so we don't get a long list of files in one place.
 
 ### Modules
-As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organise screens into logical groups which are basically user-stories. Each group is organised in a subfolder which contains one storyboard (containing all screens for that group) and multiple module subfolders. 
+As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organize screens into logical groups which are basically user-stories. Each group is organized in a subfolder which contains one storyboard (containing all screens for that group) and multiple module subfolders. 
 
 ![iOS VIPER MODULES](/Images/ios_viper_modules.png "iOS VIPER MODULES")
 
