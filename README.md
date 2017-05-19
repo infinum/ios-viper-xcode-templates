@@ -1,3 +1,5 @@
+![iOS VIPER](/Images/ios_viper_logo.png "iOS VIPER")
+
 # Installation instructions
 
 To install VIPER Xcode templates clone this repo and run the following command from root folder:
