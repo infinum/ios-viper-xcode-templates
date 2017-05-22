@@ -463,3 +463,14 @@ As described earlier you can think of one VIPER module as one screen. In the _Mo
 * https://techblog.badoo.com/blog/2016/03/21/ios-architecture-patterns/
 * https://www.objc.io/issues/13-architecture/viper/
 * https://swifting.io/blog/2016/03/07/8-viper-to-be-or-not-to-be/
+
+## Contributing
+
+Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](LICENSE).
+
+## Credits
+
+Maintained and sponsored by
+[Infinum] (http://www.infinum.co).
+
+<img src="https://infinum.co/infinum.png" width="264">
