@@ -10,25 +10,24 @@
 
 import UIKit
 
-final class ___FILEBASENAMEASIDENTIFIER___Presenter {
+final class ___VARIABLE_moduleName___Presenter {
 
     // MARK: - Private properties -
 
-    fileprivate weak var _view: ___FILEBASENAMEASIDENTIFIER___ViewInterface?
-    fileprivate var _interactor: ___FILEBASENAMEASIDENTIFIER___InteractorInterface
-    fileprivate var _wireframe: ___FILEBASENAMEASIDENTIFIER___WireframeInterface
+    fileprivate weak var _view: ___VARIABLE_moduleName___ViewInterface?
+    fileprivate var _interactor: ___VARIABLE_moduleName___InteractorInterface
+    fileprivate var _wireframe: ___VARIABLE_moduleName___WireframeInterface
 
     // MARK: - Lifecycle -
 
-    init(wireframe: ___FILEBASENAMEASIDENTIFIER___WireframeInterface, view: ___FILEBASENAMEASIDENTIFIER___ViewInterface, interactor: ___FILEBASENAMEASIDENTIFIER___InteractorInterface) {
+    init(wireframe: ___VARIABLE_moduleName___WireframeInterface, view: ___VARIABLE_moduleName___ViewInterface, interactor: ___VARIABLE_moduleName___InteractorInterface) {
         _wireframe = wireframe
         _view = view
         _interactor = interactor
     }
-
 }
 
 // MARK: - Extensions -
 
-extension ___FILEBASENAMEASIDENTIFIER___Presenter: ___FILEBASENAMEASIDENTIFIER___PresenterInterface {
+extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {
 }

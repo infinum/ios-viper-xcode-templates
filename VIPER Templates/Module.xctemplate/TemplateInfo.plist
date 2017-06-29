@@ -26,7 +26,7 @@
 		</dict>
 		<dict>
 			<key>Default</key>
-			<string>___VARIABLE_moduleName:identifier___</string>
+			<string>___VARIABLE_moduleName___</string>
 			<key>Identifier</key>
 			<string>productName</string>
 			<key>Type</key>
@@ -34,7 +34,7 @@
 		</dict>
 		<dict>
 			<key>Default</key>
-			<string>___VARIABLE_moduleName:identifier___Interfaces</string>
+			<string>___VARIABLE_moduleName___Interfaces</string>
 			<key>Description</key>
 			<string>The interfaces name</string>
 			<key>Identifier</key>
@@ -48,7 +48,7 @@
 		</dict>
 		<dict>
 			<key>Default</key>
-			<string>___VARIABLE_moduleName:identifier___ViewController</string>
+			<string>___VARIABLE_moduleName___ViewController</string>
 			<key>Description</key>
 			<string>The view controller name</string>
 			<key>Identifier</key>
@@ -62,7 +62,7 @@
 		</dict>
 		<dict>
 			<key>Default</key>
-			<string>___VARIABLE_moduleName:identifier___Interactor</string>
+			<string>___VARIABLE_moduleName___Interactor</string>
 			<key>Description</key>
 			<string>The interactor name</string>
 			<key>Identifier</key>
@@ -76,7 +76,7 @@
 		</dict>
 		<dict>
 			<key>Default</key>
-			<string>___VARIABLE_moduleName:identifier___Presenter</string>
+			<string>___VARIABLE_moduleName___Presenter</string>
 			<key>Description</key>
 			<string>The presenter name</string>
 			<key>Identifier</key>
@@ -90,7 +90,7 @@
 		</dict>
 		<dict>
 			<key>Default</key>
-			<string>___VARIABLE_moduleName:identifier___Wireframe</string>
+			<string>___VARIABLE_moduleName___Wireframe</string>
 			<key>Description</key>
 			<string>The wireframe name</string>
 			<key>Identifier</key>

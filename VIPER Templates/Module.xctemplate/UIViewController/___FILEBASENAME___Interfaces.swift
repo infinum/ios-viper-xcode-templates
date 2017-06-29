@@ -10,18 +10,18 @@
 
 import UIKit
 
-enum ___FILEBASENAMEASIDENTIFIER___NavigationOption {
+enum ___VARIABLE_moduleName___NavigationOption {
 }
 
-protocol ___FILEBASENAMEASIDENTIFIER___WireframeInterface: WireframeInterface {
-    func navigate(to option: ___FILEBASENAMEASIDENTIFIER___NavigationOption)
+protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
+    func navigate(to option: ___VARIABLE_moduleName___NavigationOption)
 }
 
-protocol ___FILEBASENAMEASIDENTIFIER___ViewInterface: ViewInterface {
+protocol ___VARIABLE_moduleName___ViewInterface: ViewInterface {
 }
 
-protocol ___FILEBASENAMEASIDENTIFIER___PresenterInterface: PresenterInterface {
+protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
 }
 
-protocol ___FILEBASENAMEASIDENTIFIER___InteractorInterface: InteractorInterface {
+protocol ___VARIABLE_moduleName___InteractorInterface: InteractorInterface {
 }
