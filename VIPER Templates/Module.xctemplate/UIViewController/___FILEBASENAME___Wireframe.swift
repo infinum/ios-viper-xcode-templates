@@ -10,7 +10,7 @@
 
 import UIKit
 
-final class ___FILEBASENAMEASIDENTIFIER___Wireframe: BaseWireframe {
+final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
 
     // MARK: - Private properties -
 
@@ -18,28 +18,26 @@ final class ___FILEBASENAMEASIDENTIFIER___Wireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    func configureModule(with viewController: ___FILEBASENAMEASIDENTIFIER___ViewController) {
-        let interactor = ___FILEBASENAMEASIDENTIFIER___Interactor()
-        let presenter = ___FILEBASENAMEASIDENTIFIER___Presenter(wireframe: self, view: viewController, interactor: interactor)
+    func configureModule(with viewController: ___VARIABLE_moduleName___ViewController) {
+        let interactor = ___VARIABLE_moduleName___Interactor()
+        let presenter = ___VARIABLE_moduleName___Presenter(wireframe: self, view: viewController, interactor: interactor)
         viewController.presenter = presenter
     }
 
     // MARK: - Transitions -
 
     func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "___FILEBASENAMEASIDENTIFIER___ViewController") as! ___FILEBASENAMEASIDENTIFIER___ViewController
+        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "___VARIABLE_moduleName___ViewController") as! ___VARIABLE_moduleName___ViewController
         configureModule(with: moduleViewController)
 
         show(moduleViewController, with: transition, animated: animated)
     }
-
 }
 
 // MARK: - Extensions -
 
-extension ___FILEBASENAMEASIDENTIFIER___Wireframe: ___FILEBASENAMEASIDENTIFIER___WireframeInterface {
+extension ___VARIABLE_moduleName___Wireframe: ___VARIABLE_moduleName___WireframeInterface {
 
-    func navigate(to option: ___FILEBASENAMEASIDENTIFIER___NavigationOption) {
+    func navigate(to option: ___VARIABLE_moduleName___NavigationOption) {
     }
-
 }
