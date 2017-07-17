@@ -12,15 +12,15 @@ import UIKit
 
 final class ___FILEBASENAMEASIDENTIFIER___ViewController: UIViewController {
 
-     // MARK: - Public properties -
+    // MARK: - Public properties -
 
-     var presenter: ___FILEBASENAMEASIDENTIFIER___PresenterInterface!
+    var presenter: ___FILEBASENAMEASIDENTIFIER___PresenterInterface!
 
-     // MARK: - Lifecycle -
+    // MARK: - Lifecycle -
 
-     override func viewDidLoad() {
-         super.viewDidLoad()
-     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
 }
 
