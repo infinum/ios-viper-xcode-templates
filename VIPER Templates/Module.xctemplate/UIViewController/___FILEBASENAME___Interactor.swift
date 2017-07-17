@@ -10,10 +10,10 @@
 
 import Foundation
 
-final class ___FILEBASENAMEASIDENTIFIER___Interactor {
+final class ___VARIABLE_moduleName___Interactor {
 }
 
 // MARK: - Extensions -
 
-extension ___FILEBASENAMEASIDENTIFIER___Interactor: ___FILEBASENAMEASIDENTIFIER___InteractorInterface {
+extension ___VARIABLE_moduleName___Interactor: ___VARIABLE_moduleName___InteractorInterface {
 }
