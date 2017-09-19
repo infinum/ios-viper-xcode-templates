@@ -12,7 +12,7 @@ To uninstall Xcode template run:
 
 After that, restart your Xcode if it was already opened.
 
-# VIPER short introduction
+## VIPER short introduction
 
 How to organize all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
 In short, **VIPER (View Interactor Presenter Entity Router)** is an architecture which, among other things, aims at solving the common *Massive View Controller* problem in iOS apps. When implemented to its full extent it achieves complete separation of concerns between modules, which also yields testability. This is good because another problem with Apple's Model View Controller architecture is poor testability.
