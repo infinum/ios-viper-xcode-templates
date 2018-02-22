@@ -59,7 +59,7 @@ Now let's take a look at the references logic.
 
 * *LoginPresenter* has a **strong** to *LoginInteractor*
 * *LoginPresenter* has a **strong** to *LoginWireframe*
-* *LoginPresenter* has a **weak** reference to *LoginViewController*
+* *LoginPresenter* has a **unowned** reference to *LoginViewController*
 * *LoginViewController* has a **strong** reference to *LoginPresenter*
 
 
@@ -229,7 +229,7 @@ final class LoginWireframe: BaseWireframe {
     // MARK: - Transitions -
 
     func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
         configureModule(with: moduleViewController)
 
         show(moduleViewController, with: transition, animated: animated)
@@ -254,9 +254,9 @@ final class LoginPresenter {
 
     // MARK: - Private properties -
 
-    fileprivate weak var _view: LoginViewInterface?
-    fileprivate var _interactor: LoginInteractorInterface
-    fileprivate var _wireframe: LoginWireframeInterface
+    private unowned var _view: LoginViewInterface
+    private var _interactor: LoginInteractorInterface
+    private var _wireframe: LoginWireframeInterface
 
     // MARK: - Lifecycle -
 
@@ -318,22 +318,21 @@ final class LoginPresenter {
     // MARK: - Private properties -
     static private let minimumPasswordLength: UInt = 6
 
-    fileprivate weak var _view: LoginViewInterface?
-    fileprivate var _interactor: LoginInteractorInterface
-    fileprivate var _wireframe: LoginWireframeInterface
-    fileprivate let _authorizationManager = AuthorizationAdapter.shared
+    private unowned var _view: LoginViewInterface
+    private var _interactor: LoginInteractorInterface
+    private var _wireframe: LoginWireframeInterface
 
-    fileprivate let _emailValidator: StringValidator
-    fileprivate let _passwordValidator: StringValidator
+    private let _authorizationManager = AuthorizationAdapter.shared
+    private let _emailValidator = EmailValidator()
+    private let _passwordValidator = PasswordValidator(
+        minLength: LoginPresenter.minimumPasswordLength
+    )
 
     // MARK: - Lifecycle -
     init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
         _wireframe = wireframe
         _view = view
         _interactor = interactor
-
-        _emailValidator = EmailValidator()
-        _passwordValidator = PasswordValidator(minLength: LoginPresenter.minimumPasswordLength)
     }
 
 }
@@ -355,14 +354,17 @@ extension LoginPresenter: LoginPresenterInterface {
             return
         }
 
-        _view?.showProgressHUD()
-        _interactor.loginUser(with: _email, password: _password) { [weak self] (response) -> (Void) in
+        _view.showProgressHUD()
+        _interactor.loginUser(with: _email, password: _password) { [weak self] (response) in
             self?._view?.hideProgressHUD()
             self?._handleLoginResult(response.result)
         }
     }
+}
 
-    private func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
+private extension LoginPresenter {
+    
+    func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
         switch result {
         case .success(let jsonObject):
             _authorizationManager.authorizationHeader = jsonObject.object.authorizationHeader
@@ -373,15 +375,15 @@ extension LoginPresenter: LoginPresenterInterface {
         }
     }
 
-    private func _showLoginValidationError() {
+    func _showLoginValidationError() {
         _wireframe.showAlert(with: "Error", message: "Please enter email and password")
     }
 
-    private func _showEmailValidationError() {
+    func _showEmailValidationError() {
         _wireframe.showAlert(with: "Error", message: "Please enter valid email")
     }
 
-    private func _showPasswordValidationError() {
+    func _showPasswordValidationError() {
         _wireframe.showAlert(with: "Error", message: "Password should be at least 6 characters long")
     }
 }
@@ -403,13 +405,13 @@ final class LoginWireframe: BaseWireframe {
 
     // MARK: - Transitions -
     func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
         configureModule(with: moduleViewController)
 
         show(moduleViewController, with: transition, animated: animated)
     }
 
-    fileprivate func _openHome() {
+    private func _openHome() {
         let wireframe = HomeWireframe(navigationController: navigationController)
         wireframe.show(with: .root)
     }
