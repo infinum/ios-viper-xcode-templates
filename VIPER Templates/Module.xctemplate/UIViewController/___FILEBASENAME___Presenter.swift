@@ -14,7 +14,7 @@ final class ___VARIABLE_moduleName___Presenter {
 
     // MARK: - Private properties -
 
-    fileprivate weak var _view: ___VARIABLE_moduleName___ViewInterface?
+    fileprivate unowned var _view: ___VARIABLE_moduleName___ViewInterface
     fileprivate var _interactor: ___VARIABLE_moduleName___InteractorInterface
     fileprivate var _wireframe: ___VARIABLE_moduleName___WireframeInterface
 
