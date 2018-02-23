@@ -27,7 +27,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
     // MARK: - Transitions -
 
     func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = _storyboard.instantiateViewController(withIdentifier: "___VARIABLE_moduleName___ViewController") as! ___VARIABLE_moduleName___ViewController
+        let moduleViewController = storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
         configureModule(with: moduleViewController)
 
         show(moduleViewController, with: transition, animated: animated)
