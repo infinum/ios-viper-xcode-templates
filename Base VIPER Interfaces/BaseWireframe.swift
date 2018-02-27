@@ -1,11 +1,5 @@
 import UIKit
 
-enum Transition {
-    case root
-    case push
-    case present(fromViewController: UIViewController)
-}
-
 protocol WireframeInterface: class {
     func popFromNavigationController(animated: Bool)
     func dismiss(animated: Bool)
@@ -13,34 +7,52 @@ protocol WireframeInterface: class {
 
 class BaseWireframe {
 
-    unowned var navigationController: UINavigationController
+    private unowned var _viewController: UIViewController
+    private var vcDealloc: UIViewController?
 
-    init(navigationController: UINavigationController) {
-        self.navigationController = navigationController
+    init(viewController: UIViewController) {
+        _viewController = viewController
+        vcDealloc = viewController
     }
 
-    func show(_ viewController: UIViewController, with transition: Transition, animated: Bool) {
-        switch transition {
-        case .push:
-            navigationController.pushViewController(viewController, animated: animated)
-        case .present(let fromViewController):
-            navigationController.viewControllers = [viewController]
-            fromViewController.present(navigationController, animated: animated, completion: nil)
-        case .root:
-            navigationController.setViewControllers([viewController], animated: animated)
-        }
-    }
+}
 
+extension BaseWireframe {
+    
+    var viewController: UIViewController {
+        defer { vcDealloc = nil }
+        return _viewController
+    }
+    
+    var navigationController: UINavigationController? {
+        return viewController.navigationController
+    }
+    
+    func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (()->())? = nil) {
+        viewController.present(wireframe.viewController, animated: animated, completion: completion)
+    }
+}
+
+extension UINavigationController {
+    
+    func pushWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+        self.pushViewController(wireframe.viewController, animated: animated)
+    }
+    
+    func setRootWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+        self.setViewControllers([wireframe.viewController], animated: animated)
+    }
+    
 }
 
 extension BaseWireframe: WireframeInterface {
 
     func popFromNavigationController(animated: Bool) {
-        let _ = navigationController.popViewController(animated: animated)
+        let _ = navigationController?.popViewController(animated: animated)
     }
 
     func dismiss(animated: Bool) {
-        navigationController.dismiss(animated: animated)
+        viewController.dismiss(animated: animated)
     }
 
 }

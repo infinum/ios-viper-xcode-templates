@@ -18,20 +18,15 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    func configureModule(with viewController: ___VARIABLE_moduleName___ViewController) {
+    init() {
+        let moduleViewController = _storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
+        super.init(viewController: moduleViewController)
+        
         let interactor = ___VARIABLE_moduleName___Interactor()
         let presenter = ___VARIABLE_moduleName___Presenter(wireframe: self, view: viewController, interactor: interactor)
         viewController.presenter = presenter
     }
 
-    // MARK: - Transitions -
-
-    func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = _storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
-        configureModule(with: moduleViewController)
-
-        show(moduleViewController, with: transition, animated: animated)
-    }
 }
 
 // MARK: - Extensions -
