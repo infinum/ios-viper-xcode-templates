@@ -14,7 +14,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
 
     // MARK: - Private properties -
 
-    private let _storyboard: UIStoryboard = UIStoryboard(name: <#Storyboard name#>, bundle: nil)
+    private let _storyboard = UIStoryboard(name: <#Storyboard name#>, bundle: nil)
 
     // MARK: - Module setup -
 
@@ -27,7 +27,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
     // MARK: - Transitions -
 
     func show(with transition: Transition, animated: Bool = true) {
-        let moduleViewController = storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
+        let moduleViewController = _storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
         configureModule(with: moduleViewController)
 
         show(moduleViewController, with: transition, animated: animated)
