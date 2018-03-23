@@ -24,7 +24,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
         
         let interactor = ___VARIABLE_moduleName___Interactor()
         let presenter = ___VARIABLE_moduleName___Presenter(wireframe: self, view: viewController, interactor: interactor)
-        viewController.presenter = presenter
+        moduleViewController.presenter = presenter
     }
 
 }
