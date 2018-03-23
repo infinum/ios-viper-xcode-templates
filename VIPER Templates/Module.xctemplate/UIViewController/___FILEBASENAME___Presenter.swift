@@ -14,9 +14,9 @@ final class ___VARIABLE_moduleName___Presenter {
 
     // MARK: - Private properties -
 
-    private unowned var _view: ___VARIABLE_moduleName___ViewInterface
-    private var _interactor: ___VARIABLE_moduleName___InteractorInterface
-    private var _wireframe: ___VARIABLE_moduleName___WireframeInterface
+    private unowned let _view: ___VARIABLE_moduleName___ViewInterface
+    private let _interactor: ___VARIABLE_moduleName___InteractorInterface
+    private let _wireframe: ___VARIABLE_moduleName___WireframeInterface
 
     // MARK: - Lifecycle -
 
