@@ -15,11 +15,22 @@ final class PokemonDetailsViewController: UIViewController {
     // MARK: - Public properties -
 
     var presenter: PokemonDetailsPresenterInterface!
+    
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var headerImageView: UIImageView!
 
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        _setupView()
+        presenter.viewDidLoad()
+    }
+    
+    private func _setupView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
 	
 }
@@ -27,4 +38,57 @@ final class PokemonDetailsViewController: UIViewController {
 // MARK: - Extensions -
 
 extension PokemonDetailsViewController: PokemonDetailsViewInterface {
+    
+    func setViewTitle(_ title: String?) {
+        navigationItem.title = title
+    }
+    
+    func setHeaderImage(with url: URL?) {
+        guard let _url = url else {
+            headerImageView.image = #imageLiteral(resourceName: "image-placeholder")
+            return
+        }
+        
+        headerImageView.af_setImage(
+            withURL: _url,
+            placeholderImage: #imageLiteral(resourceName: "image-placeholder")
+        )
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+}
+
+extension PokemonDetailsViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return presenter.numberOfSections()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return presenter.numberOrItems(in: section)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = presenter.item(at: indexPath)
+        switch item {
+        case .description(let descriptionItem):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as! PokemonDetailsDescriptionTableViewCell
+            cell.configure(with: descriptionItem)
+            return cell
+            
+        case .characteristics(let characteristicsItem):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "characteristics", for: indexPath) as! PokemonDetailsCharacteristicsTableViewCell
+            cell.configure(with: characteristicsItem)
+            return cell
+            
+        case .comment(let commentItem):
+            let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath) as! PokemonDetailsCommentTableViewCell
+            cell.configure(with: commentItem)
+            return cell
+        }
+    }
+    
 }

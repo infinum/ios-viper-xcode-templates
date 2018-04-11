@@ -49,6 +49,7 @@ extension HomeWireframe: HomeWireframeInterface {
     }
     
     private func _openDetails(with pokemon: Pokemon) {
+        navigationController?.pushWireframe(PokemonDetailsWireframe(pokemon: pokemon))
     }
     
     private func _openAdd() {

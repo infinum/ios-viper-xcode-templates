@@ -18,9 +18,15 @@ protocol PokemonDetailsWireframeInterface: WireframeInterface {
 }
 
 protocol PokemonDetailsViewInterface: ViewInterface {
+    func setViewTitle(_ title: String?)
+    func setHeaderImage(with url: URL?)
+    func reloadData()
 }
 
 protocol PokemonDetailsPresenterInterface: PresenterInterface {
+    func numberOfSections() -> Int
+    func numberOrItems(in section: Int) -> Int
+    func item(at indexPath: IndexPath) -> PokemonDetailsItem
 }
 
 protocol PokemonDetailsInteractorInterface: InteractorInterface {
