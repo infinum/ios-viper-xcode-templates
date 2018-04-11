@@ -34,5 +34,24 @@ final class HomeWireframe: BaseWireframe {
 extension HomeWireframe: HomeWireframeInterface {
 
     func navigate(to option: HomeNavigationOption) {
+        switch option {
+        case .login:
+            _openLogin()
+        case .details(let pokemon):
+            _openDetails(with: pokemon)
+        case .add:
+            _openAdd()
+        }
+    }
+    
+    private func _openLogin() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    private func _openDetails(with pokemon: Pokemon) {
+    }
+    
+    private func _openAdd() {
+        
     }
 }

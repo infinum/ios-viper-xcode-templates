@@ -43,7 +43,7 @@ extension LoginWireframe: LoginWireframeInterface {
     private func _openHome() {
         let wireframe = HomeWireframe()
         
-        viewController.presentWireframe(wireframe)
+        navigationController?.pushWireframe(wireframe)
     }
 
 }

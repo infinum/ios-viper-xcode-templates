@@ -43,13 +43,13 @@ class Pokemon: JSONAPIModel {
     
 }
 
-//extension Pokemon: HomeViewItemInterface {
-//
-//    var title: String? {
-//        return name
-//    }
-//}
-//
+extension Pokemon: HomeViewItemInterface {
+
+    var title: String? {
+        return name
+    }
+}
+
 //extension Pokemon: PokemonDetailsDescriptionItemInterface {
 //
 //    var pokemonName: String? {

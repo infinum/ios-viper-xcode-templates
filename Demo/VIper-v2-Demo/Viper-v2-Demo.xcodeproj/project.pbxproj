@@ -49,6 +49,8 @@
 		52CD61FD207DEB7000AFB254 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD61F8207DEB7000AFB254 /* HomeViewController.swift */; };
 		52CD61FE207DEB7000AFB254 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD61F9207DEB7000AFB254 /* HomeInteractor.swift */; };
 		52CD61FF207DEB7000AFB254 /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD61FA207DEB7000AFB254 /* HomeWireframe.swift */; };
+		52CD6203207DF3B200AFB254 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD6201207DF3B100AFB254 /* HomeTableViewCell.swift */; };
+		52CD6204207DF3B200AFB254 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CD6202207DF3B200AFB254 /* Home.storyboard */; };
 		8F5062B4368D2592C5976AFB /* Pods_Viper_v2_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC71A30015EFE738629A259C /* Pods_Viper_v2_DemoUITests.framework */; };
 		D0C06445FA3CC7EBBC2B499F /* Pods_Viper_v2_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF0B6CE7D4118CF345169E5E /* Pods_Viper_v2_Demo.framework */; };
 		DA40B5A0FFF6F56D08B7502F /* Pods_Viper_v2_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AC0C8F51598DAC75FEB37B /* Pods_Viper_v2_DemoTests.framework */; };
@@ -121,6 +123,8 @@
 		52CD61F8207DEB7000AFB254 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		52CD61F9207DEB7000AFB254 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		52CD61FA207DEB7000AFB254 /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		52CD6201207DF3B100AFB254 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		52CD6202207DF3B200AFB254 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		60AC0C8F51598DAC75FEB37B /* Pods_Viper_v2_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viper_v2_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7ADD6880D26EADC6AAED3CD2 /* Pods-Viper-v2-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v2-DemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Viper-v2-DemoTests/Pods-Viper-v2-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		AA22DDA730377175918D24EC /* Pods-Viper-v2-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v2-DemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viper-v2-DemoUITests/Pods-Viper-v2-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -369,6 +373,8 @@
 		52CD61F5207DEB5C00AFB254 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				52CD6200207DF3B100AFB254 /* Cells */,
+				52CD6202207DF3B200AFB254 /* Home.storyboard */,
 				52CD61F6207DEB7000AFB254 /* HomeInterfaces.swift */,
 				52CD61F7207DEB7000AFB254 /* HomePresenter.swift */,
 				52CD61F8207DEB7000AFB254 /* HomeViewController.swift */,
@@ -376,6 +382,14 @@
 				52CD61FA207DEB7000AFB254 /* HomeWireframe.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		52CD6200207DF3B100AFB254 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				52CD6201207DF3B100AFB254 /* HomeTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		6CA66071A6852956A987BDCA /* Frameworks */ = {
@@ -501,6 +515,7 @@
 				52CD61C8207DE32200AFB254 /* Main.storyboard in Resources */,
 				52CD61C9207DE32200AFB254 /* Info.plist in Resources */,
 				52CD61E7207DE3C800AFB254 /* LaunchScreen.storyboard in Resources */,
+				52CD6204207DF3B200AFB254 /* Home.storyboard in Resources */,
 				52CD61F4207DE82900AFB254 /* Login.storyboard in Resources */,
 				52CD61D0207DE32200AFB254 /* Assets.xcassets in Resources */,
 			);
@@ -662,6 +677,7 @@
 				52CD61FF207DEB7000AFB254 /* HomeWireframe.swift in Sources */,
 				52CD61F1207DE3F700AFB254 /* LoginInteractor.swift in Sources */,
 				52CD61DC207DE32200AFB254 /* PokedexValidate.swift in Sources */,
+				52CD6203207DF3B200AFB254 /* HomeTableViewCell.swift in Sources */,
 				52CD61CB207DE32200AFB254 /* AppDelegate.swift in Sources */,
 				52CD61CF207DE32200AFB254 /* AlamofireInitializer.swift in Sources */,
 				52CD61FB207DEB7000AFB254 /* HomeInterfaces.swift in Sources */,

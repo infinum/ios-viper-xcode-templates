@@ -9,8 +9,12 @@
 //
 
 import UIKit
+import Alamofire
 
 enum HomeNavigationOption {
+    case login
+    case details(Pokemon)
+    case add
 }
 
 protocol HomeWireframeInterface: WireframeInterface {
@@ -18,10 +22,27 @@ protocol HomeWireframeInterface: WireframeInterface {
 }
 
 protocol HomeViewInterface: ViewInterface {
+    func reloadData()
+    func setEmptyPlaceholderHidden(_ hidden: Bool)
+    func setLoadingVisible(_ visible: Bool)
 }
 
 protocol HomePresenterInterface: PresenterInterface {
+    func didSelectLogoutAction()
+    func didSelectAddAction()
+    
+    func numberOfSections() -> Int
+    func numberOrItems(in section: Int) -> Int
+    func item(at indexPath: IndexPath) -> HomeViewItemInterface
+    func didSelectItem(at indexPath: IndexPath)
 }
 
 protocol HomeInteractorInterface: InteractorInterface {
+    @discardableResult
+    func getPokemons(_ completion: @escaping PokemonListCompletionBlock) -> DataRequest
+}
+
+protocol HomeViewItemInterface {
+    var title: String? { get }
+    var imageURL: URL? { get }
 }
