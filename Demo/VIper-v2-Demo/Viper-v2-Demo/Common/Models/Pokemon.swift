@@ -50,12 +50,12 @@ extension Pokemon: HomeViewItemInterface {
     }
 }
 
-//extension Pokemon: PokemonDetailsDescriptionItemInterface {
-//
-//    var pokemonName: String? {
-//        return name
-//    }
-//}
-//
-//extension Pokemon: PokemonDetailsCharacteristicsItemInterface {
-//}
+extension Pokemon: PokemonDetailsDescriptionItemInterface {
+
+    var pokemonName: String? {
+        return name
+    }
+}
+
+extension Pokemon: PokemonDetailsCharacteristicsItemInterface {
+}
