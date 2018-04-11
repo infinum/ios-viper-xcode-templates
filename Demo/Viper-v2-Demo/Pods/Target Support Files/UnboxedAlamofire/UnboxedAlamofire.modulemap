@@ -1,0 +1,6 @@
+framework module UnboxedAlamofire {
+  umbrella header "UnboxedAlamofire-umbrella.h"
+
+  export *
+  module * { export * }
+}

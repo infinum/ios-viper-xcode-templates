@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:VIper-v2-Demo.xcodeproj">
+      location = "self:/Users/donik/Documents/Projects/iOS-VIPER-Xcode-Templates/Demo/VIper-v2-Demo/Viper-v2-Demo.xcodeproj">
    </FileRef>
 </Workspace>

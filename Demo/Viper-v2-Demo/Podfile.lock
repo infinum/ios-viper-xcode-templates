@@ -1,0 +1,65 @@
+PODS:
+  - Alamofire (4.7.0)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
+  - AlamofireNetworkActivityIndicator (2.2.0):
+    - Alamofire (~> 4.5)
+  - Nimble (6.1.0)
+  - OHHTTPStubs (6.1.0):
+    - OHHTTPStubs/Default (= 6.1.0)
+  - OHHTTPStubs/Core (6.1.0)
+  - OHHTTPStubs/Default (6.1.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (6.1.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (6.1.0)
+  - OHHTTPStubs/Swift (6.1.0):
+    - OHHTTPStubs/Default
+  - Quick (1.2.0)
+  - SVProgressHUD (2.2.5)
+  - Unbox (2.5.0)
+  - UnboxedAlamofire (2.0.4):
+    - Alamofire (~> 4.1)
+    - Unbox (~> 2.0)
+
+DEPENDENCIES:
+  - AlamofireImage (~> 3.2)
+  - AlamofireNetworkActivityIndicator (~> 2.1)
+  - Nimble (~> 6.1)
+  - OHHTTPStubs (~> 6.0)
+  - OHHTTPStubs/Swift
+  - Quick (~> 1.1)
+  - SVProgressHUD (~> 2.1)
+  - UnboxedAlamofire (~> 2.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AlamofireImage
+    - AlamofireNetworkActivityIndicator
+    - Nimble
+    - OHHTTPStubs
+    - Quick
+    - SVProgressHUD
+    - Unbox
+    - UnboxedAlamofire
+
+SPEC CHECKSUMS:
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  Nimble: c53e6903fee94041b90ded74f135820437d8bf59
+  OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  Unbox: 30e437e6151a6de16139375fd4e8dd9a664cfbf7
+  UnboxedAlamofire: e803f471553e3aecec711f5d50f80cda6c65feaa
+
+PODFILE CHECKSUM: 8c9eaa04a7fc42011baf1d03bee0ddd3e1096754
+
+COCOAPODS: 1.5.0
