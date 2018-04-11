@@ -34,5 +34,16 @@ final class LoginWireframe: BaseWireframe {
 extension LoginWireframe: LoginWireframeInterface {
 
     func navigate(to option: LoginNavigationOption) {
+        switch option {
+        case .home:
+            _openHome()
+        }
     }
+    
+    private func _openHome() {
+        let wireframe = HomeWireframe()
+        
+        viewController.presentWireframe(wireframe)
+    }
+
 }

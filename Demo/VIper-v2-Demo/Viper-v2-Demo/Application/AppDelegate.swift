@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         initializers.forEach { $0.performInitialization() }
+        
+        self.window?.rootViewController = LoginWireframe().viewController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

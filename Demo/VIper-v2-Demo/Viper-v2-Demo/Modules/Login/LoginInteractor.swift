@@ -9,11 +9,20 @@
 //
 
 import Foundation
+import Alamofire
 
 final class LoginInteractor {
+    
+    private var _userService = UserService()
 }
 
 // MARK: - Extensions -
 
 extension LoginInteractor: LoginInteractorInterface {
+    
+    @discardableResult
+    func loginUser(with email: String, password: String, completion: @escaping LoginCompletionBlock) -> DataRequest {
+        return _userService.loginUser(with: email, password: password, completion: completion)
+    }
+    
 }
