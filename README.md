@@ -1,5 +1,8 @@
 ![iOS VIPER](/Images/ios_viper_logo.png "iOS VIPER")
 
+# Versions
+Latest version is v2. You can still use initial v1 of the VIPER templates generator. v2 has breaking changes in base VIPER methods related to wireframe setup and navigation and is recommended to use only in new projects. It's not backwards compatible with v1.
+
 # Installation instructions
 
 To install VIPER Xcode templates clone this repo and run the following command from root folder:
