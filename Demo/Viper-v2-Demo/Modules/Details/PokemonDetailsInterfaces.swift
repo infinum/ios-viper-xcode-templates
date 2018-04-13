@@ -44,8 +44,8 @@ protocol PokemonDetailsDescriptionItemInterface {
 }
 
 protocol PokemonDetailsCharacteristicsItemInterface {
-    var height: Float? { get }
-    var weight: Float? { get }
+    var height: Double? { get }
+    var weight: Double? { get }
     var gender: String? { get }
 }
 

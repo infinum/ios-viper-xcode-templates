@@ -76,10 +76,10 @@ extension HomePresenter: HomePresenterInterface {
     
     // MARK: Utility
     
-    private func _handlePokemonListResult(_ result: Result<[JSONAPIObject<Pokemon>]>) {
+    private func _handlePokemonListResult(_ result: Result<JSONAPIObject<[Pokemon]>>) {
         switch result {
         case .success(let jsonObject):
-            _items = jsonObject.map { $0.object }
+            _items = jsonObject.data
             _view.setEmptyPlaceholderHidden(_items.count > 0)
         case .failure(let error):
             _wireframe.showErrorAlert(with: error.message)

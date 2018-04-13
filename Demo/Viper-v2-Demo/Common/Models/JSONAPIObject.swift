@@ -7,24 +7,11 @@
 //
 
 import UIKit
-import Unbox
+import Japx
 
-protocol JSONAPIModel: Unboxable {
-    var type: String { get }
-    var id: String? { get set }
-}
+struct JSONAPIObject<T: Codable>: Codable {
 
-class JSONAPIObject<T: JSONAPIModel>: Unboxable {
+    var data: T
 
-    var object: T
-
-    init(object: T) {
-        self.object = object
-    }
-
-    required init(unboxer: Unboxer) throws {
-        self.object = try unboxer.unbox(keyPath: "attributes")
-        self.object.id = try? unboxer.unbox(key: "id")
-    }
 
 }

@@ -7,30 +7,29 @@
 //
 
 import UIKit
-import Unbox
+import Japx
 
-class Pokemon: JSONAPIModel {
-
-    var id: String?
+struct Pokemon: JapxCodable {
+    var type: String
+    
+    var id: String
     var name: String?
     var pokemonDescription: String?
     var imagePath: String?
 
-    var height: Float?
-    var weight: Float?
+    var height: Double?
+    var weight: Double?
     var gender: String?
 
-    required init(unboxer: Unboxer) throws {
-        name = unboxer.unbox(key: "name")
-        pokemonDescription = unboxer.unbox(key: "description")
-        imagePath = unboxer.unbox(key: "image-url")
-        height = unboxer.unbox(key: "height")
-        weight = unboxer.unbox(key: "weight")
-        gender = unboxer.unbox(key: "gender")
-    }
-
-    var type: String {
-        return "pokemons"
+    enum CodingKeys: String, CodingKey {
+        case type
+        case id
+        case name
+        case pokemonDescription = "description"
+        case imagePath = "image-url"
+        case height
+        case weight
+        case gender
     }
 
     var imageURL: URL? {

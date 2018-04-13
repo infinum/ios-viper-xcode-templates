@@ -7,23 +7,22 @@
 //
 
 import UIKit
-import Unbox
+import Japx
 
-class User: JSONAPIModel {
-
-    var id: String?
+struct User: JapxCodable {
+    var type: String
+    
+    var id: String
     var email: String
     var username: String
     var authToken: String
-
-    required init(unboxer: Unboxer) throws {
-        email = try unboxer.unbox(key: "email")
-        username = try unboxer.unbox(key: "username")
-        authToken = try unboxer.unbox(key: "auth-token")
-    }
-
-    var type: String {
-        return "users"
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case type
+        case email
+        case username
+        case authToken = "auth-token"
     }
 
 }

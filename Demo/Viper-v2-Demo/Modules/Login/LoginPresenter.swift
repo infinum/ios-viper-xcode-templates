@@ -66,7 +66,7 @@ extension LoginPresenter: LoginPresenterInterface {
     private func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
         switch result {
         case .success(let jsonObject):
-            _authorizationManager.authorizationHeader = jsonObject.object.authorizationHeader
+            _authorizationManager.authorizationHeader = jsonObject.data.authorizationHeader
             _wireframe.navigate(to: .home)
             
         case .failure(let error):

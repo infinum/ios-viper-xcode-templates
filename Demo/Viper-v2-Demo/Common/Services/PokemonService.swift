@@ -8,9 +8,9 @@
 
 import UIKit
 import Alamofire
-import UnboxedAlamofire
+import Japx
 
-typealias PokemonListCompletionBlock = (DataResponse<[JSONAPIObject<Pokemon>]>) -> (Void)
+typealias PokemonListCompletionBlock = (DataResponse<JSONAPIObject<[Pokemon]>>) -> (Void)
 
 class PokemonService: NSObject {
 
@@ -19,7 +19,7 @@ class PokemonService: NSObject {
         return Alamofire.request(
             "https://pokeapi.infinum.co/api/v1/pokemons",
             method: .get
-        ).pokedexValidate().responseArray(keyPath: "data", completionHandler: completion)
+        ).pokedexValidate().responseCodableJSONAPI(completionHandler: completion)
     }
 
 }
