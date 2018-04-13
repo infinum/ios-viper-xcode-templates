@@ -19,7 +19,7 @@ final class PokemonDetailsPresenter {
     private var _wireframe: PokemonDetailsWireframeInterface
     
     private let _pokemon: Pokemon
-    private var _sections: [Section<PokemonDetailsItem>] = [] {
+    var sections: [Section<PokemonDetailsItem>] = [] {
         didSet {
             _view.reloadData()
         }
@@ -55,23 +55,9 @@ extension PokemonDetailsPresenter: PokemonDetailsPresenterInterface {
         _view.setViewTitle(_pokemon.name)
         _view.setHeaderImage(with: _pokemon.imageURL)
         
-        _sections = [
+        sections = [
             descriptionSection,
         ]
         _view.reloadData()
-    }
-    
-    func numberOfSections() -> Int {
-        return _sections.count
-    }
-    
-    func numberOrItems(in section: Int) -> Int {
-        let section = _sections[section]
-        return section.items.count
-    }
-    
-    func item(at indexPath: IndexPath) -> PokemonDetailsItem {
-        let section = _sections[indexPath.section]
-        return section.items[indexPath.row]
     }
 }

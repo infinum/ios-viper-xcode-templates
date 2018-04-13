@@ -45,14 +45,14 @@ final class LoginViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func loginButtonActionHandler(_ sender: Any) {
+    @IBAction func loginButtonActionHandler() {
         presenter.didSelectLoginAction(
             with: emailTextField.text,
             password: passwordTextField.text
         )
     }
     
-    @IBAction func tapGestureRecognizerActionHandler(_ sender: Any) {
+    @IBAction func tapGestureRecognizerActionHandler() {
         view.endEditing(true)
     }
     

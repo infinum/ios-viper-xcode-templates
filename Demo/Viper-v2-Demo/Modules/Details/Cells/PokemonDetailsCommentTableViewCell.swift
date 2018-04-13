@@ -10,9 +10,9 @@ import UIKit
 
 class PokemonDetailsCommentTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var commentLabel: UILabel!
+    @IBOutlet private weak var authorLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var commentLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

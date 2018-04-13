@@ -16,9 +16,9 @@ final class HomeViewController: UIViewController {
 
     var presenter: HomePresenterInterface!
     
-    @IBOutlet weak var emptyPlaceholderLabel: UILabel!
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var emptyPlaceholderLabel: UILabel!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - Lifecycle -
 
@@ -38,11 +38,11 @@ final class HomeViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
-    @IBAction func logoutButtonActionHandler(_ sender: Any) {
+    @IBAction func logoutButtonActionHandler() {
         presenter.didSelectLogoutAction()
     }
     
-    @IBAction func addButtonActionHandler(_ sender: Any) {
+    @IBAction func addButtonActionHandler() {
         presenter.didSelectAddAction()
     }
 }

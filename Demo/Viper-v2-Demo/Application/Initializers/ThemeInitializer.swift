@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ThemeInitializer: NSObject, Initializable {
+class ThemeInitializer: Initializable {
 
-    @objc func performInitialization() {
+    func performInitialization() {
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().barTintColor = UIColor.pokedexBlue
         UINavigationBar.appearance().titleTextAttributes = [

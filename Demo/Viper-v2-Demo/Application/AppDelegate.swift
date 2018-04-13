@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let initialController = UINavigationController()
         initialController.setRootWireframe(LoginWireframe())
         
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
         self.window?.rootViewController = initialController
         self.window?.makeKeyAndVisible()
         

@@ -24,9 +24,7 @@ protocol PokemonDetailsViewInterface: ViewInterface {
 }
 
 protocol PokemonDetailsPresenterInterface: PresenterInterface {
-    func numberOfSections() -> Int
-    func numberOrItems(in section: Int) -> Int
-    func item(at indexPath: IndexPath) -> PokemonDetailsItem
+    var sections: [Section<PokemonDetailsItem>] { get }
 }
 
 protocol PokemonDetailsInteractorInterface: InteractorInterface {

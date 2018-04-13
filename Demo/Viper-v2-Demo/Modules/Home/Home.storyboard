@@ -90,12 +90,12 @@
                     <navigationItem key="navigationItem" title="Pokedex" id="8sN-XX-5QK">
                         <barButtonItem key="leftBarButtonItem" image="icon-logout" id="TcB-le-UcL">
                             <connections>
-                                <action selector="logoutButtonActionHandler:" destination="10h-9L-rFd" id="Q7d-FA-fIl"/>
+                                <action selector="logoutButtonActionHandler" destination="10h-9L-rFd" id="Q7d-FA-fIl"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="icon-add" id="zRy-9H-3IP">
                             <connections>
-                                <action selector="addButtonActionHandler:" destination="10h-9L-rFd" id="8e3-Te-aFa"/>
+                                <action selector="addButtonActionHandler" destination="10h-9L-rFd" id="8e3-Te-aFa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

@@ -9,9 +9,9 @@
 import UIKit
 import SVProgressHUD
 
-class SVProgressHudInitializer: NSObject, Initializable {
+class SVProgressHudInitializer: Initializable {
 
-    @objc func performInitialization() {
+    func performInitialization() {
         SVProgressHUD.setForegroundColor(UIColor.white)
         SVProgressHUD.setDefaultStyle(.dark)
     }

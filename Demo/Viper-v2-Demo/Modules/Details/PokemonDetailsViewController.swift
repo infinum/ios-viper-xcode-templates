@@ -16,18 +16,21 @@ final class PokemonDetailsViewController: UIViewController {
 
     var presenter: PokemonDetailsPresenterInterface!
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var headerImageView: UIImageView!
+    @IBOutlet private weak var tableView: UITableView! {
+        didSet {
+            _setupTableView()
+        }
+    }
+    @IBOutlet private weak var headerImageView: UIImageView!
 
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        _setupView()
         presenter.viewDidLoad()
     }
     
-    private func _setupView() {
+    private func _setupTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -64,15 +67,16 @@ extension PokemonDetailsViewController: PokemonDetailsViewInterface {
 extension PokemonDetailsViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return presenter.numberOfSections()
+        return presenter.sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOrItems(in: section)
+        return presenter.sections[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = presenter.item(at: indexPath)
+        let section = presenter.sections[indexPath.section]
+        let item = section.items[indexPath.row]
         switch item {
         case .description(let descriptionItem):
             let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as! PokemonDetailsDescriptionTableViewCell
