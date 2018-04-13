@@ -79,17 +79,17 @@ extension PokemonDetailsViewController: UITableViewDataSource {
         let item = section.items[indexPath.row]
         switch item {
         case .description(let descriptionItem):
-            let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as! PokemonDetailsDescriptionTableViewCell
+            let cell = tableView.dequeueReusableCell(ofType: PokemonDetailsDescriptionTableViewCell.self, for: indexPath)
             cell.configure(with: descriptionItem)
             return cell
             
         case .characteristics(let characteristicsItem):
-            let cell = tableView.dequeueReusableCell(withIdentifier: "characteristics", for: indexPath) as! PokemonDetailsCharacteristicsTableViewCell
+            let cell = tableView.dequeueReusableCell(ofType: PokemonDetailsCharacteristicsTableViewCell.self, for: indexPath)
             cell.configure(with: characteristicsItem)
             return cell
             
         case .comment(let commentItem):
-            let cell = tableView.dequeueReusableCell(withIdentifier: "comment", for: indexPath) as! PokemonDetailsCommentTableViewCell
+            let cell = tableView.dequeueReusableCell(ofType: PokemonDetailsCommentTableViewCell.self, for: indexPath)
             cell.configure(with: commentItem)
             return cell
         }

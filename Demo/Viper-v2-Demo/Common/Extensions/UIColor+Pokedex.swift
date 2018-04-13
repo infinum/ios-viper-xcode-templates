@@ -10,7 +10,7 @@ import UIKit
 
 extension UIColor {
 
-    @objc static let pokedexBlue: UIColor = UIColor(
+    static let pokedexBlue: UIColor = UIColor(
         red: 51.0/255.0,
         green: 80.0/255.0,
         blue: 141.0/255.0,

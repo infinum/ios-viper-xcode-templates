@@ -107,10 +107,10 @@
             </objects>
             <point key="canvasLocation" x="1324" y="-144.3778110944528"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Pokedex Navigation Controller-->
         <scene sceneID="elJ-WT-FbJ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="No2-Kp-lBu" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="No2-Kp-lBu" customClass="PokedexNavigationController" customModule="Viper_v2_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Wga-gM-8H1">
                         <autoresizingMask key="autoresizingMask"/>

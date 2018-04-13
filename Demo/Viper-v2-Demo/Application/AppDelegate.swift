@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         initializers.forEach { $0.performInitialization() }
         
-        let initialController = UINavigationController()
+        let initialController = PokedexNavigationController()
         initialController.setRootWireframe(LoginWireframe())
         
         self.window = UIWindow(frame: UIScreen.main.bounds)

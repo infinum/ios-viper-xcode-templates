@@ -16,6 +16,8 @@
 		521A3FB4207E2F88001EFB92 /* PokemonDetailsCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FB0207E2F88001EFB92 /* PokemonDetailsCommentTableViewCell.swift */; };
 		521A3FB5207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FB1207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift */; };
 		521A3FB6207E2F88001EFB92 /* PokemonDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */; };
+		52AF85DE20808F7A00046F15 /* UITableView+DequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */; };
+		52AF85E02080926E00046F15 /* PokedexNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */; };
 		52CD6182207DE27200AFB254 /* VIper_v2_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD6181207DE27200AFB254 /* VIper_v2_DemoTests.swift */; };
 		52CD6190207DE28800AFB254 /* VIper_v2_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD618F207DE28800AFB254 /* VIper_v2_DemoUITests.swift */; };
 		52CD61C8207DE32200AFB254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CD619A207DE32100AFB254 /* Main.storyboard */; };
@@ -94,6 +96,8 @@
 		521A3FB0207E2F88001EFB92 /* PokemonDetailsCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailsCommentTableViewCell.swift; sourceTree = "<group>"; };
 		521A3FB1207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailsCharacteristicsTableViewCell.swift; sourceTree = "<group>"; };
 		521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PokemonDetails.storyboard; sourceTree = "<group>"; };
+		52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+DequeueCell.swift"; sourceTree = "<group>"; };
+		52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexNavigationController.swift; sourceTree = "<group>"; };
 		52CD6166207DE22700AFB254 /* Viper-v2-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Viper-v2-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD617F207DE27200AFB254 /* Viper-v2-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Viper-v2-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD6181207DE27200AFB254 /* VIper_v2_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIper_v2_DemoTests.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 				52CD619E207DE32200AFB254 /* Constants.swift */,
 				52CD619F207DE32200AFB254 /* AppDelegate.swift */,
 				52CD61A0207DE32200AFB254 /* Initializers */,
+				52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -355,6 +360,7 @@
 			children = (
 				52CD61B4207DE32200AFB254 /* Error+Message.swift */,
 				52CD61B5207DE32200AFB254 /* UIColor+Pokedex.swift */,
+				52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -743,11 +749,13 @@
 				52CD61DE207DE32200AFB254 /* AuthorizationAdapter.swift in Sources */,
 				52CD61D7207DE32200AFB254 /* BaseWireframe.swift in Sources */,
 				52CD61D4207DE32200AFB254 /* Pokemon.swift in Sources */,
+				52AF85E02080926E00046F15 /* PokedexNavigationController.swift in Sources */,
 				52CD61CD207DE32200AFB254 /* Initializer.swift in Sources */,
 				521A3FAD207E2F4A001EFB92 /* PokemonDetailsWireframe.swift in Sources */,
 				52CD61D8207DE32200AFB254 /* UIStoryboardExtension.swift in Sources */,
 				52CD61E3207DE32200AFB254 /* PokemonService.swift in Sources */,
 				52CD61CE207DE32200AFB254 /* SVProgressHudInitializer.swift in Sources */,
+				52AF85DE20808F7A00046F15 /* UITableView+DequeueCell.swift in Sources */,
 				521A3FB5207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift in Sources */,
 				521A3FAB207E2F4A001EFB92 /* PokemonDetailsViewController.swift in Sources */,
 				52CD61E0207DE32200AFB254 /* Validator.swift in Sources */,

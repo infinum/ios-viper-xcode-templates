@@ -11,10 +11,10 @@ import UIKit
 class ThemeInitializer: Initializable {
 
     func performInitialization() {
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().barTintColor = UIColor.pokedexBlue
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor.white
+        UINavigationBar.appearance(whenContainedInInstancesOf: [PokedexNavigationController.self]).tintColor = .white
+        UINavigationBar.appearance(whenContainedInInstancesOf: [PokedexNavigationController.self]).barTintColor = UIColor.pokedexBlue
+        UINavigationBar.appearance(whenContainedInInstancesOf: [PokedexNavigationController.self]).titleTextAttributes = [
+            .foregroundColor: UIColor.white
         ]
     }
 
