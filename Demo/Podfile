@@ -8,7 +8,7 @@ def testing_pods
 end
 
 def app_pods
-  pod 'UnboxedAlamofire', '~> 2.0'
+  pod 'Japx/CodableAlamofire'
   pod 'SVProgressHUD', '~> 2.1'
   pod 'AlamofireImage', '~> 3.2'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.1'
