@@ -14,26 +14,15 @@ struct Pokemon: JapxCodable {
     
     var id: String
     var name: String?
-    var pokemonDescription: String?
-    var imagePath: String?
+    var description: String?
+    var imageUrl: String?
 
     var height: Double?
     var weight: Double?
     var gender: String?
 
-    enum CodingKeys: String, CodingKey {
-        case type
-        case id
-        case name
-        case pokemonDescription = "description"
-        case imagePath = "image-url"
-        case height
-        case weight
-        case gender
-    }
-
     var imageURL: URL? {
-        guard let path = imagePath else {
+        guard let path = imageUrl else {
             return nil
         }
         let urlString = String(format: "https://pokeapi.infinum.co%@", path)

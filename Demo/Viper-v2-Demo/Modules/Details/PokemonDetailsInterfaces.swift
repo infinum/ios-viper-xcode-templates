@@ -40,7 +40,7 @@ enum PokemonDetailsItem {
 
 protocol PokemonDetailsDescriptionItemInterface {
     var pokemonName: String? { get }
-    var pokemonDescription: String? { get }
+    var description: String? { get }
 }
 
 protocol PokemonDetailsCharacteristicsItemInterface {

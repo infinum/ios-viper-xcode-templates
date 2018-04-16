@@ -18,6 +18,9 @@
 		521A3FB6207E2F88001EFB92 /* PokemonDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */; };
 		52AF85DE20808F7A00046F15 /* UITableView+DequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */; };
 		52AF85E02080926E00046F15 /* PokedexNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */; };
+		52AF85E2208495B100046F15 /* KeyDecodingStategy+kebabCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E1208495B100046F15 /* KeyDecodingStategy+kebabCase.swift */; };
+		52AF85E42084975800046F15 /* String+IndexOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E32084975800046F15 /* String+IndexOf.swift */; };
+		52AF85E62084A2D300046F15 /* KebabCaseJAPXDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E52084A2D300046F15 /* KebabCaseJAPXDecoder.swift */; };
 		52CD6182207DE27200AFB254 /* VIper_v2_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD6181207DE27200AFB254 /* VIper_v2_DemoTests.swift */; };
 		52CD6190207DE28800AFB254 /* VIper_v2_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD618F207DE28800AFB254 /* VIper_v2_DemoUITests.swift */; };
 		52CD61C8207DE32200AFB254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CD619A207DE32100AFB254 /* Main.storyboard */; };
@@ -98,6 +101,9 @@
 		521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PokemonDetails.storyboard; sourceTree = "<group>"; };
 		52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+DequeueCell.swift"; sourceTree = "<group>"; };
 		52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexNavigationController.swift; sourceTree = "<group>"; };
+		52AF85E1208495B100046F15 /* KeyDecodingStategy+kebabCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyDecodingStategy+kebabCase.swift"; sourceTree = "<group>"; };
+		52AF85E32084975800046F15 /* String+IndexOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IndexOf.swift"; sourceTree = "<group>"; };
+		52AF85E52084A2D300046F15 /* KebabCaseJAPXDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KebabCaseJAPXDecoder.swift; sourceTree = "<group>"; };
 		52CD6166207DE22700AFB254 /* Viper-v2-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Viper-v2-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD617F207DE27200AFB254 /* Viper-v2-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Viper-v2-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52CD6181207DE27200AFB254 /* VIper_v2_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VIper_v2_DemoTests.swift; sourceTree = "<group>"; };
@@ -361,6 +367,8 @@
 				52CD61B4207DE32200AFB254 /* Error+Message.swift */,
 				52CD61B5207DE32200AFB254 /* UIColor+Pokedex.swift */,
 				52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */,
+				52AF85E1208495B100046F15 /* KeyDecodingStategy+kebabCase.swift */,
+				52AF85E32084975800046F15 /* String+IndexOf.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,6 +391,7 @@
 				52CD61BD207DE32200AFB254 /* PokedexValidate.swift */,
 				52CD61BE207DE32200AFB254 /* APIError.swift */,
 				52CD61BF207DE32200AFB254 /* AuthorizationAdapter.swift */,
+				52AF85E52084A2D300046F15 /* KebabCaseJAPXDecoder.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -734,6 +743,7 @@
 				52CD61CF207DE32200AFB254 /* AlamofireInitializer.swift in Sources */,
 				52CD61FB207DEB7000AFB254 /* HomeInterfaces.swift in Sources */,
 				521A3FB3207E2F88001EFB92 /* PokemonDetailsDescriptionTableViewCell.swift in Sources */,
+				52AF85E2208495B100046F15 /* KeyDecodingStategy+kebabCase.swift in Sources */,
 				52CD61EE207DE3F700AFB254 /* LoginInterfaces.swift in Sources */,
 				52CD61F2207DE3F700AFB254 /* LoginWireframe.swift in Sources */,
 				52CD61D5207DE32200AFB254 /* Error+Message.swift in Sources */,
@@ -758,12 +768,14 @@
 				521A3FAB207E2F4A001EFB92 /* PokemonDetailsViewController.swift in Sources */,
 				52CD61E0207DE32200AFB254 /* Validator.swift in Sources */,
 				52CD61DF207DE32200AFB254 /* EmailValidator.swift in Sources */,
+				52AF85E62084A2D300046F15 /* KebabCaseJAPXDecoder.swift in Sources */,
 				52CD61D9207DE32200AFB254 /* PresenterInterface.swift in Sources */,
 				52CD61CA207DE32200AFB254 /* Constants.swift in Sources */,
 				52CD61FD207DEB7000AFB254 /* HomeViewController.swift in Sources */,
 				52CD61CC207DE32200AFB254 /* ThemeInitializer.swift in Sources */,
 				52CD61D3207DE32200AFB254 /* User.swift in Sources */,
 				52CD61DD207DE32200AFB254 /* APIError.swift in Sources */,
+				52AF85E42084975800046F15 /* String+IndexOf.swift in Sources */,
 				52CD61FE207DEB7000AFB254 /* HomeInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -934,7 +946,10 @@
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = "$(SRCROOT)/VIper-v2-Demo/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.VIper-v2-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -951,7 +966,10 @@
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = "$(SRCROOT)/VIper-v2-Demo/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.VIper-v2-Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -967,7 +985,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = "VIper-v2-DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.VIper-v2-DemoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -984,7 +1006,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = "VIper-v2-DemoTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.VIper-v2-DemoTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1000,7 +1026,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = "VIper-v2-DemoUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.VIper-v2-DemoUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1016,7 +1046,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5F5M64F878;
 				INFOPLIST_FILE = "VIper-v2-DemoUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "co.infinum.VIper-v2-DemoUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

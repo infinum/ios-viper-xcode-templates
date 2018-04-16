@@ -31,7 +31,7 @@ class UserService: NSObject {
             "https://pokeapi.infinum.co/api/v1/users/login",
             method: .post,
             parameters: parameters
-        ).pokedexValidate().responseCodableJSONAPI(completionHandler: completion)
+            ).pokedexValidate().responseCodableJSONAPI(decoder: .kebebCaseDecoder, completionHandler: completion)
     }
 
 }

@@ -20,7 +20,7 @@ class PokemonDetailsDescriptionTableViewCell: UITableViewCell {
 
     func configure(with item: PokemonDetailsDescriptionItemInterface) {
         nameLabel.text = item.pokemonName
-        descriptionLabel.text = item.pokemonDescription
+        descriptionLabel.text = item.description
     }
 
 }
