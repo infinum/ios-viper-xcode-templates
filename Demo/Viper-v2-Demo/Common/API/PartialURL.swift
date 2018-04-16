@@ -14,7 +14,7 @@ struct PartialURL: Codable {
     
     init(from decoder: Decoder) throws {
         let url = try decoder.singleValueContainer().decode(String.self)
-        let urlString = String(format: "https://pokeapi.infinum.co%@", url)
+        let urlString = String(format: "%@%@", Constants.API.URLBase, url)
         self.url = URL(string: urlString)
     }
     

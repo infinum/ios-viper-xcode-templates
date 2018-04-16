@@ -12,6 +12,7 @@ struct Constants {
 
     struct API {
         static let AuthorizationHeader = "Authorization"
+        static let URLBase = "https://pokeapi.infinum.co"
     }
 
 }
