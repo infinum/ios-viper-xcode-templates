@@ -15,23 +15,18 @@ struct Pokemon: JapxCodable {
     var id: String
     var name: String?
     var description: String?
-    var imageUrl: String?
+    var imageUrl: PartialURL?
 
     var height: Double?
     var weight: Double?
     var gender: String?
-
-    var imageURL: URL? {
-        guard let path = imageUrl else {
-            return nil
-        }
-        let urlString = String(format: "https://pokeapi.infinum.co%@", path)
-        return URL(string: urlString)
-    }
     
 }
 
 extension Pokemon: HomeViewItemInterface {
+    var imageURL: URL? {
+        return imageUrl?.url
+    }
 
     var title: String? {
         return name
