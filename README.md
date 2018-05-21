@@ -15,6 +15,11 @@ To uninstall Xcode template run:
 
 After that, restart your Xcode if it was already opened.
 
+## Demo project
+
+There's a Pokemon demo project in Demo folder.
+You can find most common VIPER module use cases in it.
+
 ## VIPER short introduction
 
 How to organize all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
