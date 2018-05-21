@@ -10,16 +10,17 @@ import UIKit
 import Alamofire
 import Japx
 
-typealias PokemonListCompletionBlock = (DataResponse<JSONAPIObject<[Pokemon]>>) -> (Void)
+typealias PokemonListCompletionBlock = (DataResponse<[Pokemon]>) -> (Void)
 
 class PokemonService: NSObject {
     
     @discardableResult
     func getPokemons(_ completion: @escaping PokemonListCompletionBlock) -> DataRequest {
         return Alamofire.request(
-            "https://pokeapi.infinum.co/api/v1/pokemons",
-            method: .get
-        ).pokedexValidate().responseCodableJSONAPI(decoder: .kebebCaseDecoder, completionHandler: completion)
+            Constants.API.URLBase.appendingPathComponent("api/v1/pokemons"),
+            method: .get    
+        ).pokedexValidate().responseCodableJSONAPI(keyPath: "data", decoder: .kebabCaseDecoder, completionHandler: completion)
+        
     }
 
 }

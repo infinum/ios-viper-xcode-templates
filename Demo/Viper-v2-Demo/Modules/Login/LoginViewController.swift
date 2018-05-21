@@ -16,14 +16,14 @@ final class LoginViewController: UIViewController {
 
     var presenter: LoginPresenterInterface!
     
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var ballImageView: UIImageView!
+    @IBOutlet private weak var logoImageView: UIImageView!
+    @IBOutlet private weak var ballImageView: UIImageView!
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var loginButtonBottomMargin: NSLayoutConstraint!
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var loginButtonBottomMargin: NSLayoutConstraint!
 
     // MARK: - Lifecycle -
 

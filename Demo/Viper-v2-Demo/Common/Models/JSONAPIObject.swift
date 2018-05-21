@@ -13,5 +13,4 @@ struct JSONAPIObject<T: Codable>: Codable {
 
     var data: T
 
-
 }

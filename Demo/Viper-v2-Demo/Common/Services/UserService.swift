@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import Japx
 
-typealias LoginCompletionBlock = (DataResponse<JSONAPIObject<User>>) -> (Void)
+typealias LoginCompletionBlock = (DataResponse<User>) -> (Void)
 
 class UserService: NSObject {
 
@@ -28,10 +28,10 @@ class UserService: NSObject {
         ]
 
         return Alamofire.request(
-            "https://pokeapi.infinum.co/api/v1/users/login",
+            Constants.API.URLBase.appendingPathComponent("api/v1/users/login"),
             method: .post,
             parameters: parameters
-            ).pokedexValidate().responseCodableJSONAPI(decoder: .kebebCaseDecoder, completionHandler: completion)
+            ).pokedexValidate().responseCodableJSONAPI(keyPath: "data", decoder: .kebabCaseDecoder, completionHandler: completion)
     }
 
 }

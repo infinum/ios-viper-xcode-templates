@@ -16,14 +16,6 @@ struct User: JapxCodable {
     var email: String
     var username: String
     var authToken: String
-    
-//    enum CodingKeys: String, CodingKey {
-//        case id
-//        case type
-//        case email
-//        case username
-//        case authToken = "auth-token"
-//    }
 
 }
 

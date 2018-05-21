@@ -18,7 +18,7 @@
 		521A3FB6207E2F88001EFB92 /* PokemonDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */; };
 		52AF85DE20808F7A00046F15 /* UITableView+DequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */; };
 		52AF85E02080926E00046F15 /* PokedexNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */; };
-		52AF85E2208495B100046F15 /* KeyDecodingStategy+kebabCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E1208495B100046F15 /* KeyDecodingStategy+kebabCase.swift */; };
+		52AF85E2208495B100046F15 /* KeyDecodingStategy+KebabCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E1208495B100046F15 /* KeyDecodingStategy+KebabCase.swift */; };
 		52AF85E42084975800046F15 /* String+IndexOf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E32084975800046F15 /* String+IndexOf.swift */; };
 		52AF85E62084A2D300046F15 /* KebabCaseJAPXDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E52084A2D300046F15 /* KebabCaseJAPXDecoder.swift */; };
 		52AF85EA2084C4B400046F15 /* PartialURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E92084C4B400046F15 /* PartialURL.swift */; };
@@ -102,7 +102,7 @@
 		521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PokemonDetails.storyboard; sourceTree = "<group>"; };
 		52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+DequeueCell.swift"; sourceTree = "<group>"; };
 		52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexNavigationController.swift; sourceTree = "<group>"; };
-		52AF85E1208495B100046F15 /* KeyDecodingStategy+kebabCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyDecodingStategy+kebabCase.swift"; sourceTree = "<group>"; };
+		52AF85E1208495B100046F15 /* KeyDecodingStategy+KebabCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyDecodingStategy+KebabCase.swift"; sourceTree = "<group>"; };
 		52AF85E32084975800046F15 /* String+IndexOf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+IndexOf.swift"; sourceTree = "<group>"; };
 		52AF85E52084A2D300046F15 /* KebabCaseJAPXDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KebabCaseJAPXDecoder.swift; sourceTree = "<group>"; };
 		52AF85E92084C4B400046F15 /* PartialURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartialURL.swift; sourceTree = "<group>"; };
@@ -369,7 +369,7 @@
 				52CD61B4207DE32200AFB254 /* Error+Message.swift */,
 				52CD61B5207DE32200AFB254 /* UIColor+Pokedex.swift */,
 				52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */,
-				52AF85E1208495B100046F15 /* KeyDecodingStategy+kebabCase.swift */,
+				52AF85E1208495B100046F15 /* KeyDecodingStategy+KebabCase.swift */,
 				52AF85E32084975800046F15 /* String+IndexOf.swift */,
 			);
 			path = Extensions;
@@ -746,7 +746,7 @@
 				52CD61CF207DE32200AFB254 /* AlamofireInitializer.swift in Sources */,
 				52CD61FB207DEB7000AFB254 /* HomeInterfaces.swift in Sources */,
 				521A3FB3207E2F88001EFB92 /* PokemonDetailsDescriptionTableViewCell.swift in Sources */,
-				52AF85E2208495B100046F15 /* KeyDecodingStategy+kebabCase.swift in Sources */,
+				52AF85E2208495B100046F15 /* KeyDecodingStategy+KebabCase.swift in Sources */,
 				52AF85EA2084C4B400046F15 /* PartialURL.swift in Sources */,
 				52CD61EE207DE3F700AFB254 /* LoginInterfaces.swift in Sources */,
 				52CD61F2207DE3F700AFB254 /* LoginWireframe.swift in Sources */,
