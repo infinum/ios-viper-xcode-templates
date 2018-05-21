@@ -13,9 +13,10 @@ struct PartialURL: Codable {
     let url: URL?
     
     init(from decoder: Decoder) throws {
-        let url = try decoder.singleValueContainer().decode(String.self)
-        let urlString = String(format: "%@%@", Constants.API.URLBase, url)
-        self.url = URL(string: urlString)
+        let urlString = try decoder.singleValueContainer().decode(String.self)
+        let url = Constants.API.URLBase?.appendingPathComponent(urlString)
+        
+        self.url = url
     }
     
 }
