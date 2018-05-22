@@ -35,14 +35,10 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
 
 extension ___VARIABLE_moduleName___Wireframe: ___VARIABLE_moduleName___WireframeInterface {
     
-    func navigate(to option: Driver<___VARIABLE_moduleName___NavigationOption>) {
+    func navigate(using option: Driver<___VARIABLE_moduleName___NavigationOption>) {
         subscribe(to: option, unowning: self, navigationBlock: ___VARIABLE_moduleName___Wireframe.navigate(using: ))
     }
-}
 
-private extension ___VARIABLE_moduleName___Wireframe {
-
-    func navigate(using option: ___VARIABLE_moduleName___NavigationOption) {
-
+    func navigate(to option: ___VARIABLE_moduleName___NavigationOption) {
     }
 }
