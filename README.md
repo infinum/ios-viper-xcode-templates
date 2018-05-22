@@ -1,5 +1,8 @@
 ![iOS VIPER](/Images/ios_viper_logo.png "iOS VIPER")
 
+# Versions
+Latest version is v2. You can still use initial v1 of the VIPER templates generator. v2 has breaking changes in base VIPER methods related to wireframe setup and navigation and is recommended to use it if starting a new project. It's not backwards compatible with v1.
+
 # Installation instructions
 
 To install VIPER Xcode templates clone this repo and run the following command from root folder:
@@ -11,6 +14,11 @@ To uninstall Xcode template run:
 > make uninstall_templates
 
 After that, restart your Xcode if it was already opened.
+
+## Demo project
+
+There's a Pokemon demo project in Demo folder.
+You can find most common VIPER module use cases in it.
 
 ## VIPER short introduction
 
