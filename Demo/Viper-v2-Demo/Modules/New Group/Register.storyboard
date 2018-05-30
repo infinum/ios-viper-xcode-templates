@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Register View Controller-->
+        <scene sceneID="z47-MI-ajM">
+            <objects>
+                <viewController id="ouY-WR-QWi" customClass="RegisterViewController" customModule="Viper_v2_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mdb-kc-GuC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="g6f-DK-AOB">
+                                <rect key="frame" x="112" y="150" width="151" height="151"/>
+                            </imageView>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pokedex-title" translatesAutoresizingMaskIntoConstraints="NO" id="ZRk-5X-O3g">
+                                <rect key="frame" x="67.5" y="50" width="240" height="100"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nt0-83-w6z">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.31372549020000001" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Y8r-2Y-l1G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwQ-tl-sKo">
+                                <rect key="frame" x="30" y="552" width="315" height="40"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Yi0-8z-Vmc"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eew-y1-1Kh">
+                                <rect key="frame" x="30" y="432" width="315" height="40"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ExJ-D2-5Aw"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPK-qB-D8Y">
+                                <rect key="frame" x="30" y="492" width="315" height="40"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="gby-Ll-NYu"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="ZRk-5X-O3g" firstAttribute="centerX" secondItem="mdb-kc-GuC" secondAttribute="centerX" id="0U5-Je-ZyQ"/>
+                            <constraint firstItem="pwQ-tl-sKo" firstAttribute="trailing" secondItem="WPK-qB-D8Y" secondAttribute="trailing" id="25Q-LT-05a"/>
+                            <constraint firstItem="Eew-y1-1Kh" firstAttribute="leading" secondItem="ze4-mc-E5K" secondAttribute="leading" constant="30" id="6xI-c9-Md3"/>
+                            <constraint firstItem="g6f-DK-AOB" firstAttribute="top" secondItem="ZRk-5X-O3g" secondAttribute="bottom" id="D4U-0d-jp1"/>
+                            <constraint firstItem="nt0-83-w6z" firstAttribute="leading" secondItem="mdb-kc-GuC" secondAttribute="leading" id="D75-gm-ACw"/>
+                            <constraint firstItem="pwQ-tl-sKo" firstAttribute="top" secondItem="WPK-qB-D8Y" secondAttribute="bottom" constant="20" id="GY9-le-eww"/>
+                            <constraint firstItem="g6f-DK-AOB" firstAttribute="centerX" secondItem="mdb-kc-GuC" secondAttribute="centerX" id="Gj6-Vg-I6v"/>
+                            <constraint firstItem="nt0-83-w6z" firstAttribute="top" secondItem="pwQ-tl-sKo" secondAttribute="bottom" constant="25" id="It8-j6-GuR"/>
+                            <constraint firstItem="pwQ-tl-sKo" firstAttribute="leading" secondItem="WPK-qB-D8Y" secondAttribute="leading" id="Qkk-G3-tsa"/>
+                            <constraint firstItem="pwQ-tl-sKo" firstAttribute="centerX" secondItem="mdb-kc-GuC" secondAttribute="centerX" id="SPt-m6-nHy"/>
+                            <constraint firstItem="ZRk-5X-O3g" firstAttribute="top" secondItem="ze4-mc-E5K" secondAttribute="top" constant="30" id="Tj9-Z8-xuj"/>
+                            <constraint firstItem="nt0-83-w6z" firstAttribute="bottom" secondItem="ze4-mc-E5K" secondAttribute="bottom" id="VY7-Cc-cmW"/>
+                            <constraint firstItem="Eew-y1-1Kh" firstAttribute="width" secondItem="WPK-qB-D8Y" secondAttribute="width" id="c1Y-Kv-eC3"/>
+                            <constraint firstItem="pwQ-tl-sKo" firstAttribute="leading" secondItem="mdb-kc-GuC" secondAttribute="leading" constant="30" id="c3P-TY-UrP"/>
+                            <constraint firstItem="WPK-qB-D8Y" firstAttribute="top" secondItem="Eew-y1-1Kh" secondAttribute="bottom" constant="20" id="mqB-D9-Ktu"/>
+                            <constraint firstAttribute="trailing" secondItem="nt0-83-w6z" secondAttribute="trailing" id="zGf-qS-4cd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ze4-mc-E5K"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HkL-AL-Icf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-159" y="190"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="pokeball" width="151" height="151"/>
+        <image name="pokedex-title" width="240" height="100"/>
+    </resources>
+</document>
