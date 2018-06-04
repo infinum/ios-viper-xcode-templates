@@ -30,4 +30,7 @@ final class RegisterPresenter {
 // MARK: - Extensions -
 
 extension RegisterPresenter: RegisterPresenterInterface {
+    func didSelectCloseAction() {
+        _wireframe.dismiss(animated: true)
+    }
 }

@@ -9,19 +9,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Register View Controller-->
+        <!--Register-->
         <scene sceneID="z47-MI-ajM">
             <objects>
-                <viewController id="ouY-WR-QWi" customClass="RegisterViewController" customModule="Viper_v2_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="ouY-WR-QWi" customClass="RegisterViewController" customModule="Viper_v2_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mdb-kc-GuC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="g6f-DK-AOB">
-                                <rect key="frame" x="112" y="150" width="151" height="151"/>
+                                <rect key="frame" x="112" y="194" width="151" height="151"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pokedex-title" translatesAutoresizingMaskIntoConstraints="NO" id="ZRk-5X-O3g">
-                                <rect key="frame" x="67.5" y="50" width="240" height="100"/>
+                                <rect key="frame" x="67.5" y="94" width="240" height="100"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nt0-83-w6z">
                                 <rect key="frame" x="0.0" y="617" width="375" height="50"/>
@@ -33,6 +33,9 @@
                                 <state key="normal" title="Register">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerButtonActionHandler" destination="ouY-WR-QWi" eventType="touchUpInside" id="NfC-Tm-BS0"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pwQ-tl-sKo">
                                 <rect key="frame" x="30" y="552" width="315" height="40"/>
@@ -43,6 +46,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ouY-WR-QWi" id="ePe-NP-D2q"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Eew-y1-1Kh">
                                 <rect key="frame" x="30" y="432" width="315" height="40"/>
@@ -53,6 +59,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ouY-WR-QWi" id="a64-Az-QL6"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WPK-qB-D8Y">
                                 <rect key="frame" x="30" y="492" width="315" height="40"/>
@@ -63,6 +72,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ouY-WR-QWi" id="ohm-EQ-svn"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,14 +98,55 @@
                             <constraint firstAttribute="trailing" secondItem="nt0-83-w6z" secondAttribute="trailing" id="zGf-qS-4cd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ze4-mc-E5K"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="03G-ul-uzC" appends="YES" id="6Tr-Iw-AKZ"/>
+                        </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Register" id="D4T-l3-u8p">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="icon-add" id="GfY-Ci-29d">
+                            <connections>
+                                <action selector="closeButtonActionHandler" destination="ouY-WR-QWi" id="8me-um-DHS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ballImageView" destination="g6f-DK-AOB" id="MbH-cy-7qb"/>
+                        <outlet property="confirmPasswordTextField" destination="pwQ-tl-sKo" id="Q2b-7L-E34"/>
+                        <outlet property="emailTextField" destination="Eew-y1-1Kh" id="5Lz-mR-kFN"/>
+                        <outlet property="logoImageView" destination="ZRk-5X-O3g" id="nTh-Zf-hf7"/>
+                        <outlet property="passwordTextField" destination="WPK-qB-D8Y" id="A38-re-BZe"/>
+                        <outlet property="registerButton" destination="nt0-83-w6z" id="y2A-2p-K5d"/>
+                        <outlet property="registerButtonBottomMargin" destination="VY7-Cc-cmW" id="ICz-N7-Uht"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HkL-AL-Icf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="03G-ul-uzC">
+                    <connections>
+                        <action selector="tapGestureRecognizerActionHandler" destination="ouY-WR-QWi" id="66S-0p-otR"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-159" y="190"/>
+            <point key="canvasLocation" x="94" y="197"/>
+        </scene>
+        <!--Pokedex Navigation Controller-->
+        <scene sceneID="NPe-9L-fxI">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lsF-Wo-tuO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="cxY-UJ-cR4" customClass="PokedexNavigationController" customModule="Viper_v2_Demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oQc-In-emz">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="ouY-WR-QWi" kind="relationship" relationship="rootViewController" id="vmS-Gy-inv"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-844" y="198"/>
         </scene>
     </scenes>
     <resources>
+        <image name="icon-add" width="14" height="14"/>
         <image name="pokeball" width="151" height="151"/>
         <image name="pokedex-title" width="240" height="100"/>
     </resources>

@@ -24,7 +24,8 @@ final class LoginViewController: UIViewController {
     
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var loginButtonBottomMargin: NSLayoutConstraint!
-
+    @IBOutlet weak var registerButton: UIButton!
+    
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
@@ -50,6 +51,10 @@ final class LoginViewController: UIViewController {
             with: emailTextField.text,
             password: passwordTextField.text
         )
+    }
+    
+    @IBAction func registerButtonActionHandler() {
+        presenter.didSelectRegisterAction()
     }
     
     @IBAction func tapGestureRecognizerActionHandler() {

@@ -63,6 +63,10 @@ extension LoginPresenter: LoginPresenterInterface {
         }
     }
     
+    func didSelectRegisterAction() {
+        _wireframe.navigate(to: .register)
+    }
+    
     private func _handleLoginResult(_ result: Result<User>) {
         switch result {
         case .success(let jsonObject):

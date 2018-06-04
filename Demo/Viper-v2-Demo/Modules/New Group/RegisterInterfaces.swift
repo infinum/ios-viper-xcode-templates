@@ -21,6 +21,7 @@ protocol RegisterViewInterface: ViewInterface {
 }
 
 protocol RegisterPresenterInterface: PresenterInterface {
+    func didSelectCloseAction()
 }
 
 protocol RegisterInteractorInterface: InteractorInterface {
