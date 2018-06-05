@@ -34,5 +34,18 @@ final class RegisterWireframe: BaseWireframe {
 extension RegisterWireframe: RegisterWireframeInterface {
 
     func navigate(to option: RegisterNavigationOption) {
+        switch option {
+        case .home:
+            _openHome()
+        }
+    }
+    
+    private func _openHome() {
+        let wireframe = HomeWireframe()
+        let presentingViewController = navigationController?.presentingViewController as? UINavigationController
+        
+        navigationController?.presentingViewController?.dismiss(animated: true) {
+            presentingViewController?.pushWireframe(wireframe)
+        }
     }
 }

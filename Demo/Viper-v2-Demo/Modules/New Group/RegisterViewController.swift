@@ -19,6 +19,7 @@ final class RegisterViewController: UIViewController {
     @IBOutlet private weak var logoImageView: UIImageView!
     @IBOutlet private weak var ballImageView: UIImageView!
     
+    @IBOutlet private weak var usernameTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var passwordTextField: UITextField!
     @IBOutlet private weak var confirmPasswordTextField: UITextField!
@@ -47,6 +48,7 @@ final class RegisterViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func registerButtonActionHandler() {
+        presenter.didSelectRegisterAction(with: usernameTextField.text, email: emailTextField.text, password: passwordTextField.text, confirmedPassword: confirmPasswordTextField.text)
     }
     
     @IBAction func tapGestureRecognizerActionHandler() {
@@ -79,11 +81,12 @@ final class RegisterViewController: UIViewController {
         let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
         
         view.layoutIfNeeded()
-        registerButtonBottomMargin.constant = keyboardHeight
+        registerButtonBottomMargin.constant = -keyboardHeight
         view.setNeedsUpdateConstraints()
         
         UIView.animate(withDuration: 0.3) {
             self.ballImageView.alpha = 0.0
+            self.logoImageView.alpha = 0.0
             self.view.layoutIfNeeded()
         }
     }
@@ -95,6 +98,7 @@ final class RegisterViewController: UIViewController {
         
         UIView.animate(withDuration: 0.3) {
             self.ballImageView.alpha = 1.0
+            self.logoImageView.alpha = 1.0
             self.view.layoutIfNeeded()
         }
     }
@@ -110,7 +114,9 @@ extension RegisterViewController : RegisterViewInterface {
 extension RegisterViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailTextField {
+        if textField == usernameTextField {
+            emailTextField.becomeFirstResponder()
+        } else if textField == emailTextField {
             passwordTextField.becomeFirstResponder()
         } else if textField == passwordTextField {
             confirmPasswordTextField.becomeFirstResponder()

@@ -9,8 +9,10 @@
 //
 
 import UIKit
+import Alamofire
 
 enum RegisterNavigationOption {
+    case home
 }
 
 protocol RegisterWireframeInterface: WireframeInterface {
@@ -22,7 +24,11 @@ protocol RegisterViewInterface: ViewInterface {
 
 protocol RegisterPresenterInterface: PresenterInterface {
     func didSelectCloseAction()
+    func didSelectRegisterAction(with username: String?, email: String?, password: String?, confirmedPassword: String?)
 }
 
 protocol RegisterInteractorInterface: InteractorInterface {
+    
+    @discardableResult
+    func registerUser(with username: String, email: String, password: String, confirmedPassword: String, completion: @escaping LoginCompletionBlock) -> DataRequest
 }

@@ -33,5 +33,27 @@ class UserService: NSObject {
             parameters: parameters
             ).pokedexValidate().responseCodableJSONAPI(keyPath: "data", decoder: .kebabCaseDecoder, completionHandler: completion)
     }
+    
+    @discardableResult
+    func registerUser(with username: String, email: String, password: String, confirmedPassword: String, completion: @escaping LoginCompletionBlock) -> DataRequest {
+        
+        let parameters: Parameters = [
+            "data": [
+                "type": "users",
+                "attributes": [
+                    "username":username,
+                    "email": email,
+                    "password": password,
+                    "password_confirmation": confirmedPassword
+                ]
+            ]
+        ]
+        
+        return Alamofire.request(
+            Constants.API.URLBase.appendingPathComponent("api/v1/users"),
+            method: .post,
+            parameters: parameters
+            ).pokedexValidate().responseCodableJSONAPI(keyPath: "data", decoder: .kebabCaseDecoder, completionHandler: completion)
+    }
 
 }
