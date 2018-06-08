@@ -37,7 +37,7 @@ final class RegisterViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: animated)
-        registerForKeyboardNotifications()
+        _registerForKeyboardNotifications()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -61,7 +61,7 @@ final class RegisterViewController: UIViewController {
     
     // MARK: Private
     
-    private func registerForKeyboardNotifications() {
+    private func _registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(keyboardWillShow(_:)),
