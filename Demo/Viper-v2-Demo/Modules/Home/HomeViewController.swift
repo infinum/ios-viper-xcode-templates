@@ -38,11 +38,11 @@ final class HomeViewController: UIViewController {
         tableView.tableFooterView = UIView(frame: CGRect.zero)
     }
     
-    @IBAction func logoutButtonActionHandler() {
+    @IBAction private func logoutButtonActionHandler() {
         presenter.didSelectLogoutAction()
     }
     
-    @IBAction func addButtonActionHandler() {
+    @IBAction private func addButtonActionHandler() {
         presenter.didSelectAddAction()
     }
 }

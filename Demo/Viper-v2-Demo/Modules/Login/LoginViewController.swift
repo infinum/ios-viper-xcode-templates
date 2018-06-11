@@ -36,7 +36,7 @@ final class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        registerForKeyboardNotifications()
+        _registerForKeyboardNotifications()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -46,39 +46,39 @@ final class LoginViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func loginButtonActionHandler() {
+    @IBAction private func _loginButtonActionHandler() {
         presenter.didSelectLoginAction(
             with: emailTextField.text,
             password: passwordTextField.text
         )
     }
     
-    @IBAction func registerButtonActionHandler() {
+    @IBAction private func _registerButtonActionHandler() {
         presenter.didSelectRegisterAction()
     }
     
-    @IBAction func tapGestureRecognizerActionHandler() {
+    @IBAction private func _tapGestureRecognizerActionHandler() {
         view.endEditing(true)
     }
     
     // MARK: Private
     
-    private func registerForKeyboardNotifications() {
+    private func _registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(keyboardWillShow(_:)),
+            selector: #selector(_keyboardWillShow(_:)),
             name: .UIKeyboardWillShow,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(keyboardWillHide(_:)),
+            selector: #selector(_keyboardWillHide(_:)),
             name: .UIKeyboardWillHide,
             object: nil
         )
     }
     
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc private func _keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo!
         let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
         
@@ -92,7 +92,7 @@ final class LoginViewController: UIViewController {
         }
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func _keyboardWillHide(_ notification: Notification) {
         view.layoutIfNeeded()
         loginButtonBottomMargin.constant = 0
         view.setNeedsUpdateConstraints()

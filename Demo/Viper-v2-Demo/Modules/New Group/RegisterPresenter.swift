@@ -21,16 +21,17 @@ final class RegisterPresenter {
     private var _interactor: RegisterInteractorInterface
     private var _wireframe: RegisterWireframeInterface
     
-    private let _authorizationManager = AuthorizationAdapter.shared
+    private let _authorizationManager : AuthorizationAdapter
     private let _emailValidator: StringValidator
     private let _passwordValidator: StringValidator
 
     // MARK: - Lifecycle -
 
-    init(wireframe: RegisterWireframeInterface, view: RegisterViewInterface, interactor: RegisterInteractorInterface) {
+    init(wireframe: RegisterWireframeInterface, view: RegisterViewInterface, interactor: RegisterInteractorInterface, authorizationManager : AuthorizationAdapter = AuthorizationAdapter.shared) {
         _wireframe = wireframe
         _view = view
         _interactor = interactor
+        _authorizationManager = authorizationManager
         
         _emailValidator = EmailValidator()
         _passwordValidator = PasswordValidator(minLength: RegisterPresenter.minimumPasswordLenght)

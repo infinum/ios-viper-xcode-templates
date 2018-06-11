@@ -23,15 +23,16 @@ final class LoginPresenter {
     
     private let _emailValidator: StringValidator
     private let _passwordValidator: StringValidator
-    private let _authorizationManager = AuthorizationAdapter.shared
+    private let _authorizationManager: AuthorizationAdapter
 
 
     // MARK: - Lifecycle -
 
-    init(wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
+    init(wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface, authorizationManager: AuthorizationAdapter = AuthorizationAdapter.shared) {
         _wireframe = wireframe
         _view = view
         _interactor = interactor
+        _authorizationManager = authorizationManager
         
         _emailValidator = EmailValidator()
         _passwordValidator = PasswordValidator(minLength: LoginPresenter.minimumPasswordLenght)

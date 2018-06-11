@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="No2-Kp-lBu">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,14 +14,14 @@
                         <viewControllerLayoutGuide type="bottom" id="lRJ-fR-6hr"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NXk-MK-lYr">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pokeball" translatesAutoresizingMaskIntoConstraints="NO" id="uSn-Xg-txX">
-                                <rect key="frame" x="112" y="150" width="151" height="151"/>
+                                <rect key="frame" x="224.5" y="150" width="151" height="151"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3d-o3-YPy">
-                                <rect key="frame" x="0.0" y="617" width="187.5" height="50"/>
+                                <rect key="frame" x="0.0" y="550" width="300" height="50"/>
                                 <color key="backgroundColor" red="0.20000000000000001" green="0.31372549019607843" blue="0.55294117647058827" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="e8X-W3-yPt"/>
@@ -34,11 +31,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="loginButtonActionHandler" destination="Pqm-ss-XDF" eventType="touchUpInside" id="OnE-ER-JR6"/>
+                                    <action selector="_loginButtonActionHandler" destination="Pqm-ss-XDF" eventType="touchUpInside" id="OnE-ER-JR6"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Qq-HF-Nlp">
-                                <rect key="frame" x="187.5" y="617" width="187.5" height="50"/>
+                                <rect key="frame" x="300" y="550" width="300" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="ZNT-Qn-wem"/>
@@ -48,11 +45,11 @@
                                     <color key="titleColor" red="0.20000000000000001" green="0.31372549019607843" blue="0.55294117647058827" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="registerButtonActionHandler" destination="Pqm-ss-XDF" eventType="touchUpInside" id="VxJ-No-r2C"/>
+                                    <action selector="_registerButtonActionHandler" destination="Pqm-ss-XDF" eventType="touchUpInside" id="VxJ-No-r2C"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ytS-rz-p43">
-                                <rect key="frame" x="30" y="552" width="315" height="40"/>
+                                <rect key="frame" x="30" y="485" width="540" height="40"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="yfN-5P-uRa"/>
@@ -65,7 +62,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="E-mail" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xhe-Cm-17S">
-                                <rect key="frame" x="30" y="492" width="315" height="40"/>
+                                <rect key="frame" x="30" y="425" width="540" height="40"/>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Nkw-O1-4kP"/>
@@ -78,7 +75,7 @@
                                 </connections>
                             </textField>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="pokedex-title" translatesAutoresizingMaskIntoConstraints="NO" id="26L-yw-rY4">
-                                <rect key="frame" x="67" y="50" width="240" height="100"/>
+                                <rect key="frame" x="180" y="50" width="240" height="100"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,7 +116,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pr7-5o-bas" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="sIT-vH-rin">
                     <connections>
-                        <action selector="tapGestureRecognizerActionHandler" destination="Pqm-ss-XDF" id="i8G-rZ-UGh"/>
+                        <action selector="_tapGestureRecognizerActionHandler" destination="Pqm-ss-XDF" id="i8G-rZ-UGh"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -131,6 +128,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="No2-Kp-lBu" customClass="PokedexNavigationController" customModule="Viper_v2_Demo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Wga-gM-8H1">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

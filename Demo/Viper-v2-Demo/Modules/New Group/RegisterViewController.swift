@@ -47,15 +47,15 @@ final class RegisterViewController: UIViewController {
     
     // MARK: Actions
     
-    @IBAction func registerButtonActionHandler() {
+    @IBAction private func _registerButtonActionHandler() {
         presenter.didSelectRegisterAction(with: usernameTextField.text, email: emailTextField.text, password: passwordTextField.text, confirmedPassword: confirmPasswordTextField.text)
     }
     
-    @IBAction func tapGestureRecognizerActionHandler() {
+    @IBAction private func _tapGestureRecognizerActionHandler() {
         view.endEditing(true)
     }
     
-    @IBAction func closeButtonActionHandler() {
+    @IBAction private func _closeButtonActionHandler() {
         presenter.didSelectCloseAction()
     }
     
@@ -64,19 +64,19 @@ final class RegisterViewController: UIViewController {
     private func _registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(keyboardWillShow(_:)),
+            selector: #selector(_keyboardWillShow(_:)),
             name: .UIKeyboardWillShow,
             object: nil
         )
         NotificationCenter.default.addObserver(
             self,
-            selector: #selector(keyboardWillHide(_:)),
+            selector: #selector(_keyboardWillHide(_:)),
             name: .UIKeyboardWillHide,
             object: nil
         )
     }
     
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc private func _keyboardWillShow(_ notification: Notification) {
         let userInfo = notification.userInfo!
         let keyboardHeight = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.height
         
@@ -91,7 +91,7 @@ final class RegisterViewController: UIViewController {
         }
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc private func _keyboardWillHide(_ notification: Notification) {
         view.layoutIfNeeded()
         registerButtonBottomMargin.constant = 0
         view.setNeedsUpdateConstraints()
