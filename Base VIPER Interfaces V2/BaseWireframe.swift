@@ -36,7 +36,7 @@ extension BaseWireframe {
 
 extension UIViewController {
     
-    func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (()->())? = nil) {
+    func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (() -> Void)? = nil) {
         present(wireframe.viewController, animated: animated, completion: completion)
     }
     
