@@ -13,6 +13,7 @@ import Alamofire
 
 enum LoginNavigationOption {
     case home
+    case register
 }
 
 protocol LoginWireframeInterface: WireframeInterface {
@@ -24,6 +25,7 @@ protocol LoginViewInterface: ViewInterface {
 
 protocol LoginPresenterInterface: PresenterInterface {
     func didSelectLoginAction(with email: String?, password: String?)
+    func didSelectRegisterAction()
 }
 
 protocol LoginInteractorInterface: InteractorInterface {

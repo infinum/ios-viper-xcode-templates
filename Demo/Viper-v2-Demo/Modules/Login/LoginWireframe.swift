@@ -37,13 +37,26 @@ extension LoginWireframe: LoginWireframeInterface {
         switch option {
         case .home:
             _openHome()
+        case .register:
+            _presentRegister()
         }
+        
     }
     
     private func _openHome() {
         let wireframe = HomeWireframe()
         
         navigationController?.pushWireframe(wireframe)
+    }
+    
+    private func _presentRegister() {
+        let wireframe = RegisterWireframe()
+        
+        let wireframeNavigationController = PokedexNavigationController()
+        wireframeNavigationController.setRootWireframe(wireframe)
+        
+        navigationController?.present(wireframeNavigationController, animated: true, completion: nil)
+        
     }
 
 }

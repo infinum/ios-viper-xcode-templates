@@ -16,6 +16,12 @@
 		521A3FB4207E2F88001EFB92 /* PokemonDetailsCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FB0207E2F88001EFB92 /* PokemonDetailsCommentTableViewCell.swift */; };
 		521A3FB5207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FB1207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift */; };
 		521A3FB6207E2F88001EFB92 /* PokemonDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */; };
+		526DF99120BEBCDE0011D29A /* RegisterInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF98C20BEBCDE0011D29A /* RegisterInterfaces.swift */; };
+		526DF99220BEBCDE0011D29A /* RegisterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF98D20BEBCDE0011D29A /* RegisterPresenter.swift */; };
+		526DF99320BEBCDE0011D29A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF98E20BEBCDE0011D29A /* RegisterViewController.swift */; };
+		526DF99420BEBCDE0011D29A /* RegisterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF98F20BEBCDE0011D29A /* RegisterInteractor.swift */; };
+		526DF99520BEBCDE0011D29A /* RegisterWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526DF99020BEBCDE0011D29A /* RegisterWireframe.swift */; };
+		526DF99820BEBD430011D29A /* Register.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526DF99720BEBD430011D29A /* Register.storyboard */; };
 		52AF85DE20808F7A00046F15 /* UITableView+DequeueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */; };
 		52AF85E02080926E00046F15 /* PokedexNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */; };
 		52AF85E2208495B100046F15 /* KeyDecodingStategy+KebabCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AF85E1208495B100046F15 /* KeyDecodingStategy+KebabCase.swift */; };
@@ -100,6 +106,12 @@
 		521A3FB0207E2F88001EFB92 /* PokemonDetailsCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailsCommentTableViewCell.swift; sourceTree = "<group>"; };
 		521A3FB1207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokemonDetailsCharacteristicsTableViewCell.swift; sourceTree = "<group>"; };
 		521A3FB2207E2F88001EFB92 /* PokemonDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PokemonDetails.storyboard; sourceTree = "<group>"; };
+		526DF98C20BEBCDE0011D29A /* RegisterInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInterfaces.swift; sourceTree = "<group>"; };
+		526DF98D20BEBCDE0011D29A /* RegisterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPresenter.swift; sourceTree = "<group>"; };
+		526DF98E20BEBCDE0011D29A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		526DF98F20BEBCDE0011D29A /* RegisterInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterInteractor.swift; sourceTree = "<group>"; };
+		526DF99020BEBCDE0011D29A /* RegisterWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterWireframe.swift; sourceTree = "<group>"; };
+		526DF99720BEBD430011D29A /* Register.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Register.storyboard; sourceTree = "<group>"; };
 		52AF85DD20808F7A00046F15 /* UITableView+DequeueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+DequeueCell.swift"; sourceTree = "<group>"; };
 		52AF85DF2080926E00046F15 /* PokedexNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokedexNavigationController.swift; sourceTree = "<group>"; };
 		52AF85E1208495B100046F15 /* KeyDecodingStategy+KebabCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyDecodingStategy+KebabCase.swift"; sourceTree = "<group>"; };
@@ -229,6 +241,20 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		526DF99620BEBD0F0011D29A /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				526DF98C20BEBCDE0011D29A /* RegisterInterfaces.swift */,
+				526DF98D20BEBCDE0011D29A /* RegisterPresenter.swift */,
+				526DF98E20BEBCDE0011D29A /* RegisterViewController.swift */,
+				526DF98F20BEBCDE0011D29A /* RegisterInteractor.swift */,
+				526DF99020BEBCDE0011D29A /* RegisterWireframe.swift */,
+				526DF99720BEBD430011D29A /* Register.storyboard */,
+			);
+			name = Register;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		52CD615D207DE22600AFB254 = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +353,7 @@
 				521A3FA3207E2F32001EFB92 /* Details */,
 				52CD61F5207DEB5C00AFB254 /* Home */,
 				52CD61E8207DE3E100AFB254 /* Login */,
+				526DF99620BEBD0F0011D29A /* Register */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -580,6 +607,7 @@
 				521A3FB6207E2F88001EFB92 /* PokemonDetails.storyboard in Resources */,
 				52CD61F4207DE82900AFB254 /* Login.storyboard in Resources */,
 				52CD61D0207DE32200AFB254 /* Assets.xcassets in Resources */,
+				526DF99820BEBD430011D29A /* Register.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -734,10 +762,12 @@
 				52CD61F0207DE3F700AFB254 /* LoginViewController.swift in Sources */,
 				52CD61D1207DE32200AFB254 /* Section.swift in Sources */,
 				52CD61DB207DE32200AFB254 /* InteractorInterface.swift in Sources */,
+				526DF99520BEBCDE0011D29A /* RegisterWireframe.swift in Sources */,
 				521A3FAC207E2F4A001EFB92 /* PokemonDetailsInteractor.swift in Sources */,
 				521A3FAA207E2F4A001EFB92 /* PokemonDetailsPresenter.swift in Sources */,
 				52CD61FF207DEB7000AFB254 /* HomeWireframe.swift in Sources */,
 				52CD61F1207DE3F700AFB254 /* LoginInteractor.swift in Sources */,
+				526DF99220BEBCDE0011D29A /* RegisterPresenter.swift in Sources */,
 				52CD61DC207DE32200AFB254 /* PokedexValidate.swift in Sources */,
 				521A3FA9207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift in Sources */,
 				52CD6203207DF3B200AFB254 /* HomeTableViewCell.swift in Sources */,
@@ -749,6 +779,7 @@
 				52AF85E2208495B100046F15 /* KeyDecodingStategy+KebabCase.swift in Sources */,
 				52AF85EA2084C4B400046F15 /* PartialURL.swift in Sources */,
 				52CD61EE207DE3F700AFB254 /* LoginInterfaces.swift in Sources */,
+				526DF99120BEBCDE0011D29A /* RegisterInterfaces.swift in Sources */,
 				52CD61F2207DE3F700AFB254 /* LoginWireframe.swift in Sources */,
 				52CD61D5207DE32200AFB254 /* Error+Message.swift in Sources */,
 				52CD61E2207DE32200AFB254 /* UserService.swift in Sources */,
@@ -756,6 +787,7 @@
 				52CD61E1207DE32200AFB254 /* PasswordValidator.swift in Sources */,
 				52CD61D6207DE32200AFB254 /* UIColor+Pokedex.swift in Sources */,
 				52CD61FC207DEB7000AFB254 /* HomePresenter.swift in Sources */,
+				526DF99420BEBCDE0011D29A /* RegisterInteractor.swift in Sources */,
 				52CD61D2207DE32200AFB254 /* JSONAPIObject.swift in Sources */,
 				52CD61EF207DE3F700AFB254 /* LoginPresenter.swift in Sources */,
 				52CD61DE207DE32200AFB254 /* AuthorizationAdapter.swift in Sources */,
@@ -779,6 +811,7 @@
 				52CD61CC207DE32200AFB254 /* ThemeInitializer.swift in Sources */,
 				52CD61D3207DE32200AFB254 /* User.swift in Sources */,
 				52CD61DD207DE32200AFB254 /* APIError.swift in Sources */,
+				526DF99320BEBCDE0011D29A /* RegisterViewController.swift in Sources */,
 				52AF85E42084975800046F15 /* String+IndexOf.swift in Sources */,
 				52CD61FE207DEB7000AFB254 /* HomeInteractor.swift in Sources */,
 			);
