@@ -477,11 +477,11 @@ As described earlier you can think of one VIPER module as one screen. In the _Mo
 
 ## Contributing
 
-Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](LICENSE).
+Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](License).
 
 ## Credits
 
 Maintained and sponsored by
-[Infinum] (http://www.infinum.co).
+[Infinum](http://www.infinum.co).
 
 <img src="https://infinum.co/infinum.png" width="264">
