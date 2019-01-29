@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>DefaultCompletionName</key>
-	<string>MyModule</string>
+	<string>VIPERModule</string>
 	<key>Description</key>
-	<string>This generates a new Module using 🐍VIPER generator. It consists of the view controller, interactor, presenter, wireframe, and an interface file.</string>
+	<string>This generates a new Module using 🐍VIPER generator.</string>
 	<key>Kind</key>
 	<string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
 	<key>Options</key>
@@ -18,7 +18,7 @@
 			<key>Identifier</key>
 			<string>moduleName</string>
 			<key>Name</key>
-			<string>New Module Name:</string>
+			<string>New <%= @template.name %> Name:</string>
 			<key>Required</key>
 			<string>YES</string>
 			<key>Type</key>
@@ -34,17 +34,39 @@
 		</dict>
 		<dict>
 			<key>Identifier</key>
-			<string>Storyboard</string>
+			<string>interface</string>
 			<key>Name</key>
-			<string>Generate Storyboard with UIViewController</string>
+			<string>Generate Interface Builder:</string>
 			<key>Description</key>
-			<string>Generate Storyboard with UIViewController</string>
+			<string>Whicih interface builder to generate</string>
 			<key>Type</key>
-			<string>checkbox</string>
+			<string>popup</string>
 			<key>Default</key>
-			<string>false</string>
-			<key>NotPersisted</key>
-			<true/>
+			<string><%= @interface.default.name%></string>
+			<key>Values</key>
+			<array>
+				<%- @interface.types.each do |type| -%>
+				<string><%= type.name %></string>
+				<%- end -%>
+			</array>
+		</dict>
+		<dict>
+			<key>Identifier</key>
+			<string>complex</string>
+			<key>Name</key>
+			<string>Module Complexity:</string>
+			<key>Description</key>
+			<string>Estimated complexity of modul to be generated</string>
+			<key>Type</key>
+			<string>popup</string>
+			<key>Default</key>
+			<string><%= @complexity.default.name%></string>
+			<key>Values</key>
+			<array>
+				<%- @complexity.types.each do |type| -%>
+				<string><%= type.name %></string>
+				<%- end -%>
+			</array>
 		</dict>
 	</array>
 	<key>Platforms</key>

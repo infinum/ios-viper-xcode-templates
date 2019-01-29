@@ -9,6 +9,10 @@
 //
 
 import UIKit
+<% if @template.generate_io -%>
+import RxSwift
+import RxCocoa
+<% end -%>
 
 final class ___VARIABLE_moduleName___ViewController: UIViewController {
 
@@ -20,10 +24,28 @@ final class ___VARIABLE_moduleName___ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        <%- if @template.generate_io -%>
+        configure()
+        <%- end -%>
     }
+	
 }
 
 // MARK: - Extensions -
 
 extension ___VARIABLE_moduleName___ViewController: ___VARIABLE_moduleName___ViewInterface {
 }
+
+<%- if @template.generate_io -%>
+private extension ___VARIABLE_moduleName___ViewController {
+
+    func configure() {
+
+        let output = ___VARIABLE_moduleName___.ViewOutput()
+
+        let input = presenter.configure(with: output)
+
+    }
+
+}
+<%- end -%>
