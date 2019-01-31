@@ -94,7 +94,7 @@ class Complexity
 
     def self.normal
         Complexity.new({
-            name: "Normal",
+            name: "Interactor",
             generate_interactor: true,
             generate_formatter: false
         })
@@ -110,7 +110,7 @@ class Complexity
 
     def self.hard
         Complexity.new({
-            name: "Hard",
+            name: "Interactor & Formatter",
             generate_interactor: true,
             generate_formatter: true
         })

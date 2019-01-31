@@ -29,16 +29,16 @@ protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
 <% if @complexity.generate_formatter -%>
 protocol ___VARIABLE_moduleName___FormatterInterface: FormatterInterface {
     <%- if @template.generate_io -%>
-    func format(for input: ___VARIABLE_moduleName__.FormatterInput) -> ___VARIABLE_moduleName__.FormatterOutput
+    func format(for input: ___VARIABLE_moduleName___.FormatterInput) -> ___VARIABLE_moduleName___.FormatterOutput
     <%- end -%>
 }
-<% end -%>
 
+<% end -%>
 <% if @complexity.generate_interactor -%>
 protocol ___VARIABLE_moduleName___InteractorInterface: InteractorInterface {
 }
-<% end -%>
 
+<% end -%>
 <% if @template.generate_io -%>
 enum ___VARIABLE_moduleName___ {
 

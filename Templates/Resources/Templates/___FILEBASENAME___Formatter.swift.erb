@@ -21,8 +21,10 @@ final class ___VARIABLE_moduleName___Formatter {
 
 extension ___VARIABLE_moduleName___Formatter: ___VARIABLE_moduleName___FormatterInterface {
     <%- if @template.generate_io -%>
-    func format(for input: ___VARIABLE_moduleName___.ForlatterInput) -> ___VARIABLE_moduleName___.FormatterOutput {
+
+    func format(for input: ___VARIABLE_moduleName___.FormatterInput) -> ___VARIABLE_moduleName___.FormatterOutput {
         return ___VARIABLE_moduleName___.FormatterOutput()
     }
+    
     <%- end -%>
 }

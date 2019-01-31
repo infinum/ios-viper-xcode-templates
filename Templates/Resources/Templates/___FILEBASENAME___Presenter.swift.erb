@@ -18,14 +18,14 @@ final class ___VARIABLE_moduleName___Presenter {
 
     // MARK: - Private properties -
 
-    private unowned var view: ___VARIABLE_moduleName___ViewInterface
+    private unowned let view: ___VARIABLE_moduleName___ViewInterface
 <% if @complexity.generate_formatter -%>
-    private var formatter: ___VARIABLE_moduleName___FormatterInterface
+    private let formatter: ___VARIABLE_moduleName___FormatterInterface
 <% end -%>
 <% if @complexity.generate_interactor -%>
-    private var interactor: ___VARIABLE_moduleName___InteractorInterface
+    private let interactor: ___VARIABLE_moduleName___InteractorInterface
 <% end -%>
-    private var wireframe: ___VARIABLE_moduleName___WireframeInterface
+    private let wireframe: ___VARIABLE_moduleName___WireframeInterface
 
     // MARK: - Lifecycle -
 
