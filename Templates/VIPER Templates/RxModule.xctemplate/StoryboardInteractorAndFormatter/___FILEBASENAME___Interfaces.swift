@@ -9,10 +9,8 @@
 //
 
 import UIKit
-<% if @template.generate_io -%>
 import RxSwift
 import RxCocoa
-<% end -%>
 
 protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
 }
@@ -21,24 +19,15 @@ protocol ___VARIABLE_moduleName___ViewInterface: ViewInterface {
 }
 
 protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
-<% if @template.generate_io -%>
     func configure(with output: ___VARIABLE_moduleName___.ViewOutput) -> ___VARIABLE_moduleName___.ViewInput
-<% end -%>
 }
-<% if @complexity.generate_formatter -%>
 
 protocol ___VARIABLE_moduleName___FormatterInterface: FormatterInterface {
-    <%- if @template.generate_io -%>
     func format(for input: ___VARIABLE_moduleName___.FormatterInput) -> ___VARIABLE_moduleName___.FormatterOutput
-    <%- end -%>
 }
-<% end -%>
-<% if @complexity.generate_interactor -%>
 
 protocol ___VARIABLE_moduleName___InteractorInterface: InteractorInterface {
 }
-<% end -%>
-<% if @template.generate_io -%>
 
 enum ___VARIABLE_moduleName___ {
 
@@ -46,18 +35,13 @@ enum ___VARIABLE_moduleName___ {
     }
 
     struct ViewInput {
-        <%- if @complexity.generate_formatter -%>
         let models: FormatterOutput
-        <%- end -%>
     }
 
-    <%- if @complexity.generate_formatter -%>
     struct FormatterInput {
     }
 
     struct FormatterOutput {
     }
     
-    <%- end -%>
 }
-<% end -%>

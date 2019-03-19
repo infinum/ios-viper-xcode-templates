@@ -110,7 +110,7 @@ class Complexity
 
     def self.hard
         Complexity.new({
-            name: "Interactor & Formatter",
+            name: "InteractorAndFormatter",
             generate_interactor: true,
             generate_formatter: true
         })

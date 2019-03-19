@@ -1,7 +1,8 @@
 ![iOS VIPER](/Images/ios_viper_logo.png "iOS VIPER")
 
 # Versions
-Latest version is v2. You can still use initial v1 of the VIPER templates generator. v2 has breaking changes in base VIPER methods related to wireframe setup and navigation and is recommended to use it if starting a new project. It's not backwards compatible with v1.
+Latest version is v3.  
+You can find older versions in [version/2.0 branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/2.0).
 
 # Installation instructions
 
@@ -31,8 +32,9 @@ Let's go over the basics quickly - the main components of VIPER are as follows:
 
 * **View**: contains UI logic and knows how to layout and animate itself. It displays what it's _told_ by the Presenter and it _delegates_ user interaction actions to the Presenter. Ideally it contains no business logic, only view logic.
 * **Interactor**: used for fetching data when requested by the Presenter, regardless of where the data is coming from. Contains only business logic.
-* **Presenter**: prepares the content which it receives from the Interactor to be presented by the View. Contains business and view logic - basically it connects the two.
+* **Presenter**: also known as the event handler. Handles all the communication with view, interactor and wireframe. Contains presentation logic - basically it controllers the module.
 * **Entity**: models which are handled by the Interactor. Contains only business logic, but primarily data, not rules.
+* **Formatter**(new): handles formatting logic. Sits between presenter and the view. It formats the data from the business world into something that can be consumed by the view.
 * **Router**: handles navigation logic. In our case we use components called Wireframes for this responsibility.
 
 ## Components
@@ -43,6 +45,7 @@ Module components:
 * **View**
 * **Presenter**
 * **Interactor** (not mandatory)
+* **Formatter** (not mandatory)
 * **Wireframe**
 
 In some simpler cases you won't need an Interactor for a certain module, which is why this component is not mandatory. These are cases where you don't need to fetch any data, which is usually not common.
