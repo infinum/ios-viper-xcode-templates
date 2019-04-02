@@ -3,14 +3,14 @@ import UIKit
 protocol WireframeInterface: class {
 }
 
-class BaseWireframe {
+class BaseWireframe<View> where View: UIViewController {
 
-    private unowned var _viewController: UIViewController
+    private unowned var _viewController: View
     
     //to retain view controller reference upon first access
-    private var _temporaryStoredViewController: UIViewController?
+    private var _temporaryStoredViewController: View?
 
-    init(viewController: UIViewController) {
+    init(viewController: View) {
         _temporaryStoredViewController = viewController
         _viewController = viewController
     }
@@ -23,7 +23,7 @@ extension BaseWireframe: WireframeInterface {
 
 extension BaseWireframe {
     
-    var viewController: UIViewController {
+    var viewController: View {
         defer { _temporaryStoredViewController = nil }
         return _viewController
     }
@@ -36,7 +36,7 @@ extension BaseWireframe {
 
 extension UIViewController {
     
-    func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (() -> Void)? = nil) {
+    func presentWireframe<View>(_ wireframe: BaseWireframe<View>, animated: Bool = true, completion: (() -> Void)? = nil) {
         present(wireframe.viewController, animated: animated, completion: completion)
     }
     
@@ -44,11 +44,11 @@ extension UIViewController {
 
 extension UINavigationController {
     
-    func pushWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+    func pushWireframe<View>(_ wireframe: BaseWireframe<View>, animated: Bool = true) {
         self.pushViewController(wireframe.viewController, animated: animated)
     }
     
-    func setRootWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+    func setRootWireframe<View>(_ wireframe: BaseWireframe<View>, animated: Bool = true) {
         self.setViewControllers([wireframe.viewController], animated: animated)
     }
     

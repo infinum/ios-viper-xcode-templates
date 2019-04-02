@@ -10,7 +10,7 @@
 
 import UIKit
 
-final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
+final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<___VARIABLE_moduleName___ViewController> {
 
     // MARK: - Module setup -
 
