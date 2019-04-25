@@ -22,7 +22,7 @@ After that, restart your Xcode if it was already opened.
 There's a Pokemon demo project in Demo folder.
 You can find most common VIPER module use cases in it.
 
-## VIPER short introduction
+# VIPER short introduction
 
 How to organize all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
 In short, **VIPER (View Interactor Presenter Entity Router)** is an architecture which, among other things, aims at solving the common *Massive View Controller* problem in iOS apps. When implemented to its full extent it achieves complete separation of concerns between modules, which also yields testability. This is good because another problem with Apple's Model View Controller architecture is poor testability.
@@ -495,9 +495,17 @@ As described earlier you can think of one VIPER module as one screen. In the _Mo
 * https://www.objc.io/issues/13-architecture/viper/
 * https://swifting.io/blog/2016/03/07/8-viper-to-be-or-not-to-be/
 
-## Contributing
+## Contributing and development
 
-Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes. By making contributions to this project you give permission for your code to be used under the same [license](License).
+Feedback and code contributions are very much welcome. Just make a pull request with a short description of your changes.
+
+Before creating a PR, please run:
+
+    ruby main.rb
+
+from `Templates` directory to generate all templates files.
+
+By making contributions to this project you give permission for your code to be used under the same [license](License).
 
 ## Credits
 
