@@ -41,7 +41,7 @@ extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___Presenter
 
         let formatterOutput = formatter.format(for: formatterInput)
 
-        return ViewInput(models: formatterOutput)
+        return ___VARIABLE_moduleName___.ViewInput(models: formatterOutput)
     }
 
 }
