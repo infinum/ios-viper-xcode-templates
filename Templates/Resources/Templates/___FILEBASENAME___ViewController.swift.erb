@@ -20,6 +20,12 @@ final class ___VARIABLE_moduleName___ViewController: UIViewController {
 
     var presenter: ___VARIABLE_moduleName___PresenterInterface!
 
+    <%- if @template.generate_io -%>
+    // MARK: - Private properties -
+
+    private let disposeBag = DisposeBag()
+
+    <%- end -%>
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
@@ -35,16 +41,14 @@ final class ___VARIABLE_moduleName___ViewController: UIViewController {
 
 extension ___VARIABLE_moduleName___ViewController: ___VARIABLE_moduleName___ViewInterface {
 }
-
 <%- if @template.generate_io -%>
+
 private extension ___VARIABLE_moduleName___ViewController {
 
     func configure() {
-
         let output = ___VARIABLE_moduleName___.ViewOutput()
 
         let input = presenter.configure(with: output)
-
     }
 
 }

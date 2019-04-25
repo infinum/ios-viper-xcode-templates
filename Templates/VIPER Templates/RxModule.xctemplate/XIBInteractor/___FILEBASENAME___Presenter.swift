@@ -34,7 +34,7 @@ final class ___VARIABLE_moduleName___Presenter {
 extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {
 
     func configure(with output: ___VARIABLE_moduleName___.ViewOutput) -> ___VARIABLE_moduleName___.ViewInput {
-        return ViewInput()
+        return ___VARIABLE_moduleName___.ViewInput()
     }
 
 }
