@@ -13,6 +13,29 @@ import UIKit
 import RxSwift
 import RxCocoa
 <% end -%>
+<% if @template.generate_io -%>
+
+enum ___VARIABLE_moduleName___ {
+
+    struct ViewOutput {
+    }
+
+    struct ViewInput {
+        <%- if @complexity.generate_formatter -%>
+        let models: FormatterOutput
+        <%- end -%>
+    }
+
+    <%- if @complexity.generate_formatter -%>
+    struct FormatterInput {
+    }
+
+    struct FormatterOutput {
+    }
+    
+    <%- end -%>
+}
+<% end -%>
 
 protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
 }
@@ -36,28 +59,5 @@ protocol ___VARIABLE_moduleName___FormatterInterface: FormatterInterface {
 <% if @complexity.generate_interactor -%>
 
 protocol ___VARIABLE_moduleName___InteractorInterface: InteractorInterface {
-}
-<% end -%>
-<% if @template.generate_io -%>
-
-enum ___VARIABLE_moduleName___ {
-
-    struct ViewOutput {
-    }
-
-    struct ViewInput {
-        <%- if @complexity.generate_formatter -%>
-        let models: FormatterOutput
-        <%- end -%>
-    }
-
-    <%- if @complexity.generate_formatter -%>
-    struct FormatterInput {
-    }
-
-    struct FormatterOutput {
-    }
-    
-    <%- end -%>
 }
 <% end -%>

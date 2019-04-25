@@ -12,23 +12,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
-}
-
-protocol ___VARIABLE_moduleName___ViewInterface: ViewInterface {
-}
-
-protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
-    func configure(with output: ___VARIABLE_moduleName___.ViewOutput) -> ___VARIABLE_moduleName___.ViewInput
-}
-
-protocol ___VARIABLE_moduleName___FormatterInterface: FormatterInterface {
-    func format(for input: ___VARIABLE_moduleName___.FormatterInput) -> ___VARIABLE_moduleName___.FormatterOutput
-}
-
-protocol ___VARIABLE_moduleName___InteractorInterface: InteractorInterface {
-}
-
 enum ___VARIABLE_moduleName___ {
 
     struct ViewOutput {
@@ -44,4 +27,21 @@ enum ___VARIABLE_moduleName___ {
     struct FormatterOutput {
     }
     
+}
+
+protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
+}
+
+protocol ___VARIABLE_moduleName___ViewInterface: ViewInterface {
+}
+
+protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
+    func configure(with output: ___VARIABLE_moduleName___.ViewOutput) -> ___VARIABLE_moduleName___.ViewInput
+}
+
+protocol ___VARIABLE_moduleName___FormatterInterface: FormatterInterface {
+    func format(for input: ___VARIABLE_moduleName___.FormatterInput) -> ___VARIABLE_moduleName___.FormatterOutput
+}
+
+protocol ___VARIABLE_moduleName___InteractorInterface: InteractorInterface {
 }

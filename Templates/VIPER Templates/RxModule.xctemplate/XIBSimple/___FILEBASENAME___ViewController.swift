@@ -18,6 +18,10 @@ final class ___VARIABLE_moduleName___ViewController: UIViewController {
 
     var presenter: ___VARIABLE_moduleName___PresenterInterface!
 
+    // MARK: - Private properties -
+
+    private let disposeBag = DisposeBag()
+
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
@@ -35,11 +39,9 @@ extension ___VARIABLE_moduleName___ViewController: ___VARIABLE_moduleName___View
 private extension ___VARIABLE_moduleName___ViewController {
 
     func configure() {
-
         let output = ___VARIABLE_moduleName___.ViewOutput()
 
         let input = presenter.configure(with: output)
-
     }
 
 }
