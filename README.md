@@ -1,6 +1,7 @@
 ![iOS VIPER](/Images/ios_viper_logo.png "iOS VIPER")
 
 # Versions
+
 Latest version is v3.  
 You can find older versions in [version/2.0 branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/2.0).
 
@@ -38,6 +39,7 @@ Let's go over the basics quickly - the main components of VIPER are as follows:
 * **Router**: handles navigation logic. In our case we use components called Wireframes for this responsibility.
 
 ## Components
+
 Your entire app is made up of multiple modules which you organize in logical groups and use one storyboard for that group. In most cases the modules will represent screens and your module groups will represent user-stories, business-flows and so on.
 
 Module components:
@@ -53,6 +55,7 @@ In some simpler cases you won't need an Interactor for a certain module, which i
 Wireframes inherit from the BaseWireframe. Presenters and Interactors do not inherit any class. Views most often inherit UIViewControllers. All protocols should be located in one file called *Interfaces*. More on this later.
 
 ## Communication and references
+
 The following pictures shows relationships and communication for one module.
 
 ![iOS VIPER GRAPH](/Images/ios_viper_graph.jpg "iOS VIPER GRAPH")
@@ -94,8 +97,8 @@ protocol WireframeInterface: class {
 class BaseWireframe {
 
     private unowned var _viewController: UIViewController
-    
-    //to retain view controller reference upon first access
+
+    // To retain view controller reference upon first access
     private var _temporaryStoredViewController: UIViewController?
 
     init(viewController: UIViewController) {
@@ -106,50 +109,51 @@ class BaseWireframe {
 }
 
 extension BaseWireframe: WireframeInterface {
-    
+
 }
 
 extension BaseWireframe {
-    
+
     var viewController: UIViewController {
         defer { _temporaryStoredViewController = nil }
         return _viewController
     }
-    
+
     var navigationController: UINavigationController? {
         return viewController.navigationController
     }
-    
+
 }
 
 extension UIViewController {
-    
+
     func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (()->())? = nil) {
         present(wireframe.viewController, animated: animated, completion: completion)
     }
-    
+
 }
 
 extension UINavigationController {
-    
+
     func pushWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
         self.pushViewController(wireframe.viewController, animated: animated)
     }
-    
+
     func setRootWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
         self.setViewControllers([wireframe.viewController], animated: animated)
     }
-    
+
 }
 
 extension BaseWireframe: WireframeInterface {
 }
 ```
+
 The Wireframe is used in 2 steps:
 
 1. Initialization using a *UIViewController* (see the *init* method). Since the Wireframe is in charge of performing the navigation it needs access to the actual *UIViewController* with which it will do so.
 2. Navigation to a screen (see the *pushWireframe*, *presentWireframe* and *setRootWireframe* methods).
-Those metods are defined on *UIViewController* and *UINavigationController* since those objects are responsible for performing the navigation.
+Those methods are defined on *UIViewController* and *UINavigationController* since those objects are responsible for performing the navigation.
 
 ### PresenterInterface
 
@@ -185,9 +189,11 @@ extension PresenterInterface {
     }
 }
 ```
+
 The *PresenterInterface* offers only optional methods which are used for the Presenter to performa tasks based on View events. For methods you use without implementing them you'll get a nice big fatal error.
 
 ### ViewInterface and InteractorInterface
+
 ```swift
 protocol ViewInterface: class {
 }
@@ -195,6 +201,7 @@ protocol ViewInterface: class {
 extension ViewInterface {
 }
 ```
+
 ```swift
 protocol InteractorInterface: class {
 }
@@ -208,6 +215,7 @@ These two interfaces are initially empty. They exists just to make it simple to 
 Ok, let's get to the actual module. First we'll cover the files you get when creating a new module via the module generator.
 
 ## 2. What you get when generating a module
+
 When running the module generator you will get five files. Say we wanted to create a Login module, we would get the following: *LoginInterfaces*, *LoginWireframe*, *LoginPresenter*, *LoginView* and *LoginInteractor*. Let's go over all five.
 
 ### Interfaces
@@ -247,7 +255,7 @@ final class LoginWireframe: BaseWireframe {
     init() {
         let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = LoginInteractor()
         let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
         moduleViewController.presenter = presenter
@@ -263,8 +271,8 @@ extension LoginWireframe: LoginWireframeInterface {
     }
 }
 ```
-If you've created a storyboard which contains a *LoginViewController*, all you need to do is enter the storyboard name (see *_storyboard* var) here and the code will compile. We've made the assumption that you use the class name for an identifier but you can of course change this at any point in the future.
 
+If you've created a storyboard which contains a *LoginViewController*, all you need to do is enter the storyboard name (see *_storyboard* var) here and the code will compile. We've made the assumption that you use the class name for an identifier but you can of course change this at any point in the future.
 
 ### Presenter
 
@@ -291,6 +299,7 @@ final class LoginPresenter {
 extension LoginPresenter: LoginPresenterInterface {
 }
 ```
+
 This is the skeleton of a Presenter which will get a lot more meat on it once you start implementing the business logic.
 
 ### View
@@ -298,7 +307,7 @@ This is the skeleton of a Presenter which will get a lot more meat on it once yo
 ```swift
 final class LoginViewController: UIViewController {
 
-	// MARK: - Public properties -
+    // MARK: - Public properties -
 
     var presenter: LoginPresenterInterface!
 
@@ -315,6 +324,7 @@ final class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewInterface {
 }
 ```
+
 Like the Presenter above, this is only a skeleton which you will populate with IBOutlets, animations and so on.
 
 ### Interactor
@@ -326,9 +336,11 @@ final class LoginInteractor {
 extension LoginInteractor: LoginInteractorInterface {
 }
 ```
+
 When generated your Interactor is also a skeleton which you will in most cases use to perform fetching of data from remote API services, Database services, etc.
 
 ## 3. How it really works
+
 Here's an example of a wireframe for a Login screen which uses two types of navigation to navigate to a login and registration screen. Let's start with the Presenter
 
 ```swift
@@ -382,7 +394,7 @@ extension LoginPresenter: LoginPresenterInterface {
 }
 
 private extension LoginPresenter {
-    
+
     func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
         switch result {
         case .success(let jsonObject):
@@ -407,6 +419,7 @@ private extension LoginPresenter {
     }
 }
 ```
+
 In this simple example the Presenter handles a login action selection which is delegated from the View. After that some validation is performed and then the actual login is performed using the Interactor. In the event of a successful login a navigation to a home screen is initiated. Let's take a look at the Wireframe in this example for a bit more clarity.
 
 ```swift
@@ -421,7 +434,7 @@ final class LoginWireframe: BaseWireframe {
     init() {
         let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = LoginInteractor()
         let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
         moduleViewController.presenter = presenter
@@ -445,10 +458,11 @@ This is also a simple example of a wireframe which handles only one type of navi
 
 ```swift
 func showAlert(with title: String?, message: String?) {
-	let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
-	showAlert(with: title, message: message, actions: [okAction])
+    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+    showAlert(with: title, message: message, actions: [okAction])
 }
 ```
+
 This is just one example of some shared logic you'll want to put in your base class or maybe one of the base protocols.
 
 This was just a short example of how one module can come together. Soon we'll make an entire example project available on GitHub which will contain much more use cases.
@@ -458,19 +472,22 @@ This was just a short example of how one module can come together. Soon we'll ma
 Using this architecture impacted the way we organize our projects. In most cases we have four main subfolders in the project folder: Application, Common, Modules and Resources. Let's go over those a bit.
 
 ### Application
+
 Contains AppDelegate and any other app-wide components, initializers, appearance classes, managers and so on. Usually this folder contains only a few files.
 
 ### Common
+
 Used for all common utility and view components grouped in sub folders. Some common cases for these groups are _Analytics_, _Constants_, _Extensions_, _Protocols_, _Views_, _Networking_, etc. Also here is where we always have a _VIPER_ subfolder which contains the base VIPER protocols and classes.
 
 ### Resources
+
 This folder should contain image assets, fonts, audio and video files, and so on. We use one *.xcassets* for images and in that folder separate images into logical folders so we don't get a long list of files in one place.
 
 ### Modules
-As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organize screens into logical groups which are basically user-stories. Each group is organized in a subfolder which contains one storyboard (containing all screens for that group) and multiple module subfolders.
+
+As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organize screens into logical groups which are basically user-stories. Each group is organized in a sub-folder which contains one storyboard (containing all screens for that group) and multiple module sub-folders.
 
 ![iOS VIPER MODULES](/Images/ios_viper_modules.png "iOS VIPER MODULES")
-
 
 ## Useful links
 
