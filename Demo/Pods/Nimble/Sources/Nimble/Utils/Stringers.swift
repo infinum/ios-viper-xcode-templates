@@ -175,7 +175,7 @@ public func stringify<T>(_ value: T?) -> String {
 // MARK: Collection Type Stringers
 
 /// Attempts to generate a pretty type string for a given value. If the value is of a Objective-C
-/// collection type, or a subclass thereof, (e.g. `NSArray`, `NSDictionary`, etc.). 
+/// collection type, or a subclass thereof, (e.g. `NSArray`, `NSDictionary`, etc.).
 /// This function will return the type name of the root class of the class cluster for better
 /// readability (e.g. `NSArray` instead of `__NSArrayI`).
 ///

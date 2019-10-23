@@ -7,11 +7,11 @@ protocol ViewInterface: class {
 }
 
 extension ViewInterface {
-    
+
     func showProgressHUD() {
         SVProgressHUD.show()
     }
-    
+
     func hideProgressHUD() {
         SVProgressHUD.dismiss()
     }

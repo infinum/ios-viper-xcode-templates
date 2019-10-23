@@ -28,7 +28,7 @@ public enum JapxError: Error {
 }
 
 private struct Consts {
-    
+
     struct APIKeys {
         static let data = "data"
         static let id = "id"
@@ -37,7 +37,7 @@ private struct Consts {
         static let relationships = "relationships"
         static let attributes = "attributes"
     }
-    
+
     struct General {
         static let dictCapacity = 20
     }
@@ -50,10 +50,10 @@ private struct TypeIdPair {
 
 /// A class for converting (parsing) JSON:API object to simple JSON object and vice versa.
 public struct Japx {
-    
+
     /// Defines a list of methods for converting JSON:API object structure to simple JSON by flattening attributes and relationships.
     public enum Decoder {}
-    
+
     /// Defines a list of methods for converting simple JSON objects to JSON:API object.
     public enum Encoder {}
 }
@@ -63,7 +63,7 @@ public struct Japx {
 // MARK: - Decoding
 
 public extension Japx.Decoder {
-    
+
     /// Converts JSON:API object to simple flat JSON object
     ///
     /// - parameter object:            JSON:API object.
@@ -85,7 +85,7 @@ public extension Japx.Decoder {
         }
         throw JapxError.unableToConvertNSDictionaryToParams(data: decoded)
     }
-    
+
     /// Converts JSON:API object to simple flat JSON object
     ///
     /// - parameter object:            JSON:API object.
@@ -96,7 +96,7 @@ public extension Japx.Decoder {
         let decoded = try jsonObject(withJSONAPIObject: object, includeList: includeList)
         return try JSONSerialization.data(withJSONObject: decoded, options: .init(rawValue: 0))
     }
-    
+
     /// Converts JSON:API object to simple flat JSON object
     ///
     /// - parameter data:              JSON:API object as Data.
@@ -105,7 +105,7 @@ public extension Japx.Decoder {
     /// - returns: JSON object.
     static func jsonObject(with data: Data, includeList: String? = nil) throws -> Parameters {
         let jsonApiObject = try JSONSerialization.jsonObject(with: data, options: .init(rawValue: 0))
-        
+
         // With include list
         if let includeList = includeList {
             guard let json = jsonApiObject as? Parameters else {
@@ -113,19 +113,19 @@ public extension Japx.Decoder {
             }
             return try decode(jsonApiInput: json, include: includeList)
         }
-        
+
         // Without include list
         guard let json = jsonApiObject as? NSDictionary else {
             throw JapxError.unableToConvertDataToJson(data: data)
         }
         let decoded = try decode(jsonApiInput: json as NSDictionary)
-        
+
         if let decodedProperties = decoded as? Parameters {
             return decodedProperties
         }
         throw JapxError.unableToConvertNSDictionaryToParams(data: decoded)
     }
-    
+
     /// Converts JSON:API object to simple flat JSON object
     ///
     /// - parameter data:              JSON:API object as Data.
@@ -141,7 +141,7 @@ public extension Japx.Decoder {
 // MARK: - Encoding
 
 public extension Japx.Encoder {
-    
+
     /// Converts simple flat JSON object to JSON:API object.
     ///
     /// - parameter data:              JSON object as Data.
@@ -158,7 +158,7 @@ public extension Japx.Encoder {
         }
         throw JapxError.unableToConvertDataToJson(data: json)
     }
-    
+
     /// Converts simple flat JSON object to JSON:API object.
     ///
     /// - parameter json:              JSON object.
@@ -170,7 +170,7 @@ public extension Japx.Encoder {
         params[Consts.APIKeys.data] = try encodeAttributesAndRelationships(on: json)
         return params
     }
-    
+
     /// Converts simple flat JSON object to JSON:API object.
     ///
     /// - parameter json:              JSON objects represented as Array.
@@ -189,12 +189,12 @@ public extension Japx.Encoder {
 // MARK: - Decoding
 
 private extension Japx.Decoder {
-    
+
     static func decode(jsonApiInput: Parameters, include: String) throws -> Parameters {
         let params = include
             .split(separator: ",")
             .map { $0.split(separator: ".") }
-        
+
         let paramsDict = NSMutableDictionary(capacity: Consts.General.dictCapacity)
         for lineArray in params {
             var dict: NSMutableDictionary = paramsDict
@@ -208,36 +208,36 @@ private extension Japx.Decoder {
                 }
             }
         }
-        
+
         let dataObjectsArray = try jsonApiInput.array(from: Consts.APIKeys.data) ?? []
         let includedObjectsArray = (try? jsonApiInput.array(from: Consts.APIKeys.included) ?? []) ?? []
         let allObjectsArray = dataObjectsArray + includedObjectsArray
         let allObjects = try allObjectsArray.reduce(into: [TypeIdPair: Parameters]()) { (result, object) in
             result[try object.extractTypeIdPair()] = object
         }
-        
+
         let objects = try dataObjectsArray.map { (dataObject) -> Parameters in
             return try resolve(object: dataObject, allObjects: allObjects, paramsDict: paramsDict)
         }
-        
+
         var jsonApi = jsonApiInput
         let isObject = jsonApiInput[Consts.APIKeys.data].map { $0 is Parameters } ?? false
         jsonApi[Consts.APIKeys.data] = (objects.count == 1 && isObject) ? objects[0] : objects
         jsonApi.removeValue(forKey: Consts.APIKeys.included)
         return jsonApi
     }
-    
+
     static func decode(jsonApiInput: NSDictionary) throws -> NSDictionary {
         let jsonApi = jsonApiInput.mutable
-        
+
         let dataObjectsArray = try jsonApi.array(from: Consts.APIKeys.data) ?? []
         let includedObjectsArray = (try? jsonApi.array(from: Consts.APIKeys.included) ?? []) ?? []
-        
+
         var dataObjects = [TypeIdPair]()
         var objects = [TypeIdPair: NSMutableDictionary]()
         dataObjects.reserveCapacity(dataObjectsArray.count)
         objects.reserveCapacity(dataObjectsArray.count + includedObjectsArray.count)
-        
+
         for dic in dataObjectsArray {
             let typeId = try dic.extractTypeIdPair()
             dataObjects.append(typeId)
@@ -247,10 +247,10 @@ private extension Japx.Decoder {
             let typeId = try dic.extractTypeIdPair()
             objects[typeId] = dic.mutable
         }
-        
+
         try resolveAttributes(from: objects)
         try resolveRelationships(from: objects)
-        
+
         let isObject = jsonApiInput.object(forKey: Consts.APIKeys.data) is NSDictionary
         if isObject && dataObjects.count == 1 {
             jsonApi.setObject(objects[dataObjects[0]]!, forKey: Consts.APIKeys.data as NSCopying)
@@ -265,14 +265,14 @@ private extension Japx.Decoder {
 // MARK: - Decoding helper functions
 
 private extension Japx.Decoder {
- 
+
     private static func resolve(object: Parameters, allObjects: [TypeIdPair: Parameters], paramsDict: NSDictionary) throws -> Parameters {
         var attributes = (try? object.dictionary(for: Consts.APIKeys.attributes)) ?? Parameters()
         attributes[Consts.APIKeys.type] = object[Consts.APIKeys.type]
         attributes[Consts.APIKeys.id] = object[Consts.APIKeys.id]
-        
+
         let relationshipsReferences = object.asDictionary(from: Consts.APIKeys.relationships) ?? Parameters()
-        
+
         let relationships = try paramsDict.allKeys.map({ $0 as! String }).reduce(into: Parameters(), { (result, relationshipsKey) in
             guard let relationship = relationshipsReferences.asDictionary(from: relationshipsKey) else { return }
             guard let otherObjectsData = try relationship.array(from: Consts.APIKeys.data) else {
@@ -289,10 +289,10 @@ private extension Japx.Decoder {
             let isObject = relationship[Consts.APIKeys.data].map { $0 is Parameters } ?? false
             result[relationshipsKey] = (isObject && otherObjects.count == 1) ? otherObjects[0] : otherObjects
         })
-        
+
         return attributes.merging(relationships) { $1 }
     }
-    
+
     static func resolveAttributes(from objects: [TypeIdPair: NSMutableDictionary]) throws {
         objects.values.forEach { (object) in
             let attributes = try? object.dictionary(for: Consts.APIKeys.attributes)
@@ -300,32 +300,32 @@ private extension Japx.Decoder {
             object.removeObject(forKey: Consts.APIKeys.attributes)
         }
     }
-    
+
     static func resolveRelationships(from objects: [TypeIdPair: NSMutableDictionary]) throws {
         try objects.values.forEach { (object) in
-            
+
             try object.dictionary(for: Consts.APIKeys.relationships, defaultDict: NSDictionary()).forEach { (relationship) in
-                
+
                 guard let relationshipParams = relationship.value as? NSDictionary else {
                     throw JapxError.relationshipNotFound(data: relationship)
                 }
-                
+
                 // Extract type-id pair from single object / array
                 guard let others = try relationshipParams.array(from: Consts.APIKeys.data) else {
                     object.setObject(NSNull(), forKey: relationship.key as! NSCopying)
                     return
                 }
-                
+
                 // Fetch those object from `objects`
                 let othersObjects = try others
                     .map { try $0.extractTypeIdPair() }
                     .flatMap { objects[$0] }
-                
+
                 // Store relationships
                 let isObject = relationshipParams
                     .object(forKey: Consts.APIKeys.data)
                     .map { $0 is NSDictionary } ?? false
-                
+
                 if others.count == 1 && isObject {
                     object.setObject(othersObjects.first as Any, forKey: relationship.key as! NSCopying)
                 } else {
@@ -340,13 +340,13 @@ private extension Japx.Decoder {
 // MARK: - Encoding
 
 private extension Japx.Encoder {
-    
+
     static func encodeAttributesAndRelationships(on jsonObject: Parameters) throws -> Parameters {
         var object = jsonObject
         var attributes = Parameters()
         var relationships = Parameters()
         let objectKeys = object.keys
-        
+
         for key in objectKeys where key != Consts.APIKeys.type && key != Consts.APIKeys.id {
             if let array = object.asArray(from: key) {
                 let isArrayOfRelationships = array.first?.containsTypeAndId() ?? false
@@ -387,51 +387,51 @@ private extension Japx.Encoder {
 // MARK: - General helper extensions -
 
 extension TypeIdPair: Hashable, Equatable {
-    
+
     var hashValue: Int {
         return (type + id).hashValue
     }
-    
+
     static func == (lhs: TypeIdPair, rhs: TypeIdPair) -> Bool {
         return lhs.type == rhs.type && lhs.id == rhs.id
     }
 }
 
 private extension Dictionary where Key == String {
-    
+
     func containsTypeAndId() -> Bool {
         return keys.contains(Consts.APIKeys.type) && keys.contains(Consts.APIKeys.id)
     }
-    
+
     func asDataWithTypeAndId() throws -> Parameters {
         guard let type = self[Consts.APIKeys.type], let id = self[Consts.APIKeys.id] else {
             throw JapxError.notFoundTypeOrId(data: self)
         }
         return [Consts.APIKeys.type: type, Consts.APIKeys.id: id]
     }
-    
+
     func extractTypeIdPair() throws -> TypeIdPair {
         if let id = self[Consts.APIKeys.id] as? String, let type = self[Consts.APIKeys.type] as? String {
             return TypeIdPair(type: type, id: id)
         }
         throw JapxError.notFoundTypeOrId(data: self)
     }
-    
+
     func asDictionary(from key: String) -> Parameters? {
         return self[key] as? Parameters
     }
-    
+
     func dictionary(for key: String) throws -> Parameters {
         if let value = self[key] as? Parameters {
             return value
         }
         throw JapxError.notDictionary(data: self, value: self[key])
     }
-    
+
     func asArray(from key: String) -> [Parameters]? {
         return self[key] as? [Parameters]
     }
-    
+
     func array(from key: String) throws -> [Parameters]? {
         let value = self[key]
         if let array = value as? [Parameters] {
@@ -448,7 +448,7 @@ private extension Dictionary where Key == String {
 }
 
 private extension NSDictionary {
-    
+
     var mutable: NSMutableDictionary {
         if #available(iOS 10.0, *) {
             return self as? NSMutableDictionary ?? self.mutableCopy() as! NSMutableDictionary
@@ -456,25 +456,25 @@ private extension NSDictionary {
             return self.mutableCopy() as! NSMutableDictionary
         }
     }
-    
+
     func extractTypeIdPair() throws -> TypeIdPair {
         if let id = self.object(forKey: Consts.APIKeys.id) as? String, let type = self.object(forKey: Consts.APIKeys.type) as? String {
             return TypeIdPair(type: type, id: id)
         }
         throw JapxError.notFoundTypeOrId(data: self)
     }
-    
+
     func dictionary(for key: String, defaultDict: NSDictionary) -> NSDictionary {
         return (self.object(forKey: key) as? NSDictionary) ?? defaultDict
     }
-    
+
     func dictionary(for key: String) throws -> NSDictionary {
         if let value = self.object(forKey: key) as? NSDictionary {
             return value
         }
         throw JapxError.notDictionary(data: self, value: self[key])
     }
-    
+
     func array(from key: String) throws -> [NSDictionary]? {
         let value = self.object(forKey: key)
         if let array = value as? [NSDictionary] {

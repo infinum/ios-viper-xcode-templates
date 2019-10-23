@@ -11,7 +11,7 @@ import Japx
 
 struct User: JapxCodable {
     var type: String
-    
+
     var id: String
     var email: String
     var username: String

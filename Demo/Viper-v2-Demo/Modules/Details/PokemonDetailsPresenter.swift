@@ -17,7 +17,7 @@ final class PokemonDetailsPresenter {
     private unowned var _view: PokemonDetailsViewInterface
     private var _interactor: PokemonDetailsInteractorInterface
     private var _wireframe: PokemonDetailsWireframeInterface
-    
+
     private let _pokemon: Pokemon
     var sections: [Section<PokemonDetailsItem>] = [] {
         didSet {
@@ -38,23 +38,23 @@ final class PokemonDetailsPresenter {
 // MARK: - Extensions -
 
 extension PokemonDetailsPresenter: PokemonDetailsPresenterInterface {
-    
+
     private var descriptionSection: Section<PokemonDetailsItem> {
         return Section(
             items: [PokemonDetailsItem.description(_pokemon)]
         )
     }
-    
+
     private var characteristicsSection: Section<PokemonDetailsItem> {
         return Section(
             items: [PokemonDetailsItem.characteristics(_pokemon)]
         )
     }
-    
+
     func viewDidLoad() {
         _view.setViewTitle(_pokemon.name)
         _view.setHeaderImage(with: _pokemon.imageURL)
-        
+
         sections = [
             descriptionSection,
         ]

@@ -9,14 +9,14 @@
 import Foundation
 
 struct PartialURL: Codable {
-    
+
     let url: URL?
-    
+
     init(from decoder: Decoder) throws {
         let urlString = try decoder.singleValueContainer().decode(String.self)
         let url = Constants.API.URLBase.appendingPathComponent(urlString)
-        
+
         self.url = url
     }
-    
+
 }

@@ -14,13 +14,13 @@ import Alamofire
 final class LoginPresenter {
 
     // MARK: - Private properties -
-    
+
     static private let minimumPasswordLenght: UInt = 6
 
     private unowned var _view: LoginViewInterface
     private var _interactor: LoginInteractorInterface
     private var _wireframe: LoginWireframeInterface
-    
+
     private let _emailValidator: StringValidator
     private let _passwordValidator: StringValidator
     private let _authorizationManager: AuthorizationAdapter
@@ -33,7 +33,7 @@ final class LoginPresenter {
         _view = view
         _interactor = interactor
         _authorizationManager = authorizationManager
-        
+
         _emailValidator = EmailValidator()
         _passwordValidator = PasswordValidator(minLength: LoginPresenter.minimumPasswordLenght)
     }
@@ -42,7 +42,7 @@ final class LoginPresenter {
 // MARK: - Extensions -
 
 extension LoginPresenter: LoginPresenterInterface {
-    
+
     func didSelectLoginAction(with email: String?, password: String?) {
         guard let _email = email, let _password = password else {
             _showLoginValidationError()
@@ -56,37 +56,37 @@ extension LoginPresenter: LoginPresenterInterface {
             _showPasswordValidationError()
             return
         }
-        
+
         _view.showProgressHUD()
         _interactor.loginUser(with: _email, password: _password) { [weak self] (response) -> (Void) in
             self?._view.hideProgressHUD()
             self?._handleLoginResult(response.result)
         }
     }
-    
+
     func didSelectRegisterAction() {
         _wireframe.navigate(to: .register)
     }
-    
+
     private func _handleLoginResult(_ result: Result<User>) {
         switch result {
         case .success(let jsonObject):
             _authorizationManager.authorizationHeader = jsonObject.authorizationHeader
             _wireframe.navigate(to: .home)
-            
+
         case .failure(let error):
             _wireframe.showErrorAlert(with: error.message)
         }
     }
-    
+
     private func _showLoginValidationError() {
         _wireframe.showAlert(with: "Error", message: "Please enter email and password")
     }
-    
+
     private func _showEmailValidationError() {
         _wireframe.showAlert(with: "Error", message: "Please enter valid email")
     }
-    
+
     private func _showPasswordValidationError() {
         _wireframe.showAlert(with: "Error", message: "Password should be at least 6 characters long")
     }
