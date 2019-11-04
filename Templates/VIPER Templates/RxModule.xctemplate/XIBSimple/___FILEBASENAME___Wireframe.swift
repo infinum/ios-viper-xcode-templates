@@ -19,7 +19,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
     init() {
         let moduleViewController = ___VARIABLE_moduleName___ViewController()
         super.init(viewController: moduleViewController)
-
+        
         let presenter = ___VARIABLE_moduleName___Presenter(view: moduleViewController, wireframe: self)
         moduleViewController.presenter = presenter
     }

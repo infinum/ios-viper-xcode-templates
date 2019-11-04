@@ -26,7 +26,7 @@ enum ___VARIABLE_moduleName___ {
 
     struct FormatterOutput {
     }
-
+    
 }
 
 protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
