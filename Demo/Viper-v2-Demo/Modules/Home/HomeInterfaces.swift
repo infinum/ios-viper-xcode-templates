@@ -30,7 +30,7 @@ protocol HomeViewInterface: ViewInterface {
 protocol HomePresenterInterface: PresenterInterface {
     func didSelectLogoutAction()
     func didSelectAddAction()
-    
+
     func numberOfSections() -> Int
     func numberOrItems(in section: Int) -> Int
     func item(at indexPath: IndexPath) -> HomeViewItemInterface

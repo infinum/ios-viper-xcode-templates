@@ -21,7 +21,7 @@ final class PokemonDetailsWireframe: BaseWireframe {
     init(pokemon: Pokemon) {
         let moduleViewController = _storyboard.instantiateViewController(ofType: PokemonDetailsViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = PokemonDetailsInteractor()
         let presenter = PokemonDetailsPresenter(wireframe: self, view: moduleViewController, interactor: interactor, pokemon: pokemon)
         moduleViewController.presenter = presenter

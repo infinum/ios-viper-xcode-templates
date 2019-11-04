@@ -21,7 +21,7 @@ final class RegisterWireframe: BaseWireframe {
     init() {
         let moduleViewController = _storyboard.instantiateViewController(ofType: RegisterViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = RegisterInteractor()
         let presenter = RegisterPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
         moduleViewController.presenter = presenter
@@ -39,11 +39,11 @@ extension RegisterWireframe: RegisterWireframeInterface {
             _openHome()
         }
     }
-    
+
     private func _openHome() {
         let wireframe = HomeWireframe()
         let presentingViewController = navigationController?.presentingViewController as? UINavigationController
-        
+
         navigationController?.presentingViewController?.dismiss(animated: true) {
             presentingViewController?.pushWireframe(wireframe)
         }

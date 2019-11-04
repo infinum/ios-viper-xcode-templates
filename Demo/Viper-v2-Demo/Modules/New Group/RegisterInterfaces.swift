@@ -28,7 +28,7 @@ protocol RegisterPresenterInterface: PresenterInterface {
 }
 
 protocol RegisterInteractorInterface: InteractorInterface {
-    
+
     @discardableResult
     func registerUser(with username: String, email: String, password: String, confirmedPassword: String, completion: @escaping LoginCompletionBlock) -> DataRequest
 }

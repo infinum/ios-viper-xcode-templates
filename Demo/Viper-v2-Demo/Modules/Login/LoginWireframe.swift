@@ -21,7 +21,7 @@ final class LoginWireframe: BaseWireframe {
     init() {
         let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = LoginInteractor()
         let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
         moduleViewController.presenter = presenter
@@ -40,23 +40,23 @@ extension LoginWireframe: LoginWireframeInterface {
         case .register:
             _presentRegister()
         }
-        
+
     }
-    
+
     private func _openHome() {
         let wireframe = HomeWireframe()
-        
+
         navigationController?.pushWireframe(wireframe)
     }
-    
+
     private func _presentRegister() {
         let wireframe = RegisterWireframe()
-        
+
         let wireframeNavigationController = PokedexNavigationController()
         wireframeNavigationController.setRootWireframe(wireframe)
-        
+
         navigationController?.present(wireframeNavigationController, animated: true, completion: nil)
-        
+
     }
 
 }

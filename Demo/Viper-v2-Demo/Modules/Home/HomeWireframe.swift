@@ -21,7 +21,7 @@ final class HomeWireframe: BaseWireframe {
     init() {
         let moduleViewController = _storyboard.instantiateViewController(ofType: HomeViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = HomeInteractor()
         let presenter = HomePresenter(wireframe: self, view: moduleViewController, interactor: interactor)
         moduleViewController.presenter = presenter
@@ -43,16 +43,16 @@ extension HomeWireframe: HomeWireframeInterface {
             _openAdd()
         }
     }
-    
+
     private func _openLogin() {
         navigationController?.popViewController(animated: true)
     }
-    
+
     private func _openDetails(with pokemon: Pokemon) {
         navigationController?.pushWireframe(PokemonDetailsWireframe(pokemon: pokemon))
     }
-    
+
     private func _openAdd() {
-        
+
     }
 }
