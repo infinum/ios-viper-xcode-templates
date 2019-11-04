@@ -23,7 +23,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
     init() {
         let moduleViewController = storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
         super.init(viewController: moduleViewController)
-        
+
         let interactor = ___VARIABLE_moduleName___Interactor()
         let presenter = ___VARIABLE_moduleName___Presenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
