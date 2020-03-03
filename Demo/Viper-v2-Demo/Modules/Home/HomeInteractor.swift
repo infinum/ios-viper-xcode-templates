@@ -12,9 +12,9 @@ import Foundation
 import Alamofire
 
 final class HomeInteractor {
-    
+
     fileprivate let _pokemonService = PokemonService()
-    
+
 }
 
 // MARK: - Extensions -
@@ -25,5 +25,5 @@ extension HomeInteractor: HomeInteractorInterface {
     func getPokemons(_ completion: @escaping PokemonListCompletionBlock) -> DataRequest {
         return _pokemonService.getPokemons(completion)
     }
-    
+
 }

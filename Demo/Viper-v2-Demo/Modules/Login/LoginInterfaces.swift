@@ -29,7 +29,7 @@ protocol LoginPresenterInterface: PresenterInterface {
 }
 
 protocol LoginInteractorInterface: InteractorInterface {
-    
+
     @discardableResult
     func loginUser(with email: String, password: String, completion: @escaping LoginCompletionBlock) -> DataRequest
 }

@@ -22,15 +22,15 @@ public typealias JapxCodable = JapxDecodable & JapxEncodable
 
 /// Wrapper around JSONEncoder capable of encoding normal objects into JSON:API dictionaries
 public final class JapxEncoder {
-    
+
     // Underlying JSONEncoder, can be used to add date formats, ...
     public let jsonEncoder: JSONEncoder
-    
+
     /// Initializes `self` with underlying `JSONEncoder` instance
     public init(jsonEncoder: JSONEncoder = JSONEncoder()) {
         self.jsonEncoder = jsonEncoder
     }
-    
+
     /// Encodes the given top-level value and returns its JSON:API representation.
     ///
     /// - parameter value: The value to encode.
@@ -44,15 +44,15 @@ public final class JapxEncoder {
 
 /// Wrapper around JSONDecoder capable of decoding JSON:API objects into normal objects
 public final class JapxDecoder {
-    
+
     /// Underlying JSONDecoder, can be used to add date formats, ...
     public let jsonDecoder: JSONDecoder
-    
+
     /// Initializes `self` with underlying `JSONDecoder` instance
     public init(jsonDecoder: JSONDecoder = JSONDecoder()) {
         self.jsonDecoder = jsonDecoder
     }
-    
+
     /// Decodes a top-level value of the given type from the given JSON:API representation.
     ///
     /// - parameter type: The type of the value to decode.
@@ -63,7 +63,7 @@ public final class JapxDecoder {
         let data = try Japx.Decoder.data(withJSONAPIObject: json, includeList: includeList)
         return try jsonDecoder.decode(type, from: data)
     }
-    
+
     /// Decodes a top-level value of the given type from the given JSON:API representation.
     ///
     /// - parameter type: The type of the value to decode.

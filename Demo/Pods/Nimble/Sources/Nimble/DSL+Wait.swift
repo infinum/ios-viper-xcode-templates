@@ -90,7 +90,7 @@ internal func blockedRunLoopErrorMessageFor(_ fnName: String, leeway: TimeInterv
 ///
 /// @discussion
 /// Call the done() closure to indicate the waiting has completed.
-/// 
+///
 /// This function manages the main run loop (`NSRunLoop.mainRunLoop()`) while this function
 /// is executing. Any attempts to touch the run loop may cause non-deterministic behavior.
 public func waitUntil(timeout: TimeInterval = 1, file: FileString = #file, line: UInt = #line, action: @escaping (@escaping () -> Void) -> Void) {

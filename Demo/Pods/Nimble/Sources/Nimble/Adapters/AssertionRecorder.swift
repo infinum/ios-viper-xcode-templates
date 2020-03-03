@@ -61,7 +61,7 @@ public func withAssertionHandler(_ tempAssertionHandler: AssertionHandler, closu
 /// This can be useful if you want to gather information about expectations
 /// that occur within a closure.
 ///
-/// @param silently expectations are no longer send to the default Nimble 
+/// @param silently expectations are no longer send to the default Nimble
 ///                 assertion handler when this is true. Defaults to false.
 ///
 /// @see gatherFailingExpectations

@@ -13,14 +13,14 @@ import Japx
 typealias PokemonListCompletionBlock = (DataResponse<[Pokemon]>) -> (Void)
 
 class PokemonService: NSObject {
-    
+
     @discardableResult
     func getPokemons(_ completion: @escaping PokemonListCompletionBlock) -> DataRequest {
         return Alamofire.request(
             Constants.API.URLBase.appendingPathComponent("api/v1/pokemons"),
-            method: .get    
+            method: .get
         ).pokedexValidate().responseCodableJSONAPI(keyPath: "data", decoder: .kebabCaseDecoder, completionHandler: completion)
-        
+
     }
 
 }

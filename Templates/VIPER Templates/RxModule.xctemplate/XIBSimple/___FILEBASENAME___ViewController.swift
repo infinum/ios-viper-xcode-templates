@@ -28,7 +28,7 @@ final class ___VARIABLE_moduleName___ViewController: UIViewController {
         super.viewDidLoad()
         configure()
     }
-	
+
 }
 
 // MARK: - Extensions -

@@ -21,21 +21,19 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<___VARIABLE_module
 
     <%- if @interface.generate_sb -%>
     private let storyboard = UIStoryboard(name: "___VARIABLE_moduleName___", bundle: nil)
-    <%- else -%>
-    private let storyboard = UIStoryboard(name: "<#___VARIABLE_moduleName___#>", bundle: nil)
-    <%- end -%>
 
+    <%- end -%>
 <% end -%>
     // MARK: - Module setup -
 
     init() {
-        <%- if @interface.generate_xib -%>
-        let moduleViewController = ___VARIABLE_moduleName___ViewController()
-        <%- else -%>
+        <%- if @interface.generate_sb -%>
         let moduleViewController = storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
+        <%- else -%>
+        let moduleViewController = ___VARIABLE_moduleName___ViewController()
         <%- end -%>
         super.init(viewController: moduleViewController)
-        
+
         <%- if @complexity.generate_formatter -%>
         let formatter = ___VARIABLE_moduleName___Formatter()
         <%- end -%>

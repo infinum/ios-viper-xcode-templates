@@ -18,7 +18,7 @@ class BaseWireframe<View> where View: UIViewController {
 }
 
 extension BaseWireframe: WireframeInterface {
-    
+
 }
 
 extension BaseWireframe {
@@ -27,11 +27,11 @@ extension BaseWireframe {
         defer { _temporaryStoredViewController = nil }
         return _viewController
     }
-    
+
     var navigationController: UINavigationController? {
         return viewController.navigationController
     }
-    
+
 }
 
 extension UIViewController {
@@ -39,7 +39,7 @@ extension UIViewController {
     func presentWireframe<View>(_ wireframe: BaseWireframe<View>, animated: Bool = true, completion: (() -> Void)? = nil) {
         present(wireframe.viewController, animated: animated, completion: completion)
     }
-    
+
 }
 
 extension UINavigationController {
@@ -51,5 +51,5 @@ extension UINavigationController {
     func setRootWireframe<View>(_ wireframe: BaseWireframe<View>, animated: Bool = true) {
         self.setViewControllers([wireframe.viewController], animated: animated)
     }
-    
+
 }

@@ -11,7 +11,7 @@ import Japx
 
 struct Pokemon: JapxCodable {
     var type: String
-    
+
     var id: String
     var name: String?
     var description: String?
@@ -20,7 +20,7 @@ struct Pokemon: JapxCodable {
     var height: Double?
     var weight: Double?
     var gender: String?
-    
+
 }
 
 extension Pokemon: HomeViewItemInterface {

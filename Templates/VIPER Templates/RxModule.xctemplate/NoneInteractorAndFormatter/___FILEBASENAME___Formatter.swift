@@ -22,5 +22,5 @@ extension ___VARIABLE_moduleName___Formatter: ___VARIABLE_moduleName___Formatter
     func format(for input: ___VARIABLE_moduleName___.FormatterInput) -> ___VARIABLE_moduleName___.FormatterOutput {
         return ___VARIABLE_moduleName___.FormatterOutput()
     }
-    
+
 }
