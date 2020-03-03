@@ -2,8 +2,10 @@
 
 # Versions
 
-Latest version is v3.  
-You can find older versions in [version/2.0 branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/2.0).
+Latest version is v3.1.
+If you need to use any older version you can find them:  
+* 3.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.0)
+* 2.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/2.0)
 
 # Installation instructions
 
