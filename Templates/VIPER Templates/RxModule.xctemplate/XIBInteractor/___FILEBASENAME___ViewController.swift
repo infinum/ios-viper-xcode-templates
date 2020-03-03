@@ -26,7 +26,7 @@ final class ___VARIABLE_moduleName___ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        setupView()
     }
 
 }
@@ -38,7 +38,7 @@ extension ___VARIABLE_moduleName___ViewController: ___VARIABLE_moduleName___View
 
 private extension ___VARIABLE_moduleName___ViewController {
 
-    func configure() {
+    func setupView() {
         let output = ___VARIABLE_moduleName___.ViewOutput()
 
         let input = presenter.configure(with: output)
