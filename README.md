@@ -2,7 +2,7 @@
 
 # Versions
 
-Latest version is v3.2.  
+Latest version is v3.3.  
 If you need to use any older version you can find them:  
 * 3.2 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.2)
 * 3.1 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.1)
