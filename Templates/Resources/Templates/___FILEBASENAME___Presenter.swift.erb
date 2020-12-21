@@ -18,7 +18,7 @@ final class ___VARIABLE_moduleName___Presenter {
 
     // MARK: - Private properties -
 
-    private unowned let view: ___VARIABLE_moduleName___ViewInterface
+    private weak var view: ___VARIABLE_moduleName___ViewInterface?
 <% if @complexity.generate_formatter -%>
     private let formatter: ___VARIABLE_moduleName___FormatterInterface
 <% end -%>

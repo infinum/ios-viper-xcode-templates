@@ -14,7 +14,7 @@ final class ___VARIABLE_moduleName___Presenter {
 
     // MARK: - Private properties -
 
-    private unowned let view: ___VARIABLE_moduleName___ViewInterface
+    private weak var view: ___VARIABLE_moduleName___ViewInterface?
     private let interactor: ___VARIABLE_moduleName___InteractorInterface
     private let wireframe: ___VARIABLE_moduleName___WireframeInterface
 
