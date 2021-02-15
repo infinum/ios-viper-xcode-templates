@@ -1,7 +1,7 @@
 import UIKit
 import SVProgressHUD
 
-protocol ViewInterface: class {
+protocol ViewInterface: AnyObject {
     func showProgressHUD()
     func hideProgressHUD()
 }

@@ -1,4 +1,4 @@
-protocol PresenterInterface: class {
+protocol PresenterInterface: AnyObject {
     func viewDidLoad()
     func viewWillAppear(animated: Bool)
     func viewDidAppear(animated: Bool)

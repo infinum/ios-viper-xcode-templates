@@ -1,6 +1,6 @@
 import UIKit
 
-protocol WireframeInterface: class {
+protocol WireframeInterface: AnyObject {
 }
 
 class BaseWireframe<ViewController> where ViewController: UIViewController {
