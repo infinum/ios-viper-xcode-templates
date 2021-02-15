@@ -1,4 +1,4 @@
-protocol PresenterInterface: class {
+protocol PresenterInterface: AnyObject {
 }
 
 extension PresenterInterface {
