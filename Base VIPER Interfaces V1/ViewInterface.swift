@@ -1,4 +1,4 @@
-protocol ViewInterface: class {
+protocol ViewInterface: AnyObject {
 }
 
 extension ViewInterface {

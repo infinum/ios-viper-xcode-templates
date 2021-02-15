@@ -6,7 +6,7 @@ enum Transition {
     case present(fromViewController: UIViewController)
 }
 
-protocol WireframeInterface: class {
+protocol WireframeInterface: AnyObject {
     func popFromNavigationController(animated: Bool)
     func dismiss(animated: Bool)
 }
