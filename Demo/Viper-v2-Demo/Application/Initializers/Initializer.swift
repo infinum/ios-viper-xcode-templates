@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol Initializable: class {
+protocol Initializable: AnyObject {
     func performInitialization()
 }

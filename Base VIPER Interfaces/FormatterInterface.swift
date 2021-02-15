@@ -1,4 +1,4 @@
-protocol FormatterInterface: class {
+protocol FormatterInterface: AnyObject {
 }
 
 extension FormatterInterface {
