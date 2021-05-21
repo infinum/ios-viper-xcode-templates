@@ -20,7 +20,11 @@ final class ___VARIABLE_moduleName___Presenter {
 
     // MARK: - Lifecycle -
 
-    init(view: ___VARIABLE_moduleName___ViewInterface, interactor: ___VARIABLE_moduleName___InteractorInterface, wireframe: ___VARIABLE_moduleName___WireframeInterface) {
+    init(
+        view: ___VARIABLE_moduleName___ViewInterface,
+        interactor: ___VARIABLE_moduleName___InteractorInterface,
+        wireframe: ___VARIABLE_moduleName___WireframeInterface
+    ) {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
