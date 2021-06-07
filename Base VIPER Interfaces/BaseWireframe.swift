@@ -3,15 +3,15 @@ import UIKit
 protocol WireframeInterface: AnyObject {
 }
 
-class BaseWireframe {
+class BaseWireframe<ViewController> where ViewController: UIViewController {
 
-    private unowned var _viewController: UIViewController
-
+    private unowned var _viewController: ViewController
+    
     //to retain view controller reference upon first access
-    private var _temporaryStoredViewController: UIViewController?
+    private var temporaryStoredViewController: ViewController?
 
-    init(viewController: UIViewController) {
-        _temporaryStoredViewController = viewController
+    init(viewController: ViewController) {
+        temporaryStoredViewController = viewController
         _viewController = viewController
     }
 
@@ -22,9 +22,9 @@ extension BaseWireframe: WireframeInterface {
 }
 
 extension BaseWireframe {
-
-    var viewController: UIViewController {
-        defer { _temporaryStoredViewController = nil }
+    
+    var viewController: ViewController {
+        defer { temporaryStoredViewController = nil }
         return _viewController
     }
 
@@ -35,20 +35,20 @@ extension BaseWireframe {
 }
 
 extension UIViewController {
-
-    func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (() -> Void)? = nil) {
+    
+    func presentWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true, completion: (() -> Void)? = nil) {
         present(wireframe.viewController, animated: animated, completion: completion)
     }
 
 }
 
 extension UINavigationController {
-
-    func pushWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+    
+    func pushWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
         self.pushViewController(wireframe.viewController, animated: animated)
     }
-
-    func setRootWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
+    
+    func setRootWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
         self.setViewControllers([wireframe.viewController], animated: animated)
     }
 

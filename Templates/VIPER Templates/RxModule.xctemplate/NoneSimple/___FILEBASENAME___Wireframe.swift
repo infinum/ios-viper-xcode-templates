@@ -12,7 +12,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ___VARIABLE_moduleName___Wireframe: BaseWireframe {
+final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<___VARIABLE_moduleName___ViewController> {
 
     // MARK: - Private properties -
 
