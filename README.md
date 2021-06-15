@@ -499,9 +499,9 @@ As described earlier you can think of one VIPER module as one screen. In the _Mo
 
 ## Useful links
 
-* https://techblog.badoo.com/blog/2016/03/21/ios-architecture-patterns/
+* https://tech.badoo.com/en/article/285/ios-architecture-patterns/
 * https://www.objc.io/issues/13-architecture/viper/
-* https://swifting.io/blog/2016/03/07/8-viper-to-be-or-not-to-be/
+* https://swifting.io/2016/03/07/VIPER-to-be-or-not-to-be.html
 
 ## Contributing and development
 
