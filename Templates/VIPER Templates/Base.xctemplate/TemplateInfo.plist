@@ -5,7 +5,7 @@
 	<key>DefaultCompletionName</key>
 	<string>BaseVIPER</string>
 	<key>Description</key>
-	<string>This generates a new Module using 🐍VIPER generator.</string>
+	<string>This generates base VIPER files used for other VIPER generations.</string>
 	<key>Kind</key>
 	<string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
 	<key>Platforms</key>
@@ -15,6 +15,6 @@
 	<key>SortOrder</key>
 	<string>1</string>
 	<key>Summary</key>
-	<string>This generates a new 🐍 VIPER module.</string>
+	<string>This generates base VIPER files.</string>
 </dict>
 </plist>
