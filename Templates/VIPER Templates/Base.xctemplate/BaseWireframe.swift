@@ -45,7 +45,7 @@ extension UIViewController {
 extension UINavigationController {
     
     func pushWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
-        self.pushViewController(wireframe.viewController, animated: animated)
+        pushViewController(wireframe.viewController, animated: animated)
     }
     
     func setRootWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
