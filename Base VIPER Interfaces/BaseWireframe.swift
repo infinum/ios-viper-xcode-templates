@@ -6,8 +6,8 @@ protocol WireframeInterface: AnyObject {
 class BaseWireframe<ViewController> where ViewController: UIViewController {
 
     private unowned var _viewController: ViewController
-    
-    //to retain view controller reference upon first access
+
+    // to retain view controller reference upon first access
     private var temporaryStoredViewController: ViewController?
 
     init(viewController: ViewController) {
@@ -22,7 +22,7 @@ extension BaseWireframe: WireframeInterface {
 }
 
 extension BaseWireframe {
-    
+
     var viewController: ViewController {
         defer { temporaryStoredViewController = nil }
         return _viewController
@@ -35,7 +35,7 @@ extension BaseWireframe {
 }
 
 extension UIViewController {
-    
+
     func presentWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true, completion: (() -> Void)? = nil) {
         present(wireframe.viewController, animated: animated, completion: completion)
     }
@@ -43,11 +43,11 @@ extension UIViewController {
 }
 
 extension UINavigationController {
-    
+
     func pushWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
         pushViewController(wireframe.viewController, animated: animated)
     }
-    
+
     func setRootWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
         setViewControllers([wireframe.viewController], animated: animated)
     }
