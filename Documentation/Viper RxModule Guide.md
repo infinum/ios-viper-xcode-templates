@@ -5,6 +5,7 @@
 ## 1. Generated classes and interfaces
 
 The module generator tool will generate five files, the same as the non-rx module. However, there is an option to generate a Formatter which will be covered in a separate guide. All the files shown will be available in the demo project.
+
 We will generate "RxLogin" (you can set whichever name you want) files and cover them as they are generated in xCode: *RxLoginInterfaces*, *RxLoginPresenter*, *RxLoginViewController*, *RxLoginInteractor* and *RxLoginWireframe*.
 
 ### RxLoginInterfaces
@@ -34,7 +35,9 @@ enum RxLogin {
 }
 ```
 
-Interfaces file generates interfaces for our wireframe, view, presenter, and interactor. These interfaces let us encapsulate whichever code we don't to be visible by the other side. The generated file contains one function in <i>RxLoginPresenterInterface</p> which initializes the communication between our Presenter and viewController. As a parameter it requires *ViewOutput* and returns *ViewInput*. Firstly, we got an enum called *RxLogin* which is generated for us. The enum contains two structures, one for output, one for input. As the name suggests, <i>ViewOutput</i> is used to store every piece of information that our view wants the Presenter to know about. Same principle but the other way around is <i>ViewInput</i>, our presenter sends information to the view which he can observe and react to.
+Interfaces file generates interfaces for our wireframe, view, presenter, and interactor. These interfaces let us encapsulate whichever code we don't to be visible by the other side. The generated file contains one function in <i>RxLoginPresenterInterface</p> which initializes the communication between our Presenter and viewController. As a parameter it requires *ViewOutput* and returns *ViewInput*.
+
+Firstly, we got an enum called *RxLogin* which is generated for us. The enum contains two structures, one for output, one for input. As the name suggests, <i>ViewOutput</i> is used to store every piece of information that our view wants the Presenter to know about. Same principle but the other way around is <i>ViewInput</i>, our presenter sends information to the view which he can observe and react to.
 
 ### RxLoginPresenter
 
@@ -204,8 +207,11 @@ struct RxLoginEvents {
 ```
 
 As you're reading through the implemented interfaces file, you might have noticed the *LoginNavigationOption* enum. It's sole purpose, as its name reveals, is to contain every navigation case. It helps us to navigate from Presenter and allows us to maintain a cleaner code structure. The navigation function is declared in the *RxLoginWireframeInterface* so we can access it from the presenter. Logic on how to navigate is set in the wireframe.
+
 Next in order, <i>login</i> function in the *RxLoginInteractorInterface* which differs from non-rx by not taking a closure as a parameter and the return type. We try to use traits as much as possible and when they are applicable. Don't overuse them, try to understand when and where you should use them. We mostly use Single and Completable as return types from API calls since mostly you want it to succeed or fail, or in the completable case, you want it to complete.
+
 Lastly, we're moving to the RxLogin enum which now contains some information. As you can see, we have added *RxLoginActions* struct which helps us organize actions in one single place. Actions will hold every driver, signal, etc. which the view wants to pass to Presenter. We're mostly using drivers for textFields and interaction which have to have an option to access the previous value. On the other hand, we use signals to register button taps or anything which just needs to say that it has happened and doesn't need to keep the last known value. As those are actions, you want to name them as actions ( login, register, email, rememberMe, etc. ) and not as emailDriver, etc. When Presenter wants to send something to the view, we wrap it in *Events* struct which contains every possible event which view needs to know about. With events, there can be an items property that will contain items that are shown on the screen (tableView, collectionView). Events work just like actions and naming is not any different :)
+
 Having that said, we have wrapped up a big chunk of information. We have covered how to pass information from the view to the presenter and back. Now let's see how it works under the hood. *RxLoginPresenter* here we come!
 
 ### RxLoginPresenter
@@ -325,8 +331,11 @@ private extension RxLoginPresenter {
 ```
 
 Whoa! That was a lot of code. Don't fret, it's quite simple :)
+
 We'll start from the top. As the base example, we have implemented some part of validation for our email and password. Now we're going straight down to the <i>configure</i> function. In the <i>configure</i> function we have registered to the events from the *ViewOutput*. As there is a driver which we'll send to the view, we have to call <i>initializeInputs</i> function and pass it as a parameter. We'll take both, email and password drivers, do some Rx magic which will check if the inputs are valid, and return a fresh driver with a bool value. If the inputs are valid it returns true, and as the name of the driver says, button will be available, otherwise, it's disabled.
+
 After we have subscribed to our inputs, we want to subscribe to button taps. Since they only want to navigate or request an API call, we don't have to return anything from their initialization. That's why we sometimes need the disposeBag in the Presenter. That is mostly about the Presenter, we use a lot of Rx a try to stay as pure with Rx as possible.
+
 Next, we'll get in touch with our implemented *RxLoginViewController*.
 
 ### RxLoginViewController
@@ -459,7 +468,9 @@ private extension RxLoginViewController {
 
 We'll just explain the <i>setupView</i> function since it's the main part. The last extension is only for keyboard dismissal.
 As you can see, our <i>setupView</i> function is quite small. Its purpose is to initialize the *ViewOutput* and *ViewInput*. We have passed everything from our IBOutlets as parameters for the *ViewOutput* which will be used in the presenter. The presenter is good enough to give us some information back about the login button availability. After the presenter has been configured and we have got our *ViewInput* structure, we can react to the events as needed. In our case, we have reacted by changing the button alpha and driving the bool value into the loginButton.
+
 Hopefully, that wasn't hard for you to cope with, hold on a bit longer, we're close to the end :)
+
 Let's move onto the *RxLoginInteractor*:
 
 ### RxLoginInteractor
@@ -488,6 +499,7 @@ extension RxLoginInteractor: RxLoginInteractorInterface {
 ```
 
 The interactor, as in the base module, helps us make API calls or any other call that we need. It contains a protocol as a property that has to know how to handle our needed function. In this case, our *UserServiceable* knows how to log in a user and that is its main purpose. If we had the register functionality on the login screen, we'd add register to the *UserServiceable* protocol. The main reason why it's a protocol that a class has to implement is that it's much easier to test ( create mocks ) and even if it has to login in another way the Interactor doesn't need to know how you do it, just that you do it.
+
 Last but not the least, *RxLoginWireframe*:
 
 ### RxLoginWireframe
