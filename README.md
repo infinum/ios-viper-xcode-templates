@@ -3,7 +3,7 @@
 # Versions
 
 Latest version is v4.0.1
-* [Viper 4.0.1 Migration Guide](Documentation/Viper%20RxModule%20Guide.md)
+* [Viper 4.0.1 RxModule documentation](Documentation/Viper%20RxModule%20Guide.md)
 * [Viper 4.0 Migration Guide](Documentation/Viper%204.0%20Migration%20Guide.md)
 
 
