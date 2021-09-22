@@ -3,10 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		376433B426FB1EDA0072F31E /* RxLoginInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376433AF26FB1EDA0072F31E /* RxLoginInterfaces.swift */; };
+		376433B526FB1EDA0072F31E /* RxLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376433B026FB1EDA0072F31E /* RxLoginPresenter.swift */; };
+		376433B626FB1EDA0072F31E /* RxLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376433B126FB1EDA0072F31E /* RxLoginViewController.swift */; };
+		376433B726FB1EDA0072F31E /* RxLoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376433B226FB1EDA0072F31E /* RxLoginInteractor.swift */; };
+		376433B826FB1EDA0072F31E /* RxLoginWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376433B326FB1EDA0072F31E /* RxLoginWireframe.swift */; };
+		376433BA26FB31BD0072F31E /* RxLogin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376433B926FB31BD0072F31E /* RxLogin.storyboard */; };
+		376433BC26FB3E1D0072F31E /* UserServiceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376433BB26FB3E1D0072F31E /* UserServiceable.swift */; };
+		376433BE26FB3EA80072F31E /* RxUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376433BD26FB3EA70072F31E /* RxUserService.swift */; };
 		521A3FA9207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA4207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift */; };
 		521A3FAA207E2F4A001EFB92 /* PokemonDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA5207E2F4A001EFB92 /* PokemonDetailsPresenter.swift */; };
 		521A3FAB207E2F4A001EFB92 /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA6207E2F4A001EFB92 /* PokemonDetailsViewController.swift */; };
@@ -31,7 +39,6 @@
 		52CD6182207DE27200AFB254 /* VIper_v2_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD6181207DE27200AFB254 /* VIper_v2_DemoTests.swift */; };
 		52CD6190207DE28800AFB254 /* VIper_v2_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD618F207DE28800AFB254 /* VIper_v2_DemoUITests.swift */; };
 		52CD61C8207DE32200AFB254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CD619A207DE32100AFB254 /* Main.storyboard */; };
-		52CD61C9207DE32200AFB254 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52CD619C207DE32100AFB254 /* Info.plist */; };
 		52CD61CA207DE32200AFB254 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD619E207DE32200AFB254 /* Constants.swift */; };
 		52CD61CB207DE32200AFB254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD619F207DE32200AFB254 /* AppDelegate.swift */; };
 		52CD61CC207DE32200AFB254 /* ThemeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD61A1207DE32200AFB254 /* ThemeInitializer.swift */; };
@@ -96,6 +103,14 @@
 
 /* Begin PBXFileReference section */
 		0278BB1904B4E4D9BB269B1D /* Pods-Viper-v2-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v2-DemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Viper-v2-DemoUITests/Pods-Viper-v2-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		376433AF26FB1EDA0072F31E /* RxLoginInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxLoginInterfaces.swift; sourceTree = "<group>"; };
+		376433B026FB1EDA0072F31E /* RxLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxLoginPresenter.swift; sourceTree = "<group>"; };
+		376433B126FB1EDA0072F31E /* RxLoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxLoginViewController.swift; sourceTree = "<group>"; };
+		376433B226FB1EDA0072F31E /* RxLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxLoginInteractor.swift; sourceTree = "<group>"; };
+		376433B326FB1EDA0072F31E /* RxLoginWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxLoginWireframe.swift; sourceTree = "<group>"; };
+		376433B926FB31BD0072F31E /* RxLogin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RxLogin.storyboard; sourceTree = "<group>"; };
+		376433BB26FB3E1D0072F31E /* UserServiceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceable.swift; sourceTree = "<group>"; };
+		376433BD26FB3EA70072F31E /* RxUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxUserService.swift; sourceTree = "<group>"; };
 		3E12449C886E905088E9A50B /* Pods-Viper-v2-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v2-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		521A3FA4207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsInterfaces.swift; sourceTree = "<group>"; };
 		521A3FA5207E2F4A001EFB92 /* PokemonDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -215,6 +230,19 @@
 				0278BB1904B4E4D9BB269B1D /* Pods-Viper-v2-DemoUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		376433A426FB1E4B0072F31E /* RxModule */ = {
+			isa = PBXGroup;
+			children = (
+				376433AF26FB1EDA0072F31E /* RxLoginInterfaces.swift */,
+				376433B026FB1EDA0072F31E /* RxLoginPresenter.swift */,
+				376433B126FB1EDA0072F31E /* RxLoginViewController.swift */,
+				376433B226FB1EDA0072F31E /* RxLoginInteractor.swift */,
+				376433B326FB1EDA0072F31E /* RxLoginWireframe.swift */,
+				376433B926FB31BD0072F31E /* RxLogin.storyboard */,
+			);
+			path = RxModule;
 			sourceTree = "<group>";
 		};
 		521A3FA3207E2F32001EFB92 /* Details */ = {
@@ -441,6 +469,8 @@
 			children = (
 				52CD61C5207DE32200AFB254 /* UserService.swift */,
 				52CD61C6207DE32200AFB254 /* PokemonService.swift */,
+				376433BB26FB3E1D0072F31E /* UserServiceable.swift */,
+				376433BD26FB3EA70072F31E /* RxUserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -448,6 +478,7 @@
 		52CD61E8207DE3E100AFB254 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				376433A426FB1E4B0072F31E /* RxModule */,
 				52CD61F3207DE82900AFB254 /* Login.storyboard */,
 				52CD61E9207DE3F700AFB254 /* LoginInterfaces.swift */,
 				52CD61EA207DE3F700AFB254 /* LoginPresenter.swift */,
@@ -601,8 +632,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				52CD61C8207DE32200AFB254 /* Main.storyboard in Resources */,
-				52CD61C9207DE32200AFB254 /* Info.plist in Resources */,
 				52CD61E7207DE3C800AFB254 /* LaunchScreen.storyboard in Resources */,
+				376433BA26FB31BD0072F31E /* RxLogin.storyboard in Resources */,
 				52CD6204207DF3B200AFB254 /* Home.storyboard in Resources */,
 				521A3FB6207E2F88001EFB92 /* PokemonDetails.storyboard in Resources */,
 				52CD61F4207DE82900AFB254 /* Login.storyboard in Resources */,
@@ -633,21 +664,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Viper-v2-DemoUITests/Pods-Viper-v2-DemoUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-DemoUITests/Pods-Viper-v2-DemoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-DemoUITests/Pods-Viper-v2-DemoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Viper-v2-DemoUITests/Pods-Viper-v2-DemoUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-DemoUITests/Pods-Viper-v2-DemoUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		215951E2E96EC3BE15EF9E04 /* [CP] Embed Pods Frameworks */ = {
@@ -655,21 +681,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Viper-v2-DemoTests/Pods-Viper-v2-DemoTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/OHHTTPStubs/OHHTTPStubs.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-DemoTests/Pods-Viper-v2-DemoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/OHHTTPStubs.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-DemoTests/Pods-Viper-v2-DemoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Viper-v2-DemoTests/Pods-Viper-v2-DemoTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-DemoTests/Pods-Viper-v2-DemoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		22292049EF7F5834EA1C0427 /* [CP] Check Pods Manifest.lock */ = {
@@ -695,25 +716,16 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
-				"${BUILT_PRODUCTS_DIR}/Japx/Japx.framework",
-				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Japx.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		51F3047529641FEE360D268C /* [CP] Check Pods Manifest.lock */ = {
@@ -759,8 +771,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				376433BE26FB3EA80072F31E /* RxUserService.swift in Sources */,
 				52CD61F0207DE3F700AFB254 /* LoginViewController.swift in Sources */,
 				52CD61D1207DE32200AFB254 /* Section.swift in Sources */,
+				376433B526FB1EDA0072F31E /* RxLoginPresenter.swift in Sources */,
 				52CD61DB207DE32200AFB254 /* InteractorInterface.swift in Sources */,
 				526DF99520BEBCDE0011D29A /* RegisterWireframe.swift in Sources */,
 				521A3FAC207E2F4A001EFB92 /* PokemonDetailsInteractor.swift in Sources */,
@@ -778,6 +792,7 @@
 				521A3FB3207E2F88001EFB92 /* PokemonDetailsDescriptionTableViewCell.swift in Sources */,
 				52AF85E2208495B100046F15 /* KeyDecodingStategy+KebabCase.swift in Sources */,
 				52AF85EA2084C4B400046F15 /* PartialURL.swift in Sources */,
+				376433B626FB1EDA0072F31E /* RxLoginViewController.swift in Sources */,
 				52CD61EE207DE3F700AFB254 /* LoginInterfaces.swift in Sources */,
 				526DF99120BEBCDE0011D29A /* RegisterInterfaces.swift in Sources */,
 				52CD61F2207DE3F700AFB254 /* LoginWireframe.swift in Sources */,
@@ -788,12 +803,14 @@
 				52CD61D6207DE32200AFB254 /* UIColor+Pokedex.swift in Sources */,
 				52CD61FC207DEB7000AFB254 /* HomePresenter.swift in Sources */,
 				526DF99420BEBCDE0011D29A /* RegisterInteractor.swift in Sources */,
+				376433BC26FB3E1D0072F31E /* UserServiceable.swift in Sources */,
 				52CD61D2207DE32200AFB254 /* JSONAPIObject.swift in Sources */,
 				52CD61EF207DE3F700AFB254 /* LoginPresenter.swift in Sources */,
 				52CD61DE207DE32200AFB254 /* AuthorizationAdapter.swift in Sources */,
 				52CD61D7207DE32200AFB254 /* BaseWireframe.swift in Sources */,
 				52CD61D4207DE32200AFB254 /* Pokemon.swift in Sources */,
 				52AF85E02080926E00046F15 /* PokedexNavigationController.swift in Sources */,
+				376433B726FB1EDA0072F31E /* RxLoginInteractor.swift in Sources */,
 				52CD61CD207DE32200AFB254 /* Initializer.swift in Sources */,
 				521A3FAD207E2F4A001EFB92 /* PokemonDetailsWireframe.swift in Sources */,
 				52CD61D8207DE32200AFB254 /* UIStoryboardExtension.swift in Sources */,
@@ -808,7 +825,9 @@
 				52CD61D9207DE32200AFB254 /* PresenterInterface.swift in Sources */,
 				52CD61CA207DE32200AFB254 /* Constants.swift in Sources */,
 				52CD61FD207DEB7000AFB254 /* HomeViewController.swift in Sources */,
+				376433B426FB1EDA0072F31E /* RxLoginInterfaces.swift in Sources */,
 				52CD61CC207DE32200AFB254 /* ThemeInitializer.swift in Sources */,
+				376433B826FB1EDA0072F31E /* RxLoginWireframe.swift in Sources */,
 				52CD61D3207DE32200AFB254 /* User.swift in Sources */,
 				52CD61DD207DE32200AFB254 /* APIError.swift in Sources */,
 				526DF99320BEBCDE0011D29A /* RegisterViewController.swift in Sources */,

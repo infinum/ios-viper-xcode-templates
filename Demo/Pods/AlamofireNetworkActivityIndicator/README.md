@@ -19,12 +19,12 @@ Controls the visibility of the network activity indicator on iOS using Alamofire
 ## Requirements
 
 - iOS 8.0+
-- Xcode 8.1, 8.2, 8.3, and 9.0
-- Swift 3.0, 3.1, 3.2, and 4.0
+- Xcode 9.0+
+- Swift 4.0+
 
 ## Dependencies
 
-- [Alamofire 4.5+](https://github.com/Alamofire/Alamofire)
+- [Alamofire 4.8+](https://github.com/Alamofire/Alamofire)
 
 ## Communication
 
@@ -38,45 +38,18 @@ Controls the visibility of the network activity indicator on iOS using Alamofire
 
 ### CocoaPods
 
-[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
-
-```bash
-$ gem install cocoapods
-```
-
-> CocoaPods 1.1.0+ is required.
-
-To integrate AlamofireNetworkActivityIndicator into your Xcode project using CocoaPods, specify it in your `Podfile`:
+[CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamofire into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '10.0'
-use_frameworks!
-
-pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
-```
-
-Then, run the following command:
-
-```bash
-$ pod install
+pod 'AlamofireNetworkActivityIndicator', '~> 2.4'
 ```
 
 ### Carthage
 
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks.
-
-You can install Carthage with [Homebrew](http://brew.sh/) using the following command:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate AlamofireNetworkActivityIndicator into your Xcode project using Carthage, specify it in your `Cartfile`:
+[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager that builds your dependencies and provides you with binary frameworks. To integrate Alamofire into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.2
+github "AlamofireNetworkActivityIndicator" "~> 2.4"
 ```
 
 ### Manually
@@ -171,17 +144,22 @@ Alamofire is owned and maintained by the [Alamofire Software Foundation](http://
 
 ## Donations
 
-The [ASF](https://github.com/Alamofire/Foundation#members) is looking to raise money to officially register as a federal non-profit organization. Registering will allow us members to gain some legal protections and also allow us to put donations to use, tax free. Donating to the ASF will enable us to:
+The [ASF](https://github.com/Alamofire/Foundation#members) is looking to raise money to officially stay registered as a federal non-profit organization.
+Registering will allow us members to gain some legal protections and also allow us to put donations to use, tax free.
+Donating to the ASF will enable us to:
 
-* Pay our legal fees to register as a federal non-profit organization
-* Pay our yearly legal fees to keep the non-profit in good status
-* Pay for our mail servers to help us stay on top of all questions and security issues
-* Potentially fund test servers to make it easier for us to test the edge cases
-* Potentially fund developers to work on one of our projects full-time
+- Pay our yearly legal fees to keep the non-profit in good status
+- Pay for our mail servers to help us stay on top of all questions and security issues
+- Potentially fund test servers to make it easier for us to test the edge cases
+- Potentially fund developers to work on one of our projects full-time
 
-The community adoption of the ASF libraries has been amazing. We are greatly humbled by your enthusiasm around the projects, and want to continue to do everything we can to move the needle forward. With your continued support, the ASF will be able to improve its reach and also provide better legal safety for the core members. If you use any of our libraries for work, see if your employers would be interested in donating. Our initial goal is to raise $1000 to get all our legal ducks in a row and kickstart this campaign. Any amount you can donate today to help us reach our goal would be greatly appreciated.
+The community adoption of the ASF libraries has been amazing.
+We are greatly humbled by your enthusiasm around the projects, and want to continue to do everything we can to move the needle forward.
+With your continued support, the ASF will be able to improve its reach and also provide better legal safety for the core members.
+If you use any of our libraries for work, see if your employers would be interested in donating.
+Any amount you can donate today to help us reach our goal would be greatly appreciated.
 
-<a href='https://pledgie.com/campaigns/31474'><img alt='Click here to lend your support to: Alamofire Software Foundation and make a donation at pledgie.com !' src='https://pledgie.com/campaigns/31474.png?skin_name=chrome' border='0' ></a>
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=W34WPEE74APJQ)
 
 ## License
 

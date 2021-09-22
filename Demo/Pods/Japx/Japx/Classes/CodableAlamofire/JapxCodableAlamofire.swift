@@ -9,7 +9,7 @@ import Alamofire
 import Foundation
 
 extension Request {
-
+    
     /// Returns a parsed and decoded JSON:API object into requested type contained in result type.
     ///
     /// - parameter response:       The response from the server.
@@ -22,26 +22,26 @@ extension Request {
     /// - returns: The result data type.
     public static func serializeResponseCodableJSONAPI<T: Decodable>(response: HTTPURLResponse?, data: Data?, error: Error?, includeList: String?, keyPath: String?, decoder: JapxDecoder) -> Result<T> {
         guard error == nil else { return .failure(error!) }
-
+        
         guard let validData = data, validData.count > 0 else {
             return .failure(AFError.responseSerializationFailed(reason: .inputDataNilOrZeroLength))
         }
-
+        
         do {
             guard let keyPath = keyPath, !keyPath.isEmpty else  {
                 let decodable = try decoder.decode(T.self, from: validData, includeList: includeList)
                 return .success(decodable)
             }
-
-            let json = try Japx.Decoder.jsonObject(with: validData, includeList: includeList)
+            
+            let json = try Japx.Decoder.jsonObject(with: validData, includeList: includeList, options: decoder.options)
             guard let jsonForKeyPath = (json as AnyObject).value(forKeyPath: keyPath) else {
                 return .failure(JapxAlamofireError.invalidKeyPath(keyPath: keyPath))
             }
             let data = try JSONSerialization.data(withJSONObject: jsonForKeyPath, options: .init(rawValue: 0))
-
+            
             let decodable = try decoder.jsonDecoder.decode(T.self, from: data)
             return .success(decodable)
-
+            
         } catch {
             return .failure(AFError.responseSerializationFailed(reason: .jsonSerializationFailed(error: error)))
         }
@@ -49,7 +49,7 @@ extension Request {
 }
 
 extension DataRequest {
-
+    
     /// Creates a response serializer that returns a parsed and decoded JSON:API object into requested type contained in result type.
     ///
     /// - parameter includeList:    The include list for deserializing JSON:API relationships.
@@ -62,7 +62,7 @@ extension DataRequest {
             return Request.serializeResponseCodableJSONAPI(response: response, data: data, error: error, includeList: includeList, keyPath: keyPath, decoder: decoder)
         }
     }
-
+    
     /// Adds a handler to be called once the request has finished.
     ///
     /// - parameter queue:             The queue on which the completion handler is dispatched.
@@ -83,7 +83,7 @@ extension DataRequest {
 }
 
 extension DownloadRequest {
-
+    
     /// Creates a response serializer that returns a parsed and decoded JSON:API object into requested type contained in result type.
     ///
     /// - parameter includeList:    The include list for deserializing JSON:API relationships.

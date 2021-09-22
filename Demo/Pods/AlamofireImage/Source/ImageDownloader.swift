@@ -1,7 +1,7 @@
 //
 //  ImageDownloader.swift
 //
-//  Copyright (c) 2015-2017 Alamofire Software Foundation (http://alamofire.org/)
+//  Copyright (c) 2015-2018 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -37,10 +37,10 @@ import Cocoa
 /// `ImageDownloader` is optimized to handle duplicate request scenarios as well as pending versus active downloads.
 open class RequestReceipt {
     /// The download request created by the `ImageDownloader`.
-    open let request: Request
+    public let request: Request
 
     /// The unique identifier for the image filters and completion handlers when duplicate requests are made.
-    open let receiptID: String
+    public let receiptID: String
 
     init(request: Request, receiptID: String) {
         self.request = request
@@ -96,7 +96,7 @@ open class ImageDownloader {
     // MARK: Properties
 
     /// The image cache used to store all downloaded images in.
-    open let imageCache: ImageRequestCache?
+    public let imageCache: ImageRequestCache?
 
     /// The credential used for authenticating each download request.
     open private(set) var credential: URLCredential?
@@ -105,7 +105,7 @@ open class ImageDownloader {
     public var imageResponseSerializer = DataRequest.imageResponseSerializer()
 
     /// The underlying Alamofire `Manager` instance used to handle all download requests.
-    open let sessionManager: SessionManager
+    public let sessionManager: SessionManager
 
     let downloadPrioritization: DownloadPrioritization
     let maximumActiveDownloads: Int
@@ -127,7 +127,7 @@ open class ImageDownloader {
     // MARK: Initialization
 
     /// The default instance of `ImageDownloader` initialized with default values.
-    open static let `default` = ImageDownloader()
+    public static let `default` = ImageDownloader()
 
     /// Creates a default `URLSessionConfiguration` with common usage parameter values.
     ///
@@ -152,11 +152,28 @@ open class ImageDownloader {
     ///
     /// - returns: The default `URLCache` instance.
     open class func defaultURLCache() -> URLCache {
+        let memoryCapacity = 20 * 1024 * 1024
+        let diskCapacity = 150 * 1024 * 1024
+        let cacheDirectory = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first
+        let imageDownloaderPath = "org.alamofire.imagedownloader"
+
+        #if targetEnvironment(macCatalyst)
         return URLCache(
-            memoryCapacity: 20 * 1024 * 1024, // 20 MB
-            diskCapacity: 150 * 1024 * 1024,  // 150 MB
-            diskPath: "org.alamofire.imagedownloader"
+            memoryCapacity: memoryCapacity,
+            diskCapacity: diskCapacity,
+            directory: cacheDirectory?.appendingPathComponent(imageDownloaderPath)
         )
+        #else
+        #if os(macOS)
+        return URLCache(memoryCapacity: memoryCapacity,
+                        diskCapacity: diskCapacity,
+                        diskPath: cacheDirectory?.appendingPathComponent(imageDownloaderPath).absoluteString)
+        #else
+        return URLCache(memoryCapacity: memoryCapacity,
+                        diskCapacity: diskCapacity,
+                        diskPath: imageDownloaderPath)
+        #endif
+        #endif
     }
 
     /// Initializes the `ImageDownloader` instance with the given configuration, download prioritization, maximum active
@@ -436,9 +453,15 @@ open class ImageDownloader {
         completion: CompletionHandler? = nil)
         -> [RequestReceipt]
     {
+        #if swift(>=4.1)
+        return urlRequests.compactMap {
+            download($0, filter: filter, progress: progress, progressQueue: progressQueue, completion: completion)
+        }
+        #else
         return urlRequests.flatMap {
             download($0, filter: filter, progress: progress, progressQueue: progressQueue, completion: completion)
         }
+        #endif
     }
 
     /// Cancels the request in the receipt by removing the response handler and cancelling the request if necessary.
@@ -453,7 +476,13 @@ open class ImageDownloader {
             let urlID = ImageDownloader.urlIdentifier(for: requestReceipt.request.request!)
             guard let responseHandler = self.responseHandlers[urlID] else { return }
 
-            if let index = responseHandler.operations.index(where: { $0.receiptID == requestReceipt.receiptID }) {
+            #if swift(>=4.2)
+            let index = responseHandler.operations.firstIndex { $0.receiptID == requestReceipt.receiptID }
+            #else
+            let index = responseHandler.operations.index { $0.receiptID == requestReceipt.receiptID }
+            #endif
+
+            if let index = index {
                 let operation = responseHandler.operations.remove(at: index)
 
                 let response: DataResponse<Image> = {
