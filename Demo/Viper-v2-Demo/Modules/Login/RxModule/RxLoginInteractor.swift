@@ -26,5 +26,4 @@ extension RxLoginInteractor: RxLoginInteractorInterface {
     func login(with email: String, _ password: String) -> Single<User> {
         userServiceable.login(with: email, password)
     }
-
 }

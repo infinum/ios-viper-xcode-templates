@@ -55,6 +55,5 @@ extension RxLoginWireframe: RxLoginWireframeInterface {
         wireframeNavigationController.setRootWireframe(wireframe)
 
         navigationController?.present(wireframeNavigationController, animated: true, completion: nil)
-
     }
 }

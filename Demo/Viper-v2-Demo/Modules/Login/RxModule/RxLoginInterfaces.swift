@@ -47,7 +47,6 @@ struct RxLoginActions {
     let login: Signal<Void>
     let register: Signal<Void>
 }
-
 struct RxLoginEvents {
     let buttonAvailability: Driver<Bool>
 }

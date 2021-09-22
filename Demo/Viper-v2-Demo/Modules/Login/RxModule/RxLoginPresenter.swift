@@ -85,7 +85,6 @@ private extension RxLoginPresenter {
             email.asObservable().compactMap { $0 }.asDriver(onErrorDriveWith: .empty()),
             password.asObservable().compactMap { $0 }.asDriver(onErrorDriveWith: .empty())
         )
-
         login
             .withLatestFrom(inputs)
             .flatMap { [unowned self] email, password -> Signal<User> in
