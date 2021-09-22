@@ -9,7 +9,7 @@
 import UIKit
 import Japx
 
-struct User: JapxCodable {
+struct User: JapxCodable, Decodable {
     var type: String
 
     var id: String
