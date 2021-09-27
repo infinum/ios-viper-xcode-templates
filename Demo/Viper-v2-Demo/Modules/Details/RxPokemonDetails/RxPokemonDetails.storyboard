@@ -129,10 +129,6 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="JTl-jd-qiu" id="F52-5B-9JM"/>
-                                    <outlet property="delegate" destination="JTl-jd-qiu" id="7o1-61-71T"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
