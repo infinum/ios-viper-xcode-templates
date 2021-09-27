@@ -36,6 +36,7 @@ enum RxPokemonDetails {
 
     struct ViewInput {
         let models: FormatterOutput
+        let events: RxPokemonDetailsEvent
     }
 
     struct FormatterInput {
@@ -46,4 +47,9 @@ enum RxPokemonDetails {
         let sections: Driver<[TableSectionItem]>
     }
 
+}
+
+struct RxPokemonDetailsEvent {
+    let title: Driver<String>
+    let imageURL: Signal<URL>
 }

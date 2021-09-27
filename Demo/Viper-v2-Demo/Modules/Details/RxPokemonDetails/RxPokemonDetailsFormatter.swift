@@ -35,7 +35,6 @@ private extension RxPokemonDetailsFormatter {
     func createSections(with pokemon: Pokemon) -> [TableSectionItem] {
         var items: [TableSectionItem] = []
         items.append(createDescriptionSection(pokemon))
-        items.append(createCharacteristicsSection(pokemon))
         return items
     }
 
@@ -43,7 +42,4 @@ private extension RxPokemonDetailsFormatter {
         return RxPokemonDetailsSection(items: [RxPokemonDetailsItem(model: PokemonDetailsItem.description(pokemon))])
     }
 
-    func createCharacteristicsSection(_ pokemon: Pokemon) -> TableSectionItem {
-        return RxPokemonDetailsSection(items: [RxPokemonDetailsItem(model: PokemonDetailsItem.characteristics(pokemon))])
-    }
 }
