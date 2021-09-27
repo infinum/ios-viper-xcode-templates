@@ -20,6 +20,12 @@ final class RxPokemonDetailsViewController: UIViewController {
 
     // MARK: - Private properties -
 
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var headerImageView: UIImageView!
+    private lazy var tableDataSource: TableDataSourceDelegate = {
+        return TableDataSourceDelegate(tableView: tableView)
+    }()
+
     private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle -
@@ -42,6 +48,12 @@ private extension RxPokemonDetailsViewController {
         let output = RxPokemonDetails.ViewOutput()
 
         let input = presenter.configure(with: output)
+        initializeTableView(with: input.models.sections)
     }
 
+    func initializeTableView(with sections: Driver<[TableSectionItem]>) {
+        sections
+            .drive(tableDataSource.rx.sections)
+            .disposed(by: disposeBag)
+    }
 }

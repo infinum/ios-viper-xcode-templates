@@ -39,9 +39,11 @@ enum RxPokemonDetails {
     }
 
     struct FormatterInput {
+        let models: Driver<Pokemon>
     }
 
     struct FormatterOutput {
+        let sections: Driver<[TableSectionItem]>
     }
 
 }

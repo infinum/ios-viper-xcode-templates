@@ -20,7 +20,30 @@ final class RxPokemonDetailsFormatter {
 extension RxPokemonDetailsFormatter: RxPokemonDetailsFormatterInterface {
 
     func format(for input: RxPokemonDetails.FormatterInput) -> RxPokemonDetails.FormatterOutput {
-        return RxPokemonDetails.FormatterOutput()
+        return RxPokemonDetails.FormatterOutput(sections: createTableViewSections(from: input.models))
     }
 
+}
+
+private extension RxPokemonDetailsFormatter {
+
+    func createTableViewSections(from pokemon: Driver<Pokemon>) -> Driver<[TableSectionItem]> {
+        pokemon
+            .map { [unowned self] in  createSections(with: $0)}
+    }
+
+    func createSections(with pokemon: Pokemon) -> [TableSectionItem] {
+        var items: [TableSectionItem] = []
+        items.append(createDescriptionSection(pokemon))
+        items.append(createCharacteristicsSection(pokemon))
+        return items
+    }
+
+    func createDescriptionSection(_ pokemon: Pokemon) -> TableSectionItem {
+        return RxPokemonDetailsSection(items: [RxPokemonDetailsItem(model: PokemonDetailsItem.description(pokemon))])
+    }
+
+    func createCharacteristicsSection(_ pokemon: Pokemon) -> TableSectionItem {
+        return RxPokemonDetailsSection(items: [RxPokemonDetailsItem(model: PokemonDetailsItem.characteristics(pokemon))])
+    }
 }
