@@ -30,6 +30,12 @@ PODS:
   - OHHTTPStubs/Swift (6.1.0):
     - OHHTTPStubs/Default
   - Quick (1.2.0)
+  - RxCocoa (6.2.0):
+    - RxRelay (= 6.2.0)
+    - RxSwift (= 6.2.0)
+  - RxRelay (6.2.0):
+    - RxSwift (= 6.2.0)
+  - RxSwift (6.2.0)
   - SVProgressHUD (2.2.5)
 
 DEPENDENCIES:
@@ -40,10 +46,12 @@ DEPENDENCIES:
   - OHHTTPStubs (~> 6.0)
   - OHHTTPStubs/Swift
   - Quick (~> 1.1)
+  - RxCocoa
+  - RxSwift
   - SVProgressHUD (~> 2.1)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - AlamofireImage
     - AlamofireNetworkActivityIndicator
@@ -51,6 +59,9 @@ SPEC REPOS:
     - Nimble
     - OHHTTPStubs
     - Quick
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SVProgressHUD
 
 SPEC CHECKSUMS:
@@ -61,8 +72,11 @@ SPEC CHECKSUMS:
   Nimble: c53e6903fee94041b90ded74f135820437d8bf59
   OHHTTPStubs: 1e21c7d2c084b8153fc53d48400d8919d2d432d0
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
+  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
+  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
 
-PODFILE CHECKSUM: 8e199ee3335bb50b67e3338045e401d72be6d519
+PODFILE CHECKSUM: ca0c5850eb17a1fd62d7dc0a7774198573cdcc8d
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.11.0

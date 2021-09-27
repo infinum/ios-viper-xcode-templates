@@ -12,6 +12,8 @@ def app_pods
   pod 'SVProgressHUD', '~> 2.1'
   pod 'AlamofireImage', '~> 3.2'
   pod 'AlamofireNetworkActivityIndicator', '~> 2.1'
+  pod 'RxSwift'
+  pod 'RxCocoa'
 end
 
 target 'Viper-v2-Demo' do
