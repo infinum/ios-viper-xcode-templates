@@ -11,6 +11,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import AlamofireImage
 
 final class RxPokemonDetailsViewController: UIViewController {
 
@@ -49,11 +50,31 @@ private extension RxPokemonDetailsViewController {
 
         let input = presenter.configure(with: output)
         initializeTableView(with: input.models.sections)
+        initializeTitle(with: input.events.title)
+        initializeHeaderImage(with: input.events.imageURL)
     }
 
     func initializeTableView(with sections: Driver<[TableSectionItem]>) {
         sections
             .drive(tableDataSource.rx.sections)
             .disposed(by: disposeBag)
+    }
+
+    func initializeTitle(with title: Driver<String>) {
+        title
+            .drive(self.rx.title)
+            .disposed(by: disposeBag)
+    }
+
+    func initializeHeaderImage(with imageURL: Signal<URL>) {
+        imageURL
+            .emit(onNext: { [unowned self] in
+                headerImageView.af_setImage(
+                    withURL: $0,
+                    placeholderImage: #imageLiteral(resourceName: "image-placeholder")
+                )
+            })
+            .disposed(by: disposeBag)
+
     }
 }
