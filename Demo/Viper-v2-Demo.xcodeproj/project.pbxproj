@@ -14,6 +14,13 @@
 		377A9DC12701CD99003F39B9 /* RxPokemonDetailsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DBA2701CD99003F39B9 /* RxPokemonDetailsFormatter.swift */; };
 		377A9DC22701CD99003F39B9 /* RxPokemonDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DBB2701CD99003F39B9 /* RxPokemonDetailsInteractor.swift */; };
 		377A9DC32701CD99003F39B9 /* RxPokemonDetailsWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DBC2701CD99003F39B9 /* RxPokemonDetailsWireframe.swift */; };
+		377A9DC52701CE48003F39B9 /* TableDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DC42701CE48003F39B9 /* TableDataSourceDelegate.swift */; };
+		377A9DC72701CE62003F39B9 /* TableCellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DC62701CE62003F39B9 /* TableCellItem.swift */; };
+		377A9DC92701CE8C003F39B9 /* CellItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DC82701CE8C003F39B9 /* CellItem.swift */; };
+		377A9DCB2701CEC2003F39B9 /* TableViewReloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DCA2701CEC2003F39B9 /* TableViewReloader.swift */; };
+		377A9DCD2701CED9003F39B9 /* TableSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DCC2701CED9003F39B9 /* TableSectionItem.swift */; };
+		377A9DCF2701CEF3003F39B9 /* SectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DCE2701CEF3003F39B9 /* SectionItem.swift */; };
+		377A9DD82701CFAE003F39B9 /* FormatterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DD22701CFAE003F39B9 /* FormatterInterface.swift */; };
 		521A3FA9207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA4207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift */; };
 		521A3FAA207E2F4A001EFB92 /* PokemonDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA5207E2F4A001EFB92 /* PokemonDetailsPresenter.swift */; };
 		521A3FAB207E2F4A001EFB92 /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA6207E2F4A001EFB92 /* PokemonDetailsViewController.swift */; };
@@ -38,7 +45,6 @@
 		52CD6182207DE27200AFB254 /* VIper_v2_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD6181207DE27200AFB254 /* VIper_v2_DemoTests.swift */; };
 		52CD6190207DE28800AFB254 /* VIper_v2_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD618F207DE28800AFB254 /* VIper_v2_DemoUITests.swift */; };
 		52CD61C8207DE32200AFB254 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52CD619A207DE32100AFB254 /* Main.storyboard */; };
-		52CD61C9207DE32200AFB254 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52CD619C207DE32100AFB254 /* Info.plist */; };
 		52CD61CA207DE32200AFB254 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD619E207DE32200AFB254 /* Constants.swift */; };
 		52CD61CB207DE32200AFB254 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD619F207DE32200AFB254 /* AppDelegate.swift */; };
 		52CD61CC207DE32200AFB254 /* ThemeInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CD61A1207DE32200AFB254 /* ThemeInitializer.swift */; };
@@ -110,6 +116,13 @@
 		377A9DBA2701CD99003F39B9 /* RxPokemonDetailsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxPokemonDetailsFormatter.swift; sourceTree = "<group>"; };
 		377A9DBB2701CD99003F39B9 /* RxPokemonDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxPokemonDetailsInteractor.swift; sourceTree = "<group>"; };
 		377A9DBC2701CD99003F39B9 /* RxPokemonDetailsWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxPokemonDetailsWireframe.swift; sourceTree = "<group>"; };
+		377A9DC42701CE48003F39B9 /* TableDataSourceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSourceDelegate.swift; sourceTree = "<group>"; };
+		377A9DC62701CE62003F39B9 /* TableCellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellItem.swift; sourceTree = "<group>"; };
+		377A9DC82701CE8C003F39B9 /* CellItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellItem.swift; sourceTree = "<group>"; };
+		377A9DCA2701CEC2003F39B9 /* TableViewReloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewReloader.swift; sourceTree = "<group>"; };
+		377A9DCC2701CED9003F39B9 /* TableSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionItem.swift; sourceTree = "<group>"; };
+		377A9DCE2701CEF3003F39B9 /* SectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItem.swift; sourceTree = "<group>"; };
+		377A9DD22701CFAE003F39B9 /* FormatterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterInterface.swift; sourceTree = "<group>"; };
 		3E12449C886E905088E9A50B /* Pods-Viper-v2-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v2-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		521A3FA4207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsInterfaces.swift; sourceTree = "<group>"; };
 		521A3FA5207E2F4A001EFB92 /* PokemonDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -405,6 +418,12 @@
 			isa = PBXGroup;
 			children = (
 				52CD61AE207DE32200AFB254 /* Section.swift */,
+				377A9DC42701CE48003F39B9 /* TableDataSourceDelegate.swift */,
+				377A9DC62701CE62003F39B9 /* TableCellItem.swift */,
+				377A9DC82701CE8C003F39B9 /* CellItem.swift */,
+				377A9DCA2701CEC2003F39B9 /* TableViewReloader.swift */,
+				377A9DCC2701CED9003F39B9 /* TableSectionItem.swift */,
+				377A9DCE2701CEF3003F39B9 /* SectionItem.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -434,6 +453,7 @@
 		52CD61B6207DE32200AFB254 /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				377A9DD22701CFAE003F39B9 /* FormatterInterface.swift */,
 				52CD61B7207DE32200AFB254 /* BaseWireframe.swift */,
 				52CD61B8207DE32200AFB254 /* UIStoryboardExtension.swift */,
 				52CD61B9207DE32200AFB254 /* PresenterInterface.swift */,
@@ -630,7 +650,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52CD61C8207DE32200AFB254 /* Main.storyboard in Resources */,
-				52CD61C9207DE32200AFB254 /* Info.plist in Resources */,
 				52CD61E7207DE3C800AFB254 /* LaunchScreen.storyboard in Resources */,
 				52CD6204207DF3B200AFB254 /* Home.storyboard in Resources */,
 				521A3FB6207E2F88001EFB92 /* PokemonDetails.storyboard in Resources */,
@@ -776,12 +795,14 @@
 				526DF99520BEBCDE0011D29A /* RegisterWireframe.swift in Sources */,
 				521A3FAC207E2F4A001EFB92 /* PokemonDetailsInteractor.swift in Sources */,
 				521A3FAA207E2F4A001EFB92 /* PokemonDetailsPresenter.swift in Sources */,
+				377A9DC72701CE62003F39B9 /* TableCellItem.swift in Sources */,
 				52CD61FF207DEB7000AFB254 /* HomeWireframe.swift in Sources */,
 				377A9DC12701CD99003F39B9 /* RxPokemonDetailsFormatter.swift in Sources */,
 				52CD61F1207DE3F700AFB254 /* LoginInteractor.swift in Sources */,
 				526DF99220BEBCDE0011D29A /* RegisterPresenter.swift in Sources */,
 				52CD61DC207DE32200AFB254 /* PokedexValidate.swift in Sources */,
 				521A3FA9207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift in Sources */,
+				377A9DCD2701CED9003F39B9 /* TableSectionItem.swift in Sources */,
 				52CD6203207DF3B200AFB254 /* HomeTableViewCell.swift in Sources */,
 				52CD61CB207DE32200AFB254 /* AppDelegate.swift in Sources */,
 				521A3FB4207E2F88001EFB92 /* PokemonDetailsCommentTableViewCell.swift in Sources */,
@@ -794,6 +815,7 @@
 				52AF85EA2084C4B400046F15 /* PartialURL.swift in Sources */,
 				52CD61EE207DE3F700AFB254 /* LoginInterfaces.swift in Sources */,
 				526DF99120BEBCDE0011D29A /* RegisterInterfaces.swift in Sources */,
+				377A9DC52701CE48003F39B9 /* TableDataSourceDelegate.swift in Sources */,
 				52CD61F2207DE3F700AFB254 /* LoginWireframe.swift in Sources */,
 				52CD61D5207DE32200AFB254 /* Error+Message.swift in Sources */,
 				52CD61E2207DE32200AFB254 /* UserService.swift in Sources */,
@@ -809,11 +831,13 @@
 				52CD61D4207DE32200AFB254 /* Pokemon.swift in Sources */,
 				52AF85E02080926E00046F15 /* PokedexNavigationController.swift in Sources */,
 				52CD61CD207DE32200AFB254 /* Initializer.swift in Sources */,
+				377A9DCF2701CEF3003F39B9 /* SectionItem.swift in Sources */,
 				521A3FAD207E2F4A001EFB92 /* PokemonDetailsWireframe.swift in Sources */,
 				52CD61D8207DE32200AFB254 /* UIStoryboardExtension.swift in Sources */,
 				52CD61E3207DE32200AFB254 /* PokemonService.swift in Sources */,
 				377A9DC22701CD99003F39B9 /* RxPokemonDetailsInteractor.swift in Sources */,
 				52CD61CE207DE32200AFB254 /* SVProgressHudInitializer.swift in Sources */,
+				377A9DCB2701CEC2003F39B9 /* TableViewReloader.swift in Sources */,
 				52AF85DE20808F7A00046F15 /* UITableView+DequeueCell.swift in Sources */,
 				521A3FB5207E2F88001EFB92 /* PokemonDetailsCharacteristicsTableViewCell.swift in Sources */,
 				521A3FAB207E2F4A001EFB92 /* PokemonDetailsViewController.swift in Sources */,
@@ -821,9 +845,11 @@
 				52CD61DF207DE32200AFB254 /* EmailValidator.swift in Sources */,
 				52AF85E62084A2D300046F15 /* KebabCaseJAPXDecoder.swift in Sources */,
 				52CD61D9207DE32200AFB254 /* PresenterInterface.swift in Sources */,
+				377A9DD82701CFAE003F39B9 /* FormatterInterface.swift in Sources */,
 				52CD61CA207DE32200AFB254 /* Constants.swift in Sources */,
 				377A9DBE2701CD99003F39B9 /* RxPokemonDetailsInterfaces.swift in Sources */,
 				52CD61FD207DEB7000AFB254 /* HomeViewController.swift in Sources */,
+				377A9DC92701CE8C003F39B9 /* CellItem.swift in Sources */,
 				52CD61CC207DE32200AFB254 /* ThemeInitializer.swift in Sources */,
 				52CD61D3207DE32200AFB254 /* User.swift in Sources */,
 				52CD61DD207DE32200AFB254 /* APIError.swift in Sources */,
