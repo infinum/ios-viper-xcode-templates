@@ -20,13 +20,13 @@ final class RxPokemonDetailsWireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    init() {
+    init(pokemon: Pokemon) {
         let moduleViewController = storyboard.instantiateViewController(ofType: RxPokemonDetailsViewController.self)
         super.init(viewController: moduleViewController)
 
         let formatter = RxPokemonDetailsFormatter()
         let interactor = RxPokemonDetailsInteractor()
-        let presenter = RxPokemonDetailsPresenter(view: moduleViewController, formatter: formatter, interactor: interactor, wireframe: self)
+        let presenter = RxPokemonDetailsPresenter(view: moduleViewController, formatter: formatter, interactor: interactor, wireframe: self, pokemon: pokemon)
         moduleViewController.presenter = presenter
     }
 
