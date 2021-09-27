@@ -296,4 +296,5 @@ Hopefully, we managed to give some clarification on why, when and how we use the
 Enjoy your newfound tool, use it wisely! :)
 
 Cheers,
+
 Infinum iOS team
