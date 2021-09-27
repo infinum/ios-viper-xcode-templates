@@ -3,6 +3,7 @@
 # Versions
 
 Latest version is v4.0.  
+* [RxViper Formatter Guide](Documentation/Formatter%20Usage%20Guide.md)
 * [Viper 4.0 Migration Guide](Documentation/Viper%204.0%20Migration%20Guide.md)
 
 
