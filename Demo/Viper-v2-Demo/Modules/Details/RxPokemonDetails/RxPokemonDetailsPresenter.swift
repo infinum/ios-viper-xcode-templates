@@ -21,18 +21,23 @@ final class RxPokemonDetailsPresenter {
     private let interactor: RxPokemonDetailsInteractorInterface
     private let wireframe: RxPokemonDetailsWireframeInterface
 
+    private let pokemon: Pokemon
+
     // MARK: - Lifecycle -
 
     init(
         view: RxPokemonDetailsViewInterface,
         formatter: RxPokemonDetailsFormatterInterface,
         interactor: RxPokemonDetailsInteractorInterface,
-        wireframe: RxPokemonDetailsWireframeInterface
+        wireframe: RxPokemonDetailsWireframeInterface,
+        pokemon: Pokemon
     ) {
         self.view = view
         self.formatter = formatter
         self.interactor = interactor
         self.wireframe = wireframe
+
+        self.pokemon = pokemon
     }
 }
 
@@ -41,12 +46,14 @@ final class RxPokemonDetailsPresenter {
 extension RxPokemonDetailsPresenter: RxPokemonDetailsPresenterInterface {
 
     func configure(with output: RxPokemonDetails.ViewOutput) -> RxPokemonDetails.ViewInput {
-
-        let formatterInput = RxPokemonDetails.FormatterInput()
+        let pokemon = Driver.just(pokemon)
+        let formatterInput = RxPokemonDetails.FormatterInput(models: pokemon)
 
         let formatterOutput = formatter.format(for: formatterInput)
 
-        return RxPokemonDetails.ViewInput(models: formatterOutput)
+        let title = Driver.just(self.pokemon.title).compactMap { $0 }
+        let imageURL = Signal.just(self.pokemon.imageURL).compactMap { $0 }
+        return RxPokemonDetails.ViewInput(models: formatterOutput, events: RxPokemonDetailsEvent(title: title, imageURL: imageURL))
     }
 
 }
