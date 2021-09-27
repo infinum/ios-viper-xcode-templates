@@ -21,6 +21,7 @@
 		377A9DCD2701CED9003F39B9 /* TableSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DCC2701CED9003F39B9 /* TableSectionItem.swift */; };
 		377A9DCF2701CEF3003F39B9 /* SectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DCE2701CEF3003F39B9 /* SectionItem.swift */; };
 		377A9DD82701CFAE003F39B9 /* FormatterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DD22701CFAE003F39B9 /* FormatterInterface.swift */; };
+		377A9DDE2701D01E003F39B9 /* BlankTableViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377A9DDD2701D01E003F39B9 /* BlankTableViewSection.swift */; };
 		521A3FA9207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA4207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift */; };
 		521A3FAA207E2F4A001EFB92 /* PokemonDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA5207E2F4A001EFB92 /* PokemonDetailsPresenter.swift */; };
 		521A3FAB207E2F4A001EFB92 /* PokemonDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521A3FA6207E2F4A001EFB92 /* PokemonDetailsViewController.swift */; };
@@ -123,6 +124,7 @@
 		377A9DCC2701CED9003F39B9 /* TableSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionItem.swift; sourceTree = "<group>"; };
 		377A9DCE2701CEF3003F39B9 /* SectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionItem.swift; sourceTree = "<group>"; };
 		377A9DD22701CFAE003F39B9 /* FormatterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterInterface.swift; sourceTree = "<group>"; };
+		377A9DDD2701D01E003F39B9 /* BlankTableViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankTableViewSection.swift; sourceTree = "<group>"; };
 		3E12449C886E905088E9A50B /* Pods-Viper-v2-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v2-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Viper-v2-Demo/Pods-Viper-v2-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		521A3FA4207E2F4A001EFB92 /* PokemonDetailsInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsInterfaces.swift; sourceTree = "<group>"; };
 		521A3FA5207E2F4A001EFB92 /* PokemonDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 				377A9DCA2701CEC2003F39B9 /* TableViewReloader.swift */,
 				377A9DCC2701CED9003F39B9 /* TableSectionItem.swift */,
 				377A9DCE2701CEF3003F39B9 /* SectionItem.swift */,
+				377A9DDD2701D01E003F39B9 /* BlankTableViewSection.swift */,
 			);
 			path = TableView;
 			sourceTree = "<group>";
@@ -845,6 +848,7 @@
 				52CD61DF207DE32200AFB254 /* EmailValidator.swift in Sources */,
 				52AF85E62084A2D300046F15 /* KebabCaseJAPXDecoder.swift in Sources */,
 				52CD61D9207DE32200AFB254 /* PresenterInterface.swift in Sources */,
+				377A9DDE2701D01E003F39B9 /* BlankTableViewSection.swift in Sources */,
 				377A9DD82701CFAE003F39B9 /* FormatterInterface.swift in Sources */,
 				52CD61CA207DE32200AFB254 /* Constants.swift in Sources */,
 				377A9DBE2701CD99003F39B9 /* RxPokemonDetailsInterfaces.swift in Sources */,

@@ -32,11 +32,11 @@ public protocol TableSectionItem: SectionItem {
 public extension TableSectionItem {
 
     var headerHeight: CGFloat {
-        return UITableView.automaticDimension
+        return UITableViewAutomaticDimension
     }
 
     var footerHeight: CGFloat {
-        return UITableView.automaticDimension
+        return UITableViewAutomaticDimension
     }
 
     var estimatedHeaderHeight: CGFloat {
