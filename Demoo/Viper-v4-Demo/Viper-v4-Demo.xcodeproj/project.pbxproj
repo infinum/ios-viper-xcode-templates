@@ -27,6 +27,8 @@
 		37689506270C3A0F0094A3C2 /* InteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37689500270C3A0F0094A3C2 /* InteractorInterface.swift */; };
 		37689509270C3A9D0094A3C2 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37689508270C3A9D0094A3C2 /* UIFontExtension.swift */; };
 		3768950C270C3C080094A3C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3768950A270C3C080094A3C2 /* Main.storyboard */; };
+		3768950F270C3F300094A3C2 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768950D270C3F2F0094A3C2 /* UIColorExtension.swift */; };
+		37689510270C3F300094A3C2 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768950E270C3F300094A3C2 /* UIImageExtension.swift */; };
 		399B2EF59C6A57F6DBF68280 /* Pods_Viper_v4_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BAEAACCDF6A907F21B83EE9 /* Pods_Viper_v4_Demo.framework */; };
 		D1737095DA6362EC78A9A95A /* Pods_Viper_v4_Demo_Viper_v4_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 974E026572809E94C7778445 /* Pods_Viper_v4_Demo_Viper_v4_DemoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,8 @@
 		37689500270C3A0F0094A3C2 /* InteractorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorInterface.swift; sourceTree = "<group>"; };
 		37689508270C3A9D0094A3C2 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		3768950B270C3C080094A3C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3768950D270C3F2F0094A3C2 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		3768950E270C3F300094A3C2 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		3BEF12977C1E246A103582CA /* Pods-Viper-v4-Demo-Viper-v4-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v4-Demo-Viper-v4-DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Viper-v4-Demo-Viper-v4-DemoUITests/Pods-Viper-v4-Demo-Viper-v4-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		585EC986C8D514B0A46B1AFC /* Pods-Viper-v4-Demo-Viper-v4-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-v4-Demo-Viper-v4-DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Viper-v4-Demo-Viper-v4-DemoUITests/Pods-Viper-v4-Demo-Viper-v4-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		70FD03556614625B21C3B672 /* Pods_Viper_v4_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viper_v4_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +229,8 @@
 		37689507270C3A900094A3C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				3768950D270C3F2F0094A3C2 /* UIColorExtension.swift */,
+				3768950E270C3F300094A3C2 /* UIImageExtension.swift */,
 				37689508270C3A9D0094A3C2 /* UIFontExtension.swift */,
 			);
 			path = Extensions;
@@ -500,9 +506,11 @@
 				37689509270C3A9D0094A3C2 /* UIFontExtension.swift in Sources */,
 				37689502270C3A0F0094A3C2 /* FormatterInterface.swift in Sources */,
 				37689501270C3A0F0094A3C2 /* BaseWireframe.swift in Sources */,
+				37689510270C3F300094A3C2 /* UIImageExtension.swift in Sources */,
 				37689504270C3A0F0094A3C2 /* PresenterInterface.swift in Sources */,
 				37689503270C3A0F0094A3C2 /* UIStoryboardExtension.swift in Sources */,
 				37689505270C3A0F0094A3C2 /* ViewInterface.swift in Sources */,
+				3768950F270C3F300094A3C2 /* UIColorExtension.swift in Sources */,
 				376894BA270C33950094A3C2 /* AppDelegate.swift in Sources */,
 				376894EC270C36700094A3C2 /* Constants.swift in Sources */,
 			);

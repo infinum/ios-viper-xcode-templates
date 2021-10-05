@@ -1,0 +1,60 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (3.0.4)
+      rexml
+    activesupport (6.1.4.1)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+      i18n (>= 1.6, < 2)
+      minitest (>= 5.1)
+      tzinfo (~> 2.0)
+      zeitwerk (~> 2.3)
+    atomos (0.1.3)
+    claide (1.0.3)
+    colored2 (3.1.2)
+    commander (4.6.0)
+      highline (~> 2.0.0)
+    concurrent-ruby (1.1.9)
+    highline (2.0.3)
+    i18n (1.8.10)
+      concurrent-ruby (~> 1.0)
+    minitest (5.14.4)
+    nanaimo (0.3.0)
+    pastel (0.8.0)
+      tty-color (~> 0.5)
+    redbreast (1.1.2)
+      activesupport
+      commander
+      tty-prompt
+      xcodeproj
+    rexml (3.2.5)
+    tty-color (0.6.0)
+    tty-cursor (0.7.1)
+    tty-prompt (0.23.1)
+      pastel (~> 0.8)
+      tty-reader (~> 0.8)
+    tty-reader (0.9.0)
+      tty-cursor (~> 0.7)
+      tty-screen (~> 0.8)
+      wisper (~> 2.0)
+    tty-screen (0.8.1)
+    tzinfo (2.0.4)
+      concurrent-ruby (~> 1.0)
+    wisper (2.0.1)
+    xcodeproj (1.21.0)
+      CFPropertyList (>= 2.3.3, < 4.0)
+      atomos (~> 0.1.3)
+      claide (>= 1.0.2, < 2.0)
+      colored2 (~> 3.1)
+      nanaimo (~> 0.3.0)
+      rexml (~> 3.2.4)
+    zeitwerk (2.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  redbreast
+
+BUNDLED WITH
+   1.17.2
