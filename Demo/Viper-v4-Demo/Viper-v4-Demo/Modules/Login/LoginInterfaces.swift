@@ -43,7 +43,7 @@ enum Login {
 
 
 struct LoginActions {
-    let rememberMe: Driver<Void>
+    let rememberMe: Driver<Bool>
     let login: Signal<Void>
     let register: Signal<Void>
     let email: Driver<String?>

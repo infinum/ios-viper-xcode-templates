@@ -45,8 +45,13 @@ extension LoginViewController: LoginViewInterface {
 private extension LoginViewController {
 
     func setupView() {
+        let remember = checkboxButton.rx.tap.asDriver()
+            .scan(false) { previousValue, _ in
+                !previousValue
+            }
+
         let output = Login.ViewOutput(actions: LoginActions(
-            rememberMe: checkboxButton.rx.tap.asDriver(),
+            rememberMe: remember,
             login: loginButton.rx.tap.asSignal(),
             register: registerButton.rx.tap.asSignal(),
             email: emailTextField.rx.text.asDriver(),
@@ -54,7 +59,7 @@ private extension LoginViewController {
         ))
 
         let input = presenter.configure(with: output)
-        handle(rememberMe: checkboxButton.rx.tap.asDriver())
+        handle(rememberMe: remember)
         handle(areButtonsAvailable: input.events.areActionsAvailable)
         handle(secureEntry: secureEntryButton.rx.tap.asDriver())
     }
@@ -62,11 +67,8 @@ private extension LoginViewController {
 }
 
 private extension LoginViewController {
-    func handle(rememberMe: Driver<Void>) {
+    func handle(rememberMe: Driver<Bool>) {
         rememberMe
-            .scan(false) { previousValue, _ in
-                !previousValue
-            }
             .drive(checkboxButton.rx.isSelected)
             .disposed(by: disposeBag)
     }

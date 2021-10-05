@@ -34,4 +34,7 @@ final class LoginWireframe: BaseWireframe<LoginViewController> {
 // MARK: - Extensions -
 
 extension LoginWireframe: LoginWireframeInterface {
+    func navigateToHome() {
+        //needs implementation when home is created
+    }
 }
