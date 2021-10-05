@@ -34,6 +34,10 @@ final class LoginPresenter {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+
+        emailValidator = EmailValidator()
+        passwordValidator = PasswordValidator(minLength: 6)
+        disposeBag = DisposeBag()
     }
 }
 
@@ -42,7 +46,115 @@ final class LoginPresenter {
 extension LoginPresenter: LoginPresenterInterface {
 
     func configure(with output: Login.ViewOutput) -> Login.ViewInput {
-        return Login.ViewInput(events: LoginEvents(areActionsAvailable: <#T##Driver<Bool>#>))
+        handle(
+            login: output.actions.login,
+            output.actions.email,
+            output.actions.password,
+            remember: output.actions.rememberMe
+        )
+        handle(
+            register: output.actions.register,
+            output.actions.email,
+            output.actions.password,
+            remember: output.actions.rememberMe
+        )
+        
+        return Login.ViewInput(events: LoginEvents(
+            areActionsAvailable: handle(inputs: (email: output.actions.email, password: output.actions.password))
+        ))
     }
 
+}
+
+private extension LoginPresenter {
+    func handle(
+        login: Signal<Void>,
+        _ email: Driver<String?>,
+        _ password: Driver<String?>,
+        remember: Driver<Bool>
+    ) {
+        let inputs = Driver.combineLatest(email.compactMap { $0 }, password.compactMap { $0 })
+        login
+            .withLatestFrom(inputs)
+            .flatMap { [unowned self] email, password -> Driver<User> in
+                return interactor
+                    .login(with: email, password)
+                    .do(onError: { [unowned self] error in
+                        view.hideProgressHUD()
+                        showValidationError(error)
+                    }, onSubscribe: { [unowned view] in
+                        view.showProgressHUD()
+                    })
+                    .asDriver(onErrorDriveWith: .never())
+            }
+            .withLatestFrom(remember) { ($0, $1) }
+            .do(onNext: { [unowned self] user, remember in
+                saveUser(remember, user)
+                view.hideProgressHUD()
+            })
+            .drive(onNext: { [unowned wireframe] _ in
+                wireframe.navigateToHome()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func handle(
+        register: Signal<Void>,
+        _ email: Driver<String?>,
+        _ password: Driver<String?>,
+        remember: Driver<Bool>
+    ) {
+        let inputs = Driver.combineLatest(email.compactMap { $0 }, password.compactMap { $0 })
+        register
+            .withLatestFrom(inputs)
+            .flatMap { [unowned self] email, password -> Driver<User> in
+                return interactor
+                    .register(with: email, password)
+                    .do(onError: { [unowned self] error in
+                        view.hideProgressHUD()
+                        showValidationError(error)
+                    }, onSubscribe: { [unowned view] in
+                        view.showProgressHUD()
+                    })
+                    .asDriver(onErrorDriveWith: .never())
+            }
+            .withLatestFrom(remember) { ($0, $1) }
+            .do(onNext: { [unowned self] user, remember in
+                saveUser(remember, user)
+                view.hideProgressHUD()
+            })
+            .drive(onNext: { [unowned wireframe] _ in
+                wireframe.navigateToHome()
+            })
+            .disposed(by: disposeBag)
+    }
+
+    func handle(inputs: (email: Driver<String?>, password: Driver<String?>)) -> Driver<Bool> {
+        Driver.combineLatest(inputs.email.compactMap { $0 }, inputs.password.compactMap { $0 })
+            .map { [unowned self] email, password in
+                return isEmailValid(email) && isPasswordValid(password)
+            }
+            .startWith(false)
+    }
+
+    func isEmailValid(_ email: String) -> Bool {
+        return emailValidator.isValid(email)
+    }
+
+    func isPasswordValid(_ password: String) -> Bool {
+        return passwordValidator.isValid(password)
+    }
+
+
+    func saveUser(_ shouldSave: Bool, _ user: User) {
+        if shouldSave {
+            interactor.rememberUser()
+        }
+    }
+}
+
+private extension LoginPresenter {
+    func showValidationError(_ error: Error) {
+        wireframe.showAlert(with: "Error", message: error.localizedDescription)
+    }
 }
