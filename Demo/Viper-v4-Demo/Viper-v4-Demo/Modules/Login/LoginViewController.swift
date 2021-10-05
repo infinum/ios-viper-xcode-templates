@@ -60,7 +60,7 @@ private extension LoginViewController {
 
         let input = presenter.configure(with: output)
         handle(rememberMe: remember)
-        handle(areButtonsAvailable: input.events.areActionsAvailable)
+        handle(areActionsAvailable: input.events.areActionsAvailable)
         handle(secureEntry: secureEntryButton.rx.tap.asDriver())
     }
 
@@ -73,21 +73,21 @@ private extension LoginViewController {
             .disposed(by: disposeBag)
     }
 
-    func handle(areButtonsAvailable: Driver<Bool>) {
-        areButtonsAvailable
+    func handle(areActionsAvailable: Driver<Bool>) {
+        areActionsAvailable
             .drive(registerButton.rx.isEnabled)
             .disposed(by: disposeBag)
 
-        areButtonsAvailable
+        areActionsAvailable
             .map { $0 ? 1 : 0.3 }
             .drive(registerButton.rx.alpha)
             .disposed(by: disposeBag)
 
-        areButtonsAvailable
+        areActionsAvailable
             .drive(loginButton.rx.isEnabled)
             .disposed(by: disposeBag)
 
-        areButtonsAvailable
+        areActionsAvailable
             .map { $0 ? 1 : 0.3 }
             .drive(loginButton.rx.alpha)
             .disposed(by: disposeBag)
