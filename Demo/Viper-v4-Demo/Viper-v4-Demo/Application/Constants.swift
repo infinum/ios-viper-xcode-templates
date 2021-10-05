@@ -11,5 +11,7 @@ enum Constants {
 
     enum API {
         static let base = URL(string: "https://tv-shows.infinum.academy")!
+        static let login = base.appendingPathComponent("/users/sign_in")
+        static let register = base.appendingPathComponent("/users")
     }
 }
