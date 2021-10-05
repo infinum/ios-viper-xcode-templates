@@ -14,4 +14,8 @@ enum Constants {
         static let login = base.appendingPathComponent("/users/sign_in")
         static let register = base.appendingPathComponent("/users")
     }
+
+    enum UserDefaults {
+        static let remember = "rememberUser"
+    }
 }

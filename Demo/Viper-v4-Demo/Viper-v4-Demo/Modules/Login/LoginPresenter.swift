@@ -20,6 +20,10 @@ final class LoginPresenter {
     private let interactor: LoginInteractorInterface
     private let wireframe: LoginWireframeInterface
 
+    private let emailValidator: EmailValidator
+    private let passwordValidator: PasswordValidator
+    private let disposeBag: DisposeBag
+
     // MARK: - Lifecycle -
 
     init(
@@ -38,7 +42,7 @@ final class LoginPresenter {
 extension LoginPresenter: LoginPresenterInterface {
 
     func configure(with output: Login.ViewOutput) -> Login.ViewInput {
-        return Login.ViewInput()
+        return Login.ViewInput(events: LoginEvents(areActionsAvailable: <#T##Driver<Bool>#>))
     }
 
 }

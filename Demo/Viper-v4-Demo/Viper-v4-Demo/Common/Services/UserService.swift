@@ -14,7 +14,11 @@ class UserService {
 
     static let shared = UserService()
 
-    private init() {}
+    private let userDefaults: UserDefaults
+
+    private init() {
+        userDefaults = .standard
+    }
 
     func login(with email: String, _ password: String) -> Single<User> {
         Single.create { single in
@@ -72,5 +76,13 @@ class UserService {
                 request.cancel()
             }
         }
+    }
+
+    func rememberUser() {
+        userDefaults.set(true, forKey: Constants.UserDefaults.remember)
+    }
+
+    func removeUser() {
+        userDefaults.removeObject(forKey: Constants.UserDefaults.remember)
     }
 }
