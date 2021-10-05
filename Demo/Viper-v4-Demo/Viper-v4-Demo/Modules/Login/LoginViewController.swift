@@ -20,6 +20,12 @@ final class LoginViewController: UIViewController {
 
     // MARK: - Private properties -
 
+    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var checkboxButton: UIButton!
+    @IBOutlet private var loginButton: UIButton!
+    @IBOutlet private var registerButton: UIButton!
+    @IBOutlet var secureEntryButton: UIButton!
     private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle -
@@ -39,9 +45,64 @@ extension LoginViewController: LoginViewInterface {
 private extension LoginViewController {
 
     func setupView() {
-        let output = Login.ViewOutput()
+        let output = Login.ViewOutput(actions: LoginActions(
+            rememberMe: checkboxButton.rx.tap.asDriver(),
+            login: loginButton.rx.tap.asSignal(),
+            register: registerButton.rx.tap.asSignal(),
+            email: emailTextField.rx.text.asDriver(),
+            password: passwordTextField.rx.text.asDriver()
+        ))
 
         let input = presenter.configure(with: output)
+        handle(rememberMe: checkboxButton.rx.tap.asDriver())
+        handle(areButtonsAvailable: input.events.areActionsAvailable)
+        handle(secureEntry: secureEntryButton.rx.tap.asDriver())
     }
 
+}
+
+private extension LoginViewController {
+    func handle(rememberMe: Driver<Void>) {
+        rememberMe
+            .scan(false) { previousValue, _ in
+                !previousValue
+            }
+            .drive(checkboxButton.rx.isSelected)
+            .disposed(by: disposeBag)
+    }
+
+    func handle(areButtonsAvailable: Driver<Bool>) {
+        areButtonsAvailable
+            .drive(registerButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        areButtonsAvailable
+            .map { $0 ? 1 : 0.3 }
+            .drive(registerButton.rx.alpha)
+            .disposed(by: disposeBag)
+
+        areButtonsAvailable
+            .drive(loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        areButtonsAvailable
+            .map { $0 ? 1 : 0.3 }
+            .drive(loginButton.rx.alpha)
+            .disposed(by: disposeBag)
+    }
+
+    func handle(secureEntry: Driver<Void>) {
+        let state = secureEntry
+            .scan(true) { previousValue, _ in
+                !previousValue
+            }
+
+        state
+            .drive(secureEntryButton.rx.isSelected)
+            .disposed(by: disposeBag)
+
+        state
+            .drive(passwordTextField.rx.isSecureTextEntry)
+            .disposed(by: disposeBag)
+    }
 }

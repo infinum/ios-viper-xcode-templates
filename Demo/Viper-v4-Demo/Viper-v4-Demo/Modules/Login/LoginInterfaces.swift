@@ -13,6 +13,7 @@ import RxSwift
 import RxCocoa
 
 protocol LoginWireframeInterface: WireframeInterface {
+    func navigateToHome()
 }
 
 protocol LoginViewInterface: ViewInterface {
@@ -23,14 +24,32 @@ protocol LoginPresenterInterface: PresenterInterface {
 }
 
 protocol LoginInteractorInterface: InteractorInterface {
+    func login(with email: String, _ password: String) -> Single<User>
+    func register(with email: String, _ password: String) -> Single<User>
+    func rememberUser()
 }
 
 enum Login {
 
     struct ViewOutput {
+        let actions: LoginActions
     }
 
     struct ViewInput {
+        let events: LoginEvents
     }
 
+}
+
+
+struct LoginActions {
+    let rememberMe: Driver<Void>
+    let login: Signal<Void>
+    let register: Signal<Void>
+    let email: Driver<String?>
+    let password: Driver<String?>
+}
+
+struct LoginEvents {
+    let areActionsAvailable: Driver<Bool>
 }

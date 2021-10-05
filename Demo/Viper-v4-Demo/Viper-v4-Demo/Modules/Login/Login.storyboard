@@ -191,6 +191,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2eL-Sd-GAz"/>
+                    <connections>
+                        <outlet property="checkboxButton" destination="apV-EI-NZI" id="JCL-V9-htm"/>
+                        <outlet property="emailTextField" destination="n0Y-VC-yZ5" id="5ck-ap-5Sc"/>
+                        <outlet property="loginButton" destination="ydx-GH-b3X" id="cLT-IE-ERV"/>
+                        <outlet property="passwordTextField" destination="0tz-R5-5bg" id="dS6-Iy-aCJ"/>
+                        <outlet property="registerButton" destination="Rh9-f2-3Ps" id="M1t-Ql-dWD"/>
+                        <outlet property="secureEntryButton" destination="yqS-9A-xaX" id="K11-Dg-Y74"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rle-ol-2Ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
