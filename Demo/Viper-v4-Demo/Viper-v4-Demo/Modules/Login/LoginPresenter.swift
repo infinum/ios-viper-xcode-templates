@@ -58,7 +58,7 @@ extension LoginPresenter: LoginPresenterInterface {
             output.actions.password,
             remember: output.actions.rememberMe
         )
-        
+
         return Login.ViewInput(events: LoginEvents(
             areActionsAvailable: handle(inputs: (email: output.actions.email, password: output.actions.password))
         ))
@@ -77,15 +77,7 @@ private extension LoginPresenter {
         login
             .withLatestFrom(inputs)
             .flatMap { [unowned self] email, password -> Driver<User> in
-                return interactor
-                    .login(with: email, password)
-                    .do(onError: { [unowned self] error in
-                        view.hideProgressHUD()
-                        showValidationError(error)
-                    }, onSubscribe: { [unowned view] in
-                        view.showProgressHUD()
-                    })
-                    .asDriver(onErrorDriveWith: .never())
+                return performLogin(email, password)
             }
             .withLatestFrom(remember) { ($0, $1) }
             .do(onNext: { [unowned self] user, remember in
@@ -98,6 +90,18 @@ private extension LoginPresenter {
             .disposed(by: disposeBag)
     }
 
+    func performLogin(_ email: String, _ password: String) -> Driver<User> {
+        return interactor
+            .login(with: email, password)
+            .do(onError: { [unowned self] error in
+                view.hideProgressHUD()
+                showValidationError(error)
+            }, onSubscribe: { [unowned view] in
+                view.showProgressHUD()
+            })
+            .asDriver(onErrorDriveWith: .never())
+    }
+
     func handle(
         register: Signal<Void>,
         _ email: Driver<String?>,
@@ -108,15 +112,7 @@ private extension LoginPresenter {
         register
             .withLatestFrom(inputs)
             .flatMap { [unowned self] email, password -> Driver<User> in
-                return interactor
-                    .register(with: email, password)
-                    .do(onError: { [unowned self] error in
-                        view.hideProgressHUD()
-                        showValidationError(error)
-                    }, onSubscribe: { [unowned view] in
-                        view.showProgressHUD()
-                    })
-                    .asDriver(onErrorDriveWith: .never())
+                return performRegister(email, password)
             }
             .withLatestFrom(remember) { ($0, $1) }
             .do(onNext: { [unowned self] user, remember in
@@ -127,6 +123,18 @@ private extension LoginPresenter {
                 wireframe.navigateToHome()
             })
             .disposed(by: disposeBag)
+    }
+
+    func performRegister(_ email: String, _ password: String) -> Driver<User> {
+        return interactor
+            .register(with: email, password)
+            .do(onError: { [unowned self] error in
+                view.hideProgressHUD()
+                showValidationError(error)
+            }, onSubscribe: { [unowned view] in
+                view.showProgressHUD()
+            })
+            .asDriver(onErrorDriveWith: .never())
     }
 
     func handle(inputs: (email: Driver<String?>, password: Driver<String?>)) -> Driver<Bool> {
