@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+enum Constants {
+
+    enum API {
+        static let base = URL(string: "https://tv-shows.infinum.academy")!
+    }
+}
