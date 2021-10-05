@@ -55,9 +55,7 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" red="0.32156862745098036" green="0.21176470588235294" blue="0.5490196078431373" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <state key="disabled" title="Login">
-                                    <color key="titleColor" white="1" alpha="0.40301700509999999" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                </state>
+                                <state key="disabled" title="Login"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                         <real key="value" value="0.0"/>
@@ -141,7 +139,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqS-9A-xaX">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqS-9A-xaX">
                                 <rect key="frame" x="319" y="374.5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Cfh-cp-XRg"/>
