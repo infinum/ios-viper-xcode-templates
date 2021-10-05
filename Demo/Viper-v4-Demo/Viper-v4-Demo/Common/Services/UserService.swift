@@ -36,7 +36,7 @@ class UserService {
                     return
                 }
                 do {
-                    let user = try JapxDecoder().decode(User.self, from: data)
+                    let user = try JapxDecoder().decode(AuthResponse.self, from: data).user
                     single(.success(user))
                 } catch {
                     single(.failure(error))
@@ -65,7 +65,7 @@ class UserService {
                     return
                 }
                 do {
-                    let user = try JapxDecoder().decode(User.self, from: data)
+                    let user = try JapxDecoder().decode(AuthResponse.self, from: data).user
                     single(.success(user))
                 } catch {
                     single(.failure(error))
