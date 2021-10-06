@@ -123,7 +123,7 @@ extension BaseWireframe: WireframeInterface {
 extension BaseWireframe {
 
     var viewController: UIViewController {
-        defer { _temporaryStoredViewController = nil }
+        defer { temporaryStoredViewController = nil }
         return _viewController
     }
 
