@@ -34,7 +34,7 @@ enum Login {
 }
 ```
 
-Intrefaces file generates interfaces for our wireframe, view, presenter and interactor. These interfaces let us encapsulate whichever code we don't to be visible by the other side. The generated file contains one function in <i>LoginPresenterInterface</p> which initializes the communication between our Presenter and ViewController. As a parameter it requires *ViewOutput* and returns *ViewInput*. Firstly, we got an enum called *Login* which is generated for us. The enum contains two structures, one for output, one for input. As the name suggests, <i>ViewOutput</i> is used to store every piece of information that our view wants presenter to know about. Same principle but the other way around is <i>ViewInput</i>, our presenter sends information to the view which it can observe and react to.
+Interfaces file generates interfaces for our wireframe, view, presenter and interactor. These interfaces let us encapsulate whichever code we don't to be visible by the other side. The generated file contains one function in <i>LoginPresenterInterface</p> which initializes the communication between our Presenter and ViewController. As a parameter it requires *ViewOutput* and returns *ViewInput*. Firstly, we got an enum called *Login* which is generated for us. The enum contains two structures, one for output, one for input. As the name suggests, <i>ViewOutput</i> is used to store every piece of information that our view wants presenter to know about. Same principle but the other way around is <i>ViewInput</i>, our presenter sends information to the view which it can observe and react to.
 
 ###LoginPresenter
 
@@ -202,9 +202,12 @@ struct LoginEvents {
 }
 ```
 
-As you're reading through the implemented interfaces file, you might have noticed the <i>navigateToHome</i> function but I believe it's quite self explanatory. Handles the navigation to the <i>Home</i> screen.
-Next in order is login function in the LoginInteractorInterface which differs from the standard one (non-rx) in returning the observable sequence (in this case its Single trait) instead of receiving the completion handler as an method argument. The same goes for the <i>register</i> method. We try to use traits as much as possible and when they are applicable. Don't overuse them, try to understand when and where you should use them. We mostly use Single and Completable as return types when defining API calls since in that case it is expected to either succeed or fail with returned value/error, or when the API call does not return anything (or the result does not matter), use Completable. We'll get in touch with <i>rememberUser</i> function in the *LoginInteractor* part of this guide.
+As you're reading through the implemented interfaces file, you might have noticed the <i>navigateToHome</i> function but I believe it's quite self-explanatory. Handles the navigation to the <i>Home</i> screen.
+
+Next in order is login function in the LoginInteractorInterface which differs from the standard one (non-rx) in returning the observable sequence (in this case its Single trait) instead of receiving the completion handler as a method argument. The same goes for the <i>register</i> method. We try to use traits as much as possible and when they are applicable. Don't overuse them, try to understand when and where you should use them. We mostly use Single and Completable as return types when defining API calls since in that case it is expected to either succeed or fail with returned value/error, or when the API call does not return anything (or the result does not matter), use Completable. We'll get in touch with <i>rememberUser</i> function in the *LoginInteractor* part of this guide.
+
 Lastly, we're moving to the Login enum which now contains some information. As you can see, we have added *LoginActions* struct which helps us organise actions in one single place. Actions will hold every driver, signal, etc. which the view wants to pass to Presenter. We're mostly using Drivers for use cases where we need to access the last known value when subscribing, for example when binding a value to the text field. On the other hand, we use signals to register button taps or anything which just needs to say that it has happened and doesn't need to keep the last known value. As those are actions, you want to name them as actions (login, register, email, rememberMe, etc.) and not as emailDriver, etc. When Presenter wants to send something to the view, we wrap it in *Events* struct which contains every possible event which view needs to know about. With events, for example, there can be an items property that will contain items that are shown on the screen (tableView, collectionView). Events work just like actions and naming is not any different :)
+
 Having that said, we have wrapped up a big chunk of information. We have covered how to pass information from the view to the presenter and back. Now let's see how it works under the hood. *LoginPresenter* here we come!
 
 ###LoginPresenter
@@ -367,7 +370,9 @@ private extension LoginPresenter {
 ```
 
 Whoa! That was a lot of code. Don't fret, it's quite simple :)
+
 We'll start from the top. We have implemented some part of validation for the email and password just so we can enable/disable our buttons. Now we're going straight down to the <i>configure</i> function. Inside the <i>configure</i> method presenter registers to the events from the *ViewOutput*. As there is a driver which we'll send to the view, we have to call <i>handle(inputs:)</i> function and pass it as a parameter. We'll take both, email and password drivers, do some Rx magic which will check if the inputs are valid, and return a fresh driver with a bool value. If the inputs are valid it returns true, and as the name of the driver says, buttons will be available, otherwise, they are disabled. Every <i>handle</i> function has a different purpose and requires different parameters. There are <i>handle(login...)</i> and <i>handle(register...)</i> and we differ their functionality by the first parameter.
+
 After presenter creates inputs for the view, we want the presenter to subscribe to the actions that are performed by the view. Since those actions only result in navigation or API call, we don't have to return anything, just handle the navigation/calls internally.
 Next, we'll get in touch with our implemented *LoginViewController*.
 
@@ -475,7 +480,8 @@ private extension LoginViewController {
 We'll just explain the <i>setupView</i> function since it's the main part.
 
 As you can see, our <i>setupView</i> function is quite small since we're trying to use SRP as much as possible to separate our code into smaller functions which are then called by the main one. It's purpose is to initialize the *ViewOutput* and *ViewInput*. We have passed everything from our *IBOutlets* as parameters for the *ViewOutput* which will be used in the presenter. The presenter is good enough to give us some information back about the availability of our actions. After the presenter has been configured and we have got our *ViewInput* structure, we can react to the events as needed. In our case, we have reacted by changing the alpha of the buttons and driving the bool value into the <i>isEnabled</i> property of the same ones.
-Hopefully that wasn't hard for you to cope, hold on a bit longer, we're close to the end :)
+
+Hopefully, that wasn't hard for you to cope, hold on a bit longer, we're close to the end :)
 Let's move onto the *LoginInteractor*:
 
 ###LoginInteractor
@@ -507,7 +513,8 @@ extension LoginInteractor: LoginInteractorInterface {
 }
 ```
 
-The interactor, as in base module, helps us make API calls or any other call that we need. It contains a service as a property which has to know how to handle Interactor functions. In this case, our *UserService* knows how to login, register and save a user so he doesn't have to login every time he opens the application. We try to inject everything that we can to keep up with the SOLID principles and keep our code cleaner :)
+The interactor, as in base module, helps us make API calls or any other call that we need. It contains a service as a property which has to know how to handle Interactor functions. In this case, our *UserService* knows how to log in, register and save a user so he doesn't have to log in every time he opens the application. We try to inject everything that we can to keep up with the SOLID principles and keep our code cleaner :)
+
 Last but not the least, *LoginWireframe*:
 
 ###LoginWireframe
