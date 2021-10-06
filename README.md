@@ -27,8 +27,8 @@ After that, restart your Xcode if it was already opened.
 
 ## Demo project
 
-There's a Pokemon demo project in Demo folder.
-You can find most common VIPER module use cases in it.
+There's a TV Shows demo project in Demo folder.
+You can find most common VIPER module use cases in it. If you're already familiar with the base Viper modules you can check out our [RxModule Guide](Documentation/Viper%20RxModule%20Guide.md).
 
 # VIPER short introduction
 
@@ -99,7 +99,7 @@ Let's start by covering these base files: *WireframeInterface*, *BaseWireframe*,
 ### WireframeInterface and BaseWireframe
 
 ```swift
-protocol WireframeInterface: class {
+protocol WireframeInterface: AnyObject {
 }
 
 class BaseWireframe {
@@ -107,10 +107,10 @@ class BaseWireframe {
     private unowned var _viewController: UIViewController
 
     // To retain view controller reference upon first access
-    private var _temporaryStoredViewController: UIViewController?
+    private var temporaryStoredViewController: ViewController?
 
     init(viewController: UIViewController) {
-        _temporaryStoredViewController = viewController
+        temporaryStoredViewController = viewController
         _viewController = viewController
     }
 
@@ -163,47 +163,10 @@ The Wireframe is used in 2 steps:
 2. Navigation to a screen (see the *pushWireframe*, *presentWireframe* and *setRootWireframe* methods).
 Those methods are defined on *UIViewController* and *UINavigationController* since those objects are responsible for performing the navigation.
 
-### PresenterInterface
+### ViewInterface, InteractorInterface and PresenterInterface
 
 ```swift
-protocol PresenterInterface: class {
-    func viewDidLoad()
-    func viewWillAppear(animated: Bool)
-    func viewDidAppear(animated: Bool)
-    func viewWillDisappear(animated: Bool)
-    func viewDidDisappear(animated: Bool)
-}
-
-extension PresenterInterface {
-
-    func viewDidLoad() {
-        fatalError("Implementation pending...")
-    }
-
-    func viewWillAppear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-
-    func viewDidAppear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-
-    func viewWillDisappear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-
-    func viewDidDisappear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-}
-```
-
-The *PresenterInterface* offers only optional methods which are used for the Presenter to performa tasks based on View events. For methods you use without implementing them you'll get a nice big fatal error.
-
-### ViewInterface and InteractorInterface
-
-```swift
-protocol ViewInterface: class {
+protocol ViewInterface: AnyObject {
 }
 
 extension ViewInterface {
@@ -211,61 +174,64 @@ extension ViewInterface {
 ```
 
 ```swift
-protocol InteractorInterface: class {
+protocol InteractorInterface: AnyObject {
 }
 
 extension InteractorInterface {
 }
 ```
 
-These two interfaces are initially empty. They exists just to make it simple to insert any and all functions needed in all views/interactors in you project. Both protocols need to be class bound because the Presenter will hold them via a weak reference.
+```swift
+protocol PresenterInterface: AnyObject {
+}
+
+extension PresenterInterface {
+}
+```
+
+These interfaces are initially empty. They exists just to make it simple to insert any and all functions needed in all views/interactors/presenters in you project. *ViewInterface* and *InteractorInterface* protocols need to be class bound because the Presenter will hold them via a weak reference.
 
 Ok, let's get to the actual module. First we'll cover the files you get when creating a new module via the module generator.
 
 ## 2. What you get when generating a module
 
-When running the module generator you will get five files. Say we wanted to create a Login module, we would get the following: *LoginInterfaces*, *LoginWireframe*, *LoginPresenter*, *LoginView* and *LoginInteractor*. Let's go over all five.
+When running the module generator you will get five files. Say we wanted to create a Home module, we would get the following: *HomeInterfaces*, *HomeWireframe*, *HomePresenter*, *HomeView* and *HomeInteractor*. Let's go over all five.
 
 ### Interfaces
 
 ```swift
-enum LoginNavigationOption {
+protocol HomeWireframeInterface: WireframeInterface {
 }
 
-protocol LoginWireframeInterface: WireframeInterface {
-    func navigate(to option: LoginNavigationOption)
+protocol HomeViewInterface: ViewInterface {
 }
 
-protocol LoginViewInterface: ViewInterface {
+protocol HomePresenterInterface: PresenterInterface {
 }
 
-protocol LoginPresenterInterface: PresenterInterface {
-}
-
-protocol LoginInteractorInterface: InteractorInterface {
+protocol HomeInteractorInterface: InteractorInterface {
 }
 ```
 
 This interface file will provide you with a nice overview of your entire module at one place. Since most components communicate with each other via protocols we found very useful to put all of these protocols for one module in one place. That way you have a very clean overview of the entire behavior of the module.
-The *LoginNavigationOption* enum is used for all navigation actions which involve creating a new wireframe and navigating to it in which ever way possible. This will become clearer when we go over a concrete example.
 
 ### Wireframe
 
 ```swift
-final class LoginWireframe: BaseWireframe {
+final class HomeWireframe: BaseWireframe<HomeViewController> {
 
     // MARK: - Private properties -
 
-    private let _storyboard = UIStoryboard(name: <#Storyboard name#>, bundle: nil)
+    private let storyboard = UIStoryboard(name: "Home", bundle: nil)
 
     // MARK: - Module setup -
 
     init() {
-        let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
+        let moduleViewController = storyboard.instantiateViewController(ofType: HomeViewController.self)
         super.init(viewController: moduleViewController)
 
-        let interactor = LoginInteractor()
-        let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        let interactor = HomeInteractor()
+        let presenter = HomePresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
     }
 
@@ -273,38 +239,39 @@ final class LoginWireframe: BaseWireframe {
 
 // MARK: - Extensions -
 
-extension LoginWireframe: LoginWireframeInterface {
-
-    func navigate(to option: LoginNavigationOption) {
-    }
+extension HomeWireframe: HomeWireframeInterface {
 }
 ```
 
-If you've created a storyboard which contains a *LoginViewController*, all you need to do is enter the storyboard name (see *_storyboard* var) here and the code will compile. We've made the assumption that you use the class name for an identifier but you can of course change this at any point in the future.
+It generates a Storyboard file for you too so you don't have to create one yourself. You can tailor the Storyboard to match its purpose.
 
 ### Presenter
 
 ```swift
-final class LoginPresenter {
+final class HomePresenter {
 
     // MARK: - Private properties -
 
-    private unowned let _view: LoginViewInterface
-    private let _interactor: LoginInteractorInterface
-    private let _wireframe: LoginWireframeInterface
+    private unowned let view: HomeViewInterface
+    private let interactor: HomeInteractorInterface
+    private let wireframe: HomeWireframeInterface
 
     // MARK: - Lifecycle -
 
-    init(wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
-        _wireframe = wireframe
-        _view = view
-        _interactor = interactor
+    init(
+        view: HomeViewInterface,
+        interactor: HomeInteractorInterface,
+        wireframe: HomeWireframeInterface
+    ) {
+        self.view = view
+        self.interactor = interactor
+        self.wireframe = wireframe
     }
 }
 
 // MARK: - Extensions -
 
-extension LoginPresenter: LoginPresenterInterface {
+extension HomePresenter: HomePresenterInterface {
 }
 ```
 
@@ -313,11 +280,11 @@ This is the skeleton of a Presenter which will get a lot more meat on it once yo
 ### View
 
 ```swift
-final class LoginViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
     // MARK: - Public properties -
 
-    var presenter: LoginPresenterInterface!
+    var presenter: HomePresenterInterface!
 
     // MARK: - Life cycle -
 
@@ -329,7 +296,7 @@ final class LoginViewController: UIViewController {
 
 // MARK: - Extensions -
 
-extension LoginViewController: LoginViewInterface {
+extension HomeViewController: HomeViewInterface {
 }
 ```
 
@@ -338,10 +305,10 @@ Like the Presenter above, this is only a skeleton which you will populate with I
 ### Interactor
 
 ```swift
-final class LoginInteractor {
+final class HomeInteractor {
 }
 
-extension LoginInteractor: LoginInteractorInterface {
+extension HomeInteractor: HomeInteractorInterface {
 }
 ```
 
