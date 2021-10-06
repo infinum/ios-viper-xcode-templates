@@ -7,7 +7,7 @@
 The module generator tool will generate five files, the same as the non-rx module. However, there is an option to generate a Formatter which will be covered in a separate guide. All the files shown will be available in the demo project.
 We will generate "Login" (you can set whichever name you want) files and cover them as they are generated in xCode: *LoginInterfaces*, *LoginPresenter*, *LoginViewController*, *LoginInteractor* and *LoginWireframe*.
 
-###LoginInterfaces
+### LoginInterfaces
 
 ```swift
 protocol LoginWireframeInterface: WireframeInterface {
@@ -36,7 +36,7 @@ enum Login {
 
 Interfaces file generates interfaces for our wireframe, view, presenter and interactor. These interfaces let us encapsulate whichever code we don't to be visible by the other side. The generated file contains one function in <i>LoginPresenterInterface</p> which initializes the communication between our Presenter and ViewController. As a parameter it requires *ViewOutput* and returns *ViewInput*. Firstly, we got an enum called *Login* which is generated for us. The enum contains two structures, one for output, one for input. As the name suggests, <i>ViewOutput</i> is used to store every piece of information that our view wants presenter to know about. Same principle but the other way around is <i>ViewInput</i>, our presenter sends information to the view which it can observe and react to.
 
-###LoginPresenter
+### LoginPresenter
 
 ```swift
 final class LoginPresenter {
@@ -73,7 +73,7 @@ extension LoginPresenter: LoginPresenterInterface {
 
 The generated presenter file conforms to the Presenter interface shown earlier. Presenter doesn't come with a DisposeBag, but if it is needed, you can freely add it. Every bit of magic happens in the configure function from the interface. Presenter gets every piece of information from the view through the *ViewOutput* struct and it can subscribe to those events and react to them as needed (API calls, business logic, etc.). Since <i>configure</i> method defines a two-way communication between presenter and the view (or two-way binding if you like), after we initialise subscriptions from the view's output, we can return some input to the view if view needs to react to it. Later on, we will explain how it looks on the view side.
 
-###LoginViewController
+### LoginViewController
 
 ```swift
 final class LoginViewController: UIViewController {
@@ -114,7 +114,7 @@ private extension LoginViewController {
 The generated viewController file is mostly the same as the basic one, but there is a key difference in the <i>setupView</i> function where you create the *ViewInput* and call the <i>configure</i> function from presenter. As it was explained earlier, the presenter's <i>configure</i> method defines the two-way binding and it returns every important bit of information that is consumed by the view. Without this information our viewController wouldn't be functional, it has to subscribe to that information and use it as it is required (disable buttons, etc.).
 
 
-###LoginInteractor and LoginWireframe
+### LoginInteractor and LoginWireframe
 
 ```swift
 final class LoginInteractor {
@@ -156,7 +156,7 @@ The generated interactor and wireframe files are the same as basic ones. If you 
 
 As you might have noticed before, we have ended up with an example of Login. We're going to show you how to implement a simple login screen with *Viper RxModule*. We'll cover classes in the same order respectively. Firstly, *LoginInterfaces*
 
-###LoginInterfaces
+### LoginInterfaces
 
 ```swift
 protocol LoginWireframeInterface: WireframeInterface {
@@ -210,7 +210,7 @@ Lastly, we're moving to the Login enum which now contains some information. As y
 
 Having that said, we have wrapped up a big chunk of information. We have covered how to pass information from the view to the presenter and back. Now let's see how it works under the hood. *LoginPresenter* here we come!
 
-###LoginPresenter
+### LoginPresenter
 
 ```swift
 final class LoginPresenter {
@@ -376,7 +376,7 @@ We'll start from the top. We have implemented some part of validation for the em
 After presenter creates inputs for the view, we want the presenter to subscribe to the actions that are performed by the view. Since those actions only result in navigation or API call, we don't have to return anything, just handle the navigation/calls internally.
 Next, we'll get in touch with our implemented *LoginViewController*.
 
-###LoginViewController
+### LoginViewController
 
 ```swift
 final class LoginViewController: UIViewController {
@@ -484,7 +484,7 @@ As you can see, our <i>setupView</i> function is quite small since we're trying 
 Hopefully, that wasn't hard for you to cope, hold on a bit longer, we're close to the end :)
 Let's move onto the *LoginInteractor*:
 
-###LoginInteractor
+### LoginInteractor
 
 ```swift
 final class LoginInteractor {
@@ -517,7 +517,7 @@ The interactor, as in base module, helps us make API calls or any other call tha
 
 Last but not the least, *LoginWireframe*:
 
-###LoginWireframe
+### LoginWireframe
 
 ```swift
 final class LoginWireframe: BaseWireframe<LoginViewController> {
