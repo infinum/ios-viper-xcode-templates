@@ -30,7 +30,8 @@ class UserService {
                 method: .post,
                 parameters: params,
                 encoding: URLEncoding.default
-            ).validate().responseData { data in
+            ).validate().responseData { [unowned self] data in
+                saveHeaders(from: data.response)
                 guard let data = data.data else {
                     single(.failure(data.error ?? AFError.explicitlyCancelled))
                     return
@@ -84,5 +85,23 @@ class UserService {
 
     func removeUser() {
         userDefaults.removeObject(forKey: Constants.UserDefaults.remember)
+        userDefaults.removeObject(forKey: Constants.UserDefaults.expiry)
+        userDefaults.removeObject(forKey: Constants.UserDefaults.client)
+        userDefaults.removeObject(forKey: Constants.UserDefaults.token)
+        userDefaults.removeObject(forKey: Constants.UserDefaults.uid)
+    }
+}
+
+private extension UserService {
+    func saveHeaders(from response: HTTPURLResponse?) {
+        if let token = response?.headers.dictionary["access-token"],
+           let expiry = response?.headers.dictionary["expiry"],
+           let client = response?.headers.dictionary["client"],
+           let uid = response?.headers.dictionary["uid"] {
+            userDefaults.set(token, forKey: Constants.UserDefaults.token)
+            userDefaults.set(expiry, forKey: Constants.UserDefaults.expiry)
+            userDefaults.set(client, forKey: Constants.UserDefaults.client)
+            userDefaults.set(uid, forKey: Constants.UserDefaults.uid)
+        }
     }
 }
