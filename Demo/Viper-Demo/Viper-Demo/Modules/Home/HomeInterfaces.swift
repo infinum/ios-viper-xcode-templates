@@ -11,13 +11,24 @@
 import UIKit
 
 protocol HomeWireframeInterface: WireframeInterface {
+    func navigateToLogin()
+    func navigateToShowDetails(id: String)
 }
 
 protocol HomeViewInterface: ViewInterface {
+    func reloadData()
 }
 
 protocol HomePresenterInterface: PresenterInterface {
+    var numberOfItems: Int { get }
+    
+    func item(at indexPath: IndexPath) -> Show
+    func itemSelected(at indexPath: IndexPath)
+    func logout()
+    func loadShows()
 }
 
 protocol HomeInteractorInterface: InteractorInterface {
+    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> ()))
+    func logout()
 }
