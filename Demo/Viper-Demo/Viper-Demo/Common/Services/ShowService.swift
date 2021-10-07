@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import Japx
+import RxSwift
 
 class ShowService {
 
@@ -38,6 +39,61 @@ class ShowService {
                 completion(.failure(error))
             }
         }
+    }
+
+    func getAllReviews(for showId: String) -> Single<[Review]> {
+        return Single.create { single in
+            let request = AF.request(
+                Constants.API.showDetails.appendingPathComponent(showId).appendingPathComponent("/reviews"),
+                method: .get,
+                encoding: URLEncoding.default,
+                interceptor: AuthInterceptor()
+            ).validate().responseData { [unowned self] data in
+                guard let data = data.data else {
+                    single(.failure(data.error ?? AFError.explicitlyCancelled))
+                    return
+                }
+                do {
+                    let reviews = try japxDecoder.decode(ReviewResponse.self, from: data).reviews
+                    single(.success(reviews))
+                } catch {
+                    single(.failure(error))
+                }
+
+            }
+
+            return Disposables.create {
+                request.cancel()
+            }
+        }
+    }
+
+    func getShowDetails(for showId: String) -> Single<Show> {
+        return Single.create { single in
+            let request = AF.request(
+                Constants.API.showDetails.appendingPathComponent(showId),
+                method: .get,
+                encoding: URLEncoding.default,
+                interceptor: AuthInterceptor()
+            ).validate().responseData { [unowned self] data in
+                guard let data = data.data else {
+                    single(.failure(data.error ?? AFError.explicitlyCancelled))
+                    return
+                }
+                do {
+                    let show = try japxDecoder.decode(ShowDetailsResponse.self, from: data).show
+                    single(.success(show))
+                } catch {
+                    single(.failure(error))
+                }
+
+            }
+
+            return Disposables.create {
+                request.cancel()
+            }
+        }
+
     }
 }
 
