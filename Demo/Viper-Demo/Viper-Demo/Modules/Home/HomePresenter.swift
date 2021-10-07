@@ -18,6 +18,12 @@ final class HomePresenter {
     private let interactor: HomeInteractorInterface
     private let wireframe: HomeWireframeInterface
 
+    private var items: [Show] = [] {
+        didSet {
+            view.reloadData()
+        }
+    }
+
     // MARK: - Lifecycle -
 
     init(
@@ -34,4 +40,41 @@ final class HomePresenter {
 // MARK: - Extensions -
 
 extension HomePresenter: HomePresenterInterface {
+    func logout() {
+        interactor.logout()
+        wireframe.navigateToLogin()
+    }
+
+    var numberOfItems: Int {
+        items.count
+    }
+
+    func item(at indexPath: IndexPath) -> Show {
+        items[indexPath.row]
+    }
+
+    func itemSelected(at indexPath: IndexPath) {
+        let show = items[indexPath.row]
+        wireframe.navigateToShowDetails(id: show.id)
+    }
+
+    func loadShows() {
+        view.showProgressHUD()
+        interactor.getShows { [unowned self] result in
+            switch result {
+            case .failure(let error):
+                showValidationError(error)
+            case .success(let shows):
+                items = shows
+            }
+            view.hideProgressHUD()
+        }
+    }
+
+}
+
+private extension HomePresenter {
+    func showValidationError(_ error: Error) {
+        wireframe.showAlert(with: "Error", message: error.localizedDescription)
+    }
 }
