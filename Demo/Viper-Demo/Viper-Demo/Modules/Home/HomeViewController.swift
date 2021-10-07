@@ -55,4 +55,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         cell.configure(with: item)
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        presenter.itemSelected(at: indexPath)
+    }
 }
