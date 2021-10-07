@@ -316,120 +316,116 @@ When generated your Interactor is also a skeleton which you will in most cases u
 
 ## 3. How it really works
 
-Here's an example of a wireframe for a Login screen which uses two types of navigation to navigate to a login and registration screen. Let's start with the Presenter
+Here's an example of a wireframe for a Home screen. Let's start with the Presenter
 
 ```swift
-final class LoginPresenter {
+final class HomePresenter {
 
     // MARK: - Private properties -
-    static private let minimumPasswordLength: UInt = 6
 
-    private unowned let _view: LoginViewInterface
-    private let _interactor: LoginInteractorInterface
-    private let _wireframe: LoginWireframeInterface
+    private unowned let view: HomeViewInterface
+    private let interactor: HomeInteractorInterface
+    private let wireframe: HomeWireframeInterface
 
-    private let _authorizationManager = AuthorizationAdapter.shared
-    private let _emailValidator = EmailValidator()
-    private let _passwordValidator = PasswordValidator(
-        minLength: LoginPresenter.minimumPasswordLength
-    )
-
-    // MARK: - Lifecycle -
-    init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
-        _wireframe = wireframe
-        _view = view
-        _interactor = interactor
+    private var items: [Show] = [] {
+        didSet {
+            view.reloadData()
+        }
     }
 
+    // MARK: - Lifecycle -
+
+    init(
+        view: HomeViewInterface,
+        interactor: HomeInteractorInterface,
+        wireframe: HomeWireframeInterface
+    ) {
+        self.view = view
+        self.interactor = interactor
+        self.wireframe = wireframe
+    }
 }
 
 // MARK: - Extensions -
-extension LoginPresenter: LoginPresenterInterface {
 
-    func didSelectLoginAction(with email: String?, password: String?) {
-        guard let _email = email, let _password = password else {
-            _showLoginValidationError()
-            return
-        }
-        guard _emailValidator.isValid(_email) else {
-            _showEmailValidationError()
-            return
-        }
-        guard _passwordValidator.isValid(_password) else {
-            _showPasswordValidationError()
-            return
-        }
+extension HomePresenter: HomePresenterInterface {
+    func logout() {
+        interactor.logout()
+        wireframe.navigateToLogin()
+    }
 
-        _view.showProgressHUD()
-        _interactor.loginUser(with: _email, password: _password) { [weak self] (response) in
-            self?._view?.hideProgressHUD()
-            self?._handleLoginResult(response.result)
+    var numberOfItems: Int {
+        items.count
+    }
+
+    func item(at indexPath: IndexPath) -> Show {
+        items[indexPath.row]
+    }
+
+    func itemSelected(at indexPath: IndexPath) {
+        let show = items[indexPath.row]
+        wireframe.navigateToShowDetails(id: show.id)
+    }
+
+    func loadShows() {
+        view.showProgressHUD()
+        interactor.getShows { [unowned self] result in
+            switch result {
+            case .failure(let error):
+                showValidationError(error)
+            case .success(let shows):
+                items = shows
+            }
+            view.hideProgressHUD()
         }
     }
+
 }
 
-private extension LoginPresenter {
-
-    func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
-        switch result {
-        case .success(let jsonObject):
-            _authorizationManager.authorizationHeader = jsonObject.object.authorizationHeader
-            _wireframe.navigate(to: .home)
-
-        case .failure(let error):
-            _wireframe.showErrorAlert(with: error.message)
-        }
-    }
-
-    func _showLoginValidationError() {
-        _wireframe.showAlert(with: "Error", message: "Please enter email and password")
-    }
-
-    func _showEmailValidationError() {
-        _wireframe.showAlert(with: "Error", message: "Please enter valid email")
-    }
-
-    func _showPasswordValidationError() {
-        _wireframe.showAlert(with: "Error", message: "Password should be at least 6 characters long")
+private extension HomePresenter {
+    func showValidationError(_ error: Error) {
+        wireframe.showAlert(with: "Error", message: error.localizedDescription)
     }
 }
 ```
 
-In this simple example the Presenter handles a login action selection which is delegated from the View. After that some validation is performed and then the actual login is performed using the Interactor. In the event of a successful login a navigation to a home screen is initiated. Let's take a look at the Wireframe in this example for a bit more clarity.
+In this simple example the Presenter which fetches TV shows from an API call and handles the result. The Presenter can also handle the logout action and item selection in a tableView which is delegated from the view. If an item has been selected the Presenter will initiate opening of the Details screen.
 
 ```swift
-final class LoginWireframe: BaseWireframe {
+final class HomeWireframe: BaseWireframe<HomeViewController> {
 
     // MARK: - Private properties -
 
-    private let _storyboard = UIStoryboard(name: "Login", bundle: nil)
+    private let storyboard = UIStoryboard(name: "Home", bundle: nil)
 
     // MARK: - Module setup -
 
     init() {
-        let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
+        let moduleViewController = storyboard.instantiateViewController(ofType: HomeViewController.self)
         super.init(viewController: moduleViewController)
 
-        let interactor = LoginInteractor()
-        let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        let interactor = HomeInteractor()
+        let presenter = HomePresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
     }
 
 }
 
 // MARK: - Extensions -
-extension LoginWireframe: LoginWireframeInterface {
 
-    func navigate(to option: LoginNavigationOption) {
-        switch option {
-        case .home:
-            navigationController?.setRootWireframe(HomeWireframe())
-        }
+extension HomeWireframe: HomeWireframeInterface {
+    func navigateToLogin() {
+        navigationController?.setRootWireframe(LoginWireframe())
     }
+
+    func navigateToShowDetails(id: String) {
+        navigationController?.pushWireframe(DetailsWireframe())
+    }
+
 }
 ```
 
-This is also a simple example of a wireframe which handles only one type of navigation. You've maybe notices the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
+This is also a simple example of a wireframe which handles two navigation functions. You've maybe notices the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
 
 ```swift
 func showAlert(with title: String?, message: String?) {
@@ -440,7 +436,34 @@ func showAlert(with title: String?, message: String?) {
 
 This is just one example of some shared logic you'll want to put in your base class or maybe one of the base protocols.
 
-This was just a short example of how one module can come together. Soon we'll make an entire example project available on GitHub which will contain much more use cases.
+Here's an example of a simple Interactor we used in the Demo project:
+
+```swift
+final class HomeInteractor {
+    private let userService: UserService
+    private let showService: ShowService
+
+    init(userService: UserService = .shared, showService: ShowService = .shared) {
+        self.userService = userService
+        self.showService = showService
+    }
+}
+
+// MARK: - Extensions -
+
+extension HomeInteractor: HomeInteractorInterface {
+    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> ())) {
+        showService.getShows(completion)
+    }
+
+    func logout() {
+        userService.removeUser()
+    }
+}
+```
+
+The Interactor contains services which actually communicate with the server. The Interactor can contain as many services as needed but beware that you don't add the ones which aren't needed.
+
 
 ## How it's organized in Xcode
 
