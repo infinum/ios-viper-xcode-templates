@@ -37,7 +37,7 @@ extension HomeWireframe: HomeWireframeInterface {
     }
 
     func navigateToShowDetails(id: String) {
-        //implementation needed
+        navigationController?.pushWireframe(DetailsWireframe(showId: id))
     }
 
 }
