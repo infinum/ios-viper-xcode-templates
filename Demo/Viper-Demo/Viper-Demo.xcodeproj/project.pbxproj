@@ -40,12 +40,17 @@
 		3768952C270C767C0094A3C2 /* StringValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768952B270C767C0094A3C2 /* StringValidator.swift */; };
 		3768952E270C772E0094A3C2 /* EmailValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768952D270C772E0094A3C2 /* EmailValidator.swift */; };
 		37689530270C77550094A3C2 /* PasswordValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3768952F270C77550094A3C2 /* PasswordValidator.swift */; };
+		3784CB76270ECECA001643A0 /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784CB75270ECECA001643A0 /* AuthInterceptor.swift */; };
+		3784CB79270ED5F5001643A0 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784CB78270ED5F5001643A0 /* HomeTableViewCell.swift */; };
+		3784CB7C270ED678001643A0 /* UITableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3784CB7B270ED678001643A0 /* UITableView+Dequeue.swift */; };
 		3797690C270DA07A003F244A /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 37976906270DA07A003F244A /* Home.storyboard */; };
 		3797690D270DA07A003F244A /* HomeInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37976907270DA07A003F244A /* HomeInterfaces.swift */; };
 		3797690E270DA07A003F244A /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37976908270DA07A003F244A /* HomePresenter.swift */; };
 		3797690F270DA07A003F244A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37976909270DA07A003F244A /* HomeViewController.swift */; };
 		37976910270DA07A003F244A /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797690A270DA07A003F244A /* HomeInteractor.swift */; };
 		37976911270DA07A003F244A /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797690B270DA07A003F244A /* HomeWireframe.swift */; };
+		3797691E270DA772003F244A /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797691D270DA772003F244A /* Show.swift */; };
+		37976920270DB761003F244A /* ShowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797691F270DB761003F244A /* ShowService.swift */; };
 		5E1D1DEEB785C594267B1453 /* Pods_Viper_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62763846491530B9D36A09EB /* Pods_Viper_DemoTests.framework */; };
 		92B0FF9CDB733C1CEB6A8B8E /* Pods_Viper_Demo_Viper_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E605CF26F74F71BE0BC7E60A /* Pods_Viper_Demo_Viper_DemoUITests.framework */; };
 		F8773CA121ADD7D2B0E5CA91 /* Pods_Viper_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BEF06586B39F869551B889 /* Pods_Viper_Demo.framework */; };
@@ -107,12 +112,17 @@
 		3768952B270C767C0094A3C2 /* StringValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringValidator.swift; sourceTree = "<group>"; };
 		3768952D270C772E0094A3C2 /* EmailValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidator.swift; sourceTree = "<group>"; };
 		3768952F270C77550094A3C2 /* PasswordValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordValidator.swift; sourceTree = "<group>"; };
+		3784CB75270ECECA001643A0 /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
+		3784CB78270ED5F5001643A0 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		3784CB7B270ED678001643A0 /* UITableView+Dequeue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Dequeue.swift"; sourceTree = "<group>"; };
 		37976906270DA07A003F244A /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		37976907270DA07A003F244A /* HomeInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInterfaces.swift; sourceTree = "<group>"; };
 		37976908270DA07A003F244A /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		37976909270DA07A003F244A /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		3797690A270DA07A003F244A /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		3797690B270DA07A003F244A /* HomeWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeWireframe.swift; sourceTree = "<group>"; };
+		3797691D270DA772003F244A /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
+		3797691F270DB761003F244A /* ShowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowService.swift; sourceTree = "<group>"; };
 		505B82E31FF43D05076BDE7A /* Pods-Viper-Demo-Viper-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-Demo-Viper-DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Viper-Demo-Viper-DemoUITests/Pods-Viper-Demo-Viper-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		62763846491530B9D36A09EB /* Pods_Viper_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viper_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		694FF79F60F78D8360513E89 /* Pods-Viper-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Viper-Demo/Pods-Viper-Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -302,6 +312,7 @@
 		37689523270C572F0094A3C2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3784CB7A270ED66A001643A0 /* TableView */,
 				37689524270C57360094A3C2 /* Network */,
 			);
 			path = Models;
@@ -311,6 +322,8 @@
 			isa = PBXGroup;
 			children = (
 				37689525270C57660094A3C2 /* User.swift */,
+				3797691D270DA772003F244A /* Show.swift */,
+				3784CB75270ECECA001643A0 /* AuthInterceptor.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -319,6 +332,7 @@
 			isa = PBXGroup;
 			children = (
 				37689528270C5DEE0094A3C2 /* UserService.swift */,
+				3797691F270DB761003F244A /* ShowService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -333,9 +347,26 @@
 			path = Validators;
 			sourceTree = "<group>";
 		};
+		3784CB77270ED5EC001643A0 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				3784CB78270ED5F5001643A0 /* HomeTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		3784CB7A270ED66A001643A0 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				3784CB7B270ED678001643A0 /* UITableView+Dequeue.swift */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		37976905270DA055003F244A /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				3784CB77270ED5EC001643A0 /* Cell */,
 				37976906270DA07A003F244A /* Home.storyboard */,
 				37976907270DA07A003F244A /* HomeInterfaces.swift */,
 				37976908270DA07A003F244A /* HomePresenter.swift */,
@@ -621,17 +652,21 @@
 				3797690D270DA07A003F244A /* HomeInterfaces.swift in Sources */,
 				37976911270DA07A003F244A /* HomeWireframe.swift in Sources */,
 				37689502270C3A0F0094A3C2 /* FormatterInterface.swift in Sources */,
+				3784CB79270ED5F5001643A0 /* HomeTableViewCell.swift in Sources */,
 				37689501270C3A0F0094A3C2 /* BaseWireframe.swift in Sources */,
 				37976910270DA07A003F244A /* HomeInteractor.swift in Sources */,
 				37689530270C77550094A3C2 /* PasswordValidator.swift in Sources */,
 				37689520270C495B0094A3C2 /* UIButton+InterfaceBuilder.swift in Sources */,
 				37689510270C3F300094A3C2 /* UIImageExtension.swift in Sources */,
 				3768951A270C47410094A3C2 /* LoginInterfaces.swift in Sources */,
+				3784CB7C270ED678001643A0 /* UITableView+Dequeue.swift in Sources */,
 				3768952E270C772E0094A3C2 /* EmailValidator.swift in Sources */,
 				37689504270C3A0F0094A3C2 /* PresenterInterface.swift in Sources */,
 				3768951D270C47410094A3C2 /* LoginInteractor.swift in Sources */,
+				37976920270DB761003F244A /* ShowService.swift in Sources */,
 				37689503270C3A0F0094A3C2 /* UIStoryboardExtension.swift in Sources */,
 				3768951E270C47410094A3C2 /* LoginWireframe.swift in Sources */,
+				3797691E270DA772003F244A /* Show.swift in Sources */,
 				3797690E270DA07A003F244A /* HomePresenter.swift in Sources */,
 				3768951B270C47410094A3C2 /* LoginPresenter.swift in Sources */,
 				37689529270C5DEE0094A3C2 /* UserService.swift in Sources */,
@@ -639,6 +674,7 @@
 				37689526270C57660094A3C2 /* User.swift in Sources */,
 				3768950F270C3F300094A3C2 /* UIColorExtension.swift in Sources */,
 				3768952C270C767C0094A3C2 /* StringValidator.swift in Sources */,
+				3784CB76270ECECA001643A0 /* AuthInterceptor.swift in Sources */,
 				376894BA270C33950094A3C2 /* AppDelegate.swift in Sources */,
 				376894EC270C36700094A3C2 /* Constants.swift in Sources */,
 			);

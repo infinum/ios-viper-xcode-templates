@@ -49,6 +49,7 @@ private extension LoginViewController {
             .scan(false) { previousValue, _ in
                 !previousValue
             }
+            .startWith(false)
 
         let output = Login.ViewOutput(actions: LoginActions(
             rememberMe: remember,

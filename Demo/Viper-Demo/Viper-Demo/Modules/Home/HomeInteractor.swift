@@ -11,9 +11,23 @@
 import Foundation
 
 final class HomeInteractor {
+    private let userService: UserService
+    private let showService: ShowService
+
+    init(userService: UserService = .shared, showService: ShowService = .shared) {
+        self.userService = userService
+        self.showService = showService
+    }
 }
 
 // MARK: - Extensions -
 
 extension HomeInteractor: HomeInteractorInterface {
+    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> ())) {
+        showService.getShows(completion)
+    }
+
+    func logout() {
+        userService.removeUser()
+    }
 }

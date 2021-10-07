@@ -32,4 +32,12 @@ final class HomeWireframe: BaseWireframe<HomeViewController> {
 // MARK: - Extensions -
 
 extension HomeWireframe: HomeWireframeInterface {
+    func navigateToLogin() {
+        navigationController?.setRootWireframe(LoginWireframe())
+    }
+
+    func navigateToShowDetails(id: String) {
+        //implementation needed
+    }
+
 }
