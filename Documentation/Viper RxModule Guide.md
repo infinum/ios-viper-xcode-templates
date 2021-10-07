@@ -543,7 +543,7 @@ final class LoginWireframe: BaseWireframe<LoginViewController> {
 
 extension LoginWireframe: LoginWireframeInterface {
     func navigateToHome() {
-        //needs implementation when home is created
+        navigationController?.setRootWireframe(HomeWireframe())
     }
 }
 ```
