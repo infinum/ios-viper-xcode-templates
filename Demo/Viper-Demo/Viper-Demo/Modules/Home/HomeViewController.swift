@@ -16,15 +16,43 @@ final class HomeViewController: UIViewController {
 
     var presenter: HomePresenterInterface!
 
+    // MARK: - Private properties -
+    @IBOutlet private var tableView: UITableView! {
+        didSet {
+            tableView.delegate = self
+            tableView.dataSource = self
+        }
+    }
+
     // MARK: - Lifecycle -
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.loadShows()
     }
 
+    @IBAction func logout(_ sender: Any) {
+        presenter.logout()
+    }
 }
 
 // MARK: - Extensions -
 
 extension HomeViewController: HomeViewInterface {
+    func reloadData() {
+        tableView.reloadData()
+    }
+}
+
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        presenter.numberOfItems
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = presenter.item(at: indexPath)
+        let cell = tableView.dequeueReusableCell(ofType: HomeTableViewCell.self, for: indexPath)
+        cell.configure(with: item)
+        return cell
+    }
 }
