@@ -26,7 +26,13 @@ final class DetailsWireframe: BaseWireframe<DetailsViewController> {
 
         let formatter = DetailsFormatter()
         let interactor = DetailsInteractor()
-        let presenter = DetailsPresenter(view: moduleViewController, formatter: formatter, interactor: interactor, wireframe: self, showId: showId)
+        let presenter = DetailsPresenter(
+            view: moduleViewController,
+            formatter: formatter,
+            interactor: interactor,
+            wireframe: self,
+            showId: showId
+        )
         moduleViewController.presenter = presenter
     }
 
