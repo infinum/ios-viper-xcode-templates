@@ -14,6 +14,7 @@ enum Constants {
         static let login = base.appendingPathComponent("/users/sign_in")
         static let register = base.appendingPathComponent("/users")
         static let shows = base.appendingPathComponent("/shows")
+        static let showDetails = base.appendingPathComponent("/shows/")
     }
 
     enum UserDefaults {
@@ -34,5 +35,11 @@ enum Constants {
         static let acceptFormat = "application/json"
         static let bearer = "Bearer"
         static let contentType = "application/json"
+    }
+
+    enum Cell {
+        static let reviewsTitleCell = "ReviewsTitleTableViewCell"
+        static let noReviewsCell = "NoReviewsTableViewCell"
+        static let addReviewCell = "AddReviewTableViewCell"
     }
 }
