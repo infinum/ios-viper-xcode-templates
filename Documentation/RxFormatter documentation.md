@@ -20,31 +20,31 @@ Since you're at the VIPER templates Github, you might have guessed the answer to
 
 When we're trying to generate a module with Interactor + Formatter, we get the generated Formatter with other classes from that module. In this guide, we'll generate the Interactor + Formatter from RxModule since we're trying to use Rx as much as possible.
 
-If you have any doubts about your understanding of the [RxModule](Viper%20RxModule%20Guide.md) and which classes it generates for us, please visit the <i>RxModule VIPER guide</i>. We'll go through the files which differ from the base RxModule with Interactor. Those are *Interfaces*, *Presenter*, *Wireframe*, and the star of the show *Formatter*. In this case, we'll generate a module named <i>RxPokemonDetails</i>.
+If you have any doubts about your understanding of the [RxModule](Viper%20RxModule%20Guide.md) and which classes it generates for us, please visit the <i>RxModule VIPER guide</i>. We'll go through the files which differ from the base RxModule with Interactor. Those are *Interfaces*, *Presenter*, *Wireframe*, and the star of the show *Formatter*. In this case, we'll generate a module named <i>Details</i>.
 
 As you can see from the changed files, there's no *ViewController* and *Interactor*, they stay the same.
 
 ### Interfaces
 
 ```swift
-protocol RxPokemonDetailsWireframeInterface: WireframeInterface {
+protocol DetailsWireframeInterface: WireframeInterface {
 }
 
-protocol RxPokemonDetailsViewInterface: ViewInterface {
+protocol DetailsViewInterface: ViewInterface {
 }
 
-protocol RxPokemonDetailsPresenterInterface: PresenterInterface {
-    func configure(with output: RxPokemonDetails.ViewOutput) -> RxPokemonDetails.ViewInput
+protocol DetailsPresenterInterface: PresenterInterface {
+    func configure(with output: Details.ViewOutput) -> Details.ViewInput
 }
 
-protocol RxPokemonDetailsFormatterInterface: FormatterInterface {
-    func format(for input: RxPokemonDetails.FormatterInput) -> RxPokemonDetails.FormatterOutput
+protocol DetailsFormatterInterface: FormatterInterface {
+    func format(for input: Details.FormatterInput) -> Details.FormatterOutput
 }
 
-protocol RxPokemonDetailsInteractorInterface: InteractorInterface {
+protocol DetailsInteractorInterface: InteractorInterface {
 }
 
-enum RxPokemonDetails {
+enum Details {
 
     struct ViewOutput {
     }
@@ -64,29 +64,29 @@ enum RxPokemonDetails {
 
 When we introduced the <i>RxModule</i> we saw the *ViewInput* and *ViewOutput* structures. Now, they have friends :)
 
-FormatterInput and FormatterOutput work in the same way as *ViewInput* and *ViewOutput* do. The main difference is that the *FormatterInput* is created in the Presenter and then the Presenter returns the *FormatterOutput* via the *ViewInput*. We set every bit of information needed for the Formatter to do its job. As a result, the Formatter returns the *FormatterOutput* where we set formatted information which we want to display. The *ViewInput* already has a <i>models</i> property which tells us that we need to return it.
+*FormatterInput* and *FormatterOutput* work in the same way as *ViewInput* and *ViewOutput* do. The main difference is that the *FormatterInput* is created in the Presenter and then the Presenter returns the *FormatterOutput* via the *ViewInput*. We set every bit of information needed for the Formatter to do its job. As a result, the Formatter returns the *FormatterOutput* where we set formatted information which we want to display. The *ViewInput* already has a <i>models</i> property which tells us that we need to return it.
 
 The Formatter has a <i>format</i> method which, as previously explained, takes the *FormatterInput* as a parameter and then formats it into a *FormatterOutput* which holds the information in a way which our ViewController knows how to use. You can think of it just like the <i>configure</i> function from the Presenter. Takes an input, does whatever it's supposed to, in our case format the data, and returns an output.
 
 ### Presenter
 
 ```swift
-final class RxPokemonDetailsPresenter {
+final class DetailsPresenter {
 
     // MARK: - Private properties -
 
-    private unowned let view: RxPokemonDetailsViewInterface
-    private let formatter: RxPokemonDetailsFormatterInterface
-    private let interactor: RxPokemonDetailsInteractorInterface
-    private let wireframe: RxPokemonDetailsWireframeInterface
+    private unowned let view: DetailsViewInterface
+    private let formatter: DetailsFormatterInterface
+    private let interactor: DetailsInteractorInterface
+    private let wireframe: DetailsWireframeInterface
 
     // MARK: - Lifecycle -
 
     init(
-        view: RxPokemonDetailsViewInterface,
-        formatter: RxPokemonDetailsFormatterInterface,
-        interactor: RxPokemonDetailsInteractorInterface,
-        wireframe: RxPokemonDetailsWireframeInterface
+        view: DetailsViewInterface,
+        formatter: DetailsFormatterInterface,
+        interactor: DetailsInteractorInterface,
+        wireframe: DetailsWireframeInterface
     ) {
         self.view = view
         self.formatter = formatter
@@ -97,15 +97,15 @@ final class RxPokemonDetailsPresenter {
 
 // MARK: - Extensions -
 
-extension RxPokemonDetailsPresenter: RxPokemonDetailsPresenterInterface {
+extension DetailsPresenter: DetailsPresenterInterface {
 
-    func configure(with output: RxPokemonDetails.ViewOutput) -> RxPokemonDetails.ViewInput {
+    func configure(with output: Details.ViewOutput) -> Details.ViewInput {
 
-        let formatterInput = RxPokemonDetails.FormatterInput()
+        let formatterInput = Details.FormatterInput()
 
         let formatterOutput = formatter.format(for: formatterInput)
 
-        return RxPokemonDetails.ViewInput(models: formatterOutput)
+        return Details.ViewInput(models: formatterOutput)
     }
 
 }
@@ -118,21 +118,21 @@ Using the previously mentioned <i>format</i> method we convert the input into an
 The only change inside the wireframe is the initialization of the Formatter which now needs to be set in the Presenter's <i>init</i>.
 
 ```swift
-        let formatter = RxPokemonDetailsFormatter()
+    let formatter = DetailsFormatter()
 ```
 
 ### Formatter
 
 ```swift
-final class RxPokemonDetailsFormatter {
+final class DetailsFormatter {
 }
 
 // MARK: - Extensions -
 
-extension RxPokemonDetailsFormatter: RxPokemonDetailsFormatterInterface {
+extension DetailsFormatter: DetailsFormatterInterface {
 
-    func format(for input: RxPokemonDetails.FormatterInput) -> RxPokemonDetails.FormatterOutput {
-        return RxPokemonDetails.FormatterOutput()
+    func format(for input: Details.FormatterInput) -> Details.FormatterOutput {
+        return Details.FormatterOutput()
     }
 
 }
@@ -150,35 +150,37 @@ As we started with *Interfaces*, we'll do the same now:
 ### Interfaces
 
 ```swift
-protocol RxPokemonDetailsWireframeInterface: WireframeInterface {
+protocol DetailsWireframeInterface: WireframeInterface {
 }
 
-protocol RxPokemonDetailsViewInterface: ViewInterface {
+protocol DetailsViewInterface: ViewInterface {
 }
 
-protocol RxPokemonDetailsPresenterInterface: PresenterInterface {
-    func configure(with output: RxPokemonDetails.ViewOutput) -> RxPokemonDetails.ViewInput
+protocol DetailsPresenterInterface: PresenterInterface {
+    func configure(with output: Details.ViewOutput) -> Details.ViewInput
 }
 
-protocol RxPokemonDetailsFormatterInterface: FormatterInterface {
-    func format(for input: RxPokemonDetails.FormatterInput) -> RxPokemonDetails.FormatterOutput
+protocol DetailsFormatterInterface: FormatterInterface {
+    func format(for input: Details.FormatterInput) -> Details.FormatterOutput
 }
 
-protocol RxPokemonDetailsInteractorInterface: InteractorInterface {
+protocol DetailsInteractorInterface: InteractorInterface {
+    func getShowDetails(for showId: String) -> Single<Show>
+    func getAllReviews(for showId: String) -> Single<[Review]>
 }
 
-enum RxPokemonDetails {
+enum Details {
 
     struct ViewOutput {
     }
 
     struct ViewInput {
         let models: FormatterOutput
-        let events: RxPokemonDetailsEvent
+        let events: DetailsEvents
     }
 
     struct FormatterInput {
-        let models: Driver<Pokemon>
+        let models: Driver<(Show, [Review])>
     }
 
     struct FormatterOutput {
@@ -187,65 +189,90 @@ enum RxPokemonDetails {
 
 }
 
-struct RxPokemonDetailsEvent {
-    let title: Driver<String>
-    let imageURL: Signal<URL>
+struct DetailsEvents {
+    let title: Signal<String>
 }
 ```
 
-We only configured the *FormatterInput*, *ViewInput* and *FormatterOutput* structures. Since this is a very simple example, we had to add one property to the *ViewInput* <i>events</i> which will have a title Driver and the header image URL. As we need items which will fill our tableView, we have a Driver with an array of TableSectionItems (you can find those on our [Nuts-and-bolts Github](https://github.com/infinum/iOS-Nuts-And-Bolts/tree/master/Sources/UI/DataSourceDelegate/Swift) and all other tableView supporting files). The only thing we'll send to the Formatter is the Pokemon model and we'll convert the TableSectionItems from that.
+We only configured the *FormatterInput*, *ViewInput* and *FormatterOutput* structures. Since this is a very simple example, we had to add one property to the *ViewInput* <i>events</i> which will contain a title Driver. As we need items which will fill our tableView, we have a Driver with an array of TableSectionItems (you can find those on our [Nuts-and-bolts Github](https://github.com/infinum/iOS-Nuts-And-Bolts/tree/master/Sources/UI/DataSourceDelegate/Swift) and all other tableView supporting files). To get what we need, we have to provied the Formatter some information with a driver. We have to get the data about the show details and reviews for the show.
 
 ### Presenter
 
 ```swift
-final class RxPokemonDetailsPresenter {
+final class DetailsPresenter {
 
     // MARK: - Private properties -
 
-    private unowned let view: RxPokemonDetailsViewInterface
-    private let formatter: RxPokemonDetailsFormatterInterface
-    private let interactor: RxPokemonDetailsInteractorInterface
-    private let wireframe: RxPokemonDetailsWireframeInterface
+    private unowned let view: DetailsViewInterface
+    private let formatter: DetailsFormatterInterface
+    private let interactor: DetailsInteractorInterface
+    private let wireframe: DetailsWireframeInterface
 
-    private let pokemon: Pokemon
-
+    private let showId: String
+    private let disposeBag: DisposeBag
     // MARK: - Lifecycle -
 
     init(
-        view: RxPokemonDetailsViewInterface,
-        formatter: RxPokemonDetailsFormatterInterface,
-        interactor: RxPokemonDetailsInteractorInterface,
-        wireframe: RxPokemonDetailsWireframeInterface,
-        pokemon: Pokemon
+        view: DetailsViewInterface,
+        formatter: DetailsFormatterInterface,
+        interactor: DetailsInteractorInterface,
+        wireframe: DetailsWireframeInterface,
+        showId: String
     ) {
         self.view = view
         self.formatter = formatter
         self.interactor = interactor
         self.wireframe = wireframe
 
-        self.pokemon = pokemon
+        self.disposeBag = DisposeBag()
+        self.showId = showId
     }
 }
 
 // MARK: - Extensions -
 
-extension RxPokemonDetailsPresenter: RxPokemonDetailsPresenterInterface {
+extension DetailsPresenter: DetailsPresenterInterface {
 
-    func configure(with output: RxPokemonDetails.ViewOutput) -> RxPokemonDetails.ViewInput {
-        let pokemon = Driver.just(pokemon)
-        let formatterInput = RxPokemonDetails.FormatterInput(models: pokemon)
+    func configure(with output: Details.ViewOutput) -> Details.ViewInput {
+        let titleRelay = PublishRelay<String>()
+        let formatterInput = Details.FormatterInput(models: handleInitialLoad(titleRelay: titleRelay))
 
         let formatterOutput = formatter.format(for: formatterInput)
 
-        let title = Driver.just(self.pokemon.title).compactMap { $0 }
-        let imageURL = Signal.just(self.pokemon.imageURL).compactMap { $0 }
-        return RxPokemonDetails.ViewInput(models: formatterOutput, events: RxPokemonDetailsEvent(title: title, imageURL: imageURL))
+        return Details.ViewInput(
+            models: formatterOutput,
+            events: DetailsEvents(title: titleRelay.asSignal())
+        )
     }
 
 }
+
+private extension DetailsPresenter {
+
+    func handleInitialLoad(titleRelay: PublishRelay<String>) -> Driver<(Show, [Review])> {
+        return Single.zip(
+            interactor.getShowDetails(for: showId),
+            interactor.getAllReviews(for: showId)
+        )
+            .do(onSuccess: { [unowned view] show, reviews in
+                titleRelay.accept(show.title)
+                view.hideProgressHUD()
+            }, onError: { [unowned self] error in
+                view.hideProgressHUD()
+                showDetailsError(error)
+            }, onSubscribe: { [unowned view] in
+                view.showProgressHUD()
+            })
+            .asDriver(onErrorDriveWith: .empty())
+    }
+
+    func showDetailsError(_ error: Error) {
+        wireframe.showAlert(with: "Error", message: error.localizedDescription)
+    }
+}
 ```
 
-Pokemon that will be shown on details screen is injected in this module so there is no fetching logic. Since this is a simple example, we only have the <i>configure</i> function. Inside the configure function we configured our Formatter by calling the <i>format</i> function and passed the result in the *ViewInput*. It's the similar thing we did previously in the RxModule, we only have the Formatter component now.
+ShowId for a show that will be shown on details screen is injected in this module so we can create the fetching logic. Since this is a simple example, we only have the <i>configure</i> function with a <i>handleInitialLoad</i> function. Inside the configure function we configured our Formatter by calling the <i>format</i> function and passed the result in the *ViewInput*. It's the similar thing we did previously in the RxModule, we only have the Formatter component now.
 
 As you can see, the Presenter doesn't have any mapping logic of our models. It only passes the models to the Formatter.
 
@@ -256,36 +283,112 @@ There aren't any changes on how to use ViewController, Wireframe, and Interactor
 ### Formatter
 
 ```swift
-final class RxPokemonDetailsFormatter {
+final class DetailsFormatter {
 }
 
 // MARK: - Extensions -
 
-extension RxPokemonDetailsFormatter: RxPokemonDetailsFormatterInterface {
+extension DetailsFormatter: DetailsFormatterInterface {
 
-    func format(for input: RxPokemonDetails.FormatterInput) -> RxPokemonDetails.FormatterOutput {
-        return RxPokemonDetails.FormatterOutput(sections: createTableViewSections(from: input.models))
+    func format(for input: Details.FormatterInput) -> Details.FormatterOutput {
+
+        return Details.FormatterOutput(sections: handle(input.models))
     }
 
 }
 
-private extension RxPokemonDetailsFormatter {
-
-    func createTableViewSections(from pokemon: Driver<Pokemon>) -> Driver<[TableSectionItem]> {
-        pokemon
-            .map { [unowned self] in  createSections(with: $0)}
-    }
-
-    func createSections(with pokemon: Pokemon) -> [TableSectionItem] {
-        var items: [TableSectionItem] = []
-        items.append(createDescriptionSection(pokemon))
+private extension DetailsFormatter {
+    func handle(_ items: Driver<(Show, [Review])>) -> Driver<[TableSectionItem]> {
         return items
+            .map { [unowned self] in
+                createShowDetailsSectionItems(items: $0)
+            }
     }
 
-    func createDescriptionSection(_ pokemon: Pokemon) -> TableSectionItem {
-        return RxPokemonDetailsSection(items: [RxPokemonDetailsItem(model: PokemonDetailsItem.description(pokemon))])
+    func createShowDetailsSectionItems(items: (show: Show, reviews: [Review])) -> [ShowDetailsSection] {
+        var showDetailsItems: [DetailsItem] = []
+        showDetailsItems.append(contentsOf: createMandatoryItems(items.show))
+        showDetailsItems.append(contentsOf: createReviewSection(with: items.show, items.reviews))
+        return [ShowDetailsSection(items: showDetailsItems)]
     }
 
+    func createMandatoryItems(_ show: Show) -> [DetailsItem] {
+        var showDetailsItems: [DetailsItem] = []
+        showDetailsItems.append(
+            DetailsItem(
+                model: ShowWithReviews(
+                    show: show,
+                    review: nil
+                ),
+                type: .image
+            )
+        )
+        showDetailsItems.append(
+            DetailsItem(
+                model: ShowWithReviews(
+                    show: show,
+                    review: nil
+                ),
+                type: .description
+            )
+        )
+        showDetailsItems.append(
+            DetailsItem(
+                model: ShowWithReviews(
+                    show: nil,
+                    review: nil
+                ),
+                type: .reviewsTitle
+            )
+        )
+        return showDetailsItems
+    }
+
+    func createReviewSection(with show: Show, _ reviews: [Review]) -> [DetailsItem] {
+        var showDetailsItems: [DetailsItem] = []
+        guard reviews.isEmpty else {
+            showDetailsItems.append(
+                DetailsItem(
+                    model: ShowWithReviews(
+                        show: show,
+                        review: nil
+                    ),
+                    type: .averageRating
+                )
+            )
+            reviews.forEach { review in
+                showDetailsItems.append(
+                    DetailsItem(
+                        model: ShowWithReviews(
+                            show: nil,
+                            review: review
+                        ),
+                        type: .review
+                    )
+                )
+            }
+            showDetailsItems.append(
+                DetailsItem(
+                    model: ShowWithReviews(
+                        show: show,
+                        review: nil
+                    ),
+                    type: .addReview
+                )
+            )
+            return showDetailsItems
+        }
+        showDetailsItems.append(
+            DetailsItem(
+                model: ShowWithReviews(
+                    show: show,
+                    review: nil
+                ),
+                type: .noReviews
+            )
+        )
+        return showDetailsItems
+    }
 }
 ```
 
