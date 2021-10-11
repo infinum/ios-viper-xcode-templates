@@ -29,7 +29,8 @@ After that, restart your Xcode if it was already opened.
 
 There's a TV Shows demo project in Demo folder.
 You can find most common VIPER module use cases in it. If you're already familiar with the base Viper modules you can check out our [RxModule Guide](Documentation/Viper%20RxModule%20Guide.md).
-If you want to check out how you could use Formatter in your apps, feel free to check out [RxFormatter Guide](Documentation/Viper%20RxModule%20Guide.md).
+
+If you want to check out how you could use Formatter in your apps, feel free to check out [RxFormatter Guide](Documentation/RxFormatter%20documentation.md).
 
 # VIPER short introduction
 
