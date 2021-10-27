@@ -1,6 +1,6 @@
 //
 //  PasswordValidator.swift
-//  Viper-v4-Demo
+//  Viper-Demo
 //
 //  Created by Zvonimir Medak on 05.10.2021..
 //
