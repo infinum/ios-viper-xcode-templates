@@ -1,13 +1,13 @@
 //
-//  Viper_v4_DemoUITestsLaunchTests.swift
-//  Viper-v4-DemoUITests
+//  Viper_DemoUITestsLaunchTests.swift
+//  Viper-DemoUITests
 //
 //  Created by Zvonimir Medak on 05.10.2021..
 //
 
 import XCTest
 
-class Viper_v4_DemoUITestsLaunchTests: XCTestCase {
+class Viper_DemoUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

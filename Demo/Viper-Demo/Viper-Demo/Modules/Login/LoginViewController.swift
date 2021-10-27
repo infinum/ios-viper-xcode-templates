@@ -1,6 +1,6 @@
 //
 //  LoginViewController.swift
-//  Viper-v4-Demo
+//  Viper-Demo
 //
 //  Created by Zvonimir Medak on 05.10.2021..
 //  Copyright (c) 2021 ___ORGANIZATIONNAME___. All rights reserved.
