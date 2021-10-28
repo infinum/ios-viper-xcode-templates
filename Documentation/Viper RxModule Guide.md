@@ -34,7 +34,7 @@ enum Login {
 }
 ```
 
-Interfaces file generates interfaces for our wireframe, view, presenter and interactor. These interfaces let us encapsulate whichever code we don't to be visible by the other side. The generated file contains one function in <i>LoginPresenterInterface</p> which initializes the communication between our Presenter and ViewController. As a parameter it requires *ViewOutput* and returns *ViewInput*. Firstly, we got an enum called *Login* which is generated for us. The enum contains two structures, one for output, one for input. As the name suggests, <i>ViewOutput</i> is used to store every piece of information that our view wants presenter to know about. Same principle but the other way around is <i>ViewInput</i>, our presenter sends information to the view which it can observe and react to.
+Interfaces file generates interfaces for our wireframe, view, presenter and interactor. These interfaces let us encapsulate whichever code we don't to be visible by the other side. The generated file contains one function in <i>LoginPresenterInterface</i> which initializes the communication between our Presenter and ViewController. As a parameter it requires *ViewOutput* and returns *ViewInput*. Firstly, we got an enum called *Login* which is generated for us. The enum contains two structures, one for output, one for input. As the name suggests, <i>ViewOutput</i> is used to store every piece of information that our view wants presenter to know about. Same principle but the other way around is <i>ViewInput</i>, our presenter sends information to the view which it can observe and react to.
 
 ### LoginPresenter
 

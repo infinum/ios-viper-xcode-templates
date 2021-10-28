@@ -9,16 +9,13 @@ import Foundation
 
 class PasswordValidator: StringValidator {
 
-    private let minLength: UInt
+    private let minLength: Int
 
-    init(minLength: UInt) {
+    init(minLength: Int) {
         self.minLength = minLength
     }
 
     func isValid(_ value: String) -> Bool {
-        if let length = UInt(exactly: value.count) {
-            return length >= minLength
-        }
-        return false
+        return value.count >= minLength
     }
 }

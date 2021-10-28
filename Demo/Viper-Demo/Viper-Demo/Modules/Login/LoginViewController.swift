@@ -46,9 +46,7 @@ private extension LoginViewController {
 
     func setupView() {
         let remember = checkboxButton.rx.tap.asDriver()
-            .scan(false) { previousValue, _ in
-                !previousValue
-            }
+            .scan(false) { previousValue, _ in !previousValue }
             .startWith(false)
 
         let output = Login.ViewOutput(actions: LoginActions(
