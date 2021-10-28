@@ -9,8 +9,8 @@ import UIKit
 
 class AverageRatingTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var averageRatingLabel: UILabel!
-    @IBOutlet private weak var ratingStackView: RatingsStackView!
+    @IBOutlet private var averageRatingLabel: UILabel!
+    @IBOutlet private var ratingStackView: RatingsStackView!
 
     override func prepareForReuse() {
         super.prepareForReuse()

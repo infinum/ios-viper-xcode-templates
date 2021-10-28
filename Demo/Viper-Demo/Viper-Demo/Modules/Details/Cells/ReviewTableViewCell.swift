@@ -10,16 +10,16 @@ import Kingfisher
 
 class ReviewTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var profileImageView: UIImageView! {
+    @IBOutlet private var profileImageView: UIImageView! {
         didSet {
             profileImageView.clipsToBounds = true
             profileImageView.layer.masksToBounds = false
             profileImageView.layer.cornerRadius = 25
         }
     }
-    @IBOutlet private weak var usernameLabel: UILabel!
-    @IBOutlet private weak var ratingStackView: RatingsStackView!
-    @IBOutlet private weak var commentlabel: UILabel!
+    @IBOutlet private var usernameLabel: UILabel!
+    @IBOutlet private var ratingStackView: RatingsStackView!
+    @IBOutlet private var commentlabel: UILabel!
 
     override func prepareForReuse() {
         super.prepareForReuse()

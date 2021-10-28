@@ -11,7 +11,7 @@ import RxCocoa
 
 class NoReviewsTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var addReviewButton: UIButton!
+    @IBOutlet private var addReviewButton: UIButton!
 
     private var disposeBag = DisposeBag()
 
@@ -21,9 +21,7 @@ class NoReviewsTableViewCell: UITableViewCell {
     }
 
     func configure(with openReviewsRelay: PublishRelay<String>?, _ showId: String?) {
-        guard let openReviewsRelay = openReviewsRelay else {
-            return
-        }
+        guard let openReviewsRelay = openReviewsRelay else { return }
 
         addReviewButton
             .rx

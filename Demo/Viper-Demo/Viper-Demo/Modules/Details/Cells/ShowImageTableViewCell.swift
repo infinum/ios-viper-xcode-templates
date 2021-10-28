@@ -10,7 +10,7 @@ import Kingfisher
 
 class ShowImageTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var showImageView: UIImageView! {
+    @IBOutlet private var showImageView: UIImageView! {
         didSet {
             showImageView.layer.masksToBounds = false
             showImageView.layer.cornerRadius = 10

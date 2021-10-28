@@ -11,7 +11,7 @@ import RxCocoa
 
 class AddReviewTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var addReviewButton: UIButton!
+    @IBOutlet private var addReviewButton: UIButton!
 
     private var disposeBag = DisposeBag()
 

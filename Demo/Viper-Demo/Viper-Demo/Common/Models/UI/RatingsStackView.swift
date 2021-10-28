@@ -8,12 +8,14 @@
 import UIKit
 
 class RatingsStackView: UIStackView {
+
+    private static let maxRating = 5
+
     func setRating(of rating: Int, withButtons: Bool = false) {
-        let maxRating = 5
         if withButtons {
-            addStarButtons(filled: rating, notFilled: maxRating - rating)
+            addStarButtons(filled: rating, notFilled: RatingsStackView.maxRating - rating)
         } else {
-            addStarImages(filled: rating, notFilled: maxRating - rating)
+            addStarImages(filled: rating, notFilled: RatingsStackView.maxRating - rating)
         }
     }
 
@@ -44,13 +46,13 @@ class RatingsStackView: UIStackView {
             (1...filled).forEach { i in
                 addArrangedSubview(ratingButton(i, true))
             }
-            (arrangedSubviews.count...5).forEach { i in
+            (arrangedSubviews.count...RatingsStackView.maxRating).forEach { i in
                 addArrangedSubview(ratingButton(i, false))
             }
             return
         }
 
-        (arrangedSubviews.count + 1...5 ).forEach { i in
+        (arrangedSubviews.count + 1...RatingsStackView.maxRating).forEach { i in
             addArrangedSubview(ratingButton(i, false))
         }
     }
