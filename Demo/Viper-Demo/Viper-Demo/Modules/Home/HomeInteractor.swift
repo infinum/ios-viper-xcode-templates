@@ -23,7 +23,7 @@ final class HomeInteractor {
 // MARK: - Extensions -
 
 extension HomeInteractor: HomeInteractorInterface {
-    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> ())) {
+    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> Void)) {
         showService.getShows(completion)
     }
 

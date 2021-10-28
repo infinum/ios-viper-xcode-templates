@@ -63,4 +63,3 @@ extension ShowDetailsItem: TableCellItem {
 struct ShowDetailsSection: TableSectionItem {
     let items: [TableCellItem]
 }
-

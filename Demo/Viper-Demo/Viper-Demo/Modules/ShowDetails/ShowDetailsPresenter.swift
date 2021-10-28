@@ -67,7 +67,7 @@ private extension ShowDetailsPresenter {
             interactor.getShowDetails(for: showId),
             interactor.getAllReviews(for: showId)
         )
-            .do(onSuccess: { [unowned view] show, reviews in
+            .do(onSuccess: { [unowned view] show, _ in
                 titleRelay.accept(show.title)
                 view.hideProgressHUD()
             }, onError: { [unowned self] error in

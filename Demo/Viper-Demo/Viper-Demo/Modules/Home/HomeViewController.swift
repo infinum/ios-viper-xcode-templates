@@ -31,7 +31,7 @@ final class HomeViewController: UIViewController {
         presenter.loadShows()
     }
 
-    @IBAction func logout(_ sender: Any) {
+    @IBAction private func logout(_ sender: Any) {
         presenter.logout()
     }
 }

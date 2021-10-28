@@ -20,7 +20,7 @@ final class ShowDetailsViewController: UIViewController {
 
     // MARK: - Private properties -
 
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView!
     private let disposeBag = DisposeBag()
     private lazy var tableDataSource: TableDataSourceDelegate = {
         return TableDataSourceDelegate(tableView: tableView)

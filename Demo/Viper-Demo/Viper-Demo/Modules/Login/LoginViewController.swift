@@ -25,7 +25,7 @@ final class LoginViewController: UIViewController {
     @IBOutlet private var checkboxButton: UIButton!
     @IBOutlet private var loginButton: UIButton!
     @IBOutlet private var registerButton: UIButton!
-    @IBOutlet var secureEntryButton: UIButton!
+    @IBOutlet private var secureEntryButton: UIButton!
     private let disposeBag = DisposeBag()
 
     // MARK: - Lifecycle -

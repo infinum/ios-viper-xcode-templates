@@ -33,4 +33,3 @@ class ShowImageTableViewCell: UITableViewCell {
         showImageView.kf.setImage(with: safeURL, placeholder: UIImage(named: "show_placeholder"), options: nil, completionHandler: nil)
     }
 }
-

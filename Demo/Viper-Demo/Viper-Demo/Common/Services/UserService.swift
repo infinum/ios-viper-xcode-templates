@@ -65,19 +65,21 @@ private extension UserService {
                 method: .post,
                 parameters: parameters,
                 encoding: URLEncoding.default
-            ).validate().responseData { [unowned self] data in
-                saveHeaders(from: data.response)
-                guard let data = data.data else {
-                    single(.failure(data.error ?? AFError.explicitlyCancelled))
-                    return
+            )
+                .validate()
+                .responseData { [unowned self] data in
+                    saveHeaders(from: data.response)
+                    guard let data = data.data else {
+                        single(.failure(data.error ?? AFError.explicitlyCancelled))
+                        return
+                    }
+                    do {
+                        let user = try JapxDecoder().decode(AuthResponse.self, from: data).user
+                        single(.success(user))
+                    } catch {
+                        single(.failure(error))
+                    }
                 }
-                do {
-                    let user = try JapxDecoder().decode(AuthResponse.self, from: data).user
-                    single(.success(user))
-                } catch {
-                    single(.failure(error))
-                }
-            }
 
             return Disposables.create {
                 request.cancel()

@@ -29,6 +29,6 @@ protocol HomePresenterInterface: PresenterInterface {
 }
 
 protocol HomeInteractorInterface: InteractorInterface {
-    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> ()))
+    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> Void))
     func logout()
 }

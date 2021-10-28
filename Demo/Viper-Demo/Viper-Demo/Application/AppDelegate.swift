@@ -37,4 +37,3 @@ private extension AppDelegate {
         UserDefaults.standard.bool(forKey: Constants.UserDefaults.remember)
     }
 }
-

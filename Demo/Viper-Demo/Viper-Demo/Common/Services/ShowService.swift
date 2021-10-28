@@ -20,25 +20,27 @@ class ShowService {
         configureDecoder()
     }
 
-    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> ())) {
+    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> Void)) {
         AF.request(
             Constants.API.shows,
             method: .get,
             parameters: nil,
             encoding: URLEncoding.default,
             interceptor: AuthInterceptor()
-        ).validate().responseData { [unowned self] data in
-            guard let data = data.data else {
-                completion(.failure(data.error ?? AFError.explicitlyCancelled))
-                return
+        )
+            .validate()
+            .responseData { [unowned self] data in
+                guard let data = data.data else {
+                    completion(.failure(data.error ?? AFError.explicitlyCancelled))
+                    return
+                }
+                do {
+                    let shows = try japxDecoder.decode(AllShowsResponse.self, from: data).shows
+                    completion(.success(shows))
+                } catch {
+                    completion(.failure(error))
+                }
             }
-            do {
-                let shows = try japxDecoder.decode(AllShowsResponse.self, from: data).shows
-                completion(.success(shows))
-            } catch {
-                completion(.failure(error))
-            }
-        }
     }
 
     func getAllReviews(for showId: String) -> Single<[Review]> {
@@ -48,19 +50,21 @@ class ShowService {
                 method: .get,
                 encoding: URLEncoding.default,
                 interceptor: AuthInterceptor()
-            ).validate().responseData { [unowned self] data in
-                guard let data = data.data else {
-                    single(.failure(data.error ?? AFError.explicitlyCancelled))
-                    return
-                }
-                do {
-                    let reviews = try japxDecoder.decode(ReviewResponse.self, from: data).reviews
-                    single(.success(reviews))
-                } catch {
-                    single(.failure(error))
-                }
+            )
+                .validate()
+                .responseData { [unowned self] data in
+                    guard let data = data.data else {
+                        single(.failure(data.error ?? AFError.explicitlyCancelled))
+                        return
+                    }
+                    do {
+                        let reviews = try japxDecoder.decode(ReviewResponse.self, from: data).reviews
+                        single(.success(reviews))
+                    } catch {
+                        single(.failure(error))
+                    }
 
-            }
+                }
 
             return Disposables.create {
                 request.cancel()
@@ -75,19 +79,21 @@ class ShowService {
                 method: .get,
                 encoding: URLEncoding.default,
                 interceptor: AuthInterceptor()
-            ).validate().responseData { [unowned self] data in
-                guard let data = data.data else {
-                    single(.failure(data.error ?? AFError.explicitlyCancelled))
-                    return
-                }
-                do {
-                    let show = try japxDecoder.decode(ShowDetailsResponse.self, from: data).show
-                    single(.success(show))
-                } catch {
-                    single(.failure(error))
-                }
+            )
+                .validate()
+                .responseData { [unowned self] data in
+                    guard let data = data.data else {
+                        single(.failure(data.error ?? AFError.explicitlyCancelled))
+                        return
+                    }
+                    do {
+                        let show = try japxDecoder.decode(ShowDetailsResponse.self, from: data).show
+                        single(.success(show))
+                    } catch {
+                        single(.failure(error))
+                    }
 
-            }
+                }
 
             return Disposables.create {
                 request.cancel()

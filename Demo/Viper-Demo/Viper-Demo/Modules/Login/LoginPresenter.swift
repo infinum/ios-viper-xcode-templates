@@ -153,7 +153,6 @@ private extension LoginPresenter {
         return passwordValidator.isValid(password)
     }
 
-
     func saveUser(_ shouldSave: Bool, _ user: User) {
         if shouldSave {
             interactor.rememberUser()

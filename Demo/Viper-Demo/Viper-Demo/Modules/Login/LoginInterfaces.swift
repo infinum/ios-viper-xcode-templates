@@ -41,7 +41,6 @@ enum Login {
 
 }
 
-
 struct LoginActions {
     let rememberMe: Driver<Bool>
     let login: Signal<Void>
