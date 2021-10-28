@@ -1,5 +1,5 @@
 //
-//  DetailsInteractor.swift
+//  ShowDetailsInteractor.swift
 //  Viper-Demo
 //
 //  Created by Zvonimir Medak on 07.10.2021..
@@ -13,7 +13,7 @@ import RxSwift
 import Alamofire
 import Japx
 
-final class DetailsInteractor {
+final class ShowDetailsInteractor {
     private let showService: ShowService
 
     init(showService: ShowService = .shared) {
@@ -23,7 +23,7 @@ final class DetailsInteractor {
 
 // MARK: - Extensions -
 
-extension DetailsInteractor: DetailsInteractorInterface {
+extension ShowDetailsInteractor: ShowDetailsInteractorInterface {
 
     func getShowDetails(for showId: String) -> Single<Show> {
         return showService.getShowDetails(for: showId)

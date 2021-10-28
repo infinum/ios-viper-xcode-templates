@@ -1,5 +1,5 @@
 //
-//  DetailsWireframe.swift
+//  ShowDetailsWireframe.swift
 //  Viper-Demo
 //
 //  Created by Zvonimir Medak on 07.10.2021..
@@ -12,21 +12,21 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class DetailsWireframe: BaseWireframe<DetailsViewController> {
+final class ShowDetailsWireframe: BaseWireframe<ShowDetailsViewController> {
 
     // MARK: - Private properties -
 
-    private let storyboard = UIStoryboard(name: "Details", bundle: nil)
+    private let storyboard = UIStoryboard(name: "ShowDetails", bundle: nil)
 
     // MARK: - Module setup -
 
     init(showId: String) {
-        let moduleViewController = storyboard.instantiateViewController(ofType: DetailsViewController.self)
+        let moduleViewController = storyboard.instantiateViewController(ofType: ShowDetailsViewController.self)
         super.init(viewController: moduleViewController)
 
-        let formatter = DetailsFormatter()
-        let interactor = DetailsInteractor()
-        let presenter = DetailsPresenter(
+        let formatter = ShowDetailsFormatter()
+        let interactor = ShowDetailsInteractor()
+        let presenter = ShowDetailsPresenter(
             view: moduleViewController,
             formatter: formatter,
             interactor: interactor,
@@ -40,5 +40,5 @@ final class DetailsWireframe: BaseWireframe<DetailsViewController> {
 
 // MARK: - Extensions -
 
-extension DetailsWireframe: DetailsWireframeInterface {
+extension ShowDetailsWireframe: ShowDetailsWireframeInterface {
 }

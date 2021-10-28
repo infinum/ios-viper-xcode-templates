@@ -17,7 +17,7 @@ enum ShowDetailsCellType {
     case image, description, reviewsTitle, averageRating, noReviews, addReview, review
 }
 
-struct DetailsItem {
+struct ShowDetailsItem {
     let model: ShowWithReviews
     let type: ShowDetailsCellType
 
@@ -27,7 +27,7 @@ struct DetailsItem {
     }
 }
 
-extension DetailsItem: TableCellItem {
+extension ShowDetailsItem: TableCellItem {
 
     func cell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         switch type {

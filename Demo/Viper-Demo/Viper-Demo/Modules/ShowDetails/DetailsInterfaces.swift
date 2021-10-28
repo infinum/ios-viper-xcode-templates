@@ -1,5 +1,5 @@
 //
-//  DetailsInterfaces.swift
+//  ShowDetailsInterfaces.swift
 //  Viper-Demo
 //
 //  Created by Zvonimir Medak on 07.10.2021..
@@ -12,33 +12,33 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol DetailsWireframeInterface: WireframeInterface {
+protocol ShowDetailsWireframeInterface: WireframeInterface {
 }
 
-protocol DetailsViewInterface: ViewInterface {
+protocol ShowDetailsViewInterface: ViewInterface {
 }
 
-protocol DetailsPresenterInterface: PresenterInterface {
-    func configure(with output: Details.ViewOutput) -> Details.ViewInput
+protocol ShowDetailsPresenterInterface: PresenterInterface {
+    func configure(with output: ShowDetails.ViewOutput) -> ShowDetails.ViewInput
 }
 
-protocol DetailsFormatterInterface: FormatterInterface {
-    func format(for input: Details.FormatterInput) -> Details.FormatterOutput
+protocol ShowDetailsFormatterInterface: FormatterInterface {
+    func format(for input: ShowDetails.FormatterInput) -> ShowDetails.FormatterOutput
 }
 
-protocol DetailsInteractorInterface: InteractorInterface {
+protocol ShowDetailsInteractorInterface: InteractorInterface {
     func getShowDetails(for showId: String) -> Single<Show>
     func getAllReviews(for showId: String) -> Single<[Review]>
 }
 
-enum Details {
+enum ShowDetails {
 
     struct ViewOutput {
     }
 
     struct ViewInput {
         let models: FormatterOutput
-        let events: DetailsEvents
+        let events: ShowDetailsEvents
     }
 
     struct FormatterInput {
@@ -51,6 +51,6 @@ enum Details {
 
 }
 
-struct DetailsEvents {
+struct ShowDetailsEvents {
     let title: Signal<String>
 }

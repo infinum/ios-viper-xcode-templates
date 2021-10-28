@@ -1,5 +1,5 @@
 //
-//  DetailsFormatter.swift
+//  ShowDetailsFormatter.swift
 //  Viper-Demo
 //
 //  Created by Zvonimir Medak on 07.10.2021..
@@ -12,21 +12,21 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class DetailsFormatter {
+final class ShowDetailsFormatter {
 }
 
 // MARK: - Extensions -
 
-extension DetailsFormatter: DetailsFormatterInterface {
+extension ShowDetailsFormatter: ShowDetailsFormatterInterface {
 
-    func format(for input: Details.FormatterInput) -> Details.FormatterOutput {
+    func format(for input: ShowDetails.FormatterInput) -> ShowDetails.FormatterOutput {
 
-        return Details.FormatterOutput(sections: handle(input.models))
+        return ShowDetails.FormatterOutput(sections: handle(input.models))
     }
 
 }
 
-private extension DetailsFormatter {
+private extension ShowDetailsFormatter {
     func handle(_ items: Driver<(Show, [Review])>) -> Driver<[TableSectionItem]> {
         return items
             .map { [unowned self] in
@@ -35,16 +35,16 @@ private extension DetailsFormatter {
     }
 
     func createShowDetailsSectionItems(items: (show: Show, reviews: [Review])) -> [ShowDetailsSection] {
-        var showDetailsItems: [DetailsItem] = []
+        var showDetailsItems: [ShowDetailsItem] = []
         showDetailsItems.append(contentsOf: createMandatoryItems(items.show))
         showDetailsItems.append(contentsOf: createReviewSection(with: items.show, items.reviews))
         return [ShowDetailsSection(items: showDetailsItems)]
     }
 
-    func createMandatoryItems(_ show: Show) -> [DetailsItem] {
-        var showDetailsItems: [DetailsItem] = []
+    func createMandatoryItems(_ show: Show) -> [ShowDetailsItem] {
+        var showDetailsItems: [ShowDetailsItem] = []
         showDetailsItems.append(
-            DetailsItem(
+            ShowDetailsItem(
                 model: ShowWithReviews(
                     show: show,
                     review: nil
@@ -53,7 +53,7 @@ private extension DetailsFormatter {
             )
         )
         showDetailsItems.append(
-            DetailsItem(
+            ShowDetailsItem(
                 model: ShowWithReviews(
                     show: show,
                     review: nil
@@ -62,7 +62,7 @@ private extension DetailsFormatter {
             )
         )
         showDetailsItems.append(
-            DetailsItem(
+            ShowDetailsItem(
                 model: ShowWithReviews(
                     show: nil,
                     review: nil
@@ -73,11 +73,11 @@ private extension DetailsFormatter {
         return showDetailsItems
     }
 
-    func createReviewSection(with show: Show, _ reviews: [Review]) -> [DetailsItem] {
-        var showDetailsItems: [DetailsItem] = []
+    func createReviewSection(with show: Show, _ reviews: [Review]) -> [ShowDetailsItem] {
+        var showDetailsItems: [ShowDetailsItem] = []
         guard reviews.isEmpty else {
             showDetailsItems.append(
-                DetailsItem(
+                ShowDetailsItem(
                     model: ShowWithReviews(
                         show: show,
                         review: nil
@@ -87,7 +87,7 @@ private extension DetailsFormatter {
             )
             reviews.forEach { review in
                 showDetailsItems.append(
-                    DetailsItem(
+                    ShowDetailsItem(
                         model: ShowWithReviews(
                             show: nil,
                             review: review
@@ -97,7 +97,7 @@ private extension DetailsFormatter {
                 )
             }
             showDetailsItems.append(
-                DetailsItem(
+                ShowDetailsItem(
                     model: ShowWithReviews(
                         show: show,
                         review: nil
@@ -108,7 +108,7 @@ private extension DetailsFormatter {
             return showDetailsItems
         }
         showDetailsItems.append(
-            DetailsItem(
+            ShowDetailsItem(
                 model: ShowWithReviews(
                     show: show,
                     review: nil

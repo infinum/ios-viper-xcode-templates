@@ -1,5 +1,5 @@
 //
-//  DetailsViewController.swift
+//  ShowDetailsViewController.swift
 //  Viper-Demo
 //
 //  Created by Zvonimir Medak on 07.10.2021..
@@ -12,11 +12,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class DetailsViewController: UIViewController {
+final class ShowDetailsViewController: UIViewController {
 
     // MARK: - Public properties -
 
-    var presenter: DetailsPresenterInterface!
+    var presenter: ShowDetailsPresenterInterface!
 
     // MARK: - Private properties -
 
@@ -36,13 +36,13 @@ final class DetailsViewController: UIViewController {
 
 // MARK: - Extensions -
 
-extension DetailsViewController: DetailsViewInterface {
+extension ShowDetailsViewController: ShowDetailsViewInterface {
 }
 
-private extension DetailsViewController {
+private extension ShowDetailsViewController {
 
     func setupView() {
-        let output = Details.ViewOutput()
+        let output = ShowDetails.ViewOutput()
 
         let input = presenter.configure(with: output)
         handle(title: input.events.title)

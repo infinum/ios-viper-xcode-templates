@@ -1,5 +1,5 @@
 //
-//  DetailsPresenter.swift
+//  ShowDetailsPresenter.swift
 //  Viper-Demo
 //
 //  Created by Zvonimir Medak on 07.10.2021..
@@ -12,24 +12,24 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-final class DetailsPresenter {
+final class ShowDetailsPresenter {
 
     // MARK: - Private properties -
 
-    private unowned let view: DetailsViewInterface
-    private let formatter: DetailsFormatterInterface
-    private let interactor: DetailsInteractorInterface
-    private let wireframe: DetailsWireframeInterface
+    private unowned let view: ShowDetailsViewInterface
+    private let formatter: ShowDetailsFormatterInterface
+    private let interactor: ShowDetailsInteractorInterface
+    private let wireframe: ShowDetailsWireframeInterface
 
     private let showId: String
     private let disposeBag: DisposeBag
     // MARK: - Lifecycle -
 
     init(
-        view: DetailsViewInterface,
-        formatter: DetailsFormatterInterface,
-        interactor: DetailsInteractorInterface,
-        wireframe: DetailsWireframeInterface,
+        view: ShowDetailsViewInterface,
+        formatter: ShowDetailsFormatterInterface,
+        interactor: ShowDetailsInteractorInterface,
+        wireframe: ShowDetailsWireframeInterface,
         showId: String
     ) {
         self.view = view
@@ -44,23 +44,23 @@ final class DetailsPresenter {
 
 // MARK: - Extensions -
 
-extension DetailsPresenter: DetailsPresenterInterface {
+extension ShowDetailsPresenter: ShowDetailsPresenterInterface {
 
-    func configure(with output: Details.ViewOutput) -> Details.ViewInput {
+    func configure(with output: ShowDetails.ViewOutput) -> ShowDetails.ViewInput {
         let titleRelay = PublishRelay<String>()
-        let formatterInput = Details.FormatterInput(models: handleInitialLoad(titleRelay: titleRelay))
+        let formatterInput = ShowDetails.FormatterInput(models: handleInitialLoad(titleRelay: titleRelay))
 
         let formatterOutput = formatter.format(for: formatterInput)
 
-        return Details.ViewInput(
+        return ShowDetails.ViewInput(
             models: formatterOutput,
-            events: DetailsEvents(title: titleRelay.asSignal())
+            events: ShowDetailsEvents(title: titleRelay.asSignal())
         )
     }
 
 }
 
-private extension DetailsPresenter {
+private extension ShowDetailsPresenter {
 
     func handleInitialLoad(titleRelay: PublishRelay<String>) -> Driver<(Show, [Review])> {
         return Single.zip(
