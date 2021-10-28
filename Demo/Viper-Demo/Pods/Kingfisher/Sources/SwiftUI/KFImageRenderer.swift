@@ -37,7 +37,6 @@ struct KFImageRenderer<HoldingView> : View where HoldingView: KFImageHoldingView
     let context: KFImage.Context<HoldingView>
     
     var body: some View {
-        
         ZStack {
             context.configurations
                 .reduce(HoldingView.created(from: binder.loadedImage, context: context)) {

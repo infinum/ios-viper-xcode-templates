@@ -28,6 +28,10 @@
 import UIKit
 #endif
 
+#if canImport(CarPlay)
+import CarPlay
+#endif
+
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 import AppKit
 #endif
@@ -211,6 +215,29 @@ extension KF.Builder {
         )
     }
     #endif // end of canImport(UIKit)
+    
+    #if canImport(CarPlay)
+    
+    /// Builds the image task request and sets it to the image for a list item.
+    /// - Parameters:
+    ///   - listItem: The list item which loads the task and should be set with the image.
+    /// - Returns: A task represents the image downloading, if initialized.
+    ///            This value is `nil` if the image is being loaded from cache.
+    @available(iOS 14.0, *)
+    @discardableResult
+    public func set(to listItem: CPListItem) -> DownloadTask? {
+        let placeholderImage = placeholder as? KFCrossPlatformImage ?? nil
+        return listItem.kf.setImage(
+            with: source,
+            placeholder: placeholderImage,
+            parsedOptions: options,
+            progressBlock: progressBlock,
+            completionHandler: resultHandler
+        )
+        
+    }
+    
+    #endif
 
     #if canImport(AppKit) && !targetEnvironment(macCatalyst)
     /// Builds the image task request and sets it to a button.
@@ -360,19 +387,6 @@ extension KF.Builder {
     ///
     public func onlyLoadFirstFrame(_ enabled: Bool = true) -> Self {
         options.onlyLoadFirstFrame = enabled
-        return self
-    }
-
-    /// Sets the image that will be used if an image retrieving task fails.
-    /// - Parameter image: The image that will be used when something goes wrong.
-    /// - Returns: A `KF.Builder` with changes applied.
-    ///
-    /// If set and an image retrieving error occurred Kingfisher will set provided image (or empty)
-    /// in place of requested one. It's useful when you don't want to show placeholder
-    /// during loading time but wants to use some default image when requests will be failed.
-    ///
-    public func onFailureImage(_ image: KFCrossPlatformImage?) -> Self {
-        options.onFailureImage = .some(image)
         return self
     }
 

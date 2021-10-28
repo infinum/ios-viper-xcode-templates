@@ -11,9 +11,9 @@
 		376894BA270C33950094A3C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894B9270C33950094A3C2 /* AppDelegate.swift */; };
 		376894C3270C33970094A3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 376894C2270C33970094A3C2 /* Assets.xcassets */; };
 		376894C6270C33970094A3C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376894C4270C33970094A3C2 /* LaunchScreen.storyboard */; };
-		376894D1270C33980094A3C2 /* Viper_v4_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894D0270C33980094A3C2 /* Viper_v4_DemoTests.swift */; };
-		376894DB270C33980094A3C2 /* Viper_v4_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894DA270C33980094A3C2 /* Viper_v4_DemoUITests.swift */; };
-		376894DD270C33980094A3C2 /* Viper_v4_DemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894DC270C33980094A3C2 /* Viper_v4_DemoUITestsLaunchTests.swift */; };
+		376894D1270C33980094A3C2 /* Viper_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894D0270C33980094A3C2 /* Viper_DemoTests.swift */; };
+		376894DB270C33980094A3C2 /* Viper_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894DA270C33980094A3C2 /* Viper_DemoUITests.swift */; };
+		376894DD270C33980094A3C2 /* Viper_DemoUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894DC270C33980094A3C2 /* Viper_DemoUITestsLaunchTests.swift */; };
 		376894EC270C36700094A3C2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894EB270C36700094A3C2 /* Constants.swift */; };
 		376894F3270C38240094A3C2 /* SFProDisplay-Bold.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 376894EF270C38240094A3C2 /* SFProDisplay-Bold.OTF */; };
 		376894F4270C38240094A3C2 /* SFProDisplay-Regular.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 376894F0270C38240094A3C2 /* SFProDisplay-Regular.OTF */; };
@@ -108,10 +108,10 @@
 		376894C5270C33970094A3C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		376894C7270C33970094A3C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		376894CC270C33980094A3C2 /* Viper-DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Viper-DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		376894D0270C33980094A3C2 /* Viper_v4_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viper_v4_DemoTests.swift; sourceTree = "<group>"; };
+		376894D0270C33980094A3C2 /* Viper_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viper_DemoTests.swift; sourceTree = "<group>"; };
 		376894D6270C33980094A3C2 /* Viper-DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Viper-DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		376894DA270C33980094A3C2 /* Viper_v4_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viper_v4_DemoUITests.swift; sourceTree = "<group>"; };
-		376894DC270C33980094A3C2 /* Viper_v4_DemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viper_v4_DemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		376894DA270C33980094A3C2 /* Viper_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viper_DemoUITests.swift; sourceTree = "<group>"; };
+		376894DC270C33980094A3C2 /* Viper_DemoUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Viper_DemoUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		376894EB270C36700094A3C2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		376894EF270C38240094A3C2 /* SFProDisplay-Bold.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Bold.OTF"; sourceTree = "<group>"; };
 		376894F0270C38240094A3C2 /* SFProDisplay-Regular.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.OTF"; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		376894CF270C33980094A3C2 /* Viper-DemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				376894D0270C33980094A3C2 /* Viper_v4_DemoTests.swift */,
+				376894D0270C33980094A3C2 /* Viper_DemoTests.swift */,
 			);
 			path = "Viper-DemoTests";
 			sourceTree = "<group>";
@@ -252,8 +252,8 @@
 		376894D9270C33980094A3C2 /* Viper-DemoUITests */ = {
 			isa = PBXGroup;
 			children = (
-				376894DA270C33980094A3C2 /* Viper_v4_DemoUITests.swift */,
-				376894DC270C33980094A3C2 /* Viper_v4_DemoUITestsLaunchTests.swift */,
+				376894DA270C33980094A3C2 /* Viper_DemoUITests.swift */,
+				376894DC270C33980094A3C2 /* Viper_DemoUITestsLaunchTests.swift */,
 			);
 			path = "Viper-DemoUITests";
 			sourceTree = "<group>";
@@ -770,7 +770,6 @@
 				37976910270DA07A003F244A /* HomeInteractor.swift in Sources */,
 				37689530270C77550094A3C2 /* PasswordValidator.swift in Sources */,
 				37689520270C495B0094A3C2 /* UIButton+InterfaceBuilder.swift in Sources */,
-				37689510270C3F300094A3C2 /* UIImageExtension.swift in Sources */,
 				3785C8C4270F0B1A00BDE417 /* CellItem.swift in Sources */,
 				3768951A270C47410094A3C2 /* LoginInterfaces.swift in Sources */,
 				3785C8AF270F080700BDE417 /* ShowDescriptionTableViewCell.swift in Sources */,
@@ -809,7 +808,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				376894D1270C33980094A3C2 /* Viper_v4_DemoTests.swift in Sources */,
+				376894D1270C33980094A3C2 /* Viper_DemoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -817,8 +816,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				376894DD270C33980094A3C2 /* Viper_v4_DemoUITestsLaunchTests.swift in Sources */,
-				376894DB270C33980094A3C2 /* Viper_v4_DemoUITests.swift in Sources */,
+				376894DD270C33980094A3C2 /* Viper_DemoUITestsLaunchTests.swift in Sources */,
+				376894DB270C33980094A3C2 /* Viper_DemoUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -908,7 +907,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -963,7 +962,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

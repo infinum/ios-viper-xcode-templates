@@ -3,7 +3,7 @@ PODS:
   - Japx (4.0.0):
     - Japx/Core (= 4.0.0)
   - Japx/Core (4.0.0)
-  - Kingfisher (7.0.0)
+  - Kingfisher (7.1.1)
   - RxCocoa (6.2.0):
     - RxRelay (= 6.2.0)
     - RxSwift (= 6.2.0)
@@ -33,7 +33,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   Japx: 4bb2d79d023af5e7ea44c0a2875c4b070080e111
-  Kingfisher: 5efc54fec3980f92354898532e562cc17f31efb4
+  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
   RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
   RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
   RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
