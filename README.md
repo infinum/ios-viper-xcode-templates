@@ -391,7 +391,7 @@ private extension HomePresenter {
 }
 ```
 
-In this simple example the Presenter which fetches TV shows from an API call and handles the result. The Presenter can also handle the logout action and item selection in a tableView which is delegated from the view. If an item has been selected the Presenter will initiate opening of the Details screen.
+In this simple example the Presenter fetches TV shows by doing an API call and handles the result. The Presenter can also handle the logout action and item selection in a tableView which is delegated from the view. If an item has been selected the Presenter will initiate opening of the Details screen.
 
 ```swift
 final class HomeWireframe: BaseWireframe<HomeViewController> {
@@ -427,7 +427,7 @@ extension HomeWireframe: HomeWireframeInterface {
 }
 ```
 
-This is also a simple example of a wireframe which handles two navigation functions. You've maybe notices the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
+This is also a simple example of a wireframe which handles two navigation functions. You've maybe noticed the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
 
 ```swift
 func showAlert(with title: String?, message: String?) {
