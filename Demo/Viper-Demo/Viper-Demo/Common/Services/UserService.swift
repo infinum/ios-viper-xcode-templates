@@ -21,62 +21,13 @@ class UserService {
     }
 
     func login(with email: String, _ password: String) -> Single<User> {
-        Single.create { single in
-            var params = Parameters()
-            params["email"] = email
-            params["password"] = password
-            let request = AF.request(
-                Constants.API.login,
-                method: .post,
-                parameters: params,
-                encoding: URLEncoding.default
-            ).validate().responseData { [unowned self] data in
-                saveHeaders(from: data.response)
-                guard let data = data.data else {
-                    single(.failure(data.error ?? AFError.explicitlyCancelled))
-                    return
-                }
-                do {
-                    let user = try JapxDecoder().decode(AuthResponse.self, from: data).user
-                    single(.success(user))
-                } catch {
-                    single(.failure(error))
-                }
-            }
-
-            return Disposables.create {
-                request.cancel()
-            }
-        }
+        let params = createParameters(email, password)
+        return handle(url: Constants.API.login, parameters: params)
     }
 
     func register(with email: String, _ password: String) -> Single<User> {
-        Single.create { single in
-            var params = Parameters()
-            params["email"] = email
-            params["password"] = password
-            let request = AF.request(
-                Constants.API.register,
-                method: .post,
-                parameters: params,
-                encoding: URLEncoding.default
-            ).validate().responseData { data in
-                guard let data = data.data else {
-                    single(.failure(data.error ?? AFError.explicitlyCancelled))
-                    return
-                }
-                do {
-                    let user = try JapxDecoder().decode(AuthResponse.self, from: data).user
-                    single(.success(user))
-                } catch {
-                    single(.failure(error))
-                }
-            }
-
-            return Disposables.create {
-                request.cancel()
-            }
-        }
+        let params = createParameters(email, password)
+        return handle(url: Constants.API.register, parameters: params)
     }
 
     func rememberUser() {
@@ -103,5 +54,39 @@ private extension UserService {
             userDefaults.set(client, forKey: Constants.UserDefaults.client)
             userDefaults.set(uid, forKey: Constants.UserDefaults.uid)
         }
+    }
+
+    func handle(url: URL, parameters: Parameters) -> Single<User> {
+        return Single.create { single in
+            let request = AF.request(
+                url,
+                method: .post,
+                parameters: parameters,
+                encoding: URLEncoding.default
+            ).validate().responseData { [unowned self] data in
+                saveHeaders(from: data.response)
+                guard let data = data.data else {
+                    single(.failure(data.error ?? AFError.explicitlyCancelled))
+                    return
+                }
+                do {
+                    let user = try JapxDecoder().decode(AuthResponse.self, from: data).user
+                    single(.success(user))
+                } catch {
+                    single(.failure(error))
+                }
+            }
+
+            return Disposables.create {
+                request.cancel()
+            }
+        }
+    }
+
+    func createParameters(_ email: String, _ password: String) -> Parameters {
+        var params = Parameters()
+        params["email"] = email
+        params["password"] = password
+        return params
     }
 }

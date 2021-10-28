@@ -1,9 +1,0 @@
----
-:language: swift
-:bundles:
-- :name: main
-  :reference: ".main"
-  :assetsSearchPath: "Viper-Demo/**/*.xcassets"
-  :outputSourcePathImages: "Viper-Demo/Common/Extensions/UIImageExtension.swift"
-  :outputSourcePathColors: "Viper-Demo/Common/Extensions/UIColorExtension.swift"
-:app_name: ViperDemo
