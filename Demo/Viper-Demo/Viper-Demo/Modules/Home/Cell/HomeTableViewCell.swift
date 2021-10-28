@@ -33,7 +33,12 @@ class HomeTableViewCell: UITableViewCell {
             return
         }
 
-        showImageView.kf.setImage(with: safeURL, placeholder: UIImage(named: "show_placeholder"), options: nil, completionHandler: nil)
+        showImageView.kf.setImage(
+            with: safeURL,
+            placeholder: UIImage(named: "show_placeholder"),
+            options: nil,
+            completionHandler: nil
+        )
         selectionStyle = .none
     }
 }

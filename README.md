@@ -318,7 +318,7 @@ When generated your Interactor is also a skeleton which you will in most cases u
 
 ## 3. How it really works
 
-Here's an example of a wireframe for a Home screen. Let's start with the Presenter
+Here's an example of a wireframe for a Home screen. Let's start with the Presenter.
 
 ```swift
 final class HomePresenter {
