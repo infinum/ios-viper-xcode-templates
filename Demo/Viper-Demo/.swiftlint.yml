@@ -1,0 +1,194 @@
+included:
+  - .
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - Viper-DemoTests
+  - Viper-DemoUITests
+
+analyzer_rules:
+  - unused_capture_list
+  - unused_closure_parameter
+  - unused_control_flow_label
+  - unused_declaration
+  - unused_enumerated
+  - unused_import
+  - unused_optional_binding
+  - unused_setter_value
+
+only_rules:
+  - array_init
+  - attributes
+  - block_based_kvo
+  - closing_brace
+  - closure_body_length
+  - closure_end_indentation
+  - closure_parameter_position
+  - closure_spacing
+  - collection_alignment
+  - comma
+  - comment_spacing
+  - compiler_protocol_init
+  - computed_accessors_order
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
+  - contains_over_first_not_nil
+  - contains_over_range_nil_comparison
+  - control_statement
+  - convenience_type
+  - deployment_target
+  - discarded_notification_center_observer
+  - discouraged_assert
+  - discouraged_direct_init
+  - discouraged_object_literal
+  - duplicate_imports
+  - dynamic_inline
+  - empty_collection_literal
+  - empty_count
+  - empty_enum_arguments
+  - empty_parameters
+  - empty_parentheses_with_trailing_closure
+  - empty_string
+  - explicit_init
+  - extension_access_modifier
+  - fatal_error_message
+  - file_length
+  - file_name_no_space
+  - first_where
+  - flatmap_over_map_reduce
+  - for_where
+  - force_try
+  - function_body_length
+  - function_parameter_count
+  - generic_type_name
+  - identical_operands
+  - identifier_name
+  - implicit_getter
+  - inert_defer
+  - is_disjoint
+  - joined_default_parameter
+  - large_tuple
+  - last_where
+  - leading_whitespace
+  - legacy_cggeometry_functions
+  - legacy_constant
+  - legacy_constructor
+  - legacy_hashing
+  - legacy_multiple
+  - legacy_nsgeometry_functions
+  - legacy_random
+  - line_length
+  - literal_expression_end_indentation
+  - lower_acl_than_parent
+  - mark
+  - modifier_order
+  - multiline_arguments
+  - multiline_arguments_brackets
+  - multiline_function_chains
+  - multiline_literal_brackets
+  - multiline_parameters
+  - multiline_parameters_brackets
+  - multiple_closures_with_trailing_closure
+  - no_fallthrough_only
+  - no_space_in_method_call
+  - notification_center_detachment
+  - nslocalizedstring_require_bundle
+  - nsobject_prefer_isequal
+  - number_separator
+  - opening_brace
+  - operator_usage_whitespace
+  - operator_whitespace
+  - optional_enum_case_matching
+  - orphaned_doc_comment
+  - overridden_super_call
+  - prefer_self_type_over_type_of_self
+  - prefer_zero_over_explicit_init
+  - private_action
+  - private_outlet
+  - private_over_fileprivate
+  - private_subject
+  - prohibited_super_call
+  - protocol_property_accessors_order
+  - reduce_boolean
+  - reduce_into
+  - redundant_discardable_let
+  - redundant_nil_coalescing
+  - redundant_objc_attribute
+  - redundant_optional_initialization
+  - redundant_set_access_control
+  - redundant_string_enum_value
+  - redundant_type_annotation
+  - redundant_void_return
+  - required_enum_case
+  - return_arrow_whitespace
+  - shorthand_operator
+  - sorted_first_last
+  - statement_position
+  - static_operator
+  - superfluous_disable_command
+  - switch_case_alignment
+  - syntactic_sugar
+  - todo
+  - toggle_bool
+  - trailing_comma
+  - trailing_newline
+  - trailing_semicolon
+  - type_body_length
+  - type_name
+  - unavailable_function
+  - unneeded_break_in_switch
+  - unneeded_parentheses_in_closure_argument
+  - untyped_error_in_catch
+  - valid_ibinspectable
+  - vertical_parameter_alignment
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace
+  - void_return
+  - weak_delegate
+  - yoda_condition
+
+file_length:
+  warning: 600
+  error: 1000
+  ignore_comment_only_lines: true
+function_body_length:
+  warning: 100
+  error: 150
+function_parameter_count:
+  warning: 8
+  error: 12
+identifier_name:
+  min_length:
+    error: 1
+    warning: 2
+  max_length:
+    warning: 60
+    error: 100
+  excluded:
+    - id
+    - Id
+    - ID
+    - on
+    - On
+    - ON
+    - x
+    - y
+    - z
+    - i
+    - j
+type_name:
+  excluded:
+    - id
+    - Id
+    - ID
+    - on
+    - On
+    - ON
+line_length:
+  warning: 150
+  error: 250
+  ignores_comments: true
+number_separator:
+  minimum_length: 5
+type_body_length:
+  warning: 300
+  error: 450
