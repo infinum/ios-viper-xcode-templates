@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F5862E29DEBFD2C3F79C98E /* Pods_Viper_Demo_Viper_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 980F8C1AD8CCA88BFCBF230B /* Pods_Viper_Demo_Viper_DemoUITests.framework */; };
-		3728B679272AACA300C797C1 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728B677272AACA300C797C1 /* UIColorExtension.swift */; };
-		3728B67A272AACA300C797C1 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3728B678272AACA300C797C1 /* UIImageExtension.swift */; };
 		376894BA270C33950094A3C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894B9270C33950094A3C2 /* AppDelegate.swift */; };
 		376894C3270C33970094A3C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 376894C2270C33970094A3C2 /* Assets.xcassets */; };
 		376894C6270C33970094A3C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 376894C4270C33970094A3C2 /* LaunchScreen.storyboard */; };
@@ -104,8 +102,6 @@
 		0B6E83BB68B94C002C81EBEF /* Pods-Viper-DemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-DemoTests.release.xcconfig"; path = "Target Support Files/Pods-Viper-DemoTests/Pods-Viper-DemoTests.release.xcconfig"; sourceTree = "<group>"; };
 		257477425EA6C8BF085754E1 /* Pods-Viper-Demo-Viper-DemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-Demo-Viper-DemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-Viper-Demo-Viper-DemoUITests/Pods-Viper-Demo-Viper-DemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		344CE5623FA3B6D90CDE5EDD /* Pods-Viper-DemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-DemoTests.debug.xcconfig"; path = "Target Support Files/Pods-Viper-DemoTests/Pods-Viper-DemoTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3728B677272AACA300C797C1 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		3728B678272AACA300C797C1 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		376894B6270C33950094A3C2 /* Viper-Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Viper-Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		376894B9270C33950094A3C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		376894C2270C33970094A3C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -329,8 +325,6 @@
 		37689507270C3A900094A3C2 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3728B677272AACA300C797C1 /* UIColorExtension.swift */,
-				3728B678272AACA300C797C1 /* UIImageExtension.swift */,
 				37689508270C3A9D0094A3C2 /* UIFontExtension.swift */,
 				3768951F270C495B0094A3C2 /* UIButton+InterfaceBuilder.swift */,
 				3785C8CE270F144F00BDE417 /* UIStackView+Subviews.swift */,
@@ -796,7 +790,6 @@
 				37976910270DA07A003F244A /* HomeInteractor.swift in Sources */,
 				37689530270C77550094A3C2 /* PasswordValidator.swift in Sources */,
 				37689520270C495B0094A3C2 /* UIButton+InterfaceBuilder.swift in Sources */,
-				3728B67A272AACA300C797C1 /* UIImageExtension.swift in Sources */,
 				3785C8C4270F0B1A00BDE417 /* CellItem.swift in Sources */,
 				3768951A270C47410094A3C2 /* LoginInterfaces.swift in Sources */,
 				3785C8AF270F080700BDE417 /* ShowDescriptionTableViewCell.swift in Sources */,
@@ -826,7 +819,6 @@
 				3768952C270C767C0094A3C2 /* StringValidator.swift in Sources */,
 				3784CB76270ECECA001643A0 /* AuthInterceptor.swift in Sources */,
 				376894BA270C33950094A3C2 /* AppDelegate.swift in Sources */,
-				3728B679272AACA300C797C1 /* UIColorExtension.swift in Sources */,
 				376894EC270C36700094A3C2 /* Constants.swift in Sources */,
 				3785C8A8270F068100BDE417 /* ShowDetailsFormatter.swift in Sources */,
 			);
