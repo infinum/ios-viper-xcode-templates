@@ -24,8 +24,8 @@ public class AuthInterceptor: RequestInterceptor {
               let client = userDefaults.string(forKey: Constants.UserDefaults.client),
               let expiry = userDefaults.string(forKey: Constants.UserDefaults.expiry),
               let uid = userDefaults.string(forKey: Constants.UserDefaults.uid) else {
-            completion(.success(urlRequest))
-            return
+                  completion(.success(urlRequest))
+                  return
         }
 
         urlRequest.setValue(token, forHTTPHeaderField: Constants.RequestInterceptor.accessToken)

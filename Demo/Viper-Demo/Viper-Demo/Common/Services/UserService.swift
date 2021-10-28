@@ -44,6 +44,8 @@ class UserService {
 }
 
 private extension UserService {
+    // This is just an example and tokens should not be stored via UserDefaults in production
+    // For the simplicity we used UserDefaults
     func saveHeaders(from response: HTTPURLResponse?) {
         if let token = response?.headers.dictionary["access-token"],
            let expiry = response?.headers.dictionary["expiry"],
