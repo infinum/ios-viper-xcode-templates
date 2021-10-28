@@ -76,7 +76,7 @@ private extension ShowDetailsFormatter {
     func createReviewSection(with show: Show, _ reviews: [Review]) -> [ShowDetailsItem] {
         var showDetailsItems: [ShowDetailsItem] = []
         guard reviews.isEmpty else {
-            showDetailsItems.append(contentsOf: createReviewItemsWithReviews(show, reviews))
+            showDetailsItems.append(contentsOf: createReviewItems(show, reviews))
             return showDetailsItems
         }
         showDetailsItems.append(
@@ -91,7 +91,7 @@ private extension ShowDetailsFormatter {
         return showDetailsItems
     }
 
-    func createReviewItemsWithReviews(_ show: Show, _ reviews: [Review]) -> [ShowDetailsItem] {
+    func createReviewItems(_ show: Show, _ reviews: [Review]) -> [ShowDetailsItem] {
         var showDetailsItems: [ShowDetailsItem] = []
         showDetailsItems.append(
             ShowDetailsItem(
