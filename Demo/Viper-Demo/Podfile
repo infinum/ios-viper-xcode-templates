@@ -8,6 +8,7 @@ def app_pods
   pod 'Kingfisher'
   pod 'Japx'
   pod 'SVProgressHUD'
+  pod 'SwiftLint'
 end
 
 target 'Viper-Demo' do
