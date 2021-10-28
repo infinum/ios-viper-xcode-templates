@@ -20,7 +20,7 @@ Since you're at the VIPER templates Github, you might have guessed the answer to
 
 When we're trying to generate a module with Interactor + Formatter, we get the generated Formatter with other classes from that module. In this guide, we'll generate the Interactor + Formatter from RxModule since we're trying to use Rx as much as possible.
 
-If you have any doubts about your understanding of the [RxModule](Viper%20RxModule%20Guide.md) and which classes it generates for us, please visit the <i>RxModule VIPER guide</i>. We'll go through the files which differ from the base RxModule with Interactor. Those are *Interfaces*, *Presenter*, *Wireframe*, and the star of the show *Formatter*. In this case, we'll generate a module named <i>Details</i>.
+If you have any doubts about your understanding of the RxModule and which classes it generates for us, please visit the <i>[RxModule VIPER guide](Viper%20RxModule%20Guide.md)</i>. We'll go through the files which differ from the base RxModule with Interactor. Those are *Interfaces*, *Presenter*, *Wireframe*, and the star of the show *Formatter*. In this case, we'll generate a module named <i>Details</i>.
 
 As you can see from the changed files, there's no *ViewController* and *Interactor*, they stay the same.
 
