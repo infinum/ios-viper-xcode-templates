@@ -571,6 +571,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1300;
+				ORGANIZATIONNAME = Infinum;
 				TargetAttributes = {
 					376894B5270C33950094A3C2 = {
 						CreatedOnToolsVersion = 13.0;
