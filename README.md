@@ -27,8 +27,10 @@ After that, restart your Xcode if it was already opened.
 
 ## Demo project
 
-There's a Pokemon demo project in Demo folder.
-You can find most common VIPER module use cases in it.
+There's a TV Shows demo project in Demo folder.
+You can find most common VIPER module use cases in it. If you're already familiar with the base Viper modules you can check out our [RxModule Guide](Documentation/Viper%20RxModule%20Guide.md).
+
+If you want to check out how you could use Formatter in your apps, feel free to check out [Formatter Guide](Documentation/Formatter%20documentation.md).
 
 # VIPER short introduction
 
@@ -99,7 +101,7 @@ Let's start by covering these base files: *WireframeInterface*, *BaseWireframe*,
 ### WireframeInterface and BaseWireframe
 
 ```swift
-protocol WireframeInterface: class {
+protocol WireframeInterface: AnyObject {
 }
 
 class BaseWireframe {
@@ -107,10 +109,10 @@ class BaseWireframe {
     private unowned var _viewController: UIViewController
 
     // To retain view controller reference upon first access
-    private var _temporaryStoredViewController: UIViewController?
+    private var temporaryStoredViewController: ViewController?
 
     init(viewController: UIViewController) {
-        _temporaryStoredViewController = viewController
+        temporaryStoredViewController = viewController
         _viewController = viewController
     }
 
@@ -123,7 +125,7 @@ extension BaseWireframe: WireframeInterface {
 extension BaseWireframe {
 
     var viewController: UIViewController {
-        defer { _temporaryStoredViewController = nil }
+        defer { temporaryStoredViewController = nil }
         return _viewController
     }
 
@@ -163,47 +165,10 @@ The Wireframe is used in 2 steps:
 2. Navigation to a screen (see the *pushWireframe*, *presentWireframe* and *setRootWireframe* methods).
 Those methods are defined on *UIViewController* and *UINavigationController* since those objects are responsible for performing the navigation.
 
-### PresenterInterface
+### ViewInterface, InteractorInterface and PresenterInterface
 
 ```swift
-protocol PresenterInterface: class {
-    func viewDidLoad()
-    func viewWillAppear(animated: Bool)
-    func viewDidAppear(animated: Bool)
-    func viewWillDisappear(animated: Bool)
-    func viewDidDisappear(animated: Bool)
-}
-
-extension PresenterInterface {
-
-    func viewDidLoad() {
-        fatalError("Implementation pending...")
-    }
-
-    func viewWillAppear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-
-    func viewDidAppear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-
-    func viewWillDisappear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-
-    func viewDidDisappear(animated: Bool) {
-        fatalError("Implementation pending...")
-    }
-}
-```
-
-The *PresenterInterface* offers only optional methods which are used for the Presenter to performa tasks based on View events. For methods you use without implementing them you'll get a nice big fatal error.
-
-### ViewInterface and InteractorInterface
-
-```swift
-protocol ViewInterface: class {
+protocol ViewInterface: AnyObject {
 }
 
 extension ViewInterface {
@@ -211,61 +176,64 @@ extension ViewInterface {
 ```
 
 ```swift
-protocol InteractorInterface: class {
+protocol InteractorInterface: AnyObject {
 }
 
 extension InteractorInterface {
 }
 ```
 
-These two interfaces are initially empty. They exists just to make it simple to insert any and all functions needed in all views/interactors in you project. Both protocols need to be class bound because the Presenter will hold them via a weak reference.
+```swift
+protocol PresenterInterface: AnyObject {
+}
+
+extension PresenterInterface {
+}
+```
+
+These interfaces are initially empty. They exists just to make it simple to insert any and all functions needed in all views/interactors/presenters in you project. *ViewInterface* and *InteractorInterface* protocols need to be class bound because the Presenter will hold them via a weak reference.
 
 Ok, let's get to the actual module. First we'll cover the files you get when creating a new module via the module generator.
 
 ## 2. What you get when generating a module
 
-When running the module generator you will get five files. Say we wanted to create a Login module, we would get the following: *LoginInterfaces*, *LoginWireframe*, *LoginPresenter*, *LoginView* and *LoginInteractor*. Let's go over all five.
+When running the module generator you will get five files. Say we wanted to create a Home module, we would get the following: *HomeInterfaces*, *HomeWireframe*, *HomePresenter*, *HomeView* and *HomeInteractor*. Let's go over all five.
 
 ### Interfaces
 
 ```swift
-enum LoginNavigationOption {
+protocol HomeWireframeInterface: WireframeInterface {
 }
 
-protocol LoginWireframeInterface: WireframeInterface {
-    func navigate(to option: LoginNavigationOption)
+protocol HomeViewInterface: ViewInterface {
 }
 
-protocol LoginViewInterface: ViewInterface {
+protocol HomePresenterInterface: PresenterInterface {
 }
 
-protocol LoginPresenterInterface: PresenterInterface {
-}
-
-protocol LoginInteractorInterface: InteractorInterface {
+protocol HomeInteractorInterface: InteractorInterface {
 }
 ```
 
 This interface file will provide you with a nice overview of your entire module at one place. Since most components communicate with each other via protocols we found very useful to put all of these protocols for one module in one place. That way you have a very clean overview of the entire behavior of the module.
-The *LoginNavigationOption* enum is used for all navigation actions which involve creating a new wireframe and navigating to it in which ever way possible. This will become clearer when we go over a concrete example.
 
 ### Wireframe
 
 ```swift
-final class LoginWireframe: BaseWireframe {
+final class HomeWireframe: BaseWireframe<HomeViewController> {
 
     // MARK: - Private properties -
 
-    private let _storyboard = UIStoryboard(name: <#Storyboard name#>, bundle: nil)
+    private let storyboard = UIStoryboard(name: "Home", bundle: nil)
 
     // MARK: - Module setup -
 
     init() {
-        let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
+        let moduleViewController = storyboard.instantiateViewController(ofType: HomeViewController.self)
         super.init(viewController: moduleViewController)
 
-        let interactor = LoginInteractor()
-        let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        let interactor = HomeInteractor()
+        let presenter = HomePresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
     }
 
@@ -273,38 +241,39 @@ final class LoginWireframe: BaseWireframe {
 
 // MARK: - Extensions -
 
-extension LoginWireframe: LoginWireframeInterface {
-
-    func navigate(to option: LoginNavigationOption) {
-    }
+extension HomeWireframe: HomeWireframeInterface {
 }
 ```
 
-If you've created a storyboard which contains a *LoginViewController*, all you need to do is enter the storyboard name (see *_storyboard* var) here and the code will compile. We've made the assumption that you use the class name for an identifier but you can of course change this at any point in the future.
+It generates a Storyboard file for you too so you don't have to create one yourself. You can tailor the Storyboard to match its purpose.
 
 ### Presenter
 
 ```swift
-final class LoginPresenter {
+final class HomePresenter {
 
     // MARK: - Private properties -
 
-    private unowned let _view: LoginViewInterface
-    private let _interactor: LoginInteractorInterface
-    private let _wireframe: LoginWireframeInterface
+    private unowned let view: HomeViewInterface
+    private let interactor: HomeInteractorInterface
+    private let wireframe: HomeWireframeInterface
 
     // MARK: - Lifecycle -
 
-    init(wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
-        _wireframe = wireframe
-        _view = view
-        _interactor = interactor
+    init(
+        view: HomeViewInterface,
+        interactor: HomeInteractorInterface,
+        wireframe: HomeWireframeInterface
+    ) {
+        self.view = view
+        self.interactor = interactor
+        self.wireframe = wireframe
     }
 }
 
 // MARK: - Extensions -
 
-extension LoginPresenter: LoginPresenterInterface {
+extension HomePresenter: HomePresenterInterface {
 }
 ```
 
@@ -313,11 +282,11 @@ This is the skeleton of a Presenter which will get a lot more meat on it once yo
 ### View
 
 ```swift
-final class LoginViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
     // MARK: - Public properties -
 
-    var presenter: LoginPresenterInterface!
+    var presenter: HomePresenterInterface!
 
     // MARK: - Life cycle -
 
@@ -329,7 +298,7 @@ final class LoginViewController: UIViewController {
 
 // MARK: - Extensions -
 
-extension LoginViewController: LoginViewInterface {
+extension HomeViewController: HomeViewInterface {
 }
 ```
 
@@ -338,10 +307,10 @@ Like the Presenter above, this is only a skeleton which you will populate with I
 ### Interactor
 
 ```swift
-final class LoginInteractor {
+final class HomeInteractor {
 }
 
-extension LoginInteractor: LoginInteractorInterface {
+extension HomeInteractor: HomeInteractorInterface {
 }
 ```
 
@@ -349,120 +318,116 @@ When generated your Interactor is also a skeleton which you will in most cases u
 
 ## 3. How it really works
 
-Here's an example of a wireframe for a Login screen which uses two types of navigation to navigate to a login and registration screen. Let's start with the Presenter
+Here's an example of a wireframe for a Home screen. Let's start with the Presenter.
 
 ```swift
-final class LoginPresenter {
+final class HomePresenter {
 
     // MARK: - Private properties -
-    static private let minimumPasswordLength: UInt = 6
 
-    private unowned let _view: LoginViewInterface
-    private let _interactor: LoginInteractorInterface
-    private let _wireframe: LoginWireframeInterface
+    private unowned let view: HomeViewInterface
+    private let interactor: HomeInteractorInterface
+    private let wireframe: HomeWireframeInterface
 
-    private let _authorizationManager = AuthorizationAdapter.shared
-    private let _emailValidator = EmailValidator()
-    private let _passwordValidator = PasswordValidator(
-        minLength: LoginPresenter.minimumPasswordLength
-    )
-
-    // MARK: - Lifecycle -
-    init (wireframe: LoginWireframeInterface, view: LoginViewInterface, interactor: LoginInteractorInterface) {
-        _wireframe = wireframe
-        _view = view
-        _interactor = interactor
+    private var items: [Show] = [] {
+        didSet {
+            view.reloadData()
+        }
     }
 
+    // MARK: - Lifecycle -
+
+    init(
+        view: HomeViewInterface,
+        interactor: HomeInteractorInterface,
+        wireframe: HomeWireframeInterface
+    ) {
+        self.view = view
+        self.interactor = interactor
+        self.wireframe = wireframe
+    }
 }
 
 // MARK: - Extensions -
-extension LoginPresenter: LoginPresenterInterface {
 
-    func didSelectLoginAction(with email: String?, password: String?) {
-        guard let _email = email, let _password = password else {
-            _showLoginValidationError()
-            return
-        }
-        guard _emailValidator.isValid(_email) else {
-            _showEmailValidationError()
-            return
-        }
-        guard _passwordValidator.isValid(_password) else {
-            _showPasswordValidationError()
-            return
-        }
+extension HomePresenter: HomePresenterInterface {
+    func logout() {
+        interactor.logout()
+        wireframe.navigateToLogin()
+    }
 
-        _view.showProgressHUD()
-        _interactor.loginUser(with: _email, password: _password) { [weak self] (response) in
-            self?._view?.hideProgressHUD()
-            self?._handleLoginResult(response.result)
+    var numberOfItems: Int {
+        items.count
+    }
+
+    func item(at indexPath: IndexPath) -> Show {
+        items[indexPath.row]
+    }
+
+    func itemSelected(at indexPath: IndexPath) {
+        let show = items[indexPath.row]
+        wireframe.navigateToShowDetails(id: show.id)
+    }
+
+    func loadShows() {
+        view.showProgressHUD()
+        interactor.getShows { [unowned self] result in
+            switch result {
+            case .failure(let error):
+                showValidationError(error)
+            case .success(let shows):
+                items = shows
+            }
+            view.hideProgressHUD()
         }
     }
+
 }
 
-private extension LoginPresenter {
-
-    func _handleLoginResult(_ result: Result< JSONAPIObject<User> >) {
-        switch result {
-        case .success(let jsonObject):
-            _authorizationManager.authorizationHeader = jsonObject.object.authorizationHeader
-            _wireframe.navigate(to: .home)
-
-        case .failure(let error):
-            _wireframe.showErrorAlert(with: error.message)
-        }
-    }
-
-    func _showLoginValidationError() {
-        _wireframe.showAlert(with: "Error", message: "Please enter email and password")
-    }
-
-    func _showEmailValidationError() {
-        _wireframe.showAlert(with: "Error", message: "Please enter valid email")
-    }
-
-    func _showPasswordValidationError() {
-        _wireframe.showAlert(with: "Error", message: "Password should be at least 6 characters long")
+private extension HomePresenter {
+    func showValidationError(_ error: Error) {
+        wireframe.showAlert(with: "Error", message: error.localizedDescription)
     }
 }
 ```
 
-In this simple example the Presenter handles a login action selection which is delegated from the View. After that some validation is performed and then the actual login is performed using the Interactor. In the event of a successful login a navigation to a home screen is initiated. Let's take a look at the Wireframe in this example for a bit more clarity.
+In this simple example the Presenter fetches TV shows by doing an API call and handles the result. The Presenter can also handle the logout action and item selection in a tableView which is delegated from the view. If an item has been selected the Presenter will initiate opening of the Details screen.
 
 ```swift
-final class LoginWireframe: BaseWireframe {
+final class HomeWireframe: BaseWireframe<HomeViewController> {
 
     // MARK: - Private properties -
 
-    private let _storyboard = UIStoryboard(name: "Login", bundle: nil)
+    private let storyboard = UIStoryboard(name: "Home", bundle: nil)
 
     // MARK: - Module setup -
 
     init() {
-        let moduleViewController = _storyboard.instantiateViewController(ofType: LoginViewController.self)
+        let moduleViewController = storyboard.instantiateViewController(ofType: HomeViewController.self)
         super.init(viewController: moduleViewController)
 
-        let interactor = LoginInteractor()
-        let presenter = LoginPresenter(wireframe: self, view: moduleViewController, interactor: interactor)
+        let interactor = HomeInteractor()
+        let presenter = HomePresenter(view: moduleViewController, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
     }
 
 }
 
 // MARK: - Extensions -
-extension LoginWireframe: LoginWireframeInterface {
 
-    func navigate(to option: LoginNavigationOption) {
-        switch option {
-        case .home:
-            navigationController?.setRootWireframe(HomeWireframe())
-        }
+extension HomeWireframe: HomeWireframeInterface {
+    func navigateToLogin() {
+        navigationController?.setRootWireframe(LoginWireframe())
     }
+
+    func navigateToShowDetails(id: String) {
+        navigationController?.pushWireframe(DetailsWireframe())
+    }
+
 }
 ```
 
-This is also a simple example of a wireframe which handles only one type of navigation. You've maybe notices the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
+This is also a simple example of a wireframe which handles two navigation functions. You've maybe noticed the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
 
 ```swift
 func showAlert(with title: String?, message: String?) {
@@ -473,7 +438,34 @@ func showAlert(with title: String?, message: String?) {
 
 This is just one example of some shared logic you'll want to put in your base class or maybe one of the base protocols.
 
-This was just a short example of how one module can come together. Soon we'll make an entire example project available on GitHub which will contain much more use cases.
+Here's an example of a simple Interactor we used in the Demo project:
+
+```swift
+final class HomeInteractor {
+    private let userService: UserService
+    private let showService: ShowService
+
+    init(userService: UserService = .shared, showService: ShowService = .shared) {
+        self.userService = userService
+        self.showService = showService
+    }
+}
+
+// MARK: - Extensions -
+
+extension HomeInteractor: HomeInteractorInterface {
+    func getShows(_ completion: @escaping ((Result<[Show], Error>) -> ())) {
+        showService.getShows(completion)
+    }
+
+    func logout() {
+        userService.removeUser()
+    }
+}
+```
+
+The Interactor contains services which actually communicate with the server. The Interactor can contain as many services as needed but beware that you don't add the ones which aren't needed.
+
 
 ## How it's organized in Xcode
 
