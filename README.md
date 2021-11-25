@@ -108,7 +108,7 @@ class BaseWireframe {
 
     private unowned var _viewController: UIViewController
 
-    // To retain view controller reference upon first access
+    // We need it in order to retain the view controller reference upon first access
     private var temporaryStoredViewController: ViewController?
 
     init(viewController: UIViewController) {
