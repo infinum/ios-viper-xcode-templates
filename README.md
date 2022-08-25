@@ -109,7 +109,7 @@ class BaseWireframe {
     private unowned var _viewController: UIViewController
 
     // We need it in order to retain the view controller reference upon first access
-    private var temporaryStoredViewController: ViewController?
+    private var temporaryStoredViewController: UIViewController?
 
     init(viewController: UIViewController) {
         temporaryStoredViewController = viewController
