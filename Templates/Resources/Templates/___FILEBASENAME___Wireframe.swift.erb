@@ -30,7 +30,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<<%= @template.gene
     // MARK: - Module setup -
 
     init() {
-        <%- if @interface.generate_hosted_vc -%>
+        <%- if @template.generate_hosted_vc -%>
         let moduleViewController = LazyHostingViewController<___VARIABLE_moduleName___View>()
         <%- elsif @interface.generate_sb -%>
         let moduleViewController = storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
@@ -46,7 +46,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<<%= @template.gene
         let interactor = ___VARIABLE_moduleName___Interactor()
         <%- end -%>
         let presenter = ___VARIABLE_moduleName___Presenter(view: moduleViewController, <%= @complexity.generate_formatter ? 'formatter: formatter, ' : '' %><%= @complexity.generate_interactor ? 'interactor: interactor, ' : '' %>wireframe: self)
-        <%- if @interface.generate_hosted_vc -%>
+        <%- if @template.generate_hosted_vc -%>
         moduleViewController.rootView = ___VARIABLE_moduleName___View(presenter: presenter)
         <%- else -%>
         moduleViewController.presenter = presenter

@@ -1,5 +1,5 @@
 class Template
-    attr_accessor :name, :generate_io
+    attr_accessor :name, :generate_io, :generate_interface_selection, :generate_hosted_vc, :generate_swift_ui_view
 end
 
 class Interface
@@ -33,7 +33,7 @@ class Template
             generate_io: false,
             generate_interface_selection: true,
             generate_hosted_vc: false,
-            generate_swift_ui_view: false,
+            generate_swift_ui_view: false
         })
     end
 
@@ -41,9 +41,9 @@ class Template
         Template.new({
             name: "RxSwift Module",
             generate_io: true,
-            generate_interface_selectin: true,
+            generate_interface_selection: true,
             generate_hosted_vc: false,
-            generate_swift_ui_view: false,
+            generate_swift_ui_view: false
         })
     end
 
@@ -51,9 +51,9 @@ class Template
         Template.new({
             name: "Hosted SwiftUI Module",
             generate_io: false,
-            generate_interface_selectin: false,
+            generate_interface_selection: false,
             generate_hosted_vc: true,
-            generate_swift_ui_view: true,
+            generate_swift_ui_view: true
         })
     end
 
@@ -61,9 +61,9 @@ class Template
         Template.new({
             name: "SwiftUI Module",
             generate_io: false,
-            generate_interface_selectin: false,
+            generate_interface_selection: false,
             generate_hosted_vc: true,
-            generate_swift_ui_view: true,
+            generate_swift_ui_view: true
         })
     end
 end
