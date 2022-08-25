@@ -32,24 +32,26 @@
 			<key>Type</key>
 			<string>static</string>
 		</dict>
-		<dict>
-			<key>Identifier</key>
-			<string>interface</string>
-			<key>Name</key>
-			<string>Generate Interface Builder:</string>
-			<key>Description</key>
-			<string>Which interface builder to generate</string>
-			<key>Type</key>
-			<string>popup</string>
-			<key>Default</key>
-			<string><%= @interface.default.name%></string>
-			<key>Values</key>
-			<array>
-				<%- @interface.types.each do |type| -%>
-				<string><%= type.name %></string>
-				<%- end -%>
-			</array>
-		</dict>
+		<% if @template.generate_interface_selection -%>
+			<dict>
+				<key>Identifier</key>
+				<string>interface</string>
+				<key>Name</key>
+				<string>Generate Interface Builder:</string>
+				<key>Description</key>
+				<string>Which interface builder to generate</string>
+				<key>Type</key>
+				<string>popup</string>
+				<key>Default</key>
+				<string><%= @interface.default.name%></string>
+				<key>Values</key>
+				<array>
+					<%- @interface.types.each do |type| -%>
+					<string><%= type.name %></string>
+					<%- end -%>
+				</array>
+			</dict>
+		<% end -%>
 		<dict>
 			<key>Identifier</key>
 			<string>complex</string>

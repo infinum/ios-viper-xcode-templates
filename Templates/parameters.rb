@@ -24,20 +24,46 @@ class Template
     include Initializable
 
     def self.types
-        [normal, rx]
+        [normal, rx, hosted_swift_ui, swift_ui]
     end
 
     def self.normal
         Template.new({
             name: "Module",
-            generate_io: false
+            generate_io: false,
+            generate_interface_selection: true,
+            generate_hosted_vc: false,
+            generate_swift_ui_view: false,
         })
     end
 
     def self.rx
         Template.new({
-            name: "RxModule",
-            generate_io: true
+            name: "RxSwift Module",
+            generate_io: true,
+            generate_interface_selectin: true,
+            generate_hosted_vc: false,
+            generate_swift_ui_view: false,
+        })
+    end
+
+    def self.hosted_swift_ui
+        Template.new({
+            name: "Hosted SwiftUI Module",
+            generate_io: false,
+            generate_interface_selectin: false,
+            generate_hosted_vc: true,
+            generate_swift_ui_view: true,
+        })
+    end
+
+    def self.swift_ui
+        Template.new({
+            name: "SwiftUI Module",
+            generate_io: false,
+            generate_interface_selectin: false,
+            generate_hosted_vc: true,
+            generate_swift_ui_view: true,
         })
     end
 end

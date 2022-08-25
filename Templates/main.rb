@@ -52,6 +52,12 @@ def generate_view(template, interface, complexity, source_folder, destination_fo
     generator.save "#{destination_folder}/___FILEBASENAME___ViewController.swift"
 end
 
+def generate_swift_ui_view(template, interface, complexity, source_folder, destination_folder)
+    return unless template.generate_swift_ui_view
+    generator = Generator.new("#{source_folder}/___FILEBASENAME___View.swift.erb", template, interface, complexity)
+    generator.save "#{destination_folder}/___FILEBASENAME___View.swift"
+end
+
 def generate(template, interface, complexity)
     source_folder = "#{RESOURCES}/Templates"
     destination_folder = "#{PATH}/#{template.name}.xctemplate/#{interface.name}#{complexity.name}"
@@ -63,6 +69,7 @@ def generate(template, interface, complexity)
     generate_interactor(template, interface, complexity, source_folder, destination_folder)
     generate_formatter(template, interface, complexity, source_folder, destination_folder)
     generate_view(template, interface, complexity, source_folder, destination_folder)
+    generate_swift_ui_view(template, interface, complexity, source_folder, destination_folder)
 end
 
 def generate_info_plist(template)
