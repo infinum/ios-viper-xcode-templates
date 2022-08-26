@@ -14,8 +14,5 @@ import UIKit
 protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
 }
 
-
-protocol ___VARIABLE_moduleName___ViewInterface: ViewInterface {
-}
 protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
 }

@@ -14,12 +14,17 @@ import RxSwift
 import RxCocoa
 <% end -%>
 
+<% if @template.generate_ui_kit_wireframe -%>
+
 protocol ___VARIABLE_moduleName___WireframeInterface: WireframeInterface {
 }
+<% end -%>
+
+<% if !@template.generate_swift_ui_view -%>
 
 protocol ___VARIABLE_moduleName___ViewInterface: ViewInterface {
 }
-
+<% end -%>
 protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
 <% if @template.generate_io -%>
     func configure(with output: ___VARIABLE_moduleName___.ViewOutput) -> ___VARIABLE_moduleName___.ViewInput

@@ -14,39 +14,48 @@ import RxSwift
 import RxCocoa
 <% end -%>
 
-final class ___VARIABLE_moduleName___Presenter {
+final class ___VARIABLE_moduleName___Presenter<%= @template.generate_swift_ui_view ? ': ObservableObject' : '' %> {
+    <% if @template.generate_swift_ui_wireframe -%>
+    
+    final class Navigation: ObservableObject {
 
+    }
+
+    <%- end -%>
     // MARK: - Private properties -
 
+<% if @template.generate_vc -%>
     private unowned let view: ___VARIABLE_moduleName___ViewInterface
+    <% end -%>
 <% if @complexity.generate_formatter -%>
     private let formatter: ___VARIABLE_moduleName___FormatterInterface
 <% end -%>
 <% if @complexity.generate_interactor -%>
     private let interactor: ___VARIABLE_moduleName___InteractorInterface
 <% end -%>
+<% if @template.generate_ui_kit_wireframe -%>
     private let wireframe: ___VARIABLE_moduleName___WireframeInterface
+<% else -%>
+    private let navigation: Navigation
+<% end -%>
 
     // MARK: - Lifecycle -
 
-    init(
-        view: ___VARIABLE_moduleName___ViewInterface,
-        <%- if @complexity.generate_formatter -%>
-        <%= @complexity.generate_formatter ? 'formatter: ___VARIABLE_moduleName___FormatterInterface,' : '' %>
-        <%- end -%>
-        <%- if @complexity.generate_interactor -%>
-        <%= @complexity.generate_interactor ? 'interactor: ___VARIABLE_moduleName___InteractorInterface,' : '' %>
-        <%- end -%>
-        wireframe: ___VARIABLE_moduleName___WireframeInterface
-    ) {
+    init(<%= @template.generate_vc ? 'view: ___VARIABLE_moduleName___ViewInterface, ' : '' %><%= @complexity.generate_formatter ? 'formatter: ___VARIABLE_moduleName___FormatterInterface, ' : '' %><%= @complexity.generate_interactor ? 'interactor: ___VARIABLE_moduleName___InteractorInterface, ' : '' %><%= @template.generate_ui_kit_wireframe ? 'wireframe: ___VARIABLE_moduleName___WireframeInterface' : '' %><%= @template.generate_swift_ui_wireframe ? 'navigation: Navigation' : '' %>) {
+        <%- if @template.generate_vc -%>
         self.view = view
+        <%- end -%>
         <%- if @complexity.generate_formatter -%>
         self.formatter = formatter
         <%- end -%>
         <%- if @complexity.generate_interactor -%>
         self.interactor = interactor
         <%- end -%>
+        <%- if @template.generate_ui_kit_wireframe -%>
         self.wireframe = wireframe
+        <%- else -%>
+        self.navigation = navigation
+        <%- end -%>
     }
 }
 

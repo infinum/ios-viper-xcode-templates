@@ -10,17 +10,20 @@
 
 import Foundation
 
-final class ___VARIABLE_moduleName___Presenter {
-        // MARK: - Private properties -
+final class ___VARIABLE_moduleName___Presenter: ObservableObject {
+        
+    final class Navigation: ObservableObject {
 
-    private unowned let view: ___VARIABLE_moduleName___ViewInterface
-        private let wireframe: ___VARIABLE_moduleName___WireframeInterface
+    }
+
+    // MARK: - Private properties -
+
+    private let navigation: Navigation
 
     // MARK: - Lifecycle -
 
-    init(view: ___VARIABLE_moduleName___ViewInterface, wireframe: ___VARIABLE_moduleName___WireframeInterface) {
-        self.view = view
-        self.wireframe = wireframe
+    init(navigation: Navigation) {
+        self.navigation = navigation
     }
 }
 
