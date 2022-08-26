@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>DefaultCompletionName</key>
+	<string>VIPERModule</string>
+	<key>Description</key>
+	<string>This generates a new Module using 🐍VIPER generator.</string>
+	<key>Kind</key>
+	<string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
+	<key>Options</key>
+	<array>
+		<dict>
+			<key>Description</key>
+			<string>The name of the module to create</string>
+			<key>Default</key>
+			<string></string>
+			<key>Identifier</key>
+			<string>moduleName</string>
+			<key>Name</key>
+			<string>New SwiftUI Hosted Module Name:</string>
+			<key>Required</key>
+			<string>YES</string>
+			<key>Type</key>
+			<string>text</string>
+		</dict>
+		<dict>
+			<key>Default</key>
+			<string>___VARIABLE_moduleName___</string>
+			<key>Identifier</key>
+			<string>productName</string>
+			<key>Type</key>
+			<string>static</string>
+		</dict>
+				<dict>
+			<key>Identifier</key>
+			<string>complex</string>
+			<key>Name</key>
+			<string>Module Complexity:</string>
+			<key>Description</key>
+			<string>Type of a module to generate - simple, with interactor, or with interactor and formatter</string>
+			<key>Type</key>
+			<string>popup</string>
+			<key>Default</key>
+			<string>Interactor</string>
+			<key>Values</key>
+			<array>
+				<string>Simple</string>
+				<string>Interactor</string>
+				<string>InteractorAndFormatter</string>
+			</array>
+		</dict>
+	</array>
+	<key>Platforms</key>
+	<array>
+		<string>com.apple.platform.iphoneos</string>
+	</array>
+	<key>SortOrder</key>
+	<string>1</string>
+	<key>Summary</key>
+	<string>This generates a new 🐍 VIPER module.</string>
+</dict>
+</plist>

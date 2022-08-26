@@ -49,7 +49,7 @@ class Template
 
     def self.hosted_swift_ui
         Template.new({
-            name: "Hosted SwiftUI Module",
+            name: "SwiftUI Hosted Module",
             generate_io: false,
             generate_interface_selection: false,
             generate_hosted_vc: true,
