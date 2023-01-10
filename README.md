@@ -2,11 +2,12 @@
 
 # Versions
 
-Latest version is v4.0.1  
+Latest version is v4.0.1
 * [Viper 4.0 Migration Guide](Documentation/Viper%204.0%20Migration%20Guide.md)
 
 
-If you need to use any older version you can find them:  
+If you need to use any older version you can find them:
+* 4.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/4.0)
 * 3.3 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.3)
 * 3.2 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.2)
 * 3.1 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.1)
