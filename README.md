@@ -2,11 +2,12 @@
 
 # Versions
 
-Latest version is v4.0.  
+Latest version is v4.0.1
 * [Viper 4.0 Migration Guide](Documentation/Viper%204.0%20Migration%20Guide.md)
 
 
-If you need to use any older version you can find them:  
+If you need to use any older version you can find them:
+* 4.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/4.0)
 * 3.3 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.3)
 * 3.2 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.2)
 * 3.1 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.1)
@@ -101,17 +102,19 @@ Let's start by covering these base files: *WireframeInterface*, *BaseWireframe*,
 ### WireframeInterface and BaseWireframe
 
 ```swift
+import UIKit
+
 protocol WireframeInterface: AnyObject {
 }
 
-class BaseWireframe {
+class BaseWireframe<ViewController> where ViewController: UIViewController {
 
-    private unowned var _viewController: UIViewController
+    private weak var _viewController: ViewController?
 
     // We need it in order to retain the view controller reference upon first access
-    private var temporaryStoredViewController: UIViewController?
+    private var temporaryStoredViewController: ViewController?
 
-    init(viewController: UIViewController) {
+    init(viewController: ViewController) {
         temporaryStoredViewController = viewController
         _viewController = viewController
     }
@@ -124,9 +127,25 @@ extension BaseWireframe: WireframeInterface {
 
 extension BaseWireframe {
 
-    var viewController: UIViewController {
+    var viewController: ViewController {
         defer { temporaryStoredViewController = nil }
-        return _viewController
+        guard let vc = _viewController else {
+            fatalError(
+            """
+            The `ViewController` instance that the `_viewController` property holds
+            was already deallocated in a previous access to the `viewController` computed property.
+
+            If you don't store the `ViewController` instance as a strong reference
+            at the call site of the `viewController` computed property,
+            there is no guarantee that the `ViewController` instance won't be deallocated since the
+            `_viewController` property has a weak reference to the `ViewController` instance.
+
+            For the correct usage of this computed property, make sure to keep a strong reference
+            to the `ViewController` instance that it returns.
+            """
+            )
+        }
+        return vc
     }
 
     var navigationController: UINavigationController? {
@@ -137,7 +156,7 @@ extension BaseWireframe {
 
 extension UIViewController {
 
-    func presentWireframe(_ wireframe: BaseWireframe, animated: Bool = true, completion: (()->())? = nil) {
+    func presentWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true, completion: (() -> Void)? = nil) {
         present(wireframe.viewController, animated: animated, completion: completion)
     }
 
@@ -145,17 +164,14 @@ extension UIViewController {
 
 extension UINavigationController {
 
-    func pushWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
-        self.pushViewController(wireframe.viewController, animated: animated)
+    func pushWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
+        pushViewController(wireframe.viewController, animated: animated)
     }
 
-    func setRootWireframe(_ wireframe: BaseWireframe, animated: Bool = true) {
-        self.setViewControllers([wireframe.viewController], animated: animated)
+    func setRootWireframe<ViewController>(_ wireframe: BaseWireframe<ViewController>, animated: Bool = true) {
+        setViewControllers([wireframe.viewController], animated: animated)
     }
 
-}
-
-extension BaseWireframe: WireframeInterface {
 }
 ```
 

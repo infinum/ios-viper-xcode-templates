@@ -19,7 +19,6 @@
 		376894F4270C38240094A3C2 /* SFProDisplay-Regular.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 376894F0270C38240094A3C2 /* SFProDisplay-Regular.OTF */; };
 		376894F5270C38240094A3C2 /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376894F1270C38240094A3C2 /* SFProText-Regular.ttf */; };
 		376894F6270C38240094A3C2 /* SFProDisplay-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 376894F2270C38240094A3C2 /* SFProDisplay-Semibold.ttf */; };
-		37689501270C3A0F0094A3C2 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894FB270C3A0F0094A3C2 /* BaseWireframe.swift */; };
 		37689502270C3A0F0094A3C2 /* FormatterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894FC270C3A0F0094A3C2 /* FormatterInterface.swift */; };
 		37689503270C3A0F0094A3C2 /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894FD270C3A0F0094A3C2 /* UIStoryboardExtension.swift */; };
 		37689504270C3A0F0094A3C2 /* PresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376894FE270C3A0F0094A3C2 /* PresenterInterface.swift */; };
@@ -75,6 +74,7 @@
 		37976911270DA07A003F244A /* HomeWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797690B270DA07A003F244A /* HomeWireframe.swift */; };
 		3797691E270DA772003F244A /* Show.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797691D270DA772003F244A /* Show.swift */; };
 		37976920270DB761003F244A /* ShowService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3797691F270DB761003F244A /* ShowService.swift */; };
+		5C3BD0572948854100DB7DB9 /* BaseWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C3BD0562948854100DB7DB9 /* BaseWireframe.swift */; };
 		BE04F055E2D63DE290D80E0A /* Pods_Viper_DemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD53CE7F757DDD0CBC45097 /* Pods_Viper_DemoTests.framework */; };
 		BEA6D1FF4D362F748926CE78 /* Pods_Viper_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 582FC52112AD9E8263172E25 /* Pods_Viper_Demo.framework */; };
 /* End PBXBuildFile section */
@@ -117,7 +117,6 @@
 		376894F0270C38240094A3C2 /* SFProDisplay-Regular.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Regular.OTF"; sourceTree = "<group>"; };
 		376894F1270C38240094A3C2 /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		376894F2270C38240094A3C2 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
-		376894FB270C3A0F0094A3C2 /* BaseWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWireframe.swift; sourceTree = "<group>"; };
 		376894FC270C3A0F0094A3C2 /* FormatterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterInterface.swift; sourceTree = "<group>"; };
 		376894FD270C3A0F0094A3C2 /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
 		376894FE270C3A0F0094A3C2 /* PresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterInterface.swift; sourceTree = "<group>"; };
@@ -174,6 +173,7 @@
 		3797691D270DA772003F244A /* Show.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Show.swift; sourceTree = "<group>"; };
 		3797691F270DB761003F244A /* ShowService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowService.swift; sourceTree = "<group>"; };
 		582FC52112AD9E8263172E25 /* Pods_Viper_Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viper_Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C3BD0562948854100DB7DB9 /* BaseWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWireframe.swift; sourceTree = "<group>"; };
 		980F8C1AD8CCA88BFCBF230B /* Pods_Viper_Demo_Viper_DemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viper_Demo_Viper_DemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD53CE7F757DDD0CBC45097 /* Pods_Viper_DemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Viper_DemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6963554B139A9531B49E47 /* Pods-Viper-Demo-Viper-DemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Viper-Demo-Viper-DemoUITests.release.xcconfig"; path = "Target Support Files/Pods-Viper-Demo-Viper-DemoUITests/Pods-Viper-Demo-Viper-DemoUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 		376894FA270C3A030094A3C2 /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
-				376894FB270C3A0F0094A3C2 /* BaseWireframe.swift */,
+				5C3BD0562948854100DB7DB9 /* BaseWireframe.swift */,
 				376894FC270C3A0F0094A3C2 /* FormatterInterface.swift */,
 				376894FD270C3A0F0094A3C2 /* UIStoryboardExtension.swift */,
 				376894FE270C3A0F0094A3C2 /* PresenterInterface.swift */,
@@ -784,7 +784,6 @@
 				37689502270C3A0F0094A3C2 /* FormatterInterface.swift in Sources */,
 				3784CB79270ED5F5001643A0 /* HomeTableViewCell.swift in Sources */,
 				3785C8C2270F0B0800BDE417 /* TableCellItem.swift in Sources */,
-				37689501270C3A0F0094A3C2 /* BaseWireframe.swift in Sources */,
 				3785C8D1270F1C0600BDE417 /* ShowDetailsResponse.swift in Sources */,
 				3785C8A6270F068100BDE417 /* ShowDetailsPresenter.swift in Sources */,
 				37976910270DA07A003F244A /* HomeInteractor.swift in Sources */,
@@ -795,6 +794,7 @@
 				3785C8AF270F080700BDE417 /* ShowDescriptionTableViewCell.swift in Sources */,
 				3784CB7C270ED678001643A0 /* UITableView+Dequeue.swift in Sources */,
 				3785C8B5270F084F00BDE417 /* NoReviewTableViewCell.swift in Sources */,
+				5C3BD0572948854100DB7DB9 /* BaseWireframe.swift in Sources */,
 				3785C8BA270F0A5400BDE417 /* Review.swift in Sources */,
 				3785C8B3270F083300BDE417 /* ReviewTableViewCell.swift in Sources */,
 				3768952E270C772E0094A3C2 /* EmailValidator.swift in Sources */,
