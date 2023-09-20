@@ -8,7 +8,6 @@ Latest version is v4.0.1
 
 If you need to use any older version you can find them:
 * 4.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/4.0)
-* 3.3 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.3)
 * 3.2 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.2)
 * 3.1 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.1)
 * 3.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.0)
@@ -507,7 +506,6 @@ As described earlier you can think of one VIPER module as one screen. In the _Mo
 
 ## Useful links
 
-* https://tech.badoo.com/en/article/285/ios-architecture-patterns/
 * https://www.objc.io/issues/13-architecture/viper/
 * https://swifting.io/2016/03/07/VIPER-to-be-or-not-to-be.html
 
@@ -526,6 +524,13 @@ By making contributions to this project you give permission for your code to be 
 ## Credits
 
 Maintained and sponsored by
-[Infinum](http://www.infinum.co).
+[Infinum](https://infinum.com).
 
-<img src="https://infinum.co/infinum.png" width="264">
+<p align="center">
+  <a href='https://infinum.com'>
+    <picture>
+        <source srcset="https://assets.infinum.com/brand/logo/static/white.svg" media="(prefers-color-scheme: dark)">
+        <img src="https://assets.infinum.com/brand/logo/static/default.svg">
+    </picture>
+  </a>
+</p>
