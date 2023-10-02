@@ -28,8 +28,3 @@ final class ___VARIABLE_moduleName___Presenter: ObservableObject {
         self.navigation = navigation
     }
 }
-
-// MARK: - Extensions -
-
-extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {
-}

@@ -20,8 +20,8 @@ final class ___VARIABLE_moduleName___Presenter<%= @template.generate_swift_ui_vi
     final class Navigation: ObservableObject {
 
     }
-
     <%- end -%>
+
     // MARK: - Private properties -
 
 <% if @template.generate_vc -%>
@@ -58,7 +58,7 @@ final class ___VARIABLE_moduleName___Presenter<%= @template.generate_swift_ui_vi
         <%- end -%>
     }
 }
-
+<% if !@template.generate_using_hosted_vc && !@template.generate_swift_ui_view-%>
 // MARK: - Extensions -
 
 extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {
@@ -77,3 +77,4 @@ extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___Presenter
 
     <%- end -%>
 }
+<% end -%>

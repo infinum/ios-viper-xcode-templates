@@ -10,10 +10,6 @@
 
 import UIKit
 
-
-protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
-}
-
 protocol ___VARIABLE_moduleName___FormatterInterface: FormatterInterface {
 }
 

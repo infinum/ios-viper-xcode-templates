@@ -13,7 +13,8 @@ import RxSwift
 import RxCocoa
 
 final class ___VARIABLE_moduleName___Presenter {
-        // MARK: - Private properties -
+    
+    // MARK: - Private properties -
 
     private unowned let view: ___VARIABLE_moduleName___ViewInterface
         private let interactor: ___VARIABLE_moduleName___InteractorInterface
@@ -27,7 +28,6 @@ final class ___VARIABLE_moduleName___Presenter {
         self.wireframe = wireframe
     }
 }
-
 // MARK: - Extensions -
 
 extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {

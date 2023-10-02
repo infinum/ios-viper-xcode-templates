@@ -10,10 +10,7 @@
 
 import UIKit
 
-
 final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<___VARIABLE_moduleName___ViewController> {
-
-    final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<> {
 
     // MARK: - Private properties -
 
@@ -25,7 +22,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<___VARIABLE_module
         let moduleViewController = storyboard.instantiateViewController(ofType: ___VARIABLE_moduleName___ViewController.self)
         super.init(viewController: moduleViewController)
 
-        let presenter = ___VARIABLE_moduleName___Presenter(view: moduleViewController, wireframe: self)
+        let presenter = ___VARIABLE_moduleName___Presenter(wireframe: self)
         moduleViewController.presenter = presenter
     }
 

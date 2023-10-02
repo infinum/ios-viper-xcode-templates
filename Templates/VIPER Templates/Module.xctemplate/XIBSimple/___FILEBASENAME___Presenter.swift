@@ -11,7 +11,8 @@
 import Foundation
 
 final class ___VARIABLE_moduleName___Presenter {
-        // MARK: - Private properties -
+    
+    // MARK: - Private properties -
 
     private unowned let view: ___VARIABLE_moduleName___ViewInterface
         private let wireframe: ___VARIABLE_moduleName___WireframeInterface
@@ -23,7 +24,6 @@ final class ___VARIABLE_moduleName___Presenter {
         self.wireframe = wireframe
     }
 }
-
 // MARK: - Extensions -
 
 extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {

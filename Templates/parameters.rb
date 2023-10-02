@@ -24,7 +24,7 @@ class Template
     include Initializable
 
     def self.types
-        [normal, rx, hosted_swift_ui, swift_ui]
+        [normal, rx, hosted_swift_ui]
     end
 
     def self.normal

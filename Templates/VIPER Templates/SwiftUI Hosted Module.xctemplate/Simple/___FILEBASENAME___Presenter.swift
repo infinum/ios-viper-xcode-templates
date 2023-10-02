@@ -11,7 +11,8 @@
 import Foundation
 
 final class ___VARIABLE_moduleName___Presenter: ObservableObject {
-        // MARK: - Private properties -
+    
+    // MARK: - Private properties -
 
     private let wireframe: ___VARIABLE_moduleName___WireframeInterface
 
@@ -20,9 +21,4 @@ final class ___VARIABLE_moduleName___Presenter: ObservableObject {
     init(wireframe: ___VARIABLE_moduleName___WireframeInterface) {
         self.wireframe = wireframe
     }
-}
-
-// MARK: - Extensions -
-
-extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {
 }

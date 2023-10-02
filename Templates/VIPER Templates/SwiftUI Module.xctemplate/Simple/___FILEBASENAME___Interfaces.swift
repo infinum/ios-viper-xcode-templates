@@ -9,7 +9,3 @@
 //
 
 import UIKit
-
-
-protocol ___VARIABLE_moduleName___PresenterInterface: PresenterInterface {
-}

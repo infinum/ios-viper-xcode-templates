@@ -10,10 +10,7 @@
 
 import UIKit
 
-
 final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<LazyHostingViewController<___VARIABLE_moduleName___View>> {
-
-    final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<> {
 
     // MARK: - Private properties -
 
@@ -24,7 +21,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<LazyHostingViewCon
         super.init(viewController: moduleViewController)
 
         let interactor = ___VARIABLE_moduleName___Interactor()
-        let presenter = ___VARIABLE_moduleName___Presenter(view: moduleViewController, interactor: interactor, wireframe: self)
+        let presenter = ___VARIABLE_moduleName___Presenter(interactor: interactor, wireframe: self)
         moduleViewController.rootView = ___VARIABLE_moduleName___View(presenter: presenter)
     }
 

@@ -12,10 +12,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<___VARIABLE_moduleName___ViewController> {
-
-    final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<> {
 
     // MARK: - Private properties -
 
@@ -29,7 +26,7 @@ final class ___VARIABLE_moduleName___Wireframe: BaseWireframe<___VARIABLE_module
 
         let formatter = ___VARIABLE_moduleName___Formatter()
         let interactor = ___VARIABLE_moduleName___Interactor()
-        let presenter = ___VARIABLE_moduleName___Presenter(view: moduleViewController, formatter: formatter, interactor: interactor, wireframe: self)
+        let presenter = ___VARIABLE_moduleName___Presenter(formatter: formatter, interactor: interactor, wireframe: self)
         moduleViewController.presenter = presenter
     }
 
