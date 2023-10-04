@@ -21,6 +21,7 @@ def generate_sb(template, interface, complexity, source_folder, destination_fold
 end
 
 def generate_interfaces(template, interface, complexity, source_folder, destination_folder)
+    return if template.generate_swift_ui_wireframe && !complexity.generate_interactor
     generator = Generator.new("#{source_folder}/___FILEBASENAME___Interfaces.swift.erb", template, interface, complexity)
     generator.save "#{destination_folder}/___FILEBASENAME___Interfaces.swift"
 end
