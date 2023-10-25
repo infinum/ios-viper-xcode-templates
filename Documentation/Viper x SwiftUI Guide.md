@@ -208,4 +208,4 @@ extension LazyHostingViewController: HostingNavigationConfigurable {
 
 }
 ```
-For project code examples and further details, please refer to the [SwiftUI x Viper DemoProject](../Demo/SwiftUI Viper Demo).
+For project code examples and further details, please refer to the [SwiftUI x Viper DemoProject](../Demo/SwiftUI%20Viper%20Demo%20).
