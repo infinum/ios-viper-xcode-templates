@@ -12,7 +12,7 @@ import SwiftUI
 
 struct ___VARIABLE_moduleName___View: View {
 
-    @StateObject var presenter: ___VARIABLE_moduleName___Presenter
+    @ObservedObject var presenter: ___VARIABLE_moduleName___Presenter
 
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
