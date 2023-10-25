@@ -16,13 +16,13 @@ In the traditional VIPER architecture, the Presenter typically conforms to a pro
 
 ### UI Layer (SwiftUI View)
 
-In the SwiftUI-based VIPER architecture, the UI layer is implemented using SwiftUI views. The SwiftUI view has a reference to the concrete Presenter object using the `@StateObject` property wrapper. This property wrapper ensures that the Presenter object persists across multiple updates of the view, maintaining its state.
+In the SwiftUI-based VIPER architecture, the UI layer is implemented using SwiftUI views. The SwiftUI view has a reference to the concrete Presenter object using the `@ObservedObject` property wrapper. This property wrapper ensures that the Presenter object persists across multiple updates of the view, maintaining its state.
 
-To enable SwiftUI to work with the Presenter and update the UI accordingly, we leverage the `@Published` property wrapper, `@StateObject`, and the `ObservableObject` protocol. Here’s a short explanation to understand each of these concepts:
+To enable SwiftUI to work with the Presenter and update the UI accordingly, we leverage the `@Published` property wrapper, `@ObservedObject`, and the `ObservableObject` protocol. Here’s a short explanation to understand each of these concepts:
 
 - `@Published` property wrapper: Used within the Presenter to mark specific properties that should trigger updates to the SwiftUI view when their values change. By annotating properties with `@Published`, SwiftUI automatically tracks and updates the UI whenever these properties change.
 
-- `@StateObject` property wrapper: Used in the SwiftUI view to establish a reference to the concrete Presenter object. It ensures that the Presenter is initialized only once and persists across updates of the view. With `@StateObject`, the SwiftUI view retains the state of the Presenter and maintains a reference to it.
+- `@ObservedObject` property wrapper: Used in the SwiftUI view to establish a reference to the concrete Presenter object. It ensures that the Presenter is initialized only once and persists across updates of the view. With `@ObservedObject`, the SwiftUI view retains the state of the Presenter and maintains a reference to it.
 
 - `ObservableObject` protocol: The ObservableObject protocol is adopted by the Presenter, allowing SwiftUI to observe any changes made to the properties marked with `@Published`. By conforming to the ObservableObject protocol, the Presenter notifies SwiftUI whenever a `@Published` property changes, triggering an update to the UI.
 
@@ -32,7 +32,7 @@ To enable SwiftUI to work with the Presenter and update the UI accordingly, we l
 import SwiftUI
 
 struct DemoView: View {
-    @StateObject var presenter: DemoPresenter
+    @ObservedObject var presenter: DemoPresenter
     
     var body: some View {
         VStack {
@@ -55,7 +55,7 @@ final class DemoPresenter: ObservableObject {
 ```
 
 ## Communication
-![iOS VIPER MODULES](/Images/ios_viper_swiftui_graph.png "iOS VIPER x SwiftUI GRAPH")
+![iOS VIPER MODULES](/Images/ios_viper_swiftui_graph.jpg "iOS VIPER x SwiftUI GRAPH")
 
 Let's take a look at the communication logic:
 - View directly communicates with the Presenter.
@@ -87,6 +87,7 @@ final class DemoWireframe: BaseWireframe<LazyHostingViewController<DemoView>> {
 
         moduleViewController.rootView = DemoView(presenter: presenter)
     }
+
 }
 ```
 The LazyHostingViewController will initialize UIHostingController and add the SwiftUI view to the view hierarchy in the viewDidLoad lifecycle method.
@@ -133,12 +134,15 @@ To navigate between modules, we can utilize the UINavigationController provided 
 ```swift
 import SwiftUI
 struct NavigationDemoView: View {
-    @StateObject var presenter: NavigationPresenter
+
+    @ObservedObject var presenter: NavigationPresenter
+
     var body: some View {
       Button(action: presenter.navigateToDetailsScreen) {
           Text("Tap to navigate to details screen")
        }
     }
+
 }
 
 final class NavigationDemoPresenter: ObservableObject {
@@ -154,15 +158,16 @@ final class NavigationDemoPresenter: ObservableObject {
     func navigateToDetailsScreen() {
         wireframe.navigateToDetailsScreen()
     }
+
 }
 
 extension NavigationDemoWireframe: NavigationDemoWireframeInterface {
 
- func navigateToDetailsScreen() {
-    let wireframe = DetailsDemoWireframe(testType)
-
-    navigationController?.pushWireframe(wireframe)
-  }
+    func navigateToDetailsScreen() {
+        let wireframe = DetailsDemoWireframe(testType)
+        
+        navigationController?.pushWireframe(wireframe)
+    }
 
 }
 
@@ -198,7 +203,9 @@ HostingNavigationConfigurable protocol is adopted by LazyHostingViewController, 
 
 ```swift
 extension LazyHostingViewController: HostingNavigationConfigurable {
+
     var shouldHideNavigationBar: Bool { isNavigationBarHidden }
+
 }
 ```
-For project code examples and further details, please refer to the SwiftUIViperDemoProject.
+For project code examples and further details, please refer to the [SwiftUIViperDemoProject](Demo/SwiftUI%20Viper%20Demo).
