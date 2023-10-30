@@ -9,7 +9,7 @@ final class ___VARIABLE_moduleName___Presenter {
     // MARK: - Private properties -
 
     private unowned let view: ___VARIABLE_moduleName___ViewInterface
-        private let formatter: ___VARIABLE_moduleName___FormatterInterface
+    private let formatter: ___VARIABLE_moduleName___FormatterInterface
     private let interactor: ___VARIABLE_moduleName___InteractorInterface
     private let wireframe: ___VARIABLE_moduleName___WireframeInterface
 
@@ -22,6 +22,7 @@ final class ___VARIABLE_moduleName___Presenter {
         self.wireframe = wireframe
     }
 }
+
 // MARK: - Extensions -
 
 extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {

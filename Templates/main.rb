@@ -87,15 +87,8 @@ def generate_info_plist(template)
     generator.save "#{PATH}/#{template.name}.xctemplate/TemplateInfo.plist"
 end
 
-def copy_images(template)
-    source = "#{RESOURCES}/Images/."
-    destination = "#{PATH}/#{template.name}.xctemplate"
-    FileUtils.cp_r source, destination
-end
-
 Template.types.each do |template|
     generate_info_plist template
-    copy_images template
     
     if template.generate_swift_ui_view
         Complexity.types.each do |complexity|

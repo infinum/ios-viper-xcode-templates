@@ -20,7 +20,7 @@ final class ___VARIABLE_moduleName___Presenter<%= @template.generate_swift_ui_vi
 
 <% if @template.generate_vc -%>
     private unowned let view: ___VARIABLE_moduleName___ViewInterface
-    <% end -%>
+<% end -%>
 <% if @complexity.generate_formatter -%>
     private let formatter: ___VARIABLE_moduleName___FormatterInterface
 <% end -%>
@@ -52,7 +52,7 @@ final class ___VARIABLE_moduleName___Presenter<%= @template.generate_swift_ui_vi
         <%- end -%>
     }
 }
-<% if !@template.generate_using_hosted_vc && !@template.generate_swift_ui_view-%>
+<% if !@template.generate_using_hosted_vc && !@template.generate_swift_ui_view %>
 // MARK: - Extensions -
 
 extension ___VARIABLE_moduleName___Presenter: ___VARIABLE_moduleName___PresenterInterface {
