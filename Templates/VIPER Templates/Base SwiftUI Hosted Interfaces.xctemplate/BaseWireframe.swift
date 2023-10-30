@@ -1,3 +1,5 @@
+//___FILEHEADER___
+
 import UIKit
 
 protocol WireframeInterface: AnyObject {
