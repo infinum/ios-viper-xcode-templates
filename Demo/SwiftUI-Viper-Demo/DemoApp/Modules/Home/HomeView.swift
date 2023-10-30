@@ -11,7 +11,6 @@ struct HomeView: View {
             Button(action: presenter.goBack) {
                 Image(systemName: "chevron.left")
                     .font(.title2)
-                    .bold()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
                 

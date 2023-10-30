@@ -4,6 +4,7 @@ import Combine
 final class LoginPresenter: ObservableObject {
 
     // MARK: - Public properties -
+
     @Published var emailInput: String = ""
 
     // MARK: - Private properties -

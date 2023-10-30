@@ -54,9 +54,8 @@ class LazyHostingViewController<RootView: View>: UIViewController {
         hostingController.didMove(toParent: self)
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
+    override func viewIsAppearing(_ animated: Bool) {
+        super.viewIsAppearing(animated)
         navigationController?.setNavigationBarHidden(isNavigationBarHidden, animated: animated)
     }
 
