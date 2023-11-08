@@ -34,6 +34,11 @@ You can find most common VIPER module use cases in it. If you're already familia
 
 If you want to check out how you could use Formatter in your apps, feel free to check out [Formatter Guide](Documentation/Formatter%20documentation.md).
 
+## SwiftUI hosted module documentation and demo
+
+The 5.0.0 version includes support for integrating SwiftUI into Viper modules. There's a simple demo project in the Demo folder.
+The documentation for using SwiftUI hosted modules can be found in [Viper x SwiftUI Guide](Documentation/Viper%20x%20SwiftUI%20Guide.md).
+
 # VIPER short introduction
 
 How to organize all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?

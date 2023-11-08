@@ -1,3 +1,5 @@
+//___FILEHEADER___
+
 import UIKit
 
 /// Navigation controller that should be used only in combination with the ``LazyHostingViewController``.

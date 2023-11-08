@@ -19,7 +19,7 @@ class LazyHostingViewController<RootView: View>: UIViewController {
     var rootView: RootView!
     private let isNavigationBarHidden: Bool
 
-    init(isNavigationBarHidden: Bool) {
+    init(isNavigationBarHidden: Bool = true) {
         self.isNavigationBarHidden = isNavigationBarHidden
         super.init(nibName: nil, bundle: nil)
     }
