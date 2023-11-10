@@ -1,5 +1,5 @@
 class Template
-    attr_accessor :name, :generate_io
+    attr_accessor :name, :generate_io, :generate_interface_selection, :generate_vc, :generate_using_hosted_vc, :generate_swift_ui_view, :generate_swift_ui_wireframe, :generate_ui_kit_wireframe
 end
 
 class Interface
@@ -24,20 +24,58 @@ class Template
     include Initializable
 
     def self.types
-        [normal, rx]
+        [normal, rx, hosted_swift_ui]
     end
 
     def self.normal
         Template.new({
             name: "Module",
-            generate_io: false
+            generate_io: false,
+            generate_interface_selection: true,
+            generate_vc: true,
+            generate_using_hosted_vc: false,
+            generate_swift_ui_view: false,
+            generate_ui_kit_wireframe: true,
+            generate_swift_ui_wireframe: false
         })
     end
 
     def self.rx
         Template.new({
-            name: "RxModule",
-            generate_io: true
+            name: "RxSwift Module",
+            generate_io: true,
+            generate_interface_selection: true,
+            generate_vc: true,
+            generate_using_hosted_vc: false,
+            generate_swift_ui_view: false,
+            generate_ui_kit_wireframe: true,
+            generate_swift_ui_wireframe: false
+        })
+    end
+
+    def self.hosted_swift_ui
+        Template.new({
+            name: "SwiftUI Hosted Module",
+            generate_io: false,
+            generate_interface_selection: false,
+            generate_vc: false,
+            generate_using_hosted_vc: true,
+            generate_swift_ui_view: true,
+            generate_ui_kit_wireframe: true,
+            generate_swift_ui_wireframe: false
+        })
+    end
+
+    def self.swift_ui
+        Template.new({
+            name: "SwiftUI Module",
+            generate_io: false,
+            generate_interface_selection: false,
+            generate_vc: false,
+            generate_using_hosted_vc: false,
+            generate_swift_ui_view: true,
+            generate_ui_kit_wireframe: false,
+            generate_swift_ui_wireframe: true
         })
     end
 end
@@ -51,6 +89,15 @@ class Interface
 
     def self.default
         none
+    end
+
+    def self.empty
+        Interface.new({
+            name: "",
+            generate_xib: false,
+            generate_sb: false,
+            wireframe_sb: false
+        })
     end
 
     def self.storyboard

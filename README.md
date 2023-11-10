@@ -2,12 +2,11 @@
 
 # Versions
 
-Latest version is v4.0.1
-* [Viper 4.0 Migration Guide](Documentation/Viper%204.0%20Migration%20Guide.md)
-
+Latest version is v5.0
 
 If you need to use any older version you can find them:
-* 4.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/4.0)
+* 4.0.1 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/4.0.1)
+* 4.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/4.0) - [Viper 4.0 Migration Guide](Documentation/Viper%204.0%20Migration%20Guide.md)
 * 3.2 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.2)
 * 3.1 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.1)
 * 3.0 version [branch](https://github.com/infinum/iOS-VIPER-Xcode-Templates/tree/version/3.0)
@@ -31,6 +30,11 @@ There's a TV Shows demo project in Demo folder.
 You can find most common VIPER module use cases in it. If you're already familiar with the base Viper modules you can check out our [RxModule Guide](Documentation/Viper%20RxModule%20Guide.md).
 
 If you want to check out how you could use Formatter in your apps, feel free to check out [Formatter Guide](Documentation/Formatter%20documentation.md).
+
+## SwiftUI hosted module documentation and demo
+
+The 5.0 version includes support for integrating SwiftUI into Viper modules. There's a simple demo project in the Demo folder.
+The documentation for using SwiftUI hosted modules can be found in [Viper x SwiftUI Guide](Documentation/Viper%20x%20SwiftUI%20Guide.md).
 
 # VIPER short introduction
 

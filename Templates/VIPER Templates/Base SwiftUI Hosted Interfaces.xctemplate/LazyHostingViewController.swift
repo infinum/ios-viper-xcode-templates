@@ -1,7 +1,7 @@
+//___FILEHEADER___
+
 import SwiftUI
 import UIKit
-import RxSwift
-import RxCocoa
 
 /// Hosting controller that should be used in modules that use SwiftUI for
 /// creating their views. We are lazily adding the root view in order to
@@ -19,9 +19,10 @@ class LazyHostingViewController<RootView: View>: UIViewController {
     var rootView: RootView!
     private let isNavigationBarHidden: Bool
 
-    init(isNavigationBarHidden: Bool = true) {
+    init(isNavigationBarHidden: Bool = true, isModalInPresentation: Bool = false) {
         self.isNavigationBarHidden = isNavigationBarHidden
         super.init(nibName: nil, bundle: nil)
+        self.isModalInPresentation = isModalInPresentation
     }
 
     @available(*, unavailable)
@@ -64,12 +65,5 @@ class LazyHostingViewController<RootView: View>: UIViewController {
 extension LazyHostingViewController: HostingNavigationConfigurable {
 
     var shouldHideNavigationBar: Bool { isNavigationBarHidden }
-
-}
-
-
-protocol HostingNavigationConfigurable: AnyObject {
-
-    var shouldHideNavigationBar: Bool { get }
 
 }

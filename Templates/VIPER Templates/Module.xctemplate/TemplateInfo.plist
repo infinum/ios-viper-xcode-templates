@@ -32,25 +32,25 @@
 			<key>Type</key>
 			<string>static</string>
 		</dict>
-		<dict>
-			<key>Identifier</key>
-			<string>interface</string>
-			<key>Name</key>
-			<string>Generate Interface Builder:</string>
-			<key>Description</key>
-			<string>Which interface builder to generate</string>
-			<key>Type</key>
-			<string>popup</string>
-			<key>Default</key>
-			<string>None</string>
-			<key>Values</key>
-			<array>
-				<string>XIB</string>
+					<dict>
+				<key>Identifier</key>
+				<string>interface</string>
+				<key>Name</key>
+				<string>Generate Interface Builder:</string>
+				<key>Description</key>
+				<string>Which interface builder to generate</string>
+				<key>Type</key>
+				<string>popup</string>
+				<key>Default</key>
 				<string>None</string>
-				<string>Storyboard</string>
-			</array>
-		</dict>
-		<dict>
+				<key>Values</key>
+				<array>
+					<string>XIB</string>
+					<string>None</string>
+					<string>Storyboard</string>
+				</array>
+			</dict>
+				<dict>
 			<key>Identifier</key>
 			<string>complex</string>
 			<key>Name</key>

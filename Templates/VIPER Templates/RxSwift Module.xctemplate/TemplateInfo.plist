@@ -18,7 +18,7 @@
 			<key>Identifier</key>
 			<string>moduleName</string>
 			<key>Name</key>
-			<string>New <%= @template.name %> Name:</string>
+			<string>New RxSwift Module Name:</string>
 			<key>Required</key>
 			<string>YES</string>
 			<key>Type</key>
@@ -32,8 +32,7 @@
 			<key>Type</key>
 			<string>static</string>
 		</dict>
-		<% if @template.generate_interface_selection -%>
-			<dict>
+					<dict>
 				<key>Identifier</key>
 				<string>interface</string>
 				<key>Name</key>
@@ -43,16 +42,15 @@
 				<key>Type</key>
 				<string>popup</string>
 				<key>Default</key>
-				<string><%= @interface.default.name%></string>
+				<string>None</string>
 				<key>Values</key>
 				<array>
-					<%- @interface.types.each do |type| -%>
-					<string><%= type.name %></string>
-					<%- end -%>
+					<string>XIB</string>
+					<string>None</string>
+					<string>Storyboard</string>
 				</array>
 			</dict>
-		<% end -%>
-		<dict>
+				<dict>
 			<key>Identifier</key>
 			<string>complex</string>
 			<key>Name</key>
@@ -62,12 +60,12 @@
 			<key>Type</key>
 			<string>popup</string>
 			<key>Default</key>
-			<string><%= @complexity.default.name%></string>
+			<string>Interactor</string>
 			<key>Values</key>
 			<array>
-				<%- @complexity.types.each do |type| -%>
-				<string><%= type.name %></string>
-				<%- end -%>
+				<string>Simple</string>
+				<string>Interactor</string>
+				<string>InteractorAndFormatter</string>
 			</array>
 		</dict>
 	</array>
