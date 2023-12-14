@@ -14,7 +14,7 @@ If you need to use any older version you can find them:
 
 # Installation instructions
 
-To install VIPER Xcode templates clone this repo and run the following command from root folder:
+To install VIPER Xcode templates clone this repo and run the following command from the root folder:
 
 > make install_templates
 
@@ -27,7 +27,7 @@ After that, restart your Xcode if it was already opened.
 ## Demo project
 
 There's a TV Shows demo project in Demo folder.
-You can find most common VIPER module use cases in it. If you're already familiar with the base Viper modules you can check out our [RxModule Guide](Documentation/Viper%20RxModule%20Guide.md).
+You can find the most common VIPER module use cases in it. If you're already familiar with the base Viper modules you can check out our [RxModule Guide](Documentation/Viper%20RxModule%20Guide.md).
 
 If you want to check out how you could use Formatter in your apps, feel free to check out [Formatter Guide](Documentation/Formatter%20documentation.md).
 
@@ -39,22 +39,22 @@ The documentation for using SwiftUI hosted modules can be found in [Viper x Swif
 # VIPER short introduction
 
 How to organize all your code and not end up with a couple of <i>Massive View Controllers</i> with millions of lines of code?
-In short, **VIPER (View Interactor Presenter Entity Router)** is an architecture which, among other things, aims at solving the common *Massive View Controller* problem in iOS apps. When implemented to its full extent it achieves complete separation of concerns between modules, which also yields testability. This is good because another problem with Apple's Model View Controller architecture is poor testability.
+In short, **VIPER (View Interactor Presenter Entity Router)** is an architecture that, among other things, aims at solving the common *Massive View Controller* problem in iOS apps. When implemented to its full extent it achieves complete separation of concerns between modules, which also yields testability. This is good because another problem with Apple's Model View Controller architecture is poor testability.
 
 If you search the web for VIPER architecture in iOS apps you'll find a number of different implementations and a lot of them are not covered in enough detail. At Infinum we have tried out several approaches to this architecture in real-life projects and with that we have defined our own version of VIPER which we will try to cover in detail here.
 
 Let's go over the basics quickly - the main components of VIPER are as follows:
 
-* **View**: contains UI logic and knows how to layout and animate itself. It displays what it's _told_ by the Presenter and it _delegates_ user interaction actions to the Presenter. Ideally it contains no business logic, only view logic.
+* **View**: contains UI logic and knows how to layout and animate itself. It displays what it's _told_ by the Presenter and it _delegates_ user interaction actions to the Presenter. Ideally, it contains no business logic, only view logic.
 * **Interactor**: used for fetching data when requested by the Presenter, regardless of where the data is coming from. Contains only business logic.
-* **Presenter**: also known as the event handler. Handles all the communication with view, interactor and wireframe. Contains presentation logic - basically it controllers the module.
+* **Presenter**: also known as the event handler. Handles all the communication with view, interactor, and wireframe. Contains presentation logic - basically it controls the module.
 * **Entity**: models which are handled by the Interactor. Contains only business logic, but primarily data, not rules.
-* **Formatter**(new): handles formatting logic. Sits between presenter and the view. It formats the data from the business world into something that can be consumed by the view.
-* **Router**: handles navigation logic. In our case we use components called Wireframes for this responsibility.
+* **Formatter**(new): handles formatting logic. Sits between the presenter and the view. It formats the data from the business world into something that can be consumed by the view.
+* **Router**: handles navigation logic. In our case, we use components called Wireframes for this responsibility.
 
 ## Components
 
-Your entire app is made up of multiple modules which you organize in logical groups and use one storyboard for that group. In most cases the modules will represent screens and your module groups will represent user-stories, business-flows and so on.
+Your entire app is made up of multiple modules which you organize in logical groups and use one storyboard for that group. In most cases the modules will represent screens and your module groups will represent user stories, business flows, and so on.
 
 Module components:
 
@@ -64,13 +64,13 @@ Module components:
 * **Formatter** (not mandatory)
 * **Wireframe**
 
-In some simpler cases you won't need an Interactor for a certain module, which is why this component is not mandatory. These are cases where you don't need to fetch any data, which is usually not common.
+In some simpler cases, you won't need an Interactor for a certain module, which is why this component is not mandatory. These are cases where you don't need to fetch any data, which is usually not common.
 
 Wireframes inherit from the BaseWireframe. Presenters and Interactors do not inherit any class. Views most often inherit UIViewControllers. All protocols should be located in one file called *Interfaces*. More on this later.
 
 ## Communication and references
 
-The following pictures shows relationships and communication for one module.
+The following pictures show relationships and communication for one module.
 
 ![iOS VIPER GRAPH](/Images/ios_viper_graph.jpg "iOS VIPER GRAPH")
 
@@ -81,7 +81,7 @@ Let's take a look at the communication logic.
 * *LoginPresenter* communicates with *LoginInteractor* via a *LoginInteractorInterface* protocol
 * *LoginPresenter* communicates with *LoginWireframe* via a *LoginWireframeInterface* protocol
 
-The communication between most components of a module is done via protocols to ensure scoping of concerns and testability. Only the Wireframe communicates directly with the Presenter since it actually instantiates the Presenter, Interactor and View and connects the three via dependency injection.
+The communication between most components of a module is done via protocols to ensure scoping of concerns and testability. Only the Wireframe communicates directly with the Presenter since it actually instantiates the Presenter, Interactor, and View and connects the three via dependency injection.
 
 Now let's take a look at the references logic.
 
@@ -91,15 +91,15 @@ Now let's take a look at the references logic.
 * *LoginViewController* has a **strong** reference to *LoginPresenter*
 
 
-The reference types might appear a bit counter-intuitive, but they are organized this way to assure all module components are not deallocated from memory as long as one of its Views is active. In this way the Views lifecycle is also the lifecycle of the module - which actually makes perfect sense.
+The reference types might appear a bit counter-intuitive, but they are organized this way to ensure all module components are not deallocated from memory as long as one of its Views is active. In this way, the Views lifecycle is also the lifecycle of the module - which actually makes perfect sense.
 
-The creation and setup of module components is done in the Wireframe. The creation of a new Wireframe is almost always done in the previous Wireframe. More details on this later in the actual code.
+The creation and setup of module components are done in the Wireframe. The creation of a new Wireframe is almost always done in the previous Wireframe. More details on this later in the actual code.
 
-Before we go into detail we should comment one somewhat unusual decision we made naming-wise and that's suffixing protocol names with "Interface" (*LoginWireframeInterface*, *RegisterViewInterface*, ...). A common way to do this would be to omit the "Interface" part but we've found that this makes code somewhat less readable and the logic behind VIPER harder to grasp, especially when starting out.
+Before we go into detail we should comment on one somewhat unusual decision we made naming-wise and that's suffixing protocol names with "Interface" (*LoginWireframeInterface*, *RegisterViewInterface*, ...). A common way to do this would be to omit the "Interface" part but we've found that this makes code somewhat less readable and the logic behind VIPER harder to grasp, especially when starting out.
 
 ## 1. Base classes and interfaces
 
-The module generator tool will generate five files - but in order for these to work you will need a couple of base protocols and classes. These are also available in the repo.
+The module generator tool will generate five files - but for these to work you will need a couple of base protocols and classes. To get them in your project you should create a new file in Xcode and from the template selection screen, under the VIPER Templates section, select BaseInterfaces, and put them in some common folder in your project, perhaps in Common/VIPER.
 Let's start by covering these base files: *WireframeInterface*, *BaseWireframe*, *ViewInterface*, *InteractorInterface*, *PresenterInterface*, *UIStoryboardExtension*:
 
 ### WireframeInterface and BaseWireframe
@@ -184,7 +184,7 @@ The Wireframe is used in 2 steps:
 2. Navigation to a screen (see the *pushWireframe*, *presentWireframe* and *setRootWireframe* methods).
 Those methods are defined on *UIViewController* and *UINavigationController* since those objects are responsible for performing the navigation.
 
-### ViewInterface, InteractorInterface and PresenterInterface
+### ViewInterface, InteractorInterface, and PresenterInterface
 
 ```swift
 protocol ViewInterface: AnyObject {
@@ -210,13 +210,13 @@ extension PresenterInterface {
 }
 ```
 
-These interfaces are initially empty. They exists just to make it simple to insert any and all functions needed in all views/interactors/presenters in you project. *ViewInterface* and *InteractorInterface* protocols need to be class bound because the Presenter will hold them via a weak reference.
+These interfaces are initially empty. They exist just to make it simple to insert any and all functions needed in all views/interactors/presenters in your project. *ViewInterface* and *InteractorInterface* protocols need to be class-bound because the Presenter will hold them via a weak reference.
 
-Ok, let's get to the actual module. First we'll cover the files you get when creating a new module via the module generator.
+Ok, let's get to the actual module. First, we'll cover the files you get when creating a new module via the module generator.
 
 ## 2. What you get when generating a module
 
-When running the module generator you will get five files. Say we wanted to create a Home module, we would get the following: *HomeInterfaces*, *HomeWireframe*, *HomePresenter*, *HomeView* and *HomeInteractor*. Let's go over all five.
+When running the module generator you will get five files. Say we wanted to create a Home module, we would get the following: *HomeInterfaces*, *HomeWireframe*, *HomePresenter*, *HomeView*, and *HomeInteractor*. Let's go over all five.
 
 ### Interfaces
 
@@ -234,7 +234,7 @@ protocol HomeInteractorInterface: InteractorInterface {
 }
 ```
 
-This interface file will provide you with a nice overview of your entire module at one place. Since most components communicate with each other via protocols we found very useful to put all of these protocols for one module in one place. That way you have a very clean overview of the entire behavior of the module.
+This interface file will provide you with a nice overview of your entire module in one place. Since most components communicate with each other via protocols we found it very useful to put all of these protocols for one module in one place. That way you have a very clean overview of the entire behavior of the module.
 
 ### Wireframe
 
@@ -321,7 +321,7 @@ extension HomeViewController: HomeViewInterface {
 }
 ```
 
-Like the Presenter above, this is only a skeleton which you will populate with IBOutlets, animations and so on.
+Like the Presenter above, this is only a skeleton that you will populate with IBOutlets, animations and so on.
 
 ### Interactor
 
@@ -333,7 +333,7 @@ extension HomeInteractor: HomeInteractorInterface {
 }
 ```
 
-When generated your Interactor is also a skeleton which you will in most cases use to perform fetching of data from remote API services, Database services, etc.
+When generated your Interactor is also a skeleton that you will in most cases use to perform fetching of data from remote API services, Database services, etc.
 
 ## 3. How it really works
 
@@ -410,7 +410,7 @@ private extension HomePresenter {
 }
 ```
 
-In this simple example the Presenter fetches TV shows by doing an API call and handles the result. The Presenter can also handle the logout action and item selection in a tableView which is delegated from the view. If an item has been selected the Presenter will initiate opening of the Details screen.
+In this simple example, the Presenter fetches TV shows by doing an API call and handles the result. The Presenter can also handle the logout action and item selection in a tableView which is delegated from the view. If an item has been selected the Presenter will initiate the opening of the Details screen.
 
 ```swift
 final class HomeWireframe: BaseWireframe<HomeViewController> {
@@ -446,7 +446,7 @@ extension HomeWireframe: HomeWireframeInterface {
 }
 ```
 
-This is also a simple example of a wireframe which handles two navigation functions. You've maybe noticed the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
+This is also a simple example of a wireframe that handles two navigation functions. You've maybe noticed the *showAlert* Wireframe method used in the Presenter to display alerts. This is used in the BaseWireframe in this concrete project and looks like this:
 
 ```swift
 func showAlert(with title: String?, message: String?) {
@@ -483,12 +483,12 @@ extension HomeInteractor: HomeInteractorInterface {
 }
 ```
 
-The Interactor contains services which actually communicate with the server. The Interactor can contain as many services as needed but beware that you don't add the ones which aren't needed.
+The Interactor contains services that actually communicate with the server. The Interactor can contain as many services as needed but beware that you don't add the ones that aren't needed.
 
 
 ## How it's organized in Xcode
 
-Using this architecture impacted the way we organize our projects. In most cases we have four main subfolders in the project folder: Application, Common, Modules and Resources. Let's go over those a bit.
+Using this architecture impacted the way we organize our projects. In most cases, we have four main subfolders in the project folder: Application, Common, Modules, and Resources. Let's go over those a bit.
 
 ### Application
 
@@ -496,7 +496,7 @@ Contains AppDelegate and any other app-wide components, initializers, appearance
 
 ### Common
 
-Used for all common utility and view components grouped in sub folders. Some common cases for these groups are _Analytics_, _Constants_, _Extensions_, _Protocols_, _Views_, _Networking_, etc. Also here is where we always have a _VIPER_ subfolder which contains the base VIPER protocols and classes.
+Used for all common utility and view components grouped in subfolders. Some common cases for these groups are _Analytics_, _Constants_, _Extensions_, _Protocols_, _Views_, _Networking_, etc. Also here is where we always have a _VIPER_ subfolder which contains the base VIPER protocols and classes.
 
 ### Resources
 
@@ -504,7 +504,7 @@ This folder should contain image assets, fonts, audio and video files, and so on
 
 ### Modules
 
-As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organize screens into logical groups which are basically user-stories. Each group is organized in a sub-folder which contains one storyboard (containing all screens for that group) and multiple module sub-folders.
+As described earlier you can think of one VIPER module as one screen. In the _Modules_ folder we organize screens into logical groups which are basically user stories. Each group is organized in a sub-folder which contains one storyboard (containing all screens for that group) and multiple module sub-folders.
 
 ![iOS VIPER MODULES](/Images/ios_viper_modules.png "iOS VIPER MODULES")
 
