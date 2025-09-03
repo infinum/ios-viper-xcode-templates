@@ -1,17 +1,19 @@
 PODS:
-  - Alamofire (5.4.4)
+  - Alamofire (5.10.2)
   - Japx (4.0.0):
     - Japx/Core (= 4.0.0)
   - Japx/Core (4.0.0)
-  - Kingfisher (7.1.1)
-  - RxCocoa (6.2.0):
-    - RxRelay (= 6.2.0)
-    - RxSwift (= 6.2.0)
-  - RxRelay (6.2.0):
-    - RxSwift (= 6.2.0)
-  - RxSwift (6.2.0)
-  - SVProgressHUD (2.2.5)
-  - SwiftLint (0.45.0)
+  - Kingfisher (8.5.0)
+  - RxCocoa (6.9.0):
+    - RxRelay (= 6.9.0)
+    - RxSwift (= 6.9.0)
+  - RxRelay (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxSwift (6.9.0)
+  - SVProgressHUD (2.3.1):
+    - SVProgressHUD/Core (= 2.3.1)
+  - SVProgressHUD/Core (2.3.1)
+  - SwiftLint (0.60.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -34,15 +36,15 @@ SPEC REPOS:
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
   Japx: 4bb2d79d023af5e7ea44c0a2875c4b070080e111
-  Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
-  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
-  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
-  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
-  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
-  SwiftLint: e5c7f1fba68eccfc51509d5b2ce1699f5502e0c7
+  Kingfisher: ff0d31a1f07bdff6a1ebb3ba08b8e6e567b6500c
+  RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
+  RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+  SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
+  SwiftLint: 5f096c0752cfe436d39cef2b7483c90d649ddc91
 
-PODFILE CHECKSUM: 4e931ed526e1f7c3182093d8444bea1e8610fcba
+PODFILE CHECKSUM: ae6c1178e496255299def4f36a1bfee3f60e677a
 
-COCOAPODS: 1.11.0
+COCOAPODS: 1.16.2

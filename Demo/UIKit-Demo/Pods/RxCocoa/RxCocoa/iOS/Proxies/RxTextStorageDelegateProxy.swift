@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
     import RxSwift
     import UIKit
@@ -17,8 +17,7 @@
 
     open class RxTextStorageDelegateProxy
         : DelegateProxy<NSTextStorage, NSTextStorageDelegate>
-        , DelegateProxyType 
-        , NSTextStorageDelegate {
+        , DelegateProxyType {
 
         /// Typed parent object.
         public weak private(set) var textStorage: NSTextStorage?
@@ -34,4 +33,6 @@
             self.register { RxTextStorageDelegateProxy(textStorage: $0) }
         }
     }
+
+    extension RxTextStorageDelegateProxy: NSTextStorageDelegate {}
 #endif

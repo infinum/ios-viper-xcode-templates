@@ -33,6 +33,7 @@ extension KFImage {
 
     /// Represents a binder for `KFImage`. It takes responsibility as an `ObjectBinding` and performs
     /// image downloading and progress reporting based on `KingfisherManager`.
+    @MainActor
     class ImageBinder: ObservableObject {
         
         init() {}
@@ -44,14 +45,38 @@ extension KFImage {
             return loading || loadedImage != nil
         }
 
-        @Published var loaded = false
-        @Published var loadedImage: KFCrossPlatformImage? = nil
-        @Published var progress: Progress = .init()
+        // Do not use @Published due to https://github.com/onevcat/Kingfisher/issues/1717. Revert to @Published once
+        // we can drop iOS 12.
+        private(set) var loaded = false
 
-        func start<HoldingView: KFImageHoldingView>(context: Context<HoldingView>) {
+        private(set) var animating = false
+
+        var loadedImage: KFCrossPlatformImage? = nil { willSet { objectWillChange.send() } }
+        var failureView: (() -> AnyView)? = nil { willSet { objectWillChange.send() } }
+        var progress: Progress = .init()
+
+        func markLoading() {
+            loading = true
+        }
+
+        func markLoaded(sendChangeEvent: Bool) {
+            loaded = true
+            if sendChangeEvent {
+                objectWillChange.send()
+            }
+        }
+
+        func start<HoldingView: KFImageHoldingView>(context: Context<HoldingView>) where HoldingView: Sendable {
             guard let source = context.source else {
-                CallbackQueue.mainCurrentOrAsync.execute {
+                CallbackQueueMain.currentOrAsync {
                     context.onFailureDelegate.call(KingfisherError.imageSettingError(reason: .emptySource))
+                    if let view = context.failureView {
+                        self.failureView = view
+                    } else if let image = context.options.onFailureImage {
+                        self.loadedImage = image
+                    }
+                    self.loading = false
+                    self.markLoaded(sendChangeEvent: false)
                 }
                 return
             }
@@ -67,36 +92,60 @@ extension KFImage {
                         self.updateProgress(downloaded: size, total: total)
                         context.onProgressDelegate.call((size, total))
                     },
+                    progressiveImageSetter: { image in
+                        CallbackQueueMain.currentOrAsync {
+                            self.markLoaded(sendChangeEvent: true)
+                            self.loadedImage = image
+                        }
+                    },
                     completionHandler: { [weak self] result in
 
-                        guard let self = self else { return }
+                        guard let self else { return }
 
-                        CallbackQueue.mainCurrentOrAsync.execute {
+                        CallbackQueueMain.currentOrAsync {
                             self.downloadTask = nil
                             self.loading = false
                         }
                         
                         switch result {
                         case .success(let value):
-                            CallbackQueue.mainCurrentOrAsync.execute {
+                            CallbackQueueMain.currentOrAsync {
+                                if context.swiftUITransition != nil,
+                                   context.shouldApplyFade(cacheType: value.cacheType) {
+                                    // Apply SwiftUI loadTransition with custom animation (higher priority than fade)
+                                    self.animating = true
+                                    let animation = context.swiftUIAnimation ?? .default
+                                    withAnimation(animation) {
+                                        self.markLoaded(sendChangeEvent: true)
+                                    }
+                                } else if let fadeDuration = context.fadeTransitionDuration(cacheType: value.cacheType) {
+                                    self.animating = true
+                                    let animation = Animation.linear(duration: fadeDuration)
+                                    withAnimation(animation) {
+                                        // Trigger the view render to apply the animation.
+                                        self.markLoaded(sendChangeEvent: true)
+                                    }
+                                } else {
+                                    self.markLoaded(sendChangeEvent: false)
+                                }
                                 self.loadedImage = value.image
-                                let animation = context.fadeTransitionDuration(cacheType: value.cacheType)
-                                    .map { duration in Animation.linear(duration: duration) }
-                                withAnimation(animation) { self.loaded = true }
+                                self.animating = false
                             }
 
-                            CallbackQueue.mainAsync.execute {
+                            CallbackQueueMain.async {
                                 context.onSuccessDelegate.call(value)
                             }
                         case .failure(let error):
-                            CallbackQueue.mainCurrentOrAsync.execute {
-                                if let image = context.options.onFailureImage {
+                            CallbackQueueMain.currentOrAsync {
+                                if let view = context.failureView {
+                                    self.failureView = view
+                                } else if let image = context.options.onFailureImage {
                                     self.loadedImage = image
                                 }
-                                self.loaded = true
+                                self.markLoaded(sendChangeEvent: false)
                             }
                             
-                            CallbackQueue.mainAsync.execute {
+                            CallbackQueueMain.async {
                                 context.onFailureDelegate.call(error)
                             }
                         }
@@ -114,6 +163,18 @@ extension KFImage {
             downloadTask?.cancel()
             downloadTask = nil
             loading = false
+        }
+        
+        /// Restores the download task priority to default if it is in progress.
+        func restorePriorityOnAppear() {
+            guard let downloadTask = downloadTask, loading == true else { return }
+            downloadTask.sessionTask?.task.priority = URLSessionTask.defaultPriority
+        }
+        
+        /// Reduce the download task priority if it is in progress.
+        func reducePriorityOnDisappear() {
+            guard let downloadTask = downloadTask, loading == true else { return }
+            downloadTask.sessionTask?.task.priority = URLSessionTask.lowPriority
         }
     }
 }

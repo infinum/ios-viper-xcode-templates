@@ -2,7 +2,7 @@
 //  SVIndefiniteAnimatedView.m
 //  SVProgressHUD, https://github.com/SVProgressHUD/SVProgressHUD
 //
-//  Copyright (c) 2014-2018 Guillaume Campagna. All rights reserved.
+//  Copyright (c) 2014-2023 Guillaume Campagna and contributors. All rights reserved.
 //
 
 #import "SVIndefiniteAnimatedView.h"
@@ -25,9 +25,18 @@
     }
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+
+    [self layoutAnimatedLayer];
+}
+
 - (void)layoutAnimatedLayer {
     CALayer *layer = self.indefiniteAnimatedLayer;
-    [self.layer addSublayer:layer];
+
+    if (!layer.superlayer) {
+        [self.layer addSublayer:layer];
+    }
     
     CGFloat widthDiff = CGRectGetWidth(self.bounds) - CGRectGetWidth(layer.bounds);
     CGFloat heightDiff = CGRectGetHeight(self.bounds) - CGRectGetHeight(layer.bounds);
@@ -51,13 +60,9 @@
         
         CALayer *maskLayer = [CALayer layer];
         
-        NSBundle *bundle = [NSBundle bundleForClass:[SVProgressHUD class]];
-        NSURL *url = [bundle URLForResource:@"SVProgressHUD" withExtension:@"bundle"];
-        NSBundle *imageBundle = [NSBundle bundleWithURL:url];
+        NSBundle *imageBundle = [SVProgressHUD imageBundle];
         
-        NSString *path = [imageBundle pathForResource:@"angle-mask" ofType:@"png"];
-        
-        maskLayer.contents = (__bridge id)[[UIImage imageWithContentsOfFile:path] CGImage];
+        maskLayer.contents = (__bridge id)[[UIImage imageNamed:@"angle-mask.png" inBundle:imageBundle compatibleWithTraitCollection:nil] CGImage];
         maskLayer.frame = _indefiniteAnimatedLayer.bounds;
         _indefiniteAnimatedLayer.mask = maskLayer;
         

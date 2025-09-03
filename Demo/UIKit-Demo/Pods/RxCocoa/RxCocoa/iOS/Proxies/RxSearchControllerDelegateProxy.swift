@@ -6,7 +6,7 @@
 //  Copyright © 2016 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 
 import RxSwift
 import UIKit
@@ -18,8 +18,7 @@ extension UISearchController: HasDelegate {
 /// For more information take a look at `DelegateProxyType`.
 open class RxSearchControllerDelegateProxy
     : DelegateProxy<UISearchController, UISearchControllerDelegate>
-    , DelegateProxyType 
-    , UISearchControllerDelegate {
+    , DelegateProxyType {
 
     /// Typed parent object.
     public weak private(set) var searchController: UISearchController?
@@ -35,5 +34,7 @@ open class RxSearchControllerDelegateProxy
         self.register { RxSearchControllerDelegateProxy(searchController: $0) }
     }
 }
+
+extension RxSearchControllerDelegateProxy: UISearchControllerDelegate {}
    
 #endif

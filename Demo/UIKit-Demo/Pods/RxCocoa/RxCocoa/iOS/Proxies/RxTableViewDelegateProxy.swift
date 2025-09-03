@@ -6,15 +6,14 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
 import UIKit
 import RxSwift
 
 /// For more information take a look at `DelegateProxyType`.
 open class RxTableViewDelegateProxy
-    : RxScrollViewDelegateProxy
-    , UITableViewDelegate {
+    : RxScrollViewDelegateProxy {
 
     /// Typed parent object.
     public weak private(set) var tableView: UITableView?
@@ -26,5 +25,7 @@ open class RxTableViewDelegateProxy
     }
 
 }
+
+extension RxTableViewDelegateProxy: UITableViewDelegate {}
 
 #endif

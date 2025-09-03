@@ -31,22 +31,36 @@ import Combine
 /// A Kingfisher compatible SwiftUI `View` to load an image from a `Source`.
 /// Declaring a `KFImage` in a `View`'s body to trigger loading from the given `Source`.
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-struct KFImageRenderer<HoldingView> : View where HoldingView: KFImageHoldingView {
+struct KFImageRenderer<HoldingView> : View where HoldingView: KFImageHoldingView & Sendable {
     
     @StateObject var binder: KFImage.ImageBinder = .init()
     let context: KFImage.Context<HoldingView>
     
     var body: some View {
-        ZStack {
-            context.configurations
-                .reduce(HoldingView.created(from: binder.loadedImage, context: context)) {
-                    current, config in config(current)
+        if context.startLoadingBeforeViewAppear && !binder.loadingOrSucceeded && !binder.animating {
+            binder.markLoading()
+            DispatchQueue.main.async { binder.start(context: context) }
+        }
+        
+        return ZStack {
+            if context.swiftUITransition != nil {
+                // SwiftUI loadTransition: insert/remove view for proper transition behavior
+                if binder.loaded {
+                    renderedImage()
                 }
-                .opacity(binder.loaded ? 1.0 : 0.0)
+            } else {
+                // Fade transition or no transition: use opacity control
+                renderedImage()
+                    .opacity(binder.loaded ? 1.0 : 0.0)
+            }
             if binder.loadedImage == nil {
-                Group {
-                    if let placeholder = context.placeholder, let view = placeholder(binder.progress) {
-                        view
+                ZStack {
+                    // Priority: failureView > placeholder > Color.clear
+                    // failureView is only set when image loading fails
+                    if let failureView = binder.failureView {
+                        failureView()
+                    } else if let placeholder = context.placeholder {
+                        placeholder(binder.progress)
                     } else {
                         Color.clear
                     }
@@ -57,6 +71,10 @@ struct KFImageRenderer<HoldingView> : View where HoldingView: KFImageHoldingView
                     }
                     if !binder.loadingOrSucceeded {
                         binder.start(context: context)
+                    } else {
+                        if context.reducePriorityOnDisappear {
+                            binder.restorePriorityOnAppear()
+                        }
                     }
                 }
                 .onDisappear { [weak binder = self.binder] in
@@ -65,9 +83,46 @@ struct KFImageRenderer<HoldingView> : View where HoldingView: KFImageHoldingView
                     }
                     if context.cancelOnDisappear {
                         binder.cancel()
+                    } else if context.reducePriorityOnDisappear {
+                        binder.reducePriorityOnDisappear()
                     }
                 }
             }
+        }
+        // Workaround for https://github.com/onevcat/Kingfisher/issues/1988
+        // on iOS 16 there seems to be a bug that when in a List, the `onAppear` of the `ZStack` above in the
+        // `binder.loadedImage == nil` not get called. Adding this empty `onAppear` fixes it and the life cycle can
+        // work again.
+        //
+        // There is another "fix": adding an `else` clause and put a `Color.clear` there. But I believe this `onAppear`
+        // should work better.
+        //
+        // It should be a bug in iOS 16, I guess it is some kinds of over-optimization in list cell loading caused it.
+        .onAppear()
+    }
+    
+    @ViewBuilder
+    private func renderedImage() -> some View {
+        if let swiftUITransition = context.swiftUITransition {
+            // Apply SwiftUI loadTransition as the last step for correct rendering order
+            configuredImage.transition(swiftUITransition)
+        } else {
+            configuredImage
+        }
+    }
+    
+    @ViewBuilder
+    private var configuredImage: some View {
+        let configuredImage = context.configurations
+            .reduce(HoldingView.created(from: binder.loadedImage, context: context)) {
+                current, config in config(current)
+            }
+        
+        // Apply contentConfiguration first, then loadTransition as the final step
+        if let contentConfiguration = context.contentConfiguration {
+            contentConfiguration(configuredImage)
+        } else {
+            configuredImage
         }
     }
 }

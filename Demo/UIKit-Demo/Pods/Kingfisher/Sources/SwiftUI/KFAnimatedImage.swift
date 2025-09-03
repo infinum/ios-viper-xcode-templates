@@ -24,11 +24,20 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if canImport(SwiftUI) && canImport(Combine) && canImport(UIKit) && !os(watchOS)
+#if canImport(SwiftUI) && canImport(Combine) && !os(watchOS)
 import SwiftUI
 import Combine
 
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
+/// Represents an animated image view in SwiftUI that manages its content using Kingfisher.
+///
+/// Similar to ``KFImage``, this view provides support for animated image formats like GIF.
+///
+/// - Important: Like ``KFImage``, `KFAnimatedImage` loads disk cached images synchronously by default 
+/// (`.loadDiskFileSynchronously()` is enabled). This prevents image flickering during SwiftUI view updates 
+/// but may impact performance when loading large animated images from disk. You can disable this behavior 
+/// by calling `.loadDiskFileSynchronously(false)` if you prefer better loading performance over visual consistency.
+///
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, *)
 public struct KFAnimatedImage: KFImageProtocol {
     public typealias HoldingView = KFAnimatedImageViewRepresenter
     public var context: Context<HoldingView>
@@ -47,9 +56,17 @@ public struct KFAnimatedImage: KFImageProtocol {
     }
 }
 
+#if os(macOS)
+@available(macOS 11.0, *)
+typealias KFCrossPlatformViewRepresentable = NSViewRepresentable
+#else
+@available(iOS 14.0, tvOS 14.0, watchOS 7.0, *)
+typealias KFCrossPlatformViewRepresentable = UIViewRepresentable
+#endif
+
 /// A wrapped `UIViewRepresentable` of `AnimatedImageView`
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-public struct KFAnimatedImageViewRepresenter: UIViewRepresentable, KFImageHoldingView {
+public struct KFAnimatedImageViewRepresenter: KFCrossPlatformViewRepresentable, KFImageHoldingView, Sendable {
     public typealias RenderingView = AnimatedImageView
     public static func created(from image: KFCrossPlatformImage?, context: KFImage.Context<Self>) -> KFAnimatedImageViewRepresenter {
         KFAnimatedImageViewRepresenter(image: image, context: context)
@@ -58,8 +75,31 @@ public struct KFAnimatedImageViewRepresenter: UIViewRepresentable, KFImageHoldin
     var image: KFCrossPlatformImage?
     let context: KFImage.Context<KFAnimatedImageViewRepresenter>
     
+    #if os(macOS)
+    public func makeNSView(context: Context) -> AnimatedImageView {
+        return makeImageView()
+    }
+    
+    public func updateNSView(_ nsView: AnimatedImageView, context: Context) {
+        updateImageView(nsView)
+    }
+    #else
     public func makeUIView(context: Context) -> AnimatedImageView {
+        return makeImageView()
+    }
+    
+    public func updateUIView(_ uiView: AnimatedImageView, context: Context) {
+        updateImageView(uiView)
+    }
+    #endif
+    
+    @MainActor
+    private func makeImageView() -> AnimatedImageView {
         let view = AnimatedImageView()
+        
+        #if !os(macOS)
+        view.isUserInteractionEnabled = true
+        #endif
         
         self.context.renderConfigurations.forEach { $0(view) }
         
@@ -71,15 +111,15 @@ public struct KFAnimatedImageViewRepresenter: UIViewRepresentable, KFImageHoldin
         return view
     }
     
-    public func updateUIView(_ uiView: AnimatedImageView, context: Context) {
-        uiView.image = image
+    @MainActor
+    private func updateImageView(_ imageView: AnimatedImageView) {
+        imageView.image = image
     }
-    
 }
 
 #if DEBUG
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-struct KFAnimatedImage_Previews : PreviewProvider {
+struct KFAnimatedImage_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             KFAnimatedImage(source: .network(URL(string: "https://raw.githubusercontent.com/onevcat/Kingfisher-TestImages/master/DemoAppImage/GIF/1.gif")!))

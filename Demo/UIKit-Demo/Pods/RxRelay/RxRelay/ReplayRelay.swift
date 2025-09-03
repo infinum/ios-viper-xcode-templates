@@ -14,7 +14,7 @@ import RxSwift
 public final class ReplayRelay<Element>: ObservableType {
     private let subject: ReplaySubject<Element>
 
-    // Accepts `event` and emits it to subscribers
+    /// Accepts `event` and emits it to subscribers
     public func accept(_ event: Element) {
         self.subject.onNext(event)
     }
@@ -46,5 +46,12 @@ public final class ReplayRelay<Element>: ObservableType {
     /// - returns: Canonical interface for push style sequence
     public func asObservable() -> Observable<Element> {
         self.subject.asObserver()
+    }
+    
+    /// Convert to an `Infallible`
+    ///
+    /// - returns: `Infallible<Element>`
+    public func asInfallible() -> Infallible<Element> {
+        asInfallible(onErrorFallbackTo: .empty())
     }
 }

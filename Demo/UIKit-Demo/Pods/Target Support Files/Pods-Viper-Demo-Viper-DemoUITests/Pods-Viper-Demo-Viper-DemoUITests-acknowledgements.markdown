@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## Alamofire
 
-Copyright (c) 2014-2021 Alamofire Software Foundation (http://alamofire.org/)
+Copyright (c) 2014-2022 Alamofire Software Foundation (http://alamofire.org/)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +76,7 @@ SOFTWARE.
 ## RxCocoa
 
 **The MIT License**
-**Copyright © 2015 Krunoslav Zaher, Shai Mishali**
+**Copyright © 2015 Shai Mishali, Krunoslav Zaher**
 **All rights reserved.**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -89,7 +89,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## RxRelay
 
 **The MIT License**
-**Copyright © 2015 Krunoslav Zaher, Shai Mishali**
+**Copyright © 2015 Shai Mishali, Krunoslav Zaher**
 **All rights reserved.**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -102,7 +102,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## RxSwift
 
 **The MIT License**
-**Copyright © 2015 Krunoslav Zaher, Shai Mishali**
+**Copyright © 2015 Shai Mishali, Krunoslav Zaher**
 **All rights reserved.**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
@@ -116,7 +116,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 MIT License
 
-Copyright (c) 2011-2018 Sam Vermette, Tobias Tiemerding and contributors.
+Copyright (c) 2011-2023 Sam Vermette, Tobias Totzek and contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -141,7 +141,7 @@ SOFTWARE.
 
 The MIT License (MIT)
 
-Copyright (c) 2020 Realm Inc.
+Copyright (c) 2025 The SwiftLint Contributors.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

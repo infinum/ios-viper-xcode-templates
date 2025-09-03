@@ -6,7 +6,7 @@
 //  Copyright © 2017 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
     import UIKit
     import RxSwift
@@ -18,8 +18,7 @@
     /// For more information take a look at `DelegateProxyType`.
     open class RxNavigationControllerDelegateProxy
         : DelegateProxy<UINavigationController, UINavigationControllerDelegate>
-        , DelegateProxyType 
-        , UINavigationControllerDelegate {
+        , DelegateProxyType {
 
         /// Typed parent object.
         public weak private(set) var navigationController: UINavigationController?
@@ -35,4 +34,6 @@
             self.register { RxNavigationControllerDelegateProxy(navigationController: $0) }
         }
     }
+
+    extension RxNavigationControllerDelegateProxy: UINavigationControllerDelegate {}
 #endif

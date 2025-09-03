@@ -59,7 +59,7 @@ private extension UserService {
         }
     }
 
-    func handle(url: URL, parameters: Parameters) -> Single<User> {
+    func handle(url: URL, parameters: [String: Any]) -> Single<User> {
         return Single.create { single in
             let request = AF.request(
                 url,
@@ -88,8 +88,8 @@ private extension UserService {
         }
     }
 
-    func createParameters(_ email: String, _ password: String) -> Parameters {
-        var params = Parameters()
+    func createParameters(_ email: String, _ password: String) -> [String: Any] {
+        var params = [String: Any]()
         params["email"] = email
         params["password"] = password
         return params

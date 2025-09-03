@@ -6,7 +6,7 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 
 import UIKit
 import RxSwift
@@ -18,8 +18,7 @@ extension UISearchBar: HasDelegate {
 /// For more information take a look at `DelegateProxyType`.
 open class RxSearchBarDelegateProxy
     : DelegateProxy<UISearchBar, UISearchBarDelegate>
-    , DelegateProxyType 
-    , UISearchBarDelegate {
+    , DelegateProxyType {
 
     /// Typed parent object.
     public weak private(set) var searchBar: UISearchBar?
@@ -35,5 +34,7 @@ open class RxSearchBarDelegateProxy
         self.register { RxSearchBarDelegateProxy(searchBar: $0) }
     }
 }
+
+extension RxSearchBarDelegateProxy: UISearchBarDelegate {}
 
 #endif
