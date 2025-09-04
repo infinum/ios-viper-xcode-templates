@@ -70,8 +70,12 @@ private extension UserService {
                 .validate()
                 .responseData { [unowned self] data in
                     saveHeaders(from: data.response)
+                    if let error = data.error {
+                        single(.failure(error))
+                        return
+                    }
                     guard let data = data.data else {
-                        single(.failure(data.error ?? AFError.explicitlyCancelled))
+                        single(.failure(AFError.responseSerializationFailed(reason: .inputFileNil)))
                         return
                     }
                     do {
