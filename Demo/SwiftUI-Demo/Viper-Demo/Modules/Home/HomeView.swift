@@ -87,7 +87,7 @@ private struct ShowRowView: View {
         Button(action: onTap) {
             HStack(spacing: 20) {
                 ShowImageView(imageUrl: show.imageUrl)
-                ShowDetailsView(title: show.title)
+                ShowItemDetailsView(title: show.title)
                 Spacer()
             }
             .padding(.vertical, 12)
@@ -119,7 +119,7 @@ private struct ShowImageView: View {
 
 // MARK: - Show Details View
 
-private struct ShowDetailsView: View {
+private struct ShowItemDetailsView: View {
     
     let title: String
     

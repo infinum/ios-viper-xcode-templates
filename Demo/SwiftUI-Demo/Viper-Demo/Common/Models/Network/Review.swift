@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct Review: Codable {
+struct Review: Codable, Identifiable {
+    
     let id: String
     let comment: String
     let rating: Int
