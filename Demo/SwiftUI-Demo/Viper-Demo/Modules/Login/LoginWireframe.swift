@@ -14,11 +14,11 @@ struct LoginWireframe: View {
     // MARK: - Navigation Properties
     @Binding private var navigationPath: NavigationPath
 
+    // MARK: - Initialization
+
     init(navigationPath: Binding<NavigationPath>) {
         self._navigationPath = navigationPath
     }
-
-    // MARK: - Initialization
     
     // MARK: - View Body
     

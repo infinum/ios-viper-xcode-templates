@@ -21,7 +21,11 @@ protocol HomeWireframeInterface {
     func navigateToShowDetails(id: String)
 }
 
-/// Home Interactor Interface  
+enum HomeDestination: Hashable {
+    case details(String)
+}
+
+/// Home Interactor Interface
 /// Defines the business logic interface for Home module
 protocol HomeInteractorInterface: InteractorInterface {
     /// Fetch all shows from the API

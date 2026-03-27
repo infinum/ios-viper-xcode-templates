@@ -26,6 +26,12 @@ struct HomeWireframe: View {
     
     var body: some View {
         HomeView(presenter: createPresenter())
+            .navigationDestination(for: HomeDestination.self) { screen in
+                switch screen {
+                case .details(let showId):
+                    ShowDetailsWireframe(navigationPath: $navigationPath, showId: showId)
+                }
+            }
     }
     
     // MARK: - View Factory Methods
@@ -54,5 +60,6 @@ extension HomeWireframe: HomeWireframeInterface {
     func navigateToShowDetails(id: String) {
         // TODO: Implement navigation to ShowDetails when that module is refactored
         print("Navigate to show details with ID: \(id)")
+        navigationPath.append(HomeDestination.details(id))
     }
 }
